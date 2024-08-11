@@ -1,26 +1,38 @@
 body {
-    background-image: url("../../../assets/pexels-photo-7915238.jpeg");
+    background-image: url("../assets/pexels-photo-7915238.jpeg");
     background-repeat: repeat-y;
     background-size: 100%;
 
     text-shadow: 1px black;
 
-    font-size: 24px;
+    font-size: 26px;
     font-family:'Courier New', Courier, monospace;
-
 }
 
-div {
-    margin-left: 12.5%;
-    align-items: center;
-    justify-content: center;
-    width:75vw;
+#container {
+    width: 100vw;
+    height: 100vh;
     
+    background-color: rgba(0, 0, 0, 0.7);
+    
+    div {
+        margin-left: 12.5%;
+        align-items: center;
+        justify-content: center;
+        width:75vw;
+    }
+}
+
+h1 {
+    color: #ffffff;
 }
 
 p {
-    color: white;
-    text-shadow: 2px 2px 2xp solid black;
+    color: #ffffff;
+}
+
+span {
+    color: #ffff00;
 }
 
 button {
@@ -36,7 +48,8 @@ button {
     cursor: pointer;
     display: inline-flex;
     font-family: "JetBrains Mono", monospace;
-    height: 48px;
+    height: 8vh;
+    min-width: 15vw;
     justify-content: center;
     line-height: 1;
     list-style: none;
@@ -63,15 +76,38 @@ button:hover {
 }
 
 #ruut-logo {
-    width: 40px;
-    height: 40px;
+    width: 100px;
+    height: 100px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 @media screen and (max-width: 500px) {
-    body {
+
+    #container {        
+        div {
+            margin-left: 20.0%;
+        }
+    }
+    h1 {
+        font-size: 24px;
     }
     p {
-        width: 50vw;
+        width: 60vw;
         font-size: 16px;
     }
+    button {
+        padding-left: 8px;
+        padding-right: 8px;
+        height: 6.5vh;
+    }
+    #ruut-logo {
+        width: 65px;
+        height: 65px;
+    }
+    
 }

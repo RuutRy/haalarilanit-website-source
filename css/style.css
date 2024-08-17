@@ -5,8 +5,12 @@ body {
 
     text-shadow: 1px black;
 
+    font-family: "JetBrains Mono", monospace;
     font-size: 26px;
-    font-family:'Courier New', Courier, monospace;
+    color: #ffffff;
+
+    align-items: center;
+    justify-content: center;
 }
 
 #container {
@@ -14,21 +18,25 @@ body {
     height: 100vh;
     
     background-color: rgba(0, 0, 0, 0.7);
-    
-    div {
-        margin-left: 12.5%;
-        align-items: center;
+
+    main {
+        display: grid;
         justify-content: center;
-        width:75vw;
+        width: 100vw;
+
+        h1, p, button {
+            display: flex;
+            justify-content: center;
+        }
+        p {
+            width: 70vw;
+        }
+
     }
 }
 
 h1 {
-    color: #ffffff;
-}
-
-p {
-    color: #ffffff;
+    font-family: "Orbitron";
 }
 
 span {
@@ -36,6 +44,8 @@ span {
 }
 
 button {
+    display: block;
+    margin: 0 auto;
     align-items: center;
     appearance: none;
     background-color: #fcfcfd;
@@ -46,7 +56,6 @@ button {
     box-sizing: border-box;
     color: #36395a;
     cursor: pointer;
-    display: inline-flex;
     font-family: "JetBrains Mono", monospace;
     height: 8vh;
     min-width: 15vw;
@@ -65,7 +74,7 @@ button {
     touch-action: manipulation;
     white-space: nowrap;
     will-change: box-shadow, transform;
-    font-size: 18px;
+    font-size: 22px;
 }
 
 button:hover {
@@ -75,39 +84,78 @@ button:hover {
     font-weight: bold;
 }
 
+footer {
+    display: flex;
+    justify-content: center;
+
+
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 1em;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    color: #ffff00;
+}
+
 #ruut-logo {
     width: 100px;
     height: 100px;
 }
 
-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+#copyright-logo {
+    font-size: 28px;
+    color: #ffffff;
 }
 
+
 @media screen and (max-width: 500px) {
+    body {
+        font-size: 16px;
+    }
 
     #container {        
-        div {
-            margin-left: 20.0%;
+        main {
+            h1 {
+                font-size: 20px;
+            }
+            p {
+                width: 60vw;
+            }
         }
     }
-    h1 {
-        font-size: 24px;
-    }
+    
     p {
         width: 60vw;
         font-size: 16px;
     }
     button {
-        padding-left: 8px;
-        padding-right: 8px;
         height: 6.5vh;
     }
     #ruut-logo {
         width: 65px;
         height: 65px;
     }
-    
+    #copyright-logo {
+        font-size: 20px;
+    }
 }
+
+

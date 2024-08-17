@@ -5,21 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="assets/favicon.ico" />
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Google Fonts Orbitron -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+
+    <!-- Google Fonts Raleway -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+
     <title>Haalarilanit</title>
+  
 </head>
 <body>
     <div id="container">
-        <img id="ruut-logo" src="assets/ruut.png" placeholder="ruut logo">
-        <div id="text-holder">
-            <h1>Header</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-        <div id="button-holder">
-            <button>Reserve A Ticket</button>
-        </div>
+
+        <header>
+        </header>
+
+        <!-- Navbar to allow the user to access information -->
+        <nav>
+            <ul>
+                <li>
+                    <a href="#"
+                    onclick="renderContent('main')">
+                        Etusivu
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                    onclick="renderContent('rules')">
+                        Säännöt
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                    onclick="renderContent('guide')">
+                        Opasteet
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- The sponsors and the content based on the navbar are rendered here -->
+        <main>
+            <div id="nav-content"></div>
+            <div id ="sponsors"></div>
+            
+        </main>
+
         <footer>
-            <p>(c) <span>Ruut ry</span> 2024</p>
+            <div>
+                <span id="copyright-logo">&copy;</span>
+                <span>Ruut ry</span> 2024 
+            </div>
         </footer>
     </div>
+    <script src="index.js"></script>
 </body>
 </html>

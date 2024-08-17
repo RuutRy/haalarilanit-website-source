@@ -19,7 +19,7 @@ const renderContent = (content) => {
                     <button>Varaa lippusi</button>
                 </div>
                 <div>
-                    <p>Alkaa klo pe 18.10.2024</p>
+                    <p>Lanit alkaa klo 15 pe 18.10.2024</p>
                     <p id="event-countdown"></p>
                 </div>
             `
@@ -49,7 +49,7 @@ const renderContent = (content) => {
 
 const countdownTimer = () => {
 
-    const eventDate = new Date(2024, 9, 18).getTime(); 
+    const eventDate = new Date(2024, 9, 18, 15).getTime(); 
 
     // Initial starting time on page load
     let timeDifference = eventDate - new Date().getTime();

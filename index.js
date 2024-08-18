@@ -13,14 +13,32 @@ const renderContent = (content) => {
             `
                 <div id="text-holder">
                     <h1>Tervetuloa Haalarilaneille!</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p>Haalarilanit järjestetään 18.10.–20.10. LAB-kampuksen liikuntasalissa Lappeenrannassa.</p>
+                    <p>Luvassa on syksyn eeppisin pelihetki, kun lähes kaksisataa pelaajaa kerääntyy yhteen saliin ja nauttii yhdessä pelaamisen ilosta. Olitpa sitten intohimoinen e-urheilija tai rento viikonlopun pelaaja, peliseuraa riittää varmasti.</p>
+                    <p>Laneilla järjestään lukuisia turnauksia, joissa pelaajat pääsevät tavoittelemaan ykköspaikkaa - Onko CS2 sinun lajisi, vai loistatko NHL-jäällä? Entä oletko ralliratojen kuningas ajosimulaattorilla? Nyt on sinun mahdollisuutesi näyttää taitosi niin järjestetyissä turnauksissa kuin ystäviesi kesken kisatessa!</p>
+                    <p>Tuo oma koneesi, liitä se kiinni verkkoon ja oletkin valmis kokemaan mukaansatempaavia pelikokemuksia! Lue lisää konepaikkojen tiedoista alempaa ja hanki lippusi. Lisäksi paikan päällä on kioski, josta voit hankkia pientä juotavaa ja purtavaa nautittavaksi kesken pelihetkien (kts. Tapahtumakartta [linkki tapahtumakarttaan]).</p>    
+                    <p>Tapahtuma-alue on päihteetön eikä alueelle saa tuoda alkoholijuomia. Voit osallistua laneille matalalla kynnyksellä ja ilman mitään aikaisempaa kokemusta! Mikäli sinulla herää kysymyksiä Haalarilaneihin liittyen, ota yhteyttä pääjärjestäjiin  [linkki yhteistietoihin]</p>
+
+                    <p>Aika: pe 18.10. Klo 15:00 - su 20.10.2024 klo 12:00</p>
+                    <p>Paikka: LAB-kampuksen liikuntasali</p>
+                    <div>
+                        <p id="event-countdown"></p>
+                    </div>
                 </div>
                 <div id="button-holder">
-                    <button>Varaa lippusi</button>
-                </div>
-                <div>
-                    <p>Alkaa klo pe 18.10.2024</p>
-                    <p id="event-countdown"></p>
+                    <form action="https://ruut.eventiolive.fi/events/669e13533633f9012f8b456c/">
+                        <input id="ticket-button" type="submit" value="Varaa lippusi"/>
+                    </form>
+                    <div>
+                        <ul>
+                            <p>Konepaikkaan sisältyy</p>
+                            <li>80–100 cm leveä konepaikka</li>
+                            <li>yksi sähköpistoke (maksimi teho 350W)</li>
+                            <li>yksi Ethernet –verkkoportti</li>
+                            <li>yksi Haalarilani -haalarimerkki</li>
+                            <li>Ilmainen osallistuminen kaikkiin virallisiin turnauksiin</li>
+                        </ul>
+                    </div>
                 </div>
             `
             countdownTimer();
@@ -30,7 +48,68 @@ const renderContent = (content) => {
             contentHolder.innerHTML = 
             `
                 <h1>Säännöt</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <div id="rule-holder">                
+                    <div class="rule-category">
+                        <h4>Tapahtuma-alueelle ei saa tuoda</h4>
+                        <p>Toisten ihmisten vahingoittamiseen soveltuvia välineitä</p>
+                        <p>Alkoholia tai huumausaineita</p>
+                        <p>Räjähteitä tai muita vaarallisia aineita</p>
+                    </div>
+
+                    <div class="rule-category">
+                        <h4>Alkoholi ja tupakointi</h4>
+                        <p>Alkoholin tai muiden päihdeaineiden nauttiminen ja hallussapito tapahtuma-alueella on ehdottomasti kiellettyä. Alkoholituotteet ja muut päihteet tulee jättää tapahtuman sisäänkäynnin lähelle niille erikseen osoitettuun paikkaan.<p/>
+                        <p>Tupakoiminen ja sähkötupakointi on sallittua vain sille merkityllä alueella. Paikalla on tumppeja varten astia ja sitä tulee myös käyttää.</p>
+                    </div>
+
+                    <div class="rule-category">
+                        <h4>Sähköverkko</h4>
+                        <p>Kodinkoneiden ja muiden suuritehoisten sähkölaitteiden kytkeminen konepaikalle on ehdottomasti kiellettyä. Jokaiselle konepaikalle on varattu yksi sähköpistoke, josta riittää kullekin konepaikalle 350 W sähköteho.</p>
+                        <p>Tapahtuma-alueelta löytyy yleiseen käyttöön tarkoitettu mikro ja vedenkeitin. Mikäli tietokoneesi tai muut sähkölaitteesi tarvitsevat yhteensä enemmän kuin 350 W sähkötehoa, ole ennakkoon yhteydessä järjestäjiin.</p>
+                    </div>
+
+                    <div class="rule-category">
+                        <h4>Tapahtuma-alueen vauriot</h4>
+                        <p>Tapahtuma-alueiden vaurioittaminen ja sotkeminen on ehdottomasti kiellettyä. Esimerkiksi tarrojen liimailu seiniin. Vahingonaiheuttaja on aina korvausvelvollinen.</p>
+                    </div>
+
+                    <div class="rule-category">
+                        <h4>Verkko</h4>
+                        <p>Tapahtuma-alueen verkossa on kiellettyä:</p>
+                        <ul>
+                            <li>
+                                DHCP-palvelimet 
+                            </li>
+                            <li>
+                                Verkkoliikenteen häiritseminen 
+                            </li>
+                            <li>
+                                Muun liikenteen seuraaminen, kuin sen, jonka pääte- tai lähtöpiste, on oma tietokone 
+                            </li>
+                            <li>
+                                Ylimääräisten laitteiden, kuten kytkinten tai palomuurin kytkeminen 
+                            </li>
+                            <li>
+                                Tekijänoikeudella suojatun tai Suomen lain vastaisen materiaalin haku tai levitys. 
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="rule-category">
+                        <h4>Nukkuminen</h4>
+                        <p>Turvallisuussyistä nukkuminen on sallittua ainoastaan omalla konepaikalla pystyasennossa (esimerkiksi pää konepaikalla). Nukkuminen lattialla tai muualla tapahtuma-alueella ei ole sallittua.</p>
+                    </div>
+
+                    <div class="rule-category">
+                        <h4>Muuta</h4>
+                        <ul>
+                            <li>Kaikki Suomen lait ovat voimassa tapahtumassa.</li>
+                            <li>Järjestäjät eivät vastaa mahdollisista laiterikoista. </li>
+                            <li>Järjestäjillä on oikeus poistaa henkilö tapahtumapaikalta. Lipun hintaa ei palauteta. Erityistapauksissa on mahdollista, että henkilö poistetaan välittömästi paikalta.</li>
+                            <li>Tekijä on aina vastuussa aiheuttamistaan vahingoista ja mahdollisista korvauksista.</li>
+                        </ul
+                    </div>
+                </div>
             `
             break;
 
@@ -38,7 +117,55 @@ const renderContent = (content) => {
             contentHolder.innerHTML =
             `
                 <h1>Opasteet</h1>
-                <img src="eif" alt="**Sisätilojen kartta**" />
+                <img src="watismeplaceherelulz" alt="**Sisätilojen kartta**" />
+            `
+            break;
+        
+        case "tournament":
+            contentHolder.innerHTML = 
+            `
+            `
+            break;
+            
+        case "contact":
+            contentHolder.innerHTML = 
+            `
+                <h1>Yhteystiedot</h1>
+                <div class="contact-holder">
+                    <ul class="organizer-list">
+                        <h4>Pääjärjestäjät</h4>
+                        <li class="contact-individual">
+                            <span>Valtteri Erkkilä</span>
+                            <span>040 00123123</span>
+                            <span>projekti@cluster.fi</span>
+
+                        </li>
+                        <li class="contact-individual">
+                            <span>Miko Mattila</span>
+                            <span>044 2105417</span>
+                            <span>miko.mattila@ruut.me</span>
+                        </li>
+                    </ul>
+                    <ul class="organizer-list">
+                        <h4>Ensiapu</h4>
+                        <li class="contact-individual">
+                            <span>Ei vielä tiedossa</span>
+                        </li>
+                    </ul>
+                    <ul class="organizer-list">
+                        <h4>Häirintäyhdyshenkilöt</h4>
+                        <li class="contact-individual">
+                            <span>Tuomas Mustakallio</span>
+                            <span>hairintayhdyshenkilo@cluster.fi</span>   
+                        </li>
+                        <li class="contact-individual">
+                            <span>Janni Timoskainen</span>
+                            <span>044 9926010</span>
+                            <span>Janni.timoskainen@cluster.fi</span>
+                        </li>
+                    </ul>
+                </div>
+
             `
             break;
 
@@ -49,7 +176,7 @@ const renderContent = (content) => {
 
 const countdownTimer = () => {
 
-    const eventDate = new Date(2024, 9, 18).getTime(); 
+    const eventDate = new Date(2024, 9, 18, 15).getTime(); 
 
     // Initial starting time on page load
     let timeDifference = eventDate - new Date().getTime();
@@ -66,6 +193,11 @@ const countdownTimer = () => {
 
 const displayTime = (timeDifference) => {
     
+
+    if (!document.getElementById("event-countdown")) {
+        return;
+    }
+
     // If the event has already begun
     if (timeDifference < 0) {
         document.getElementById("event-countdown").innerHTML = "Tapahtuma on alkanut!";

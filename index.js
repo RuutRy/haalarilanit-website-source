@@ -29,16 +29,16 @@ const renderContent = (content) => {
                     <form action="https://ruut.eventiolive.fi/events/669e13533633f9012f8b456c/">
                         <input id="ticket-button" type="submit" value="Varaa lippusi"/>
                     </form>
-                    <div>
-                        <ul>
-                            <p>Konepaikkaan sisältyy</p>
-                            <li>80–100 cm leveä konepaikka</li>
-                            <li>yksi sähköpistoke (maksimi teho 350W)</li>
-                            <li>yksi Ethernet –verkkoportti</li>
-                            <li>yksi Haalarilani -haalarimerkki</li>
-                            <li>Ilmainen osallistuminen kaikkiin virallisiin turnauksiin</li>
-                        </ul>
-                    </div>
+                </div>
+                <div id="computer-info-holder">
+                    <ul>
+                        <h3>Konepaikkaan sisältyy</h3>
+                        <li>80–100 cm leveä konepaikka</li>
+                        <li>yksi sähköpistoke (maksimi teho 350W)</li>
+                        <li>yksi Ethernet –verkkoportti</li>
+                        <li>yksi Haalarilani -haalarimerkki</li>
+                        <li>Ilmainen osallistuminen kaikkiin virallisiin turnauksiin</li>
+                    </ul>
                 </div>
             `
             countdownTimer();
@@ -48,33 +48,32 @@ const renderContent = (content) => {
             contentHolder.innerHTML = 
             `
                 <h1>Säännöt</h1>
-                <div id="rule-holder">                
                     <div class="rule-category">
-                        <h4>Tapahtuma-alueelle ei saa tuoda</h4>
+                        <h3>Tapahtuma-alueelle ei saa tuoda</h3>
                         <p>Toisten ihmisten vahingoittamiseen soveltuvia välineitä</p>
                         <p>Alkoholia tai huumausaineita</p>
                         <p>Räjähteitä tai muita vaarallisia aineita</p>
                     </div>
 
                     <div class="rule-category">
-                        <h4>Alkoholi ja tupakointi</h4>
+                        <h3>Alkoholi ja tupakointi</h3>
                         <p>Alkoholin tai muiden päihdeaineiden nauttiminen ja hallussapito tapahtuma-alueella on ehdottomasti kiellettyä. Alkoholituotteet ja muut päihteet tulee jättää tapahtuman sisäänkäynnin lähelle niille erikseen osoitettuun paikkaan.<p/>
                         <p>Tupakoiminen ja sähkötupakointi on sallittua vain sille merkityllä alueella. Paikalla on tumppeja varten astia ja sitä tulee myös käyttää.</p>
                     </div>
 
                     <div class="rule-category">
-                        <h4>Sähköverkko</h4>
+                        <h3>Sähköverkko</h3>
                         <p>Kodinkoneiden ja muiden suuritehoisten sähkölaitteiden kytkeminen konepaikalle on ehdottomasti kiellettyä. Jokaiselle konepaikalle on varattu yksi sähköpistoke, josta riittää kullekin konepaikalle 350 W sähköteho.</p>
                         <p>Tapahtuma-alueelta löytyy yleiseen käyttöön tarkoitettu mikro ja vedenkeitin. Mikäli tietokoneesi tai muut sähkölaitteesi tarvitsevat yhteensä enemmän kuin 350 W sähkötehoa, ole ennakkoon yhteydessä järjestäjiin.</p>
                     </div>
 
                     <div class="rule-category">
-                        <h4>Tapahtuma-alueen vauriot</h4>
+                        <h3>Tapahtuma-alueen vauriot</h3>
                         <p>Tapahtuma-alueiden vaurioittaminen ja sotkeminen on ehdottomasti kiellettyä. Esimerkiksi tarrojen liimailu seiniin. Vahingonaiheuttaja on aina korvausvelvollinen.</p>
                     </div>
 
                     <div class="rule-category">
-                        <h4>Verkko</h4>
+                        <h3>Verkko</h3>
                         <p>Tapahtuma-alueen verkossa on kiellettyä:</p>
                         <ul>
                             <li>
@@ -96,12 +95,12 @@ const renderContent = (content) => {
                     </div>
 
                     <div class="rule-category">
-                        <h4>Nukkuminen</h4>
+                        <h3>Nukkuminen</h3>
                         <p>Turvallisuussyistä nukkuminen on sallittua ainoastaan omalla konepaikalla pystyasennossa (esimerkiksi pää konepaikalla). Nukkuminen lattialla tai muualla tapahtuma-alueella ei ole sallittua.</p>
                     </div>
 
                     <div class="rule-category">
-                        <h4>Muuta</h4>
+                        <h3>Muuta</h3>
                         <ul>
                             <li>Kaikki Suomen lait ovat voimassa tapahtumassa.</li>
                             <li>Järjestäjät eivät vastaa mahdollisista laiterikoista. </li>
@@ -109,7 +108,6 @@ const renderContent = (content) => {
                             <li>Tekijä on aina vastuussa aiheuttamistaan vahingoista ja mahdollisista korvauksista.</li>
                         </ul
                     </div>
-                </div>
             `
             break;
 
@@ -124,6 +122,7 @@ const renderContent = (content) => {
         case "tournament":
             contentHolder.innerHTML = 
             `
+                <h1>Turnaukset</h1>
             `
             break;
             

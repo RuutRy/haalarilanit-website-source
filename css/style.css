@@ -13,9 +13,6 @@ body {
     overflow-x: hidden;
 } 
 
-h1 {
-    margin-top: -0.25vh;
-}
 
 #container {
     width: 100vw;
@@ -81,8 +78,8 @@ h1 {
 }
 
 p {
-    margin-bottom: -0.5vh;
     max-width: 80vw;
+    text-align: center;
 }
 
 h1, h2, h3, h4 {
@@ -176,15 +173,16 @@ nav a:hover {
     color: #ffffff;
 }
 
-
-
 .contact-holder {
-    display: flex;
+    display: grid;
 }
 .organizer-list {
     width: 33vw;
     list-style-type: none;
+    margin-top: -1vh;
+    margin-bottom: -1vh;
     .contact-individual {
+        margin-top: -1vh;
         span {
             display: flex;
             justify-content: center;
@@ -194,7 +192,7 @@ nav a:hover {
 }
 
 .contact-individual {
-    margin-bottom: 5vh;
+    margin-bottom: 4vh;
 }
   
 @media screen and (max-width: 500px) {
@@ -202,24 +200,35 @@ nav a:hover {
         font-size: 16px;
     }
 
-    #container {
-        overflow: auto;        
-        main {
-            h1 {
-                font-size: 20px;
-            }
-            p {
-                width: 70vw;
-            }
+    nav {
+        font-size: 11px;
+
+        li {
+            margin-right: -1.5vw;
+            margin-left: -1.5vw;
         }
     }
-    
-    p {
-        width: 70vw;
-        font-size: 14px;
+
+
+    #container {
+        overflow: auto;        
     }
+
+    h1 {
+        font-size: 18px;
+    }
+
+    p {
+        margin-left: 15vw;
+        max-width: 60vw;
+        font-size: 12px;
+    }
+
+
     #ticket-button {
-        height: 6.5vh;
+        height: 4.5vh;
+        font-size: 14px;
+        width: 40vw;
     }
     #ruut-logo {
         width: 65px;
@@ -229,7 +238,18 @@ nav a:hover {
         font-size: 20px;
     }
 
-
+    #event-countdown {
+        font-size: 14px;
+    }
+    
+    #computer-info-holder {
+        h3 {
+            font-size: 14px;
+        }
+        li {
+            font-size: 12px;
+        }
+    }
 }
 
 

@@ -34,7 +34,7 @@ const renderContent = (content) => {
                     <ul>
                         <h3>Konepaikkaan sisältyy</h3>
                         <li>80–100 cm leveä konepaikka</li>
-                        <li>yksi sähköpistoke (maksimi teho 350W)</li>
+                        <li>yksi sähköpistoke</li>
                         <li>yksi Ethernet –verkkoportti</li>
                         <li>yksi Haalarilani -haalarimerkki</li>
                         <li>Ilmainen osallistuminen kaikkiin virallisiin turnauksiin</li>

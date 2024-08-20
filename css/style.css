@@ -215,9 +215,11 @@ nav a:hover {
         overflow: auto;        
     }
 
+
     h1 {
         font-size: 18px;
     }
+
     h3, h4 {
         font-size: 12px;
     }
@@ -226,8 +228,10 @@ nav a:hover {
         max-width: 60vw;
         font-size: 12px;
     }
+
     li {
         font-size: 12px;
+        max-width: 60vw;
     }
 
     #ticket-button {
@@ -235,10 +239,12 @@ nav a:hover {
         font-size: 14px;
         width: 40vw;
     }
+    
     #ruut-logo {
         width: 65px;
         height: 65px;
     }
+
     #copyright-logo {
         font-size: 20px;
     }
@@ -246,7 +252,24 @@ nav a:hover {
     #event-countdown {
         font-size: 16px;
     }
-    
+
+    .contact-holder {
+        justify-content: center;
+        h4 {
+            width: 100vw;
+            margin-left: -20vw;
+        }
+        ul {
+            width: 75vw;
+        }
+        li {
+            display: grid;
+            justify-content: center;
+            span {
+                text-align: center;
+            }
+        }
+    }
 }
 
 

@@ -168,6 +168,27 @@ const renderContent = (content) => {
             `
             break;
 
+        case "pack":
+            contentHolder.innerHTML = 
+            `
+                <h1>Pakkauslista</h1>
+                <ul id="pack-list">
+                    <p>
+                        Pakkaa mukaan tarvitsemasi laitteet, ottaen huomioon konepaikan rajoitteet. 
+                    </p>
+                    <li>Tietokone/Konsoli</li>
+                    <li>Näyttö</li>
+                    <li>Näppäimistö/Ohjain</li>
+                    <li>Hiiri & Hiirimatto</li>
+                    <li>Kuulokkeet</li>
+                    <li>Jatkojohto</li>
+                    <li>Verkkokaapeli</li>
+                    <li>Puhelimen / Kuulokkeiden latausjohto </li>
+                    <li>Taskurahaa / Mobilepay</li>
+                </ul>
+            `
+            break;
+
         default:
             contentHolder.innerHTML = `<h2>Sisältöä ei löytynyt.</h2>`
     }

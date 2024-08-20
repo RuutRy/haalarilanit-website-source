@@ -151,6 +151,7 @@ nav ul {
 }
 nav li {
     margin: 0;
+    font-size: 24px;
 }
 nav a {
     text-decoration: none;
@@ -204,9 +205,13 @@ nav a:hover {
     nav {
         font-size: 11px;
 
+        ul {
+            margin-left: -4vw;
+        }
         li {
-            margin-right: -1.5vw;
-            margin-left: -1.5vw;
+            text-align: center;
+            margin-right: -1.7vw;
+            margin-left: -1.7vw;
             font-size: 10px;
         }
     }
@@ -268,6 +273,12 @@ nav a:hover {
             span {
                 text-align: center;
             }
+        }
+    }
+
+    #pack-list {
+        p {
+            margin-left: -7.5vw;
         }
     }
 }

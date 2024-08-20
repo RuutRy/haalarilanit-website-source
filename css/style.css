@@ -198,6 +198,7 @@ nav a:hover {
 @media screen and (max-width: 500px) {
     body {
         font-size: 16px;
+        overflow-x: hidden;
     }
 
     nav {
@@ -206,9 +207,9 @@ nav a:hover {
         li {
             margin-right: -1.5vw;
             margin-left: -1.5vw;
+            font-size: 10px;
         }
     }
-
 
     #container {
         overflow: auto;        
@@ -217,13 +218,17 @@ nav a:hover {
     h1 {
         font-size: 18px;
     }
-
-    p {
-        margin-left: 15vw;
-        max-width: 60vw;
+    h3, h4 {
         font-size: 12px;
     }
 
+    p {
+        max-width: 60vw;
+        font-size: 12px;
+    }
+    li {
+        font-size: 12px;
+    }
 
     #ticket-button {
         height: 4.5vh;
@@ -239,17 +244,9 @@ nav a:hover {
     }
 
     #event-countdown {
-        font-size: 14px;
+        font-size: 16px;
     }
     
-    #computer-info-holder {
-        h3 {
-            font-size: 14px;
-        }
-        li {
-            font-size: 12px;
-        }
-    }
 }
 
 

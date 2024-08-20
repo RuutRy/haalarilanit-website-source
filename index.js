@@ -168,6 +168,13 @@ const renderContent = (content) => {
             `
             break;
 
+        case "pack":
+            contentHolder.innerHTML = 
+            `
+                <h1>Pakkauslista</h1>
+            `
+            break;
+
         default:
             contentHolder.innerHTML = `<h2>Sisältöä ei löytynyt.</h2>`
     }

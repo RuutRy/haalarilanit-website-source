@@ -172,6 +172,20 @@ const renderContent = (content) => {
             contentHolder.innerHTML = 
             `
                 <h1>Pakkauslista</h1>
+                <ul id="pack-list">
+                    <p>
+                        Pakkaa mukaan tarvitsemasi laitteet, ottaen huomioon konepaikan rajoitteet. 
+                    </p>
+                    <li>Tietokone/Konsoli</li>
+                    <li>Näyttö</li>
+                    <li>Näppäimistö/Ohjain</li>
+                    <li>Hiiri & Hiirimatto</li>
+                    <li>Kuulokkeet</li>
+                    <li>Jatkojohto</li>
+                    <li>Verkkokaapeli</li>
+                    <li>Puhelimen / Kuulokkeiden latausjohto </li>
+                    <li>Taskurahaa / Mobilepay</li>
+                </ul>
             `
             break;
 

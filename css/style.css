@@ -275,6 +275,12 @@ nav a:hover {
             }
         }
     }
+
+    #pack-list {
+        p {
+            margin-left: -7.5vw;
+        }
+    }
 }
 
 

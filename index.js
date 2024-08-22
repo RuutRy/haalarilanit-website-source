@@ -54,10 +54,10 @@ const renderContent = (content) => {
                         <li>yksi Haalarilani -haalarimerkki</li>
                         <li>Ilmainen osallistuminen kaikkiin virallisiin turnauksiin</li>
                     </ul>
-                </div>
+                </div>-
 
                 <div class="link-span-container">
-                    <span>Tässä invilinkki Discordiin, joka ei vanhene: 
+                    <span>Tapahtuman virallinen tiedotuskanava on Haalarilanien Discord: 
                     
                     <a class="embedded-anchor" href="https://discord.gg/KmzPVjnAWE">
                         https://discord.gg/KmzPVjnAWE

@@ -182,6 +182,7 @@ nav a:hover {
     list-style-type: none;
     margin-top: -1vh;
     margin-bottom: -1vh;
+    margin-right: 2.25vw;
     .contact-individual {
         margin-top: -1vh;
         span {
@@ -191,9 +192,25 @@ nav a:hover {
         }
     }
 }
+.embedded-anchor {
+    position:initial;
+    color: #ffff00;
+}
+
 
 .contact-individual {
     margin-bottom: 4vh;
+}
+
+.link-span-container {
+    margin-top: 1vh;
+    margin-bottom: 3vh;
+    max-width: 80vw;
+    display: flex;
+    justify-content: center;
+    span {
+        text-align: center;
+    }
 }
   
 @media screen and (max-width: 500px) {
@@ -229,9 +246,13 @@ nav a:hover {
         font-size: 12px;
     }
 
-    p {
+    p, span {
         max-width: 60vw;
         font-size: 12px;
+    }
+
+    p {
+        margin-left: 5vw;
     }
 
     li {
@@ -280,6 +301,10 @@ nav a:hover {
         p {
             margin-left: -7.5vw;
         }
+    }
+
+    .link-span-container {
+        margin-bottom: 1.5vh;
     }
 }
 

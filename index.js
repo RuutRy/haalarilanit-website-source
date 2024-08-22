@@ -16,8 +16,23 @@ const renderContent = (content) => {
                     <p>Haalarilanit järjestetään 18.10.–20.10. LAB-kampuksen liikuntasalissa Lappeenrannassa.</p>
                     <p>Luvassa on syksyn eeppisin pelihetki, kun lähes kaksisataa pelaajaa kerääntyy yhteen saliin ja nauttii yhdessä pelaamisen ilosta. Olitpa sitten intohimoinen e-urheilija tai rento viikonlopun pelaaja, peliseuraa riittää varmasti.</p>
                     <p>Laneilla järjestään lukuisia turnauksia, joissa pelaajat pääsevät tavoittelemaan ykköspaikkaa - Onko CS2 sinun lajisi, vai loistatko NHL-jäällä? Entä oletko ralliratojen kuningas ajosimulaattorilla? Nyt on sinun mahdollisuutesi näyttää taitosi niin järjestetyissä turnauksissa kuin ystäviesi kesken kisatessa!</p>
-                    <p>Tuo oma koneesi, liitä se kiinni verkkoon ja oletkin valmis kokemaan mukaansatempaavia pelikokemuksia! Lue lisää konepaikkojen tiedoista alempaa ja hanki lippusi. Lisäksi paikan päällä on kioski, josta voit hankkia pientä juotavaa ja purtavaa nautittavaksi kesken pelihetkien (kts. Tapahtumakartta [linkki tapahtumakarttaan]).</p>    
-                    <p>Tapahtuma-alue on päihteetön eikä alueelle saa tuoda alkoholijuomia. Voit osallistua laneille matalalla kynnyksellä ja ilman mitään aikaisempaa kokemusta! Mikäli sinulla herää kysymyksiä Haalarilaneihin liittyen, ota yhteyttä pääjärjestäjiin  [linkki yhteistietoihin]</p>
+                    
+                    <div class="link-span-container">
+                        <span class="span-replace">Tuo oma koneesi, liitä se kiinni verkkoon ja oletkin valmis kokemaan mukaansatempaavia pelikokemuksia! Lue lisää konepaikkojen tiedoista alempaa ja hanki lippusi. Lisäksi paikan päällä on kioski, josta voit hankkia pientä juotavaa ja purtavaa nautittavaksi kesken pelihetkien 
+                            <a class="embedded-anchor" href="#"
+                            onclick="renderContent('guide')">
+                            (kts. Tapahtumakartta).
+                            </a>
+                        </span>    
+                    </div>
+                    <div class="link-span-container">
+                        <span class="span-replace">Tapahtuma-alue on päihteetön eikä alueelle saa tuoda alkoholijuomia. Voit osallistua laneille matalalla kynnyksellä ja ilman mitään aikaisempaa kokemusta! Mikäli sinulla herää kysymyksiä Haalarilaneihin liittyen, ota yhteyttä                     
+                            <a class="embedded-anchor" href="#"
+                            onclick="renderContent('contact')">
+                                pääjärjestäjiin.
+                            </a>
+                        </span>
+                    </div>
 
                     <p>Aika: pe 18.10. Klo 15:00 - su 20.10.2024 klo 12:00</p>
                     <p>Paikka: LAB-kampuksen liikuntasali</p>
@@ -39,6 +54,15 @@ const renderContent = (content) => {
                         <li>yksi Haalarilani -haalarimerkki</li>
                         <li>Ilmainen osallistuminen kaikkiin virallisiin turnauksiin</li>
                     </ul>
+                </div>
+
+                <div class="link-span-container">
+                    <span>Tässä invilinkki Discordiin, joka ei vanhene: 
+                    
+                    <a class="embedded-anchor" href="https://discord.gg/KmzPVjnAWE">
+                        https://discord.gg/KmzPVjnAWE
+                    </a>
+                    </span>
                 </div>
             `
             countdownTimer();
@@ -135,7 +159,7 @@ const renderContent = (content) => {
                         <h4>Pääjärjestäjät</h4>
                         <li class="contact-individual">
                             <span>Valtteri Erkkilä</span>
-                            <span>040 00123123</span>
+                            <span>045 8689710</span>
                             <span>projekti@cluster.fi</span>
 
                         </li>
@@ -155,6 +179,7 @@ const renderContent = (content) => {
                         <h4>Häirintäyhdyshenkilöt</h4>
                         <li class="contact-individual">
                             <span>Tuomas Mustakallio</span>
+                            <span>044 2709720</span>
                             <span>hairintayhdyshenkilo@cluster.fi</span>   
                         </li>
                         <li class="contact-individual">

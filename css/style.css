@@ -1,24 +1,45 @@
+/* logo font: Botang Regular
+ * poster font: Roboto Medium
+ *
+ * poster dark palette:
+ * 1a1a2e
+ * 16213e
+ * 0f3460
+ * 7492e9
+ *
+ * poster light palette:
+ * 251b37
+ * 372948
+ * ffcaca
+ * ffecef
+ */
+
 body {
     /* A stock background image (free-use license) */
-    background-image: url("../assets/pexels-photo-7915238.jpeg");
-    background-repeat: repeat-y;
-    background-size: 100%;
+    background-image: url("../assets/bg-dark-small.jpg");
+    background-size: cover;
+    background-position: center, center;
 
     text-shadow: 1px black;
 
     font-family: "JetBrains Mono", monospace;
     font-size: 20px;
-    color: #ffffff;
+    color: #7492e9;
 
     overflow-x: hidden;
 } 
+
+.logo {
+    /* https://angel-rs.github.io/css-color-filter-generator/ */
+    filter: brightness(0) saturate(100%) invert(55%) sepia(56%) saturate(444%) hue-rotate(188deg) brightness(94%) contrast(94%);
+}
 
 
 #container {
     width: 100vw;
     min-height: 100vh;
     
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0);
     
     main {
         display: grid;

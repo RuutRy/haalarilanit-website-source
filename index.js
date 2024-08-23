@@ -160,7 +160,7 @@ const renderContent = (content) => {
                         <li class="contact-individual">
                             <span>Valtteri Erkkilä</span>
                             <span>045 8689710</span>
-                            <span>projekti@cluster.fi</span>
+                            <span>valtteri.erkkila@cluster.fi</span>
 
                         </li>
                         <li class="contact-individual">

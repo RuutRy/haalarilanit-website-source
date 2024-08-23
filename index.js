@@ -12,7 +12,7 @@ const renderContent = (content) => {
             contentHolder.innerHTML = 
             `
                 <div id="text-holder">
-                    <h1>Tervetuloa Haalarilaneille!</h1>
+                    <img src="assets/logotext.svg" class="logo"/>
                     <p>Haalarilanit järjestetään 18.10.–20.10. LAB-kampuksen liikuntasalissa Lappeenrannassa.</p>
                     <p>Luvassa on syksyn eeppisin pelihetki, kun lähes kaksisataa pelaajaa kerääntyy yhteen saliin ja nauttii yhdessä pelaamisen ilosta. Olitpa sitten intohimoinen e-urheilija tai rento viikonlopun pelaaja, peliseuraa riittää varmasti.</p>
                     <p>Laneilla järjestään lukuisia turnauksia, joissa pelaajat pääsevät tavoittelemaan ykköspaikkaa - Onko CS2 sinun lajisi, vai loistatko NHL-jäällä? Entä oletko ralliratojen kuningas ajosimulaattorilla? Nyt on sinun mahdollisuutesi näyttää taitosi niin järjestetyissä turnauksissa kuin ystäviesi kesken kisatessa!</p>

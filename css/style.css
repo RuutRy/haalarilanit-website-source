@@ -15,7 +15,6 @@
  */
 
 body {
-    /* A stock background image (free-use license) */
     background-image: url("../assets/bg-dark-small.jpg");
     background-size: cover;
     background-position: center, center;
@@ -34,6 +33,9 @@ body {
     filter: brightness(0) saturate(100%) invert(55%) sepia(56%) saturate(444%) hue-rotate(188deg) brightness(94%) contrast(94%);
 }
 
+.org-logo {
+    width: 5vw;
+}
 
 #container {
     width: 100vw;
@@ -53,6 +55,21 @@ body {
     }
 }
 
+.split {
+    display: flex;
+    max-width: 100vw;
+    .img-text-split {
+        padding-left: 1.5vw;
+        padding-right: 1.5vw;
+        display: grid;
+    }
+}
+.img-text-split p {
+    max-width: 50vw;
+    text-align: left;
+}
+
+/* Scrollbar */
 ::-webkit-scrollbar {
     width: 4px;
     height: 4px;
@@ -215,7 +232,7 @@ nav a:hover {
 }
 .embedded-anchor {
     position:initial;
-    color: #ffff00;
+    color: #ffffff;
 }
 
 
@@ -238,6 +255,22 @@ nav a:hover {
     body {
         font-size: 16px;
         overflow-x: hidden;
+    }
+
+    .split {
+        display: grid;
+    }
+
+    .logo {
+        max-width: 50vw;
+    }
+    .img-text-split p {
+        max-width: 70vw;
+        text-align: left;
+    }
+
+    .org-logo {
+        width: 15vw;
     }
 
     nav {
@@ -268,7 +301,7 @@ nav a:hover {
     }
 
     p, span {
-        max-width: 60vw;
+        max-width: 70vw;
         font-size: 12px;
     }
 
@@ -284,7 +317,7 @@ nav a:hover {
     #ticket-button {
         height: 4.5vh;
         font-size: 14px;
-        width: 40vw;
+        width: 65vw;
     }
     
     #ruut-logo {

@@ -12,10 +12,16 @@ const renderContent = (content) => {
             contentHolder.innerHTML = 
             `
                 <div id="text-holder">
-                    <img src="assets/logotext.svg" class="logo"/>
-                    <p>Haalarilanit järjestetään 18.10.–20.10. LAB-kampuksen liikuntasalissa Lappeenrannassa.</p>
-                    <p>Luvassa on syksyn eeppisin pelihetki, kun lähes kaksisataa pelaajaa kerääntyy yhteen saliin ja nauttii yhdessä pelaamisen ilosta. Olitpa sitten intohimoinen e-urheilija tai rento viikonlopun pelaaja, peliseuraa riittää varmasti.</p>
-                    <p>Laneilla järjestään lukuisia turnauksia, joissa pelaajat pääsevät tavoittelemaan ykköspaikkaa - Onko CS2 sinun lajisi, vai loistatko NHL-jäällä? Entä oletko ralliratojen kuningas ajosimulaattorilla? Nyt on sinun mahdollisuutesi näyttää taitosi niin järjestetyissä turnauksissa kuin ystäviesi kesken kisatessa!</p>
+                    <div class="split">
+                        <div class="img-text-split">
+                            <img src="assets/logotext.svg" class="logo"/>
+                        </div>
+                        <div class="img-text-split">
+                            <p>Haalarilanit järjestetään 18.10.–20.10. LAB-kampuksen liikuntasalissa Lappeenrannassa.</p>
+                            <p>Luvassa on syksyn eeppisin pelihetki, kun lähes kaksisataa pelaajaa kerääntyy yhteen saliin ja nauttii yhdessä pelaamisen ilosta. Olitpa sitten intohimoinen e-urheilija tai rento viikonlopun pelaaja, peliseuraa riittää varmasti.</p>
+                            <p>Laneilla järjestään lukuisia turnauksia, joissa pelaajat pääsevät tavoittelemaan ykköspaikkaa - Onko CS2 sinun lajisi, vai loistatko NHL-jäällä? Entä oletko ralliratojen kuningas ajosimulaattorilla? Nyt on sinun mahdollisuutesi näyttää taitosi niin järjestetyissä turnauksissa kuin ystäviesi kesken kisatessa!</p>
+                        </div>
+                    </div>
                     
                     <div class="link-span-container">
                         <span class="span-replace">Tuo oma koneesi, liitä se kiinni verkkoon ja oletkin valmis kokemaan mukaansatempaavia pelikokemuksia! Lue lisää konepaikkojen tiedoista alempaa ja hanki lippusi. Lisäksi paikan päällä on kioski, josta voit hankkia pientä juotavaa ja purtavaa nautittavaksi kesken pelihetkien 
@@ -54,15 +60,16 @@ const renderContent = (content) => {
                         <li>yksi Haalarilani -haalarimerkki</li>
                         <li>Ilmainen osallistuminen kaikkiin virallisiin turnauksiin</li>
                     </ul>
-                </div>-
+                </div>
 
                 <div class="link-span-container">
-                    <span>Tapahtuman virallinen tiedotuskanava on Haalarilanien Discord: 
-                    
-                    <a class="embedded-anchor" href="https://discord.gg/KmzPVjnAWE">
-                        https://discord.gg/KmzPVjnAWE
-                    </a>
-                    </span>
+                    <span>Tapahtuman virallinen tiedotuskanava on Haalarilanien Discord.</span>
+                </div>
+
+                <div id="button-holder">
+                    <form action="https://discord.gg/KmzPVjnAWE">
+                        <input id="ticket-button" type="submit" value="Liity Discord-palvelimelle"/>
+                    </form>
                 </div>
             `
             countdownTimer();

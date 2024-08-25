@@ -153,6 +153,10 @@ h1, h2, h3, h4 {
     color: #96abe9;
 }
 
+.boldened-p {
+    font-weight: bold;
+}
+
 #ticket-button {
     display: block;
     margin: 0 auto;

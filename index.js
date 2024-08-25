@@ -38,15 +38,15 @@ const renderContent = (content) => {
                         </span>
                     </div>
 
-                    <p>Aika: pe 18.10. Klo 15:00 - su 20.10.2024 klo 12:00</p>
-                    <p>Paikka: LAB-kampuksen liikuntasali</p>
+                    <p class="boldened-p">Aika: pe 18.10. Klo 15:00 - su 20.10.2024 klo 12:00</p>
+                    <p class="boldened-p">Paikka: LAB-kampuksen liikuntasali</p>
                     <div>
                         <p id="event-countdown"></p>
                     </div>
                 </div>
                 <div id="button-holder">
                     <form action="https://ruut.eventiolive.fi/events/669e13533633f9012f8b456c/">
-                        <input id="ticket-button" type="submit" value="Varaa lippusi"/>
+                        <input id="ticket-button" type="submit" value="Osta lippu"/>
                     </form>
                 </div>
                 <div id="computer-info-holder">

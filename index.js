@@ -11,11 +11,9 @@ const renderContent = (content) => {
         case "main":
             contentHolder.innerHTML = 
             `
+                <img src="assets/logotext.svg" class="logo"/>
                 <div id="text-holder">
                     <div class="split">
-                        <div class="img-text-split">
-                            <img src="assets/logotext.svg" class="logo"/>
-                        </div>
                         <div class="img-text-split">
                             <p>Haalarilanit järjestetään 18.10.–20.10. LAB-kampuksen liikuntasalissa Lappeenrannassa.</p>
                             <p>Luvassa on syksyn eeppisin pelihetki, kun lähes kaksisataa pelaajaa kerääntyy yhteen saliin ja nauttii yhdessä pelaamisen ilosta. Olitpa sitten intohimoinen e-urheilija tai rento viikonlopun pelaaja, peliseuraa riittää varmasti.</p>
@@ -146,7 +144,7 @@ const renderContent = (content) => {
             contentHolder.innerHTML =
             `
                 <h1>Opasteet</h1>
-                <img src="watismeplaceherelulz" alt="**Sisätilojen kartta**" />
+                <img src="assets/floorplan.svg" class="floorplan"/>
             `
             break;
         

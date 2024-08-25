@@ -5,14 +5,22 @@
  * 1a1a2e
  * 16213e
  * 0f3460
- * 7492e9
- *
- * poster light palette:
- * 251b37
- * 372948
- * ffcaca
- * ffecef
+ * 96abe9
  */
+
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/Roboto-Medium.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Bontang";
+    src: url("../fonts/Bontang-nRGPV.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
 
 body {
     background-image: url("../assets/bg-dark-small.jpg");
@@ -21,19 +29,39 @@ body {
 
     text-shadow: 1px black;
 
-    font-family: "JetBrains Mono", monospace;
-    font-size: 20px;
-    color: #7492e9;
+    font-family: "Roboto";
+    font-size: 24px;
+    color: #96abe9;
 
     overflow-x: hidden;
 } 
 
+.floorplan {
+    /* https://angel-rs.github.io/css-color-filter-generator/ */
+    filter: brightness(0) saturate(100%) invert(61%) sepia(29%) saturate(469%) hue-rotate(187deg) brightness(105%) contrast(94%);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .logo {
     /* https://angel-rs.github.io/css-color-filter-generator/ */
-    filter: brightness(0) saturate(100%) invert(55%) sepia(56%) saturate(444%) hue-rotate(188deg) brightness(94%) contrast(94%);
+    filter: brightness(0) saturate(100%) invert(61%) sepia(29%) saturate(469%) hue-rotate(187deg) brightness(105%) contrast(94%);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.org-logos {
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .org-logo {
+    /* https://angel-rs.github.io/css-color-filter-generator/ */
+    filter: brightness(0) saturate(100%) invert(61%) sepia(29%) saturate(469%) hue-rotate(187deg) brightness(105%) contrast(94%);
     width: 5vw;
 }
 
@@ -57,16 +85,12 @@ body {
 
 .split {
     display: flex;
-    max-width: 100vw;
     .img-text-split {
-        padding-left: 1.5vw;
-        padding-right: 1.5vw;
         display: grid;
     }
 }
 .img-text-split p {
-    max-width: 50vw;
-    text-align: left;
+    text-align: center;
 }
 
 /* Scrollbar */
@@ -116,16 +140,17 @@ body {
 }
 
 p {
-    max-width: 80vw;
+    margin-left: 10%;
+    margin-right: 10%;
     text-align: center;
 }
 
 h1, h2, h3, h4 {
-    font-family: "Orbitron";
+    font-family: "Bontang";
 }
 
 #ruut-ry {
-    color: #ffff00;
+    color: #96abe9;
 }
 
 #ticket-button {
@@ -170,8 +195,10 @@ h1, h2, h3, h4 {
 }
 
 footer {
+    text-align: center;
     display: flex;
     justify-content: center;
+    margin-top: 5vw;
 }
 
 #event-countdown {
@@ -243,14 +270,15 @@ nav a:hover {
 .link-span-container {
     margin-top: 1vh;
     margin-bottom: 3vh;
-    max-width: 80vw;
+    margin-left: 10%;
+    margin-right: 10%;
     display: flex;
     justify-content: center;
     span {
         text-align: center;
     }
 }
-  
+
 @media screen and (max-width: 500px) {
     body {
         font-size: 16px;
@@ -264,13 +292,12 @@ nav a:hover {
     .logo {
         max-width: 50vw;
     }
+    .floorplan {
+        max-width: 50vw;
+    }
     .img-text-split p {
         max-width: 70vw;
-        text-align: left;
-    }
-
-    .org-logo {
-        width: 15vw;
+        text-align: center;
     }
 
     nav {

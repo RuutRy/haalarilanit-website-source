@@ -91,7 +91,7 @@ body {
 .sponsor-logo {
     margin-top: 4vh;
     margin-bottom: -4vh;
-    width: 7vw;
+    width: 12vw;
 }
 
 .split {
@@ -316,7 +316,7 @@ nav a:hover {
     }
 
     .sponsor-logo {
-        width: 20vw;
+        width: 24vw;
         margin-top: 2vh;
     }
     .org-logo {

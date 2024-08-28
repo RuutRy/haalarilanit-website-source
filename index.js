@@ -61,7 +61,7 @@ const renderContent = (content) => {
                 </div>
                 
                 <div class="link-span-container">
-                    span>Tapahtuman virallinen tiedotuskanava on Haalarilanien Discord.</span>
+                    <span>Tapahtuman virallinen tiedotuskanava on Haalarilanien Discord.</span>
                 </div>
                 
                 <div id="button-holder">

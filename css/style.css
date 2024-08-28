@@ -319,6 +319,9 @@ nav a:hover {
         width: 20vw;
         margin-top: 2vh;
     }
+    .org-logo {
+        width: 14vw;
+    }
 
     nav {
         font-size: 11px;

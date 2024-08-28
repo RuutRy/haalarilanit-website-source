@@ -20,7 +20,7 @@ const renderContent = (content) => {
                             <p>Laneilla järjestään lukuisia turnauksia, joissa pelaajat pääsevät tavoittelemaan ykköspaikkaa - Onko CS2 sinun lajisi, vai loistatko NHL-jäällä? Entä oletko ralliratojen kuningas ajosimulaattorilla? Nyt on sinun mahdollisuutesi näyttää taitosi niin järjestetyissä turnauksissa kuin ystäviesi kesken kisatessa!</p>
                         </div>
                     </div>
-                    
+                
                     <div class="link-span-container">
                         <span class="span-replace">Tuo oma koneesi, liitä se kiinni verkkoon ja oletkin valmis kokemaan mukaansatempaavia pelikokemuksia! Lue lisää konepaikkojen tiedoista alempaa ja hanki lippusi. Lisäksi paikan päällä on kioski, josta voit hankkia pientä juotavaa ja purtavaa nautittavaksi kesken pelihetkien 
                             <a class="embedded-anchor" href="#"
@@ -33,20 +33,20 @@ const renderContent = (content) => {
                         <span class="span-replace">Tapahtuma-alue on päihteetön eikä alueelle saa tuoda alkoholijuomia. Voit osallistua laneille matalalla kynnyksellä ja ilman mitään aikaisempaa kokemusta! Mikäli sinulla herää kysymyksiä Haalarilaneihin liittyen, ota yhteyttä                     
                             <a class="embedded-anchor" href="#"
                             onclick="renderContent('contact')">
-                                pääjärjestäjiin.
+                            pääjärjestäjiin.
                             </a>
                         </span>
                     </div>
-
+                
                     <p class="boldened-p">Aika: pe 18.10. Klo 15:00 - su 20.10.2024 klo 12:00</p>
                     <p class="boldened-p">Paikka: LAB-kampuksen liikuntasali</p>
                     <div>
-                        <p id="event-countdown"></p>
+                    <p id="event-countdown"></p>
                     </div>
                 </div>
                 <div id="button-holder">
                     <form action="https://ruut.eventiolive.fi/events/669e13533633f9012f8b456c/">
-                        <input id="ticket-button" type="submit" value="Osta lippu"/>
+                    <input id="ticket-button" type="submit" value="Osta lippu"/>
                     </form>
                 </div>
                 <div id="computer-info-holder">
@@ -59,84 +59,88 @@ const renderContent = (content) => {
                         <li>Ilmainen osallistuminen kaikkiin virallisiin turnauksiin</li>
                     </ul>
                 </div>
-
+                
                 <div class="link-span-container">
-                    <span>Tapahtuman virallinen tiedotuskanava on Haalarilanien Discord.</span>
+                    span>Tapahtuman virallinen tiedotuskanava on Haalarilanien Discord.</span>
                 </div>
-
+                
                 <div id="button-holder">
                     <form action="https://discord.gg/KmzPVjnAWE">
                         <input id="ticket-button" type="submit" value="Liity Discord-palvelimelle"/>
                     </form>
                 </div>
-            `
+                <div id="sponsors-desktop">
+                    <img src="assets/Sponssien logot/LOAS-logo-vihr.png" class="sponsor-logo"/>
+                    <img src="assets/Sponssien logot/Lappeenranta, logo png valkoinen.png" class="sponsor-logo"/>
+                </div>
+                `
             countdownTimer();
             break;
 
         case "rules":
             contentHolder.innerHTML = 
             `
-                <h1>Säännöt</h1>
-                    <div class="rule-category">
-                        <h3>Tapahtuma-alueelle ei saa tuoda</h3>
-                        <p>Toisten ihmisten vahingoittamiseen soveltuvia välineitä</p>
-                        <p>Alkoholia tai huumausaineita</p>
-                        <p>Räjähteitä tai muita vaarallisia aineita</p>
-                    </div>
+            <h1>Säännöt</h1>
+            <div class="rule-category">
+            <h3>Tapahtuma-alueelle ei saa tuoda</h3>
+            <p>Toisten ihmisten vahingoittamiseen soveltuvia välineitä</p>
+            <p>Alkoholia tai huumausaineita</p>
+                    <p>Räjähteitä tai muita vaarallisia aineita</p>
+                </div>
 
-                    <div class="rule-category">
-                        <h3>Alkoholi ja tupakointi</h3>
-                        <p>Alkoholin tai muiden päihdeaineiden nauttiminen ja hallussapito tapahtuma-alueella on ehdottomasti kiellettyä. Alkoholituotteet ja muut päihteet tulee jättää tapahtuman sisäänkäynnin lähelle niille erikseen osoitettuun paikkaan.<p/>
-                        <p>Tupakoiminen ja sähkötupakointi on sallittua vain sille merkityllä alueella. Paikalla on tumppeja varten astia ja sitä tulee myös käyttää.</p>
-                    </div>
+                <div class="rule-category">
+                    <h3>Alkoholi ja tupakointi</h3>
+                    <p>Alkoholin tai muiden päihdeaineiden nauttiminen ja hallussapito tapahtuma-alueella on ehdottomasti kiellettyä. Alkoholituotteet ja muut päihteet tulee jättää tapahtuman sisäänkäynnin lähelle niille erikseen osoitettuun paikkaan.<p/>
+                    <p>Tupakoiminen ja sähkötupakointi on sallittua vain sille merkityllä alueella. Paikalla on tumppeja varten astia ja sitä tulee myös käyttää.</p>
+                </div>
 
-                    <div class="rule-category">
-                        <h3>Sähköverkko</h3>
-                        <p>Kodinkoneiden ja muiden suuritehoisten sähkölaitteiden kytkeminen konepaikalle on ehdottomasti kiellettyä. Jokaiselle konepaikalle on varattu yksi sähköpistoke, josta riittää kullekin konepaikalle 350 W sähköteho.</p>
-                        <p>Tapahtuma-alueelta löytyy yleiseen käyttöön tarkoitettu mikro ja vedenkeitin. Mikäli tietokoneesi tai muut sähkölaitteesi tarvitsevat yhteensä enemmän kuin 350 W sähkötehoa, ole ennakkoon yhteydessä järjestäjiin.</p>
-                    </div>
+                <div class="rule-category">
+                    <h3>Sähköverkko</h3>
+                    <p>Kodinkoneiden ja muiden suuritehoisten sähkölaitteiden kytkeminen konepaikalle on ehdottomasti kiellettyä. Jokaiselle konepaikalle on varattu yksi sähköpistoke, josta riittää kullekin konepaikalle 350 W sähköteho.</p>
+                    <p>Tapahtuma-alueelta löytyy yleiseen käyttöön tarkoitettu mikro ja vedenkeitin. Mikäli tietokoneesi tai muut sähkölaitteesi tarvitsevat yhteensä enemmän kuin 350 W sähkötehoa, ole ennakkoon yhteydessä järjestäjiin.</p>
+                </div>
 
-                    <div class="rule-category">
-                        <h3>Tapahtuma-alueen vauriot</h3>
-                        <p>Tapahtuma-alueiden vaurioittaminen ja sotkeminen on ehdottomasti kiellettyä. Esimerkiksi tarrojen liimailu seiniin. Vahingonaiheuttaja on aina korvausvelvollinen.</p>
-                    </div>
+                <div class="rule-category">
+                    <h3>Tapahtuma-alueen vauriot</h3>
+                    <p>Tapahtuma-alueiden vaurioittaminen ja sotkeminen on ehdottomasti kiellettyä. Esimerkiksi tarrojen liimailu seiniin. Vahingonaiheuttaja on aina korvausvelvollinen.</p>
+                </div>
 
-                    <div class="rule-category">
-                        <h3>Verkko</h3>
-                        <p>Tapahtuma-alueen verkossa on kiellettyä:</p>
-                        <ul>
-                            <li>
-                                DHCP-palvelimet 
-                            </li>
-                            <li>
-                                Verkkoliikenteen häiritseminen 
-                            </li>
-                            <li>
-                                Muun liikenteen seuraaminen, kuin sen, jonka pääte- tai lähtöpiste, on oma tietokone 
-                            </li>
-                            <li>
-                                Ylimääräisten laitteiden, kuten kytkinten tai palomuurin kytkeminen 
-                            </li>
-                            <li>
-                                Tekijänoikeudella suojatun tai Suomen lain vastaisen materiaalin haku tai levitys. 
-                            </li>
-                        </ul>
-                    </div>
+                <div class="rule-category">
+                    <h3>Verkko</h3>
+                    <p>Tapahtuma-alueen verkossa on kiellettyä:</p>
+                    <ul>
+                        <li>
+                            DHCP-palvelimet 
+                        </li>
+                        <li>
+                            Verkkoliikenteen häiritseminen 
+                        </li>
+                        <li>
+                            Muun liikenteen seuraaminen, kuin sen, jonka pääte- tai lähtöpiste, on oma tietokone 
+                        </li>
+                        <li>
+                            Ylimääräisten laitteiden, kuten kytkinten tai palomuurin kytkeminen 
+                        </li>
+                        <li>
+                            Tekijänoikeudella suojatun tai Suomen lain vastaisen materiaalin haku tai levitys. 
+                        </li>
+                    </ul>
+                </div>
 
-                    <div class="rule-category">
-                        <h3>Nukkuminen</h3>
-                        <p>Turvallisuussyistä nukkuminen on sallittua ainoastaan omalla konepaikalla pystyasennossa (esimerkiksi pää konepaikalla). Nukkuminen lattialla tai muualla tapahtuma-alueella ei ole sallittua.</p>
-                    </div>
+                <div class="rule-category">
+                    <h3>Nukkuminen</h3>
+                    <p>Turvallisuussyistä nukkuminen on sallittua ainoastaan omalla konepaikalla pystyasennossa (esimerkiksi pää konepaikalla). Nukkuminen lattialla tai muualla tapahtuma-alueella ei ole sallittua.</p>
+                </div>
 
-                    <div class="rule-category">
-                        <h3>Muuta</h3>
-                        <ul>
-                            <li>Kaikki Suomen lait ovat voimassa tapahtumassa.</li>
-                            <li>Järjestäjät eivät vastaa mahdollisista laiterikoista. </li>
-                            <li>Järjestäjillä on oikeus poistaa henkilö tapahtumapaikalta. Lipun hintaa ei palauteta. Erityistapauksissa on mahdollista, että henkilö poistetaan välittömästi paikalta.</li>
-                            <li>Tekijä on aina vastuussa aiheuttamistaan vahingoista ja mahdollisista korvauksista.</li>
-                        </ul
-                    </div>
+                <div class="rule-category">
+                    <h3>Muuta</h3>
+                    <ul>
+                        <li>Kaikki Suomen lait ovat voimassa tapahtumassa.</li>
+                        <li>Järjestäjät eivät vastaa mahdollisista laiterikoista. </li>
+                        <li>Järjestäjillä on oikeus poistaa henkilö tapahtumapaikalta. Lipun hintaa ei palauteta. Erityistapauksissa on mahdollista, että henkilö poistetaan välittömästi paikalta.</li>
+                        <li>Tekijä on aina vastuussa aiheuttamistaan vahingoista ja mahdollisista korvauksista.</li>
+                    </ul
+                </div>
             `
             break;
 

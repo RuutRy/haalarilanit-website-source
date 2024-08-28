@@ -83,17 +83,6 @@ body {
     }
 }
 
-#sponsors-desktop {
-    margin-bottom: 3vh;
-    display: flex;
-    justify-content: center;
-}
-.sponsor-logo {
-    margin-top: 4vh;
-    margin-bottom: -4vh;
-    width: 7vw;
-}
-
 .split {
     display: flex;
     .img-text-split {
@@ -313,11 +302,6 @@ nav a:hover {
     .img-text-split p {
         max-width: 70vw;
         text-align: center;
-    }
-
-    .sponsor-logo {
-        width: 20vw;
-        margin-top: 2vh;
     }
 
     nav {

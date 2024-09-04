@@ -62,7 +62,10 @@ body {
 .org-logo {
     /* https://angel-rs.github.io/css-color-filter-generator/ */
     filter: brightness(0) saturate(100%) invert(61%) sepia(29%) saturate(469%) hue-rotate(187deg) brightness(105%) contrast(94%);
-    width: 5vw;
+    width: 6vw;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    margin-top: 3vh;
 }
 
 #container {
@@ -217,8 +220,14 @@ footer {
 }
 
 #event-countdown {
+    border: 3px solid #ffffff;
+    border-radius: 6px;
+    padding: 2vw;
     font-weight: bold;
     font-size: 26px;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    color: #ffffff;
 }
 
 /* Navbar Styling */

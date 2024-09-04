@@ -41,7 +41,7 @@ const renderContent = (content) => {
                     <p class="boldened-p">Aika: pe 18.10. Klo 15:00 - su 20.10.2024 klo 12:00</p>
                     <p class="boldened-p">Paikka: LAB-kampuksen liikuntasali</p>
                     <div>
-                    <p id="event-countdown"></p>
+                        <p id="event-countdown"></p>
                     </div>
                 </div>
                 <div id="button-holder">
@@ -156,6 +156,9 @@ const renderContent = (content) => {
             contentHolder.innerHTML = 
             `
                 <h1>Turnaukset</h1>
+                <div>
+                    <p>Lisätietoa saatavilla myöhemmin.</p>
+                </div>
             `
             break;
             
@@ -216,7 +219,7 @@ const renderContent = (content) => {
                     <li>Hiiri & Hiirimatto</li>
                     <li>Kuulokkeet</li>
                     <li>Jatkojohto</li>
-                    <li>Verkkokaapeli</li>
+                    <li>Verkkokaapeli (10m)</li>
                     <li>Puhelimen / Kuulokkeiden latausjohto </li>
                     <li>Taskurahaa / Mobilepay</li>
                 </ul>

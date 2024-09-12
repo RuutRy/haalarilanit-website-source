@@ -72,6 +72,7 @@ const renderContent = (content) => {
                 <div id="sponsors-desktop">
                     <img src="assets/Sponssien logot/LOAS-logo-vihr.png" class="sponsor-logo"/>
                     <img src="assets/Sponssien logot/Lappeenranta, logo png valkoinen.png" class="sponsor-logo"/>
+                    <img src="assets/Sponssien logot/Reaktor_Wordmark_Black.png" class="sponsor-logo"/>
                 </div>
                 `
             countdownTimer();
@@ -184,7 +185,9 @@ const renderContent = (content) => {
                     <ul class="organizer-list">
                         <h4>Ensiapu</h4>
                         <li class="contact-individual">
-                            <span>Ei vielä tiedossa</span>
+                            <span>Tomi Tielinen</span>
+                            <span>044 3243154</span>
+                            <span>tomitielinen23@gmail.com</span>
                         </li>
                     </ul>
                     <ul class="organizer-list">

@@ -70,9 +70,9 @@ const renderContent = (content) => {
                     </form>
                 </div>
                 <div id="sponsors-desktop">
+                    <img src="assets/Sponssien logot/Reaktor_Wordmark_Black.png" class="sponsor-logo"/>
                     <img src="assets/Sponssien logot/LOAS-logo-vihr.png" class="sponsor-logo"/>
                     <img src="assets/Sponssien logot/Lappeenranta, logo png valkoinen.png" class="sponsor-logo"/>
-                    <img src="assets/Sponssien logot/Reaktor_Wordmark_Black.png" class="sponsor-logo"/>
                 </div>
                 `
             countdownTimer();

@@ -94,6 +94,8 @@ body {
 .sponsor-logo {
     margin-top: 4vh;
     margin-bottom: -4vh;
+	margin-left: 1vw;
+	margin-right: 1vw;
     width: 12vw;
 }
 
@@ -324,9 +326,17 @@ nav a:hover {
         text-align: center;
     }
 
+
+	#sponsors-desktop {
+		display: grid;
+		height: 18vh;
+		margin-bottom: 0vh;
+	}
+
     .sponsor-logo {
-        width: 24vw;
-        margin-top: 2vh;
+        width: 30vw;
+        margin-top: 3vh;
+		margin-bottom: 1vh;
     }
     .org-logo {
         width: 14vw;
@@ -419,6 +429,10 @@ nav a:hover {
     .link-span-container {
         margin-bottom: 1.5vh;
     }
+
+	footer {
+		margin-top: 5vh;
+	}
 }
 
 

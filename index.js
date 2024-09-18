@@ -70,13 +70,13 @@ const renderContent = (content) => {
 
                 <div class="sponsors-main-container">
                     <div class="sponsors-container">
-                        <img src="assets/sponsor-logo/reaktor.svg" class="sponsor-logo large logo-black"/>
-                        <img src="assets/sponsor-logo/kuljetuskoppo.svg" class="sponsor-logo large"/>
+                        <a><div><img src="assets/sponsor-logo/reaktor.svg" class="large logo-black"/></div></a>
+                        <a href="https://www.kuljetuskoppo.fi/"><div><img src="assets/sponsor-logo/kuljetuskoppo.svg" class="large"/></div></a>
                     </div>
                     <div class="sponsors-container">
-                        <img src="assets/sponsor-logo/loas.svg" class="sponsor-logo"/>
-                        <img src="assets/sponsor-logo/lappeenranta.svg" class="sponsor-logo logo-black"/>
-                        <img src="assets/sponsor-logo/mfiles.svg" class="sponsor-logo"/>
+                        <a><div><img src="assets/sponsor-logo/loas.svg"/></div></a>
+                        <a><div><img src="assets/sponsor-logo/lappeenranta.svg" class="logo-black"/></div></a>
+                        <a href="https://www.m-files.com/careers/"><div><img src="assets/sponsor-logo/mfiles.svg"/></div></a>
                     </div>
                 </div>
                 `

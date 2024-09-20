@@ -71,13 +71,16 @@ const renderContent = (content) => {
                 <div class="sponsors-main-container">
                     <div class="sponsors-container">
                         <a><div><img src="assets/sponsor-logo/reaktor.svg" class="large logo-black"/></div></a>
-                        <a href="https://www.kuljetuskoppo.fi/"><div><img src="assets/sponsor-logo/kuljetuskoppo.svg" class="large"/></div></a>
+                        <a href="https://www.kuljetuskoppo.fi/" target="_blank" rel="noopener noreferrer"><div><img src="assets/sponsor-logo/kuljetuskoppo.svg" class="large"/></div></a>
                     </div>
                     <div class="sponsors-container">
                         <a><div><img src="assets/sponsor-logo/loas.svg"/></div></a>
                         <a><div><img src="assets/sponsor-logo/lappeenranta.svg" class="logo-black"/></div></a>
-                        <a href="https://www.m-files.com/careers/"><div><img src="assets/sponsor-logo/mfiles.svg"/></div></a>
-                        <a><div><img src="assets/sponsor-logo/celsius.jpg"/></div></a>
+                        <a href="https://www.m-files.com/careers/" target="_blank" rel="noopener noreferrer"><div><img src="assets/sponsor-logo/mfiles.svg"/></div></a>
+                    </div>
+                    <div class="sponsors-container">
+                        <a><div><img src="assets/sponsor-logo/celsius.svg"/></div></a>
+                        <a href="https://www.tek.fi/fi/tietoa-tekista/yhteystiedot/medialle" target="_blank" rel="noopener noreferrer"><div><img src="assets/sponsor-logo/tek.svg"/></div></a>
                     </div>
                 </div>
                 `

@@ -77,6 +77,7 @@ const renderContent = (content) => {
                         <a><div><img src="assets/sponsor-logo/loas.svg"/></div></a>
                         <a><div><img src="assets/sponsor-logo/lappeenranta.svg" class="logo-black"/></div></a>
                         <a href="https://www.m-files.com/careers/"><div><img src="assets/sponsor-logo/mfiles.svg"/></div></a>
+                        <a><div><img src="assets/sponsor-logo/celsius.jpg"/></div></a>
                     </div>
                 </div>
                 `

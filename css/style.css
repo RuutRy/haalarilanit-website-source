@@ -153,10 +153,12 @@ body {
     padding-bottom: 4vh;
     padding-left: 2vw;
     padding-right: 2vw;
-    width: 60%;
+    width: 13vw;
+    max-width: 170px;
 }
 .large {
-    width: 100%;
+    width: 22vw !important;
+    max-width: 270px !important;
 }
 .logo-black {
     filter: var(--black-filter);
@@ -235,7 +237,7 @@ footer {
 }
 
 #event-countdown {
-    border: 3px solid var(--palette-lightest);
+    border: 3px solid #ffffff;
     border-radius: 6px;
     padding: 2vw;
     font-weight: bold;
@@ -243,7 +245,7 @@ footer {
     text-align: center;
     margin-top: 2vh;
     margin-bottom: 2vh;
-    color: var(--palette-lightest);
+    color: #ffffff;
 }
 
 .embedded-anchor {

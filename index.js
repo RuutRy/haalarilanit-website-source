@@ -81,7 +81,7 @@ const renderContent = (content) => {
                     </div>
                     <div class="sponsors-container">
                         <a><div><img src="assets/sponsor-logo/celsius.svg"/></div></a>
-                        <a href="https://www.tek.fi/fi/tietoa-tekista/yhteystiedot/medialle" target="_blank" rel="noopener noreferrer"><div><img src="assets/sponsor-logo/tek.svg"/></div></a>
+                        <a><div><img src="assets/sponsor-logo/tek.svg"/></div></a>
                     </div>
                 </div>
                 `

@@ -158,7 +158,8 @@ body {
 }
 .large {
     width: 22vw !important;
-    max-width: 270px !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
 }
 .logo-black {
     filter: var(--black-filter);

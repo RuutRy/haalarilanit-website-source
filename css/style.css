@@ -90,6 +90,13 @@ body {
     text-align: center;
 }
 
+.tournament-paragraph {
+	margin-top: 4vh;
+	margin-bottom: 4vh;
+}
+.tournament-sponsor, #tournament-staff {
+	color: #ffffff;
+}
 #organizer-logo-container {
     padding-bottom: 5vw;
     display: flex;

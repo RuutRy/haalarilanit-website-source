@@ -159,9 +159,37 @@ const renderContent = (content) => {
             contentHolder.innerHTML = 
             `
                 <h1>Turnaukset</h1>
-                <div class="paragraph">
-                    <h2>Lisätietoa saatavilla myöhemmin.</h2>
-                </div>
+				<div class="paragraph">
+					<p>Haalarilaneilla järjestetään puolivakavia turnauksia, joissa voittajat palkitaan lahjakorteilla tai yhteistyökumppaneiden tarjoamilla palkinnoilla.</p>
+				</div>
+				<div class="paragraph tournament-paragraph">
+					<h2>Counter Strike 2 5v5 BYOC</h2>
+					<p class="tournament-sponsor">Turnauksen sponsoroi CGI</p> 
+					<p>Mitä olisikaan lanit ilman kynttää? Haalarilanien CS2-turnaus vedetään perinteisellä 5v5 MR24 formaatilla, map poolina active duty-kartat. Kyseessä on BYOC -turnaus, joten osallistuminen vaatii oman konepaikan hankkimista laneilta. Koko turnaus pelataan lanien aikana, ja osa peleistä striimataan Twitchiin. </p>
+				</div>
+				<div class="paragraph tournament-paragraph">
+					<h2>League of Legends 3v3 BYOC - Howling Abyss - draft pick – EUW</h2>
+					<p class="tournament-sponsor">Turnauksen sponsoroi Reaktor</p>
+					<p>Nyt on aika näyttää taitosi League of Legendsin parissa! Oletteko sinä ja kaverisi lanien parhaita kokkaajia, vai onko mekaniikkanne omaa luokkaansa? Kokoa 3-henkinen joukkueesi ja astu kilpailemaan sillan herruudesta tässä suositussa MOBA-pelissä. Huomioithan, että turnaus pelataan EUW -serverillä. Kyseessä on BYOC -turnaus, joten osallistuminen vaatii oman konepaikan hankkimista laneilta. Kaikki turnauksen matsit pelataan tapahtuman aikana, ja osa niistä striimataan Twitchiin.</p>
+				</div>
+				<div class="paragraph tournament-paragraph">
+					<h2>EA SPORTS™ WRC</h2>
+					<p class="tournament-sponsor">Turnauksen sponsoroi Visma Solutions</p>
+					<p>Lauantain aikana on myös mahdollisuus päästä näyttämään taitojaan ajosimulaattorin ratissa! Tähän aika-ajokisaan ei tarvitse ilmoittautua erikseen, vaan voit käydä näyttämässä taitosi simulaattorissa silloin, kun itse ehdit. Nopein aika palkitaan! </p>
+				</div>
+				<div class="paragraph tournament-paragraph">
+					<h2>NHL 24 - PS5</h2>
+					<p>Tänä vuonna LTKY:n kiltaolympialaisten lajikirjoon on lisätty vanha kunnon änäri! Ilmoittautuminen ja tarkempien lisätietojen kysyminen tapahtuu oman killan liikuntavastaavan kautta.</p>
+				</div>
+
+				<div class="paragraph">
+					<p>Turnausten tarkemmat aikataulut julkaistaan myöhemmin.</p>
+					<p>Haalarilanien turnausvastaavana toimii 
+						<span id="tournament-staff">Noora Parkko, noora.parkko@cluster.fi</span>
+					</p>
+				</div>
+
+				
             `
             break;
             

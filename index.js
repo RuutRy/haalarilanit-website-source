@@ -82,6 +82,7 @@ const renderContent = (content) => {
                     <div class="sponsors-container">
                         <a><div><img src="assets/sponsor-logo/celsius.svg"/></div></a>
                         <a><div><img src="assets/sponsor-logo/tek.svg"/></div></a>
+                        <a><div><img src="assets/sponsor-logo/visma.svg"/></div></a>
                     </div>
                 </div>
                 `
@@ -163,18 +164,25 @@ const renderContent = (content) => {
 					<p>Haalarilaneilla järjestetään puolivakavia turnauksia, joissa voittajat palkitaan lahjakorteilla tai yhteistyökumppaneiden tarjoamilla palkinnoilla.</p>
 				</div>
 				<div class="paragraph tournament-paragraph">
-					<h2>Counter Strike 2 5v5 BYOC</h2>
-					<p class="tournament-sponsor">Turnauksen sponsoroi CGI</p> 
+					<h2>Counter Strike 2 5v5 BYOC</h2>					
+                    <div class="sponsors-container container-tournament">
+                        <a><div><img src="assets/sponsor-logo/cgi.svg"/></div></a>
+                    </div>
 					<p>Mitä olisikaan lanit ilman kynttää? Haalarilanien CS2-turnaus vedetään perinteisellä 5v5 MR24 formaatilla, map poolina active duty-kartat. Kyseessä on BYOC -turnaus, joten osallistuminen vaatii oman konepaikan hankkimista laneilta. Koko turnaus pelataan lanien aikana, ja osa peleistä striimataan Twitchiin. </p>
 				</div>
 				<div class="paragraph tournament-paragraph">
 					<h2>League of Legends 3v3 BYOC - Howling Abyss - draft pick – EUW</h2>
-					<p class="tournament-sponsor">Turnauksen sponsoroi Reaktor</p>
+                    <div class="sponsors-container container-tournament">
+                        <a><div><img src="assets/sponsor-logo/reaktor.svg"/></div></a>
+                    </div>
 					<p>Nyt on aika näyttää taitosi League of Legendsin parissa! Oletteko sinä ja kaverisi lanien parhaita kokkaajia, vai onko mekaniikkanne omaa luokkaansa? Kokoa 3-henkinen joukkueesi ja astu kilpailemaan sillan herruudesta tässä suositussa MOBA-pelissä. Huomioithan, että turnaus pelataan EUW -serverillä. Kyseessä on BYOC -turnaus, joten osallistuminen vaatii oman konepaikan hankkimista laneilta. Kaikki turnauksen matsit pelataan tapahtuman aikana, ja osa niistä striimataan Twitchiin.</p>
 				</div>
 				<div class="paragraph tournament-paragraph">
 					<h2>EA SPORTS™ WRC</h2>
-					<p class="tournament-sponsor">Turnauksen sponsoroi Visma Solutions</p>
+
+                    <div class="sponsors-container container-tournament">
+                        <a><div><img src="assets/sponsor-logo/visma.svg"/></div></a>
+                    </div>
 					<p>Lauantain aikana on myös mahdollisuus päästä näyttämään taitojaan ajosimulaattorin ratissa! Tähän aika-ajokisaan ei tarvitse ilmoittautua erikseen, vaan voit käydä näyttämässä taitosi simulaattorissa silloin, kun itse ehdit. Nopein aika palkitaan! </p>
 				</div>
 				<div class="paragraph tournament-paragraph">

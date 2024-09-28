@@ -114,7 +114,6 @@ body {
 }
 
 #floorplan {
-    filter: var(--palette-lightest-filter);
     display: block;
     justify-content: center;
     margin-left: auto;
@@ -165,7 +164,7 @@ body {
 }
 .large {
     width: 22vw !important;
-    max-width: 100% !important;
+    max-width: 60% !important;
     box-sizing: border-box;
 }
 .logo-black {
@@ -279,7 +278,7 @@ footer {
         width: 75vw;
     }
     .sponsors-container img {
-        width: 45%;
+        width: 35%;
         padding-top: 3vh;
         padding-bottom: 3vh;
     }

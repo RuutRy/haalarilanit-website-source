@@ -82,7 +82,6 @@ const renderContent = (content) => {
                     <div class="sponsors-container">
                         <a><div><img src="assets/sponsor-logo/celsius.svg"/></div></a>
                         <a><div><img src="assets/sponsor-logo/tek.svg"/></div></a>
-                        <a><div><img src="assets/sponsor-logo/visma.svg"/></div></a>
                     </div>
                 </div>
                 `

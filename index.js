@@ -72,6 +72,9 @@ const renderContent = (content) => {
                     <div class="sponsors-container">
                         <a><div><img src="assets/sponsor-logo/reaktor.svg" class="large logo-black"/></div></a>
                         <a href="https://www.kuljetuskoppo.fi/" target="_blank" rel="noopener noreferrer"><div><img src="assets/sponsor-logo/kuljetuskoppo.svg" class="large"/></div></a>
+                    </div>
+                    <div class="sponsors-container">
+                        <a><div><img src="assets/sponsor-logo/visma.svg" class="large"/></div></a>
                         <a><div><img src="assets/sponsor-logo/cgi.svg" class="large"/></div></a>
                     </div>
                     <div class="sponsors-container">

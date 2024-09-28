@@ -136,6 +136,18 @@ body {
     background-color: #ffffff;
     border-radius: 7px;
 }
+
+.container-tournament {
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 45%;
+    height: 70%;
+    justify-self: center;
+
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
 .sponsors-container {
     display: flex;
     justify-content: center;
@@ -270,6 +282,14 @@ footer {
         width: 95vw;
         margin-left: -10vw;
     }
+
+
+    .container-tournament {
+        width: 65%;
+        height: 70%;
+    }
+
+
 
     .sponsors-container {
         display: grid;

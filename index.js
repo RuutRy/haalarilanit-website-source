@@ -16,26 +16,36 @@ const renderContent = (content) => {
                     <p>Haalarilanit järjestetään 18.10.–20.10. LAB-kampuksen liikuntasalissa Lappeenrannassa.</p>
                 </div>
                 <div class="paragraph">
-                    <p>Luvassa on syksyn eeppisin pelihetki, kun lähes kaksisataa pelaajaa kerääntyy yhteen saliin ja nauttii yhdessä pelaamisen ilosta. Olitpa sitten intohimoinen e-urheilija tai rento viikonlopun pelaaja, peliseuraa riittää varmasti.</p>
+                  <p>Luvassa on syksyn eeppisin pelihetki, kun lähes kaksisataa pelaajaa kerääntyy yhteen saliin pelaamaan. Olitpa sitten intohimoinen e-urheilija tai rento viikonlopun pelaaja, peliseuraa riittää varmasti.</p>
                 </div>
                 <div class="paragraph">
-                    <p>Laneilla järjestään lukuisia turnauksia, joissa pelaajat pääsevät tavoittelemaan ykköspaikkaa - Onko CS2 sinun lajisi, vai loistatko NHL-jäällä? Entä oletko ralliratojen kuningas ajosimulaattorilla? Nyt on sinun mahdollisuutesi näyttää taitosi niin järjestetyissä turnauksissa kuin ystäviesi kesken kisatessa!</p>
+                  <span>Laneilla järjestään lukuisia turnauksia, joissa pelaajat pääsevät tavoittelemaan ykköspaikkaa - Onko CS2 sinun lajisi, vai loistatko NHL-jäällä? 
+                    Entä oletko ralliratojen kuningas ajosimulaattorilla? Nyt on sinun mahdollisuus loistaa! 
+                    <a class="embedded-anchor" href="#"
+                      onclick="renderContent('tournament')">
+                      (kts. Turnaukset)
+                    </a>
+                  </span>
                 </div>
                 <div class="paragraph">
-                    <span>Tuo oma koneesi, liitä se kiinni verkkoon ja oletkin valmis kokemaan mukaansatempaavia pelikokemuksia! Lue lisää konepaikkojen tiedoista alempaa ja hanki lippusi. Lisäksi paikan päällä on kioski, josta voit hankkia pientä juotavaa ja purtavaa nautittavaksi kesken pelihetkien
-                        <a class="embedded-anchor" href="#"
+                  <span>Lue lisää konepaikkojen tiedoista, joista kerrotaan alempana, ja hanki lippusi. Tapahtuma-alueelle on ilmainen sisäänpääsy kaikille ja mm. turnauksia voi tulla katsomaan ja kannustamaan paikan päälle!</span>
+                </div>
+                <div class="paragraph">
+                  <span>Lisäksi paikan päällä on kioski, josta voit hankkia pientä juotavaa ja purtavaa nautittavaksi kesken pelihetkien
+                      <a class="embedded-anchor" href="#"
                         onclick="renderContent('guide')">
                         (kts. Tapahtumakartta).
-                        </a>
-                    </span>
+                      </a>
+                  </span>
                 </div>
-                <div class="paragraph">
-                    <span>Tapahtuma-alue on päihteetön eikä alueelle saa tuoda alkoholijuomia. Voit osallistua laneille matalalla kynnyksellä ja ilman mitään aikaisempaa kokemusta! Mikäli sinulla herää kysymyksiä Haalarilaneihin liittyen, ota yhteyttä
-                        <a class="embedded-anchor" href="#"
-                        onclick="renderContent('contact')">
-                        pääjärjestäjiin.
-                        </a>
-                    </span>
+                <div>
+
+                  <span>Tapahtuma-alue on päihteetön eikä alueelle saa tuoda alkoholijuomia. Voit osallistua laneille matalalla kynnyksellä ja ilman mitään aikaisempaa kokemusta! Mikäli sinulla herää kysymyksiä Haalarilaneihin liittyen, ota yhteyttä
+                    <a class="embedded-anchor" href="#"
+                      onclick="renderContent('contact')">
+                      pääjärjestäjiin.
+                    </a>
+                  </span>
                 </div>
                 <div class="paragraph">
                     <h3>Aika: pe 18.10. Klo 15:00 - su 20.10.2024 klo 12:00</h3>

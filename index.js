@@ -95,6 +95,7 @@ const renderContent = (content) => {
                     <div class="sponsors-container">
                         <a><div><img src="assets/sponsor-logo/celsius.svg"/></div></a>
                         <a><div><img src="assets/sponsor-logo/tek.svg"/></div></a>
+                        <a><div><img src="assets/sponsor-logo/abb.svg"/></div></a>
                     </div>
                 </div>
                 `
@@ -199,6 +200,9 @@ const renderContent = (content) => {
 				</div>
 				<div class="paragraph tournament-paragraph">
 					<h2>NHL 24 - PS5</h2>
+            <div class="sponsors-container container-tournament">
+              <a><div><img src="assets/sponsor-logo/ltky.png"/></div></a>
+            </div>
 					<p>Tänä vuonna LTKY:n kiltaolympialaisten lajikirjoon on lisätty vanha kunnon änäri! Ilmoittautuminen ja tarkempien lisätietojen kysyminen tapahtuu oman killan liikuntavastaavan kautta.</p>
 				</div>
 

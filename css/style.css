@@ -118,6 +118,7 @@ body {
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
+    width: 80%;
 }
 #haalarilanit-logo {
     filter: var(--palette-lightest-filter);
@@ -175,8 +176,8 @@ body {
     max-width: 170px;
 }
 .large {
-    width: 22vw !important;
-    max-width: 60% !important;
+    width: 19vw !important;
+    max-width: 100% !important;
     box-sizing: border-box;
 }
 .logo-black {
@@ -335,7 +336,8 @@ footer {
     }
 
     #floorplan {
-        width: 75vw;
-        padding-bottom: 30vw;
+        width: 100%;
+        padding-top: 18vw;
+        padding-bottom: 18vw;
     }
 }

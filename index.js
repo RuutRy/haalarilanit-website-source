@@ -85,7 +85,7 @@ const renderContent = (content) => {
                     </div>
                     <div class="sponsors-container">
                         <a><div><img src="assets/sponsor-logo/visma.svg" class="large"/></div></a>
-                        <a><div><img src="assets/sponsor-logo/cgi.svg" class="large"/></div></a>
+                        <a><div><img src="assets/sponsor-logo/cgi.svg"/></div></a>
                     </div>
                     <div class="sponsors-container">
                         <a><div><img src="assets/sponsor-logo/loas.svg"/></div></a>

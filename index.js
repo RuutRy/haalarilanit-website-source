@@ -85,7 +85,7 @@ const renderContent = (content) => {
                     </div>
                     <div class="sponsors-container">
                         <a><div><img src="assets/sponsor-logo/visma.svg" class="large"/></div></a>
-                        <a><div><img src="assets/sponsor-logo/cgi.svg" class="large"/></div></a>
+                        <a><div><img src="assets/sponsor-logo/cgi.svg"/></div></a>
                     </div>
                     <div class="sponsors-container">
                         <a><div><img src="assets/sponsor-logo/loas.svg"/></div></a>
@@ -166,6 +166,10 @@ const renderContent = (content) => {
             `
                 <h1>Opasteet</h1>
                 <img src="assets/floorplan.svg" id="floorplan"/>
+                <div class="paragraph">
+                  <p>Haalarilaneille on 24h sisäänkäynti, joka tapahtuu parkkipaikan puoleisista ovista. Opastekarttaan on merkitty ovet, mistä tulee kulkea sekä tapahtuma-alueelle, että mm. vessoihin.</p>
+                  <p>Tapahtuman ajan LAB-ammattikorkeakoulun parkkipaikat ovat vapaita pysäköinnille, eli niissä ei ole tällöin pysäköinninvalvontaa. Sisäänkäynti on esteetön.</p>
+                </div>
             `
             break;
         

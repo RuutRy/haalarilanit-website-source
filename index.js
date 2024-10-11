@@ -178,37 +178,54 @@ const renderContent = (content) => {
             `
                 <h1>Turnaukset</h1>
 				<div class="paragraph">
-					<p>Haalarilaneilla järjestetään puolivakavia turnauksia, joissa voittajat palkitaan lahjakorteilla tai yhteistyökumppaneiden tarjoamilla palkinnoilla.</p>
+          <p>Haalarilaneilla järjestetään puolivakavia turnauksia, joissa voittajat palkitaan lahjakorteilla tai yhteistyökumppaneiden tarjoamilla palkinnoilla. Lahjakortit on arvoltaan 20-50€.
+          Tapahtuma-alueelle on ilmainen sisäänpääsy kaikille ja turnauksia voi tulla katsomaan ja kannustamaan paikan päälle!</p>
 				</div>
 				<div class="paragraph tournament-paragraph">
-					<h2>Counter Strike 2 5v5 BYOC</h2>					
-                    <div class="sponsors-container container-tournament">
-                        <a><div><img src="assets/sponsor-logo/cgi.svg"/></div></a>
-                    </div>
-					<p>Mitä olisikaan lanit ilman kynttää? Haalarilanien CS2-turnaus vedetään perinteisellä 5v5 MR24 formaatilla, map poolina active duty-kartat. Kyseessä on BYOC -turnaus, joten osallistuminen vaatii oman konepaikan hankkimista laneilta. Koko turnaus pelataan lanien aikana, ja osa peleistä striimataan Twitchiin. </p>
-				</div>
+					<h2>Counter Strike 2</h2>					
+          <div class="sponsors-container container-tournament">
+            <a><div><img src="assets/sponsor-logo/cgi.svg"/></div></a>
+          </div>
+          <p>Mitä olisikaan lanit ilman kynttää? Haalarilanien CS2-turnaus vedetään perinteisellä 5v5 MR24 formaatilla, map poolina active duty-kartat. Kyseessä on BYOC -turnaus, joten osallistuminen vaatii oman konepaikan hankkimista laneilta. Koko turnaus pelataan lanien aikana, ja osa peleistä striimataan Twitchiin.</p>
+				  <p>Pelit aloitetaan perjantaina 18.10. noin klo.17:00 ja niitä pelaillaan hyvällä tahdilla päivän mittaan. Loppupelit pelataan lauantaina 19.10. noin klo.19:00->.</p>
+          <span>
+            Ilmoittaudu mukaan
+            <a class="embedded-anchor" href="https://challonge.com/fi/dk76etx8">
+              TÄSTÄ!
+            </a>
+          </span>          
+        </div>
+
 				<div class="paragraph tournament-paragraph">
-					<h2>League of Legends 3v3 BYOC - Howling Abyss - draft pick – EUW</h2>
-                    <div class="sponsors-container container-tournament">
-                        <a><div><img src="assets/sponsor-logo/reaktor.svg"/></div></a>
-                    </div>
-					<p>Nyt on aika näyttää taitosi League of Legendsin parissa! Oletteko sinä ja kaverisi lanien parhaita kokkaajia, vai onko mekaniikkanne omaa luokkaansa? Kokoa 3-henkinen joukkueesi ja astu kilpailemaan sillan herruudesta tässä suositussa MOBA-pelissä. Huomioithan, että turnaus pelataan EUW -serverillä. Kyseessä on BYOC -turnaus, joten osallistuminen vaatii oman konepaikan hankkimista laneilta. Kaikki turnauksen matsit pelataan tapahtuman aikana, ja osa niistä striimataan Twitchiin.</p>
-				</div>
+					<h2>League of Legends</h2>
+            <div class="sponsors-container container-tournament">
+              <a><div><img src="assets/sponsor-logo/reaktor.svg"/></div></a>
+            </div>
+          <p>Nyt on aika näyttää taitosi League of Legendsin parissa! Oletteko sinä ja kaverisi lanien parhaita kokkaajia, vai onko mekaniikkanne omaa luokkaansa? Kokoa 3-henkinen joukkueesi ja astu kilpailemaan sillan herruudesta tässä suositussa MOBA-pelissä. Huomioithan, että turnaus pelataan EUW -serverillä. 
+Kyseessä on BYOC -turnaus, joten osallistuminen vaatii oman konepaikan hankkimista laneilta. Koko turnaus pelataan lanien aikana, ja osa peleistä striimataan Twitchiin.</p>
+          <span>
+            Ilmoittaudu mukaan
+            <a class="embedded-anchor" href="https://challonge.com/fi/nq8bon6o">
+              TÄSTÄ!
+            </a>
+          </span>          
+        </div>
+
 				<div class="paragraph tournament-paragraph">
 					<h2>EA SPORTS™ WRC</h2>
-
-                    <div class="sponsors-container container-tournament">
-                        <a><div><img src="assets/sponsor-logo/visma.svg"/></div></a>
-                    </div>
-					<p>Lauantain aikana on myös mahdollisuus päästä näyttämään taitojaan ajosimulaattorin ratissa! Tähän aika-ajokisaan ei tarvitse ilmoittautua erikseen, vaan voit käydä näyttämässä taitosi simulaattorissa silloin, kun itse ehdit. Nopein aika palkitaan! </p>
-				</div>
+          <div class="sponsors-container container-tournament">
+            <a><div><img src="assets/sponsor-logo/visma.svg"/></div></a>
+          </div>
+				  <p>Lauantain aikana on mahdollisuus päästä näyttämään taitojaan ajosimulaattorin ratissa! Tähän aika-ajokisaan ei tarvitse ilmoittautua erikseen, vaan voit käydä ajamassa oman suorituksen lauantain aikana klo. 14:00 - 21:00. Nopein aika palkitaan!</p>
+        </div>
 				<div class="paragraph tournament-paragraph">
 					<h2>NHL 24 - PS5</h2>
             <div class="sponsors-container container-tournament">
               <a><div><img src="assets/sponsor-logo/ltky.png"/></div></a>
             </div>
-					<p>Tänä vuonna LTKY:n kiltaolympialaisten lajikirjoon on lisätty vanha kunnon änäri! Ilmoittautuminen ja tarkempien lisätietojen kysyminen tapahtuu oman killan liikuntavastaavan kautta.</p>
-				</div>
+			    <p>Tänä vuonna LTKY:n kiltaolympialaisten lajikirjoon on lisätty vanha kunnon änäri pelattuna Playstation 5:lla! Ilmoittautuminen ja tarkempien lisätietojen kysyminen tapahtuu oman killan liikuntavastaavan kautta.
+Turnaus tullaan pelaamaan perjantaina 18.10.</p>
+        </div>
 
 				<div class="paragraph">
 					<p>Turnausten tarkemmat aikataulut julkaistaan myöhemmin.</p>

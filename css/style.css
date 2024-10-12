@@ -256,6 +256,20 @@ footer {
     margin-top: 5vw;
 }
 
+.paragraph {
+
+  .tournament-p {
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
+  }
+}
+
+.tournament-join {
+  font-size: 36px;
+  margin-top: 4vh;
+  margin-bottom: 4vh;
+}
+
 #event-countdown {
     border: 3px solid #ffffff;
     border-radius: 6px;

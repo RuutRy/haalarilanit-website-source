@@ -13,7 +13,7 @@ const renderContent = (content) => {
 
                 <div class="paragraph">
                   <h2>Kuvapankit</h2>
-                  <p>Alhaalla on linkkejä kuvapankkiin. Kuvat on otettu tapahtumapaikalta.</p>
+                  <p>Alhaalla on linkki kuvapankkiin. Kuvat on otettu tapahtumapaikalta.</p>
                   <a href="https://cluster.kuvat.fi/kuvat/2024_014+-+Haalarilanit"/>2024</a>
                 </div>
 

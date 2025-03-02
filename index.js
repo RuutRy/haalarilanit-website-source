@@ -10,6 +10,18 @@ const renderContent = (content) => {
       contentHolder.innerHTML = `
                 <img src="assets/logotext.svg" id="haalarilanit-logo"/>
                 <h1>Nähdään taas ensi vuonna!</h1>
+
+                <div class="paragraph">
+                  <h2>Kuvapankit</h2>
+                  <p>Alhaalla on linkkejä kuvapankkiin. Kuvat on otettu tapahtumapaikalta.</p>
+                  <a href="https://cluster.kuvat.fi/kuvat/2024_014+-+Haalarilanit"/>2024</a>
+                </div>
+
+                <div>
+          <span class="tournament-join">
+              
+          </span>
+                </div>
                 `;
       countdownTimer();
       break;

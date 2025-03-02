@@ -70,6 +70,7 @@ body {
 
 .paragraph {
     display: grid;
+    justify-content: center;
     padding-top: 16px;
     padding-bottom: 16px;
     h3 {
@@ -78,6 +79,13 @@ body {
     ul {
         padding-left: 16px;
     }
+  a {
+    margin: auto;
+    color: #ffffff;
+    text-decoration: none;
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
+  }
 }
 .paragraph p {
     text-align: left;

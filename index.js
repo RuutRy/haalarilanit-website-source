@@ -1,25 +1,21 @@
-
 // Loading the main content for the user from the get-go
 document.addEventListener("DOMContentLoaded", () => {
-    renderContent("main");
+  renderContent("main");
 });
 
 const renderContent = (content) => {
-    let contentHolder = document.getElementById("nav-content");
-    switch (content) {
-
-        case "main":
-            contentHolder.innerHTML = 
-            `
+  let contentHolder = document.getElementById("nav-content");
+  switch (content) {
+    case "main":
+      contentHolder.innerHTML = `
                 <img src="assets/logotext.svg" id="haalarilanit-logo"/>
                 <h1>Nähdään taas ensi vuonna!</h1>
-                `
-            countdownTimer();
-            break;
+                `;
+      countdownTimer();
+      break;
 
-        case "rules":
-            contentHolder.innerHTML = 
-            `
+    case "rules":
+      contentHolder.innerHTML = `
             <h1>Säännöt</h1>
             <div class="paragraph">
                 <h2>Tapahtuma-alueelle ei saa tuoda</h2>
@@ -73,31 +69,29 @@ const renderContent = (content) => {
                     <li>Tekijä on aina vastuussa aiheuttamistaan vahingoista ja mahdollisista korvauksista</li>
                 </ul
             </div>
-            `
-            break;
+            `;
+      break;
 
-        case "guide":
-            contentHolder.innerHTML =
-            `
+    case "guide":
+      contentHolder.innerHTML = `
                 <h1>Opasteet</h1>
                 <img src="assets/floorplan.svg" id="floorplan"/>
                 <div class="paragraph">
                   <p>Haalarilaneille on 24h sisäänkäynti, joka tapahtuu parkkipaikan puoleisista ovista. Opastekarttaan on merkitty ovet, mistä tulee kulkea sekä tapahtuma-alueelle, että mm. vessoihin.</p>
                   <p>Tapahtuman ajan LAB-ammattikorkeakoulun parkkipaikat ovat vapaita pysäköinnille, eli niissä ei ole tällöin pysäköinninvalvontaa. Sisäänkäynti on esteetön.</p>
                 </div>
-            `
-            break;
-        
-        case "tournament":
-            contentHolder.innerHTML = 
-            `
+            `;
+      break;
+
+    case "tournament":
+      contentHolder.innerHTML = `
                 <h1>Turnaukset</h1>
 				<div class="paragraph">
           <p class="tournament-p">Haalarilaneilla järjestetään puolivakavia turnauksia, joissa voittajat palkitaan lahjakorteilla tai yhteistyökumppaneiden tarjoamilla palkinnoilla. Lahjakortit on arvoltaan 20-50€.
           Tapahtuma-alueelle on ilmainen sisäänpääsy kaikille ja turnauksia voi tulla katsomaan ja kannustamaan paikan päälle!</p>
 				</div>
 				<div class="paragraph tournament-paragraph">
-					<h2>Counter Strike 2</h2>					
+					<h2>Counter Strike 2</h2>
           <div class="sponsors-container container-tournament">
             <a><div><img src="assets/sponsor-logo/cgi.svg"/></div></a>
           </div>
@@ -108,7 +102,7 @@ const renderContent = (content) => {
             <a class="embedded-anchor" href="https://challonge.com/fi/dk76etx8">
               TÄSTÄ!
             </a>
-          </span>          
+          </span>
         </div>
 
 				<div class="paragraph tournament-paragraph">
@@ -116,7 +110,7 @@ const renderContent = (content) => {
             <div class="sponsors-container container-tournament">
               <a><div><img src="assets/sponsor-logo/reaktor.svg"/></div></a>
             </div>
-          <p class="tournament-p">Nyt on aika näyttää taitosi League of Legendsin parissa! Oletteko sinä ja kaverisi lanien parhaita kokkaajia, vai onko mekaniikkanne omaa luokkaansa? Kokoa 3-henkinen joukkueesi ja astu kilpailemaan sillan herruudesta tässä suositussa MOBA-pelissä. Huomioithan, että turnaus pelataan EUW -serverillä. 
+          <p class="tournament-p">Nyt on aika näyttää taitosi League of Legendsin parissa! Oletteko sinä ja kaverisi lanien parhaita kokkaajia, vai onko mekaniikkanne omaa luokkaansa? Kokoa 3-henkinen joukkueesi ja astu kilpailemaan sillan herruudesta tässä suositussa MOBA-pelissä. Huomioithan, että turnaus pelataan EUW -serverillä.
 Kyseessä on BYOC -turnaus, joten osallistuminen vaatii oman konepaikan hankkimista laneilta. Koko turnaus pelataan lanien aikana, ja osa peleistä striimataan Twitchiin.</p>
           <p class="tournament-p">Pelit pelataan lauantaina 19.10. noin klo.12:00->.</p>
           <span class="tournament-join">
@@ -124,7 +118,7 @@ Kyseessä on BYOC -turnaus, joten osallistuminen vaatii oman konepaikan hankkimi
             <a class="embedded-anchor" href="https://challonge.com/fi/nq8bon6o">
               TÄSTÄ!
             </a>
-          </span>          
+          </span>
         </div>
 
 				<div class="paragraph tournament-paragraph">
@@ -144,62 +138,30 @@ Turnaus tullaan pelaamaan perjantaina 18.10.</p>
         </div>
 
 				<div class="paragraph">
-					<p class="tournament-p">Haalarilanien turnausvastaavana toimii 
+					<p class="tournament-p">Haalarilanien turnausvastaavana toimii
 						<span id="tournament-staff">Noora Parkko, noora.parkko@cluster.fi</span>
 					</p>
 				</div>
 
-				
-            `
-            break;
-            
-        case "contact":
-            contentHolder.innerHTML = 
-            `
+
+            `;
+      break;
+
+    case "contact":
+      contentHolder.innerHTML = `
+            <div>
                 <h1>Yhteystiedot</h1>
-
-                <h2>Pääjärjestäjät</h2>
-
+                <h2>Yrityssuhdevastaava</h2>
                 <div class="paragraph center">
-                    <p>Valtteri Erkkilä</p>
-                    <p>045 8689710</p>
-                    <p>valtteri.erkkila@cluster.fi</p>
-                </div>
-
-                <div class="paragraph center">
-                    <p>Miko Mattila</p>
-                    <p>044 2105417</p>
-                    <p>miko.mattila@ruut.me</p>
-                </div>
-
-                <h2>Ensiapu</h2>
-
-                <div class="paragraph center">
-                    <p>Tomi Tielinen</p>
-                    <p>044 3243154</p>
-                    <p>tomitielinen23@gmail.com</p>
-                </div>
-
-                <h2>Häirintäyhdyshenkilöt</h2>
-
-                <div class="paragraph center">
-                    <p>Tuomas Mustakallio</p>
-                    <p>044 2709720</p>
-                    <p>hairintayhdyshenkilo@cluster.fi</p>
-                </div>
-
-                <div class="paragraph center">
-                    <p>Janni Timoskainen</p>
-                    <p>044 9926010</p>
-                    <p>Janni.timoskainen@cluster.fi</p>
+                    <p>Vilppu Penttilä</p>
+                    <p>yritys@ruut.me</p>
                 </div>
             </div>
-            `
-            break;
+            `;
+      break;
 
-        case "pack":
-            contentHolder.innerHTML = 
-            `
+    case "pack":
+      contentHolder.innerHTML = `
                 <h1>Pakkauslista</h1>
                 <div class="paragraph">
                     <p>Pakkaa mukaan tarvitsemasi laitteet, ottaen huomioon konepaikan rajoitteet</p>
@@ -215,55 +177,53 @@ Turnaus tullaan pelaamaan perjantaina 18.10.</p>
                         <li>Taskurahaa / Mobilepay</li>
                     </ul>
                 </div>
-            `
-            break;
+            `;
+      break;
 
-        default:
-            contentHolder.innerHTML = `<h2>Sisältöä ei löytynyt.</h2>`
-    }
-}
+    default:
+      contentHolder.innerHTML = `<h2>Sisältöä ei löytynyt.</h2>`;
+  }
+};
 
 const countdownTimer = () => {
+  const eventDate = new Date(2024, 9, 18, 15).getTime();
 
-    const eventDate = new Date(2024, 9, 18, 15).getTime(); 
+  // Initial starting time on page load
+  let timeDifference = eventDate - new Date().getTime();
+  displayTime(timeDifference);
 
-    // Initial starting time on page load
-    let timeDifference = eventDate - new Date().getTime();
+  // Starting the second-by-second
+  setInterval(() => {
+    timeDifference = eventDate - new Date().getTime();
+
     displayTime(timeDifference);
-
-    // Starting the second-by-second
-    setInterval(() => {
-        timeDifference = eventDate - new Date().getTime();
-        
-        
-        displayTime(timeDifference)
-    }, 1000)
-}   
+  }, 1000);
+};
 
 const displayTime = (timeDifference) => {
-    
+  if (!document.getElementById("event-countdown")) {
+    return;
+  }
 
-    if (!document.getElementById("event-countdown")) {
-        return;
-    }
+  // If the event has already begun
+  if (timeDifference < 0) {
+    document.getElementById("event-countdown").innerHTML =
+      "Tapahtuma on alkanut!";
+    return;
+  }
 
-    // If the event has already begun
-    if (timeDifference < 0) {
-        document.getElementById("event-countdown").innerHTML = "Tapahtuma on alkanut!";
-        return;
-    } 
-    
-    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+  let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  let hours = Math.floor(
+    (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+  );
+  let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-    let countdown = 
-    `${days} päivää, 
+  let countdown = `${days} päivää,
     ${hours} tuntia,
     ${minutes} minuuttia,
-    ${seconds} sekuntia.`
+    ${seconds} sekuntia.`;
 
-    // Displaying the time difference
-    document.getElementById("event-countdown").innerHTML = countdown;
-}
+  // Displaying the time difference
+  document.getElementById("event-countdown").innerHTML = countdown;
+};

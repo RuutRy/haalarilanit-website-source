@@ -12,15 +12,44 @@ const renderContent = (content) => {
                 <h1>Nähdään taas ensi vuonna!</h1>
 
                 <div class="paragraph">
+                  <h2>Mistä on kyse?</h2>
+                  <p>
+                    Haalarilanit on suuri lanitapahtuma, jota on järjestetty LAB-kampuksen liikuntasalissa Lappeenrannassa.
+                  </p>
+                  <p>
+                    Luvassa on syksyn eeppisin pelihetki, kun lähes kaksisataa pelaajaa kerääntyy yhteen saliin ja nauttii yhdessä pelaamisen ilosta. Olitpa sitten intohimoinen e-urheilija tai rento viikonlopun pelaaja, peliseuraa riittää varmasti.
+                  </p>
+                  <p>
+                    Laneilla järjestään lukuisia turnauksia, joissa pelaajat pääsevät tavoittelemaan ykköspaikkaa - Onko CS2 sinun lajisi, vai loistatko NHL-jäällä? Entä oletko ralliratojen kuningas ajosimulaattorilla? Nyt on sinun mahdollisuutesi näyttää taitosi niin järjestetyissä turnauksissa kuin ystäviesi kesken kisatessa!
+                  </p>
+                  <p>
+                    Tuo oma koneesi, liitä se kiinni verkkoon ja oletkin valmis kokemaan mukaansatempaavia pelikokemuksia! Lue lisää konepaikkojen tiedoista alempaa ja hanki lippusi. Lisäksi paikan päällä on kioski, josta voit hankkia pientä juotavaa ja purtavaa nautittavaksi kesken pelihetkien 
+                      <a class="embedded-anchor" href="#"
+                      onclick="renderContent('guide')">
+                      (kts. Tapahtumakartta)
+                      </a>
+                    .
+
+                  </p>
+                  <p>
+                    Tapahtuma-alue on päihteetön eikä alueelle saa tuoda alkoholijuomia. Voit osallistua laneille matalalla kynnyksellä ja ilman mitään aikaisempaa kokemusta! Mikäli sinulla herää kysymyksiä Haalarilaneihin liittyen, ota yhteyttä 
+                      <a class="embedded-anchor" href="#"
+                      onclick="renderContent('contact')">
+                      pääjärjestäjiin
+                      </a>.
+                  </p>
+                </div>
+
+                <div class="paragraph">
                   <h2>Kuvapankit</h2>
                   <p>Alhaalla on linkki kuvapankkiin. Kuvat on otettu tapahtumapaikalta.</p>
                   <a href="https://cluster.kuvat.fi/kuvat/2024_014+-+Haalarilanit"/>2024</a>
                 </div>
 
                 <div>
-          <span class="tournament-join">
-              
-          </span>
+                  <span class="tournament-join">
+
+                  </span>
                 </div>
                 `;
       countdownTimer();
@@ -28,71 +57,71 @@ const renderContent = (content) => {
 
     case "rules":
       contentHolder.innerHTML = `
-            <h1>Säännöt</h1>
-            <div class="paragraph">
-                <h2>Tapahtuma-alueelle ei saa tuoda</h2>
-                <ul>
-                    <li>Toisten ihmisten vahingoittamiseen soveltuvia välineitä</li>
-                    <li>Alkoholia tai huumausaineita</li>
-                    <li>Räjähteitä tai muita vaarallisia aineita</li>
-                </ul>
-            </div>
+<h1>Säännöt</h1>
+<div class="paragraph">
+  <h2>Tapahtuma-alueelle ei saa tuoda</h2>
+  <ul>
+    <li>Toisten ihmisten vahingoittamiseen soveltuvia välineitä</li>
+    <li>Alkoholia tai huumausaineita</li>
+    <li>Räjähteitä tai muita vaarallisia aineita</li>
+  </ul>
+</div>
 
-            <div class="paragraph">
-                <h2>Alkoholi ja tupakointi</h2>
-                <p>Alkoholin tai muiden päihdeaineiden nauttiminen ja hallussapito tapahtuma-alueella on ehdottomasti kiellettyä. Alkoholituotteet ja muut päihteet tulee jättää tapahtuman sisäänkäynnin lähelle niille erikseen osoitettuun paikkaan.<p/>
-                <p>Tupakoiminen ja sähkötupakointi on sallittua vain sille merkityllä alueella. Paikalla on tumppeja varten astia ja sitä tulee myös käyttää.</p>
-            </div>
+<div class="paragraph">
+  <h2>Alkoholi ja tupakointi</h2>
+  <p>Alkoholin tai muiden päihdeaineiden nauttiminen ja hallussapito tapahtuma-alueella on ehdottomasti kiellettyä. Alkoholituotteet ja muut päihteet tulee jättää tapahtuman sisäänkäynnin lähelle niille erikseen osoitettuun paikkaan.<p/>
+  <p>Tupakoiminen ja sähkötupakointi on sallittua vain sille merkityllä alueella. Paikalla on tumppeja varten astia ja sitä tulee myös käyttää.</p>
+</div>
 
-            <div class="paragraph">
-                <h2>Sähköverkko</h2>
-                <p>Kodinkoneiden ja muiden suuritehoisten sähkölaitteiden kytkeminen konepaikalle on ehdottomasti kiellettyä. Jokaiselle konepaikalle on varattu yksi sähköpistoke, josta riittää kullekin konepaikalle 350 W sähköteho.</p>
-                <p>Tapahtuma-alueelta löytyy yleiseen käyttöön tarkoitettu mikro ja vedenkeitin. Mikäli tietokoneesi tai muut sähkölaitteesi tarvitsevat yhteensä enemmän kuin 350 W sähkötehoa, ole ennakkoon yhteydessä järjestäjiin.</p>
-            </div>
+<div class="paragraph">
+  <h2>Sähköverkko</h2>
+  <p>Kodinkoneiden ja muiden suuritehoisten sähkölaitteiden kytkeminen konepaikalle on ehdottomasti kiellettyä. Jokaiselle konepaikalle on varattu yksi sähköpistoke, josta riittää kullekin konepaikalle 350 W sähköteho.</p>
+  <p>Tapahtuma-alueelta löytyy yleiseen käyttöön tarkoitettu mikro ja vedenkeitin. Mikäli tietokoneesi tai muut sähkölaitteesi tarvitsevat yhteensä enemmän kuin 350 W sähkötehoa, ole ennakkoon yhteydessä järjestäjiin.</p>
+</div>
 
-            <div class="paragraph">
-                <h2>Tapahtuma-alueen vauriot</h2>
-                <p>Tapahtuma-alueiden vaurioittaminen ja sotkeminen on ehdottomasti kiellettyä. Esimerkiksi tarrojen liimailu seiniin. Vahingonaiheuttaja on aina korvausvelvollinen.</p>
-            </div>
+<div class="paragraph">
+  <h2>Tapahtuma-alueen vauriot</h2>
+  <p>Tapahtuma-alueiden vaurioittaminen ja sotkeminen on ehdottomasti kiellettyä. Esimerkiksi tarrojen liimailu seiniin. Vahingonaiheuttaja on aina korvausvelvollinen.</p>
+</div>
 
-            <div class="paragraph">
-                <h2>Verkko</h2>
-                <p>Tapahtuma-alueen verkossa on kiellettyä:</p>
-                <ul>
-                    <li>DHCP-palvelimet</li>
-                    <li>Verkkoliikenteen häiritseminen</li>
-                    <li>Muun liikenteen seuraaminen, kuin sen, jonka pääte- tai lähtöpiste, on oma tietokone</li>
-                    <li>Ylimääräisten laitteiden, kuten kytkinten tai palomuurin kytkeminen</li>
-                    <li>Tekijänoikeudella suojatun tai Suomen lain vastaisen materiaalin haku tai levitys</li>
-                </ul>
-            </div>
+<div class="paragraph">
+  <h2>Verkko</h2>
+  <p>Tapahtuma-alueen verkossa on kiellettyä:</p>
+  <ul>
+    <li>DHCP-palvelimet</li>
+    <li>Verkkoliikenteen häiritseminen</li>
+    <li>Muun liikenteen seuraaminen, kuin sen, jonka pääte- tai lähtöpiste, on oma tietokone</li>
+    <li>Ylimääräisten laitteiden, kuten kytkinten tai palomuurin kytkeminen</li>
+    <li>Tekijänoikeudella suojatun tai Suomen lain vastaisen materiaalin haku tai levitys</li>
+  </ul>
+</div>
 
-            <div class="paragraph">
-                <h2>Nukkuminen</h2>
-                <p>Turvallisuussyistä nukkuminen on sallittua ainoastaan omalla konepaikalla pystyasennossa (esimerkiksi pää konepaikalla). Nukkuminen lattialla tai muualla tapahtuma-alueella ei ole sallittua.</p>
-            </div>
+<div class="paragraph">
+  <h2>Nukkuminen</h2>
+  <p>Turvallisuussyistä nukkuminen on sallittua ainoastaan omalla konepaikalla pystyasennossa (esimerkiksi pää konepaikalla). Nukkuminen lattialla tai muualla tapahtuma-alueella ei ole sallittua.</p>
+</div>
 
-            <div class="paragraph">
-                <h2>Muuta</h2>
-                <ul>
-                    <li>Kaikki Suomen lait ovat voimassa tapahtumassa</li>
-                    <li>Järjestäjät eivät vastaa mahdollisista laiterikoista</li>
-                    <li>Järjestäjillä on oikeus poistaa henkilö tapahtumapaikalta. Lipun hintaa ei palauteta. Erityistapauksissa on mahdollista, että henkilö poistetaan välittömästi paikalta</li>
-                    <li>Tekijä on aina vastuussa aiheuttamistaan vahingoista ja mahdollisista korvauksista</li>
-                </ul
-            </div>
-            `;
+<div class="paragraph">
+  <h2>Muuta</h2>
+  <ul>
+    <li>Kaikki Suomen lait ovat voimassa tapahtumassa</li>
+    <li>Järjestäjät eivät vastaa mahdollisista laiterikoista</li>
+    <li>Järjestäjillä on oikeus poistaa henkilö tapahtumapaikalta. Lipun hintaa ei palauteta. Erityistapauksissa on mahdollista, että henkilö poistetaan välittömästi paikalta</li>
+    <li>Tekijä on aina vastuussa aiheuttamistaan vahingoista ja mahdollisista korvauksista</li>
+  </ul
+</div>
+`;
       break;
 
     case "guide":
       contentHolder.innerHTML = `
-                <h1>Opasteet</h1>
-                <img src="assets/floorplan.svg" id="floorplan"/>
-                <div class="paragraph">
-                  <p>Haalarilaneille on 24h sisäänkäynti, joka tapahtuu parkkipaikan puoleisista ovista. Opastekarttaan on merkitty ovet, mistä tulee kulkea sekä tapahtuma-alueelle, että mm. vessoihin.</p>
-                  <p>Tapahtuman ajan LAB-ammattikorkeakoulun parkkipaikat ovat vapaita pysäköinnille, eli niissä ei ole tällöin pysäköinninvalvontaa. Sisäänkäynti on esteetön.</p>
-                </div>
-            `;
+<h1>Opasteet</h1>
+<img src="assets/floorplan.svg" id="floorplan"/>
+<div class="paragraph">
+  <p>Haalarilaneille on 24h sisäänkäynti, joka tapahtuu parkkipaikan puoleisista ovista. Opastekarttaan on merkitty ovet, mistä tulee kulkea sekä tapahtuma-alueelle, että mm. vessoihin.</p>
+  <p>Tapahtuman ajan LAB-ammattikorkeakoulun parkkipaikat ovat vapaita pysäköinnille, eli niissä ei ole tällöin pysäköinninvalvontaa. Sisäänkäynti on esteetön.</p>
+</div>
+`;
       break;
 
     case "tournament":

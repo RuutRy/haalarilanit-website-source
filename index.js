@@ -23,7 +23,7 @@ const renderContent = (content) => {
                     Laneilla järjestään lukuisia turnauksia, joissa pelaajat pääsevät tavoittelemaan ykköspaikkaa - Onko CS2 sinun lajisi, vai loistatko NHL-jäällä? Entä oletko ralliratojen kuningas ajosimulaattorilla? Nyt on sinun mahdollisuutesi näyttää taitosi niin järjestetyissä turnauksissa kuin ystäviesi kesken kisatessa!
                   </p>
                   <p>
-                    Tuo oma koneesi, liitä se kiinni verkkoon ja oletkin valmis kokemaan mukaansatempaavia pelikokemuksia! Lue lisää konepaikkojen tiedoista alempaa ja hanki lippusi. Lisäksi paikan päällä on kioski, josta voit hankkia pientä juotavaa ja purtavaa nautittavaksi kesken pelihetkien 
+                    Tuo oma koneesi, liitä se kiinni verkkoon ja oletkin valmis kokemaan mukaansatempaavia pelikokemuksia! Lisäksi paikan päällä on kioski, josta voit hankkia pientä juotavaa ja purtavaa nautittavaksi kesken pelihetkien 
                       <a class="embedded-anchor" href="#"
                       onclick="renderContent('guide')">
                       (kts. Tapahtumakartta)
@@ -194,7 +194,7 @@ Turnaus tullaan pelaamaan perjantaina 18.10.</p>
                 <h1>Yhteystiedot</h1>
                 <h2>Yrityssuhdevastaava</h2>
                 <div class="paragraph center">
-                    <p>Vilppu Penttilä</p>
+                    <p>Samuel Uosukainen</p>
                     <p>yritys@ruut.me</p>
                 </div>
             </div>

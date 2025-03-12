@@ -195,7 +195,7 @@ Turnaus tullaan pelaamaan perjantaina 18.10.</p>
                 <h2>Yrityssuhdevastaava</h2>
                 <div class="paragraph center">
                     <p>Samuel Uosukainen</p>
-                    <p>yritys@ruut.me</p>
+                    <p>yritys@cluster.fi</p>
                 </div>
             </div>
             `;

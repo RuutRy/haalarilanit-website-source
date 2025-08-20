@@ -10,7 +10,7 @@ const renderContent = (content) => {
       contentHolder.innerHTML = `
                 <img src="assets/logotext.svg" id="haalarilanit-logo"/>
                 <div class="paragraph">
-                    <h3>Aika: to 9.10. Klo 15:00 - su 12.10.2024 klo 12:00</h3>
+                    <h3>Aika: to 9.10. Klo 15:00 - su 12.10.2025 klo 12:00</h3>
                     <h3>Paikka: LAB-kampuksen liikuntasali</h3>
                     <p id="event-countdown"></p>
                 </div>

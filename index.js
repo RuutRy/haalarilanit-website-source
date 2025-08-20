@@ -9,7 +9,11 @@ const renderContent = (content) => {
     case "main":
       contentHolder.innerHTML = `
                 <img src="assets/logotext.svg" id="haalarilanit-logo"/>
-                <h1>Nähdään taas ensi vuonna!</h1>
+                <div class="paragraph">
+                    <h3>Aika: to 9.10. Klo 15:00 - su 12.10.2024 klo 12:00</h3>
+                    <h3>Paikka: LAB-kampuksen liikuntasali</h3>
+                    <p id="event-countdown"></p>
+                </div>
 
                 <div class="paragraph">
                   <h2>Mistä on kyse?</h2>
@@ -227,7 +231,7 @@ Turnaus tullaan pelaamaan perjantaina 18.10.</p>
 };
 
 const countdownTimer = () => {
-  const eventDate = new Date(2024, 9, 18, 15).getTime();
+  const eventDate = new Date(2025, 10, 9, 15).getTime();
 
   // Initial starting time on page load
   let timeDifference = eventDate - new Date().getTime();
@@ -245,7 +249,6 @@ const displayTime = (timeDifference) => {
   if (!document.getElementById("event-countdown")) {
     return;
   }
-
   // If the event has already begun
   if (timeDifference < 0) {
     document.getElementById("event-countdown").innerHTML =

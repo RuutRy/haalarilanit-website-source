@@ -128,7 +128,7 @@ const renderContent = (content) => {
       contentHolder.innerHTML = `
                 <h1>Turnaukset</h1>
                 <div class="paragraph center">
-                    <p>Vuoden 2025 aikataulu julkaistaan myöhemmin. Kiitokset kärsivällisyydestä!</p>
+                    <p>Vuoden 2025 turnausten aikataulut julkaistaan myöhemmin. Kiitokset kärsivällisyydestä!</p>
                 </div>
             `;
       break;

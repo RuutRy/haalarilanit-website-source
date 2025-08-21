@@ -143,8 +143,16 @@ const renderContent = (content) => {
                 <h1>Yhteystiedot</h1>
                 <h2>Yrityssuhdevastaava</h2>
                 <div class="paragraph center">
-                    <p>Samuel Uosukainen</p>
-                    <p>yritys@cluster.fi</p>
+                    <p>Jeremias Wahlsten</p>
+                    <p>Markkinointi, Live, Turnaukset</p>
+                </div>
+                <div class="paragraph center">
+                    <p>Miko Mattila</p>
+                    <p>Infra, Logistiikka</p>
+                </div>
+                <div class="paragraph center">
+                    <p>Tapio Wallden</p>
+                    <p>Kioski, Turvallisuus</p>
                 </div>
             </div>
             `;

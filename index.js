@@ -15,6 +15,12 @@ const renderContent = (content) => {
                     <p id="event-countdown"></p>
                 </div>
 
+                <div id="button-holder">
+                    <form action="https://ruut.eventiolive.fi/events/6895e7678a0c35132a8b456a/">
+                    <input id="ticket-button" type="submit" value="Osta lippu"/>
+                    </form>
+                </div>
+
                 <div class="paragraph">
                   <h2>Mistä on kyse?</h2>
                   <p>
@@ -149,6 +155,7 @@ const renderContent = (content) => {
                 <div class="paragraph center">
                     <p>Miko Mattila</p>
                     <p>Infra, Logistiikka</p>
+                    <p>miko.mattila@ruut.me</p>
                 </div>
                 <div class="paragraph center">
                     <p>Tapio Wallden</p>

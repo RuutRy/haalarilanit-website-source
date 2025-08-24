@@ -23,6 +23,13 @@
     --accent: #cf436b;
 }
 
+#nav-content {
+    background-color: rgba(31, 24, 40, 0.50);
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 6px;
+}
+
 nav ul {
     list-style-type: none;
     margin: 0;

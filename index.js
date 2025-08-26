@@ -1,28 +1,42 @@
+let switchStatus = false; 
+let currentPage = "main";
+
 // Loading the main content for the user from the get-go
 document.addEventListener("DOMContentLoaded", () => {
   renderContent("main");
+  const currentLanguage = switchStatus ? english : finnish;
+  const translationButton = document.getElementById("translation");
+  translationButton.textContent = currentLanguage.translation_button.title; 
+  
+  translationButton.addEventListener("click", () => { 
+    switchStatus = !switchStatus
+    translationButton.textContent = switchStatus ? "in English" : "suomeksi"; 
+    renderContent(currentPage);
+  })
 });
 
 const renderContent = (content) => {
   let contentHolder = document.getElementById("nav-content");
+  const currentLanguage = switchStatus ? english : finnish
+  currentPage = content;
   switch (content) {
     case "main":
       contentHolder.innerHTML = `
                 <img src="assets/logotext.svg" id="haalarilanit-logo"/>
                 <div class="paragraph">
-                    <h3>Aika: to 9.10. Klo 15:00 - su 12.10.2025 klo 12:00</h3>
-                    <h3>Paikka: LAB-kampuksen liikuntasali</h3>
+                    <h3>${currentLanguage.main.time.time}</h3>
+                    <h3>${currentLanguage.main.time.where}</h3>
                     <p id="event-countdown"></p>
                 </div>
 
                 <div id="button-holder">
                     <form action="https://ruut.eventiolive.fi/events/6895e7678a0c35132a8b456a/">
-                    <input id="ticket-button" type="submit" value="Osta lippu"/>
+                    <input id="ticket-button" type="submit" value="${currentLanguage.main.purchase_button}"/>
                     </form>
                 </div>
 
                 <div class="paragraph">
-                  <h2>Mistä on kyse?</h2>
+                  <h2>${currentLanguage.main.header}</h2>
                   <p>
                     Haalarilanit on suuri lanitapahtuma, jota on järjestetty LAB-kampuksen liikuntasalissa Lappeenrannassa.
                   </p>
@@ -231,3 +245,31 @@ const displayTime = (timeDifference) => {
   // Displaying the time difference
   document.getElementById("event-countdown").innerHTML = countdown;
 };
+
+const finnish = {
+  translation_button: {
+    title: "suomeksi",
+  },
+  main: {
+    time: {
+      time: "Aika: to 9.10. Klo 15:00 - su 12.10.2025 klo 12:00",
+      where: "Paikka: LAB-kampuksen liikuntasali",
+    },
+    purchase_button: "Osta lippu",
+    header: "Mistä on kyse?"
+  }
+}
+
+const english = {
+  translation_button: {
+    title: "in English",
+  },
+  main: {
+    time: {
+      time: "Thu 9.10. from 15:00 - Sun 12.10.2025 till 12:00",
+      where: "Where: LAB University of Applied Sciences' gymnasium"
+    },
+    purchase_button: "Buy your ticket",
+    header: "What's this all about?"
+  }
+}

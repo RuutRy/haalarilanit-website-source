@@ -191,7 +191,7 @@ const renderContent = (content) => {
 };
 
 const countdownTimer = () => {
-  const eventDate = new Date(2025, 10, 9, 15).getTime();
+  const eventDate = new Date(2025, 9, 9, 15).getTime();
 
   // Initial starting time on page load
   let timeDifference = eventDate - new Date().getTime();

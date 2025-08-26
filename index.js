@@ -53,7 +53,9 @@ const renderContent = (content) => {
                 <div class="paragraph">
                   <h2>Kuvapankit</h2>
                   <p>Alhaalla on linkki kuvapankkiin. Kuvat on otettu tapahtumapaikalta.</p>
-                  <a href="https://cluster.kuvat.fi/kuvat/2024_014+-+Haalarilanit"/>2024</a>
+                  <h2>
+                    <a href="https://cluster.kuvat.fi/kuvat/2024_014+-+Haalarilanit"/>2024</a>
+                  </h2>
                 </div>
 
                 <div>
@@ -226,7 +228,7 @@ const displayTime = (timeDifference) => {
   let countdown = `${days} päivää,
     ${hours} tuntia,
     ${minutes} minuuttia,
-    ${seconds} sekuntia.`;
+    ${seconds} sekuntia`;
 
   // Displaying the time difference
   document.getElementById("event-countdown").innerHTML = countdown;

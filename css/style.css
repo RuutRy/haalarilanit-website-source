@@ -14,22 +14,22 @@
 
 :root {
     /* https://angel-rs.github.io/css-color-filter-generator/ */
-    --black-filter: brightness(0) saturate(100%) invert(6%) sepia(7%) saturate(4412%) hue-rotate(224deg) brightness(94%) contrast(90%);;
-    --white-filter: brightness(0) saturate(100%) invert(96%) sepia(15%) saturate(520%) hue-rotate(256deg) brightness(89%) contrast(94%);
-    --accent-filter: filter: brightness(0) saturate(100%) invert(36%) sepia(5%) saturate(5862%) hue-rotate(290deg) brightness(109%) contrast(120%);
+    --black-filter: brightness(0) saturate(100%) invert(6%) sepia(7%) saturate(4412%) hue-rotate(224deg) brightness(94%) contrast(90%);
+    --white-filter: brightness(0) saturate(100%) invert(92%) sepia(10%) saturate(271%) hue-rotate(295deg) brightness(91%) contrast(90%);
+    --accent-filter: brightness(0) saturate(100%) invert(36%) sepia(5%) saturate(5862%) hue-rotate(290deg) brightness(109%) contrast(120%);
 
     --palette-dark: #1f1828;
     --palette-light: #decdd2;
-    --accent: #cf436b;
+    --accent: #c63f6a;
 }
-
+/*
 #nav-content {
     background-color: rgba(31, 24, 40, 0.50);
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 6px;
 }
-
+*/
 nav ul {
     list-style-type: none;
     margin: 0;
@@ -39,17 +39,18 @@ nav ul {
 }
 nav li {
     margin: 0;
-    font-size: 24px;
+    font-size: 32px;
 }
 nav a {
     text-decoration: none;
-    color: #ffffff;
+    color: var(--palette-light);
     padding: 1em;
     display: block;
     transition: background-color 0.3s ease;
 }
 nav a:hover {
-    color: #ffffff99;
+    color: var(--accent);
+    transition: 0.15s;
 }
 
 body {
@@ -65,7 +66,8 @@ body {
     margin-right: auto;
 
     font-family: "Groteskia";
-    font-size: 24px;
+    font-size: 32px;
+    text-shadow: 0px 2px 5px var(--palette-dark);
 
     h1, h2, h3, h4 {
         font-family: "Groteskia";
@@ -85,16 +87,16 @@ body {
     ul {
         padding-left: 16px;
     }
-  a {
-    margin: auto;
-    color: var(--accent);
-    text-decoration: none;
-    margin-top: 1.5vh;
-    margin-bottom: 1.5vh;
-  }
+    a {
+      margin: auto;
+      color: var(--accent);
+      text-decoration: none;
+      margin-top: 1.5vh;
+      margin-bottom: 1.5vh;
+    }
 }
 .paragraph p {
-    text-align: left;
+    text-align: justify;
     margin-left: 0;
     margin-right: 0;
     margin-top: 8px;
@@ -229,6 +231,7 @@ body {
 
 #ticket-button {
     display: block;
+    font-family: "Groteskia";
     margin: 0 auto;
     align-items: center;
     appearance: none;
@@ -236,21 +239,18 @@ body {
     color: var(--palette-dark);
     border-radius: 4px;
     border-width: 0;
-    font-size: 24px;
-    box-shadow: var(--palette-dark) 0 2px 4px,
-    var(--palette-dark) 0 7px 13px -3px, var(--palette-light) 0 -3px 0 inset;
+    font-size: 32px;
     box-sizing: border-box;
     cursor: pointer;
     height: 8vh;
-    min-width: 15vw;
-    max-width: 40vw;
+    min-width: 100%;
     justify-content: center;
     line-height: 1;
     list-style: none;
     overflow: hidden;
     text-align: center;
     text-decoration: none;
-    transition: box-shadow 0.15s, transform 0.15s;
+    transition: 0.15s;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
@@ -259,9 +259,7 @@ body {
 }
 
 #ticket-button:hover {
-    background-color: #eeeeee;
-    box-shadow: var(--palette-dark) 0 2px 4px,
-    var(--palette-dark) 0 7px 13px -3px, var(--palette-light) 0 -3px 0 inset;
+    background-color: var(--accent);
 }
 
 footer {
@@ -286,20 +284,18 @@ footer {
 }
 
 #event-countdown {
-    border: 3px solid #ffffff;
-    border-radius: 6px;
     padding: 2vw;
     font-weight: bold;
-    font-size: 26px;
+    font-size: 32px;
     text-align: center;
     margin-top: 2vh;
     margin-bottom: 2vh;
-    color: #ffffff;
+    color: var(--palette-light);
 }
 
 .embedded-anchor {
     position: initial;
-    color: #ffffff;
+    color: var(--palette-light);
     text-decoration: none;
 }
 
@@ -337,7 +333,9 @@ footer {
     }
 
     #haalarilanit-logo {
-        max-width: 60vw;
+        max-width: 75vw;
+        margin-bottom: 25vw;
+        margin-top: 25vw;
     }
 
     #ticket-button {
@@ -355,7 +353,7 @@ footer {
 
         li {
             text-align: center;
-            font-size: 11px;
+            font-size: 14px;
         }
 
         a {
@@ -368,5 +366,11 @@ footer {
         width: 100%;
         padding-top: 18vw;
         padding-bottom: 18vw;
+    }
+
+    .organizer-logo {
+        min-width: 32px;
+        max-width: 96px;
+        width: 12vw;
     }
 }

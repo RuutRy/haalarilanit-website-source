@@ -37,36 +37,30 @@ const renderContent = (content) => {
 
                 <div class="paragraph">
                   <h2>${currentLanguage.main.header}</h2>
+                  <p>${currentLanguage.main.main_1}</p>
+                  <p>${currentLanguage.main.main_2}</p>
+                  <p>${currentLanguage.main.main_3}</p>
                   <p>
-                    Haalarilanit on suuri lanitapahtuma, jota on järjestetty LAB-kampuksen liikuntasalissa Lappeenrannassa.
-                  </p>
-                  <p>
-                    Luvassa on syksyn eeppisin pelihetki, kun lähes kaksisataa pelaajaa kerääntyy yhteen saliin ja nauttii yhdessä pelaamisen ilosta. Olitpa sitten intohimoinen e-urheilija tai rento viikonlopun pelaaja, peliseuraa riittää varmasti.
-                  </p>
-                  <p>
-                    Laneilla järjestään lukuisia turnauksia, joissa pelaajat pääsevät tavoittelemaan ykköspaikkaa - Onko CS2 sinun lajisi, vai loistatko NHL-jäällä? Entä oletko ralliratojen kuningas ajosimulaattorilla? Nyt on sinun mahdollisuutesi näyttää taitosi niin järjestetyissä turnauksissa kuin ystäviesi kesken kisatessa!
-                  </p>
-                  <p>
-                    Tuo oma koneesi, liitä se kiinni verkkoon ja oletkin valmis kokemaan mukaansatempaavia pelikokemuksia! Lisäksi paikan päällä on kioski, josta voit hankkia pientä juotavaa ja purtavaa nautittavaksi kesken pelihetkien 
+                    ${currentLanguage.main.main_4.text}
                       <a class="embedded-anchor" href="#"
                       onclick="renderContent('guide')">
-                      (kts. Tapahtumakartta)
+                      ${currentLanguage.main.main_4.anchor}
                       </a>
                     .
 
                   </p>
                   <p>
-                    Tapahtuma-alue on päihteetön eikä alueelle saa tuoda alkoholijuomia. Voit osallistua laneille matalalla kynnyksellä ja ilman mitään aikaisempaa kokemusta! Mikäli sinulla herää kysymyksiä Haalarilaneihin liittyen, ota yhteyttä 
+                    ${currentLanguage.main.main_5.text}
                       <a class="embedded-anchor" href="#"
                       onclick="renderContent('contact')">
-                      pääjärjestäjiin
+                      ${currentLanguage.main.main_5.anchor}
                       </a>.
                   </p>
                 </div>
 
                 <div class="paragraph">
-                  <h2>Kuvapankit</h2>
-                  <p>Alhaalla on linkki kuvapankkiin. Kuvat on otettu tapahtumapaikalta.</p>
+                  <h2>${currentLanguage.main.photos.header}</h2>
+                  <p>${currentLanguage.main.photos.text}.</p>
                   <a href="https://cluster.kuvat.fi/kuvat/2024_014+-+Haalarilanit"/>2024</a>
                 </div>
 
@@ -256,7 +250,22 @@ const finnish = {
       where: "Paikka: LAB-kampuksen liikuntasali",
     },
     purchase_button: "Osta lippu",
-    header: "Mistä on kyse?"
+    header: "Mistä on kyse?",
+    main_1: "Haalarilanit on suuri lanitapahtuma, jota on järjestetty LAB-kampuksen liikuntasalissa Lappeenrannassa.",
+    main_2: "Luvassa on syksyn eeppisin pelihetki, kun lähes kaksisataa pelaajaa kerääntyy yhteen saliin ja nauttii yhdessä pelaamisen ilosta. Olitpa sitten intohimoinen e-urheilija tai rento viikonlopun pelaaja, peliseuraa riittää varmasti.",
+    main_3: "Laneilla järjestetään lukuisia turnauksia, joissa pelaajat pääsevät tavoittelemaan ykköspaikkaa - Onko CS2 sinun lajisi, vai loistatko NHL-jäällä? Entä oletko ralliratojen kuningas ajosimulaattorilla? Nyt on sinun mahdollisuutesi näyttää taitosi niin järjestetyissä turnauksissa kuin ystäviesi kesken kisatessa!",
+    main_4: {
+      text: "Tuo oma koneesi, liitä se kiinni verkkoon ja oletkin valmis kokemaan mukaansatempaavia pelikokemuksia! Lisäksi paikan päällä on kioski, josta voit hankkia pientä juotavaa ja purtavaa nautittavaksi kesken pelihetkien ",
+      anchor: "kts. Tapahtumapaikka",
+    },
+    main_5: {
+      text: "Tapahtuma-alue on päihteetön eikä alueelle saa tuoda alkoholijuomia. Voit osallistua laneille matalalla kynnyksellä ja ilman mitään aikaisempaa kokemusta! Mikäli sinulla herää kysymyksiä Haalarilaneihin liittyen, ota yhteyttä ",
+      anchor: "pääjärjestäjiin"
+    },
+    photos: {
+      header: "Kuvapankki",
+      text: "Alhaalla on linkki kuvapankkiin. Kuvat on otettu tapahtumapaikalta."
+    }
   }
 }
 
@@ -270,6 +279,21 @@ const english = {
       where: "Where: LAB University of Applied Sciences' gymnasium"
     },
     purchase_button: "Buy your ticket",
-    header: "What's this all about?"
+    header: "What's this all about?",
+    main_1: "Haalarilanit is a big LAN-gaming event that has been held at the LAB University's gymnasium in Lappeenranta.",
+    main_2: "The most epic gaming event of autumn will start when almost 200 gamers gather to enjoy the joy of gaming together. If you are a passionate eSport gamer or a casual weekend gaming enjoyer, there is definitely enough gamers to play with.",
+    main_3: "Different gaming tournaments are held during the event where best of the best compete for the first place in different games like Counter Strike 2 or NHL. This will be your chance show what you are made of while competing agains your friends and foes.",
+    main_4: { 
+      text: "Bring your own Computer, connect it to the LAN and you are ready to experience the captivating world of LAN-parties. At the event there is a stand where you can buy drinks and something to eat during your gaming moments ",
+      anchor: "(check event map)"
+    },
+    main_5: {
+      text: "The event area is alcohol free zone so all alcoholic drinks are prohibited to bring inside. You don't need previous experience from a LAN-party event to attend and feel free to ask about this event from our ",
+      anchor: "main organizers"
+    },
+    photos: {
+      header: "Photos",
+      text: "Link is under this text. Photos have been taken from the event area.",
+    }
   }
 }

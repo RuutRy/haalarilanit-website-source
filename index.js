@@ -65,9 +65,7 @@ const renderContent = (content) => {
                 </div>
 
                 <div>
-                  <span class="tournament-join">
-
-                  </span>
+                  <span class="tournament-join"></span>
                 </div>
                 `;
       countdownTimer();
@@ -75,60 +73,60 @@ const renderContent = (content) => {
 
     case "rules":
       contentHolder.innerHTML = `
-<h1>Säännöt</h1>
-<div class="paragraph">
-  <h2>Tapahtuma-alueelle ei saa tuoda</h2>
-  <ul>
-    <li>Toisten ihmisten vahingoittamiseen soveltuvia välineitä</li>
-    <li>Alkoholia tai huumausaineita</li>
-    <li>Räjähteitä tai muita vaarallisia aineita</li>
-  </ul>
-</div>
+        <h1>${currentLanguage.rules.header}</h1>
+        <div class="paragraph">
+          <h2>${currentLanguage.rules.dont_bring.header}</h2>
+          <ul>
+            <li>${currentLanguage.rules.dont_bring.category_1}</li>
+            <li>${currentLanguage.rules.dont_bring.category_2}</li>
+            <li>${currentLanguage.rules.dont_bring.category_3}</li>
+          </ul>
+        </div>
 
-<div class="paragraph">
-  <h2>Alkoholi ja tupakointi</h2>
-  <p>Alkoholin tai muiden päihdeaineiden nauttiminen ja hallussapito tapahtuma-alueella on ehdottomasti kiellettyä. Alkoholituotteet ja muut päihteet tulee jättää tapahtuman sisäänkäynnin lähelle niille erikseen osoitettuun paikkaan.<p/>
-  <p>Tupakoiminen ja sähkötupakointi on sallittua vain sille merkityllä alueella. Paikalla on tumppeja varten astia ja sitä tulee myös käyttää.</p>
-</div>
+        <div class="paragraph">
+          <h2>${currentLanguage.rules.substances.header}</h2>
+          <p>${currentLanguage.rules.substances.point_1}<p/>
+          <p>${currentLanguage.rules.substances.point_2}</p>
+        </div>
 
-<div class="paragraph">
-  <h2>Sähköverkko</h2>
-  <p>Kodinkoneiden ja muiden suuritehoisten sähkölaitteiden kytkeminen konepaikalle on ehdottomasti kiellettyä. Jokaiselle konepaikalle on varattu yksi sähköpistoke, josta riittää kullekin konepaikalle 350 W sähköteho.</p>
-  <p>Tapahtuma-alueelta löytyy yleiseen käyttöön tarkoitettu mikro ja vedenkeitin. Mikäli tietokoneesi tai muut sähkölaitteesi tarvitsevat yhteensä enemmän kuin 350 W sähkötehoa, ole ennakkoon yhteydessä järjestäjiin.</p>
-</div>
+        <div class="paragraph">
+          <h2>${currentLanguage.rules.power.header}</h2>
+          <p>${currentLanguage.rules.power.point_1}</p>
+          <p>${currentLanguage.rules.power.point_2}</p>
+        </div>
 
-<div class="paragraph">
-  <h2>Tapahtuma-alueen vauriot</h2>
-  <p>Tapahtuma-alueiden vaurioittaminen ja sotkeminen on ehdottomasti kiellettyä. Esimerkiksi tarrojen liimailu seiniin. Vahingonaiheuttaja on aina korvausvelvollinen.</p>
-</div>
+        <div class="paragraph">
+          <h2>${currentLanguage.rules.damages.header}</h2>
+          <p>${currentLanguage.rules.damages.text}</>
+        </div>
 
-<div class="paragraph">
-  <h2>Verkko</h2>
-  <p>Tapahtuma-alueen verkossa on kiellettyä:</p>
-  <ul>
-    <li>DHCP-palvelimet</li>
-    <li>Verkkoliikenteen häiritseminen</li>
-    <li>Muun liikenteen seuraaminen, kuin sen, jonka pääte- tai lähtöpiste, on oma tietokone</li>
-    <li>Ylimääräisten laitteiden, kuten kytkinten tai palomuurin kytkeminen</li>
-    <li>Tekijänoikeudella suojatun tai Suomen lain vastaisen materiaalin haku tai levitys</li>
-  </ul>
-</div>
+        <div class="paragraph">
+          <h2>${currentLanguage.rules.network.header}</h2>
+          <p>${currentLanguage.rules.network.beginning}</p>
+          <ul>
+            <li>${currentLanguage.rules.network.category_1}</li>
+            <li>${currentLanguage.rules.network.category_2}</li>
+            <li>${currentLanguage.rules.network.category_3}</li>
+            <li>${currentLanguage.rules.network.category_4}</li>
+            <li>${currentLanguage.rules.network.category_5}</li>
+          </ul>
+        </div>
 
-<div class="paragraph">
-  <h2>Nukkuminen</h2>
-  <p>Turvallisuussyistä nukkuminen on sallittua ainoastaan omalla konepaikalla pystyasennossa (esimerkiksi pää konepaikalla). Nukkuminen lattialla tai muualla tapahtuma-alueella ei ole sallittua.</p>
-</div>
+        <div class="paragraph">
+          <h2>${currentLanguage.rules.sleep.header}</h2>
+          <p>${currentLanguage.rules.sleep.text}</p>
+        </div>
 
-<div class="paragraph">
-  <h2>Muuta</h2>
-  <ul>
-    <li>Kaikki Suomen lait ovat voimassa tapahtumassa</li>
-    <li>Järjestäjät eivät vastaa mahdollisista laiterikoista</li>
-    <li>Järjestäjillä on oikeus poistaa henkilö tapahtumapaikalta. Lipun hintaa ei palauteta. Erityistapauksissa on mahdollista, että henkilö poistetaan välittömästi paikalta</li>
-    <li>Tekijä on aina vastuussa aiheuttamistaan vahingoista ja mahdollisista korvauksista</li>
-  </ul
-</div>
-`;
+        <div class="paragraph">
+          <h2>${currentLanguage.rules.other.header}</h2>
+          <ul>
+            <li>${currentLanguage.rules.other.point_1}</li>
+            <li>${currentLanguage.rules.other.point_2}</li>
+            <li>${currentLanguage.rules.other.point_3}</li>
+            <li>${currentLanguage.rules.other.point_4}</li>
+          </ul
+        </div>
+        `;
       break;
 
     case "guide":
@@ -266,6 +264,49 @@ const finnish = {
       header: "Kuvapankki",
       text: "Alhaalla on linkki kuvapankkiin. Kuvat on otettu tapahtumapaikalta."
     }
+  },
+  rules: {
+    header: "Säännöt",
+    dont_bring: {
+      header: "Tapahtuma-alueelle ei saa tuoda",
+      category_1: "Toisten ihmisten vahingoittamiseen soveltuvia välineitä",
+      category_2: "Alkoholia tai huumausaineita",
+      category_3: "Räjähteitä tai muita vaarallisia aineita" 
+    },
+    substances: {
+      header: "Alkoholi ja tupakointi",
+      point_1: "Alkoholin tai muiden päihdeaineiden nauttiminen ja hallussapito tapahtuma-alueella on ehdottomasti kiellettyä. Alkoholituotteet ja muut päihteet tulee jättää tapahtuman sisäänkäynnin lähelle niille erikseen osoitettuun paikkaan.",
+      point_2: "Tupakoiminen ja sähkötupakointi on sallittua vain sille merkityllä alueella. Paikalla on tumppeja varten astia ja sitä tulee myös käyttää."
+    },
+    power: {
+      header: "Sähköverkko",
+      point_1: "Kodinkoneiden ja muiden suuritehoisten sähkölaitteiden kytkeminen konepaikalle on ehdottomasti kiellettyä. Jokaiselle konepaikalle on varattu yksi sähköpistoke, josta riittää kullekin konepaikalle 350 W sähköteho.",
+      point_2: "Tapahtuma-alueelta löytyy yleiseen käyttöön tarkoitettu mikro ja vedenkeitin. Mikäli tietokoneesi tai muut sähkölaitteesi tarvitsevat yhteensä enemmän kuin 350 W sähkötehoa, ole ennakkoon yhteydessä järjestäjiin."
+    },
+    damages: {
+      header: "Tapahtuma-alueen vauriot",
+      text: "Tapahtuma-alueiden vaurioittaminen ja sotkeminen on ehdottomasti kiellettyä. Esimerkiksi tarrojen liimailu seiniin. Vahingonaiheuttaja on aina korvausvelvollinen."
+    },
+    network: {
+      header: "Verkko",
+      beginning: "Tapahtuma-alueen verkossa on kiellettyä:",
+      category_1: "DHCP-palvelimet",
+      category_2: "Verkkoliikenteen häiritseminen",
+      category_3: "Muun liikenteen seuraaminen, kuin sen, jonka pääte- tai lähtöpiste, on oma tietokone",
+      category_4: "Ylimääräisten laitteiden, kuten kytkinten tai palomuurin kytkeminen",
+      category_5: "Tekijänoikeudella suojatun tai Suomen lain vastaisen materiaalin haku tai levitys",
+    },
+    sleep: {
+      header: "Nukkuminen",
+      text: "Turvallisuussyistä nukkuminen on sallittua ainoastaan omalla konepaikalla pystyasennossa (esimerkiksi pää konepaikalla). Nukkuminen lattialla tai muualla tapahtuma-alueella ei ole sallittua.",
+    },
+    other: {
+      header: "Muuta",
+      point_1: "Kaikki Suomen lait ovat voimassa tapahtumassa",
+      point_2: "Järjestäjät eivät vastaa mahdollisista laiterikoista",
+      point_3: "Järjestäjillä on oikeus poistaa henkilö tapahtumapaikalta. Lipun hintaa ei palauteta. Erityistapauksissa on mahdollista, että henkilö poistetaan välittömästi paikalta",
+      point_4: "Tekijä on aina vastuussa aiheuttamistaan vahingoista ja mahdollisista korvauksista"
+    }
   }
 }
 
@@ -294,6 +335,49 @@ const english = {
     photos: {
       header: "Photos",
       text: "Link is under this text. Photos have been taken from the event area.",
+    }
+  },
+  rules: {
+    header: "Rules",
+    dont_bring: {
+      header: "You cannot bring these things to the event area",
+      category_1: "Items that can hurt other people (knifes etc)",
+      category_2: "Alcohol or drugs",
+      category_3: "Explosives or other dangerous substancess" 
+    },
+    substances: {
+      header: "Alcohol and smoking",
+      point_1: "Usage and posession of alcohol or other intoxicants is prohibited in the event area. You must leave all alcoholic bewerages and other intoxicants outside of the event area.",
+      point_2: "Smoking and vaping is allowed only at the places marked as smoking zones. Trash cans for cigarette butts can be found at the smoking places and must be used."
+    },
+    power: {
+      header: "Electricity Grid",
+      point_1: "Connecting household appliances and other high-power electrical devices to your electrical outlet is strictly prohibited. Each gamer gets one electrical outlet  which is sufficient for 350W of power.",
+      point_2: "At the event there is a microwave and electric kettle for everyone to use. If your computer needs more then 350W of power, please contact the organizers before the event."
+    },
+    damages: {
+      header: "Event area and damage",
+      text: "Damaging and messing up the event area strictly prohibited. For example usage of stickers on walls. If you damage something you are always liable for compensation."
+    },
+    network: {
+      header: "Internet and network",
+      beginning: "You cannot do these things on the events network:",
+      category_1: "DHCP-servers",
+      category_2: "Interfering with network traffic",
+      category_3: "Monitoring traffic other than traffic from your own computer",
+      category_4: "Connecting additional devices, such as switches or firewalls",
+      category_5: "Retrieving or distributing copurighted material or material that violates Finnish law",
+    },
+    sleep: {
+      header: "Sleeping",
+      text: "For safety reasons sleeping is only allowed at your own seat. Sleeping on the floor or in other places on the event area is prohibited.",
+    },
+    other: {
+      header: "Other things",
+      point_1: "Every Finnish law must be followed during the event",
+      point_2: "Organizers are not liable for any broken computers or other devices",
+      point_3: "Organizers have the right to remove a person from the event area. No refund of the ticket will be provided in the case of removal. On special occasions a person can be removed immediately from the event area.",
+      point_4: "The perpetrator is always responsible for any damage caused and its compensation."
     }
   }
 }

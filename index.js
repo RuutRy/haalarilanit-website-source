@@ -1,4 +1,4 @@
-let switchStatus = false;
+let switchStatus = true;
 let currentPage = "main";
 
 // Loading the main content for the user from the get-go

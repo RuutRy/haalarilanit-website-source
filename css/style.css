@@ -44,7 +44,7 @@ nav li {
 nav a {
     text-decoration: none;
     color: var(--palette-light);
-    padding: 1em;
+    padding: 24px;
     display: block;
     transition: background-color 0.3s ease;
 
@@ -379,8 +379,8 @@ footer {
         }
 
         a {
-            padding-left: 1vw;
-            padding-right: 1vw;
+            padding-left: 4px;
+            padding-right: 4px;
         }
     }
 

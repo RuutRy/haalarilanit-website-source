@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
 const switchLanguage = () => {
   const translationButton = document.getElementById("translation");
   switchStatus = !switchStatus
-  const currentLanguage = switchStatus ? finnish : english;
+  const currentLanguage = switchStatus ? english : finnish;
   translationButton.textContent = currentLanguage.translation_button.title; 
-  translationButton.textContent = switchStatus ? "FI" : "EN";
+  translationButton.textContent = switchStatus ? "EN" : "FI";
   renderContent(currentPage);
 }
 

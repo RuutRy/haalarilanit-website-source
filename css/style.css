@@ -258,6 +258,22 @@ body {
     will-change: box-shadow, transform;
 }
 
+#translation {
+    display: block;
+    align-items: center;
+    font-family: "Groteskia";
+    margin: 0 auto;
+    appearance: none;
+    background-color: var(--palette-light);
+    color: var(--palette-dark);
+    font-size: 32px;
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 4h;
+    min-width: 20%;
+    line-height: 1;
+}
+
 #ticket-button:hover {
     background-color: var(--accent);
 }

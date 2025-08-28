@@ -139,6 +139,21 @@ const renderContent = (content) => {
           <p>${currentLanguage.guidance.paragraph_1}</p>
           <p>${currentLanguage.guidance.paragraph_2}</p>
         </div>
+        <h1>${currentLanguage.equipment.header}</h1>
+        <div class="paragraph">
+            <p>${currentLanguage.equipment.descriptor}</p>
+            <ul id="pack-list">
+                <li>${currentLanguage.equipment.equipment_1}</li>
+                <li>${currentLanguage.equipment.equipment_2}</li>
+                <li>${currentLanguage.equipment.equipment_3}</li>
+                <li>${currentLanguage.equipment.equipment_4}</li>
+                <li>${currentLanguage.equipment.equipment_5}</li>
+                <li>${currentLanguage.equipment.equipment_6}</li>
+                <li>${currentLanguage.equipment.equipment_7}</li>
+                <li>${currentLanguage.equipment.equipment_8}</li>
+                <li>${currentLanguage.equipment.equipment_9}</li>
+            </ul>
+        </div>
         `;
       break;
 
@@ -169,26 +184,6 @@ const renderContent = (content) => {
                     <p>${currentLanguage.contacts.contact_3.responsibilities}</p>
                 </div>
             </div>
-            `;
-      break;
-
-    case "pack":
-      contentHolder.innerHTML = `
-                <h1>${currentLanguage.equipment.header}</h1>
-                <div class="paragraph">
-                    <p>${currentLanguage.equipment.descriptor}</p>
-                    <ul id="pack-list">
-                        <li>${currentLanguage.equipment.equipment_1}</li>                      
-                        <li>${currentLanguage.equipment.equipment_2}</li>
-                        <li>${currentLanguage.equipment.equipment_3}</li>
-                        <li>${currentLanguage.equipment.equipment_4}</li>
-                        <li>${currentLanguage.equipment.equipment_5}</li>
-                        <li>${currentLanguage.equipment.equipment_6}</li>
-                        <li>${currentLanguage.equipment.equipment_7}</li>
-                        <li>${currentLanguage.equipment.equipment_8}</li>
-                        <li>${currentLanguage.equipment.equipment_9}</li>
-                    </ul>
-                </div>
             `;
       break;
 

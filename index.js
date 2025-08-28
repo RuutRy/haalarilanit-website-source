@@ -1,4 +1,4 @@
-let switchStatus = true;
+let switchStatus = false;
 let currentPage = "main";
 
 // Loading the main content for the user from the get-go
@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
 const switchLanguage = () => {
   const translationButton = document.getElementById("translation");
   switchStatus = !switchStatus
-  const currentLanguage = switchStatus ? english : finnish;
+  const currentLanguage = switchStatus ? finnish : english;
   translationButton.textContent = currentLanguage.translation_button.title; 
-  translationButton.textContent = switchStatus ? "EN" : "FI";
+  translationButton.textContent = switchStatus ? "FI" : "EN";
   renderContent(currentPage);
 }
 

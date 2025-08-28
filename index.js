@@ -22,52 +22,52 @@ const renderContent = (content) => {
   switch (content) {
     case "main":
       contentHolder.innerHTML = `
-                <img src="assets/logotext.svg" id="haalarilanit-logo"/>
-                <div class="paragraph">
-                    <h3>${currentLanguage.main.time.time}</h3>
-                    <h3>${currentLanguage.main.time.where}</h3>
-                    <p id="event-countdown"></p>
-                </div>
+          <img src="assets/logotext.svg" id="haalarilanit-logo"/>
+          <div class="paragraph">
+              <h3>${currentLanguage.main.time.time}</h3>
+              <h3>${currentLanguage.main.time.where}</h3>
+              <p id="event-countdown"></p>
+          </div>
 
-                <div id="button-holder">
-                    <form action="https://ruut.eventiolive.fi/events/6895e7678a0c35132a8b456a/">
-                    <input id="ticket-button" type="submit" value="${currentLanguage.main.purchase_button}"/>
-                    </form>
-                </div>
+          <div id="button-holder">
+              <form action="https://ruut.eventiolive.fi/events/6895e7678a0c35132a8b456a/">
+              <input id="ticket-button" type="submit" value="${currentLanguage.main.purchase_button}"/>
+              </form>
+          </div>
 
-                <div class="paragraph">
-                  <h2>${currentLanguage.main.header}</h2>
-                  <p>${currentLanguage.main.main_1}</p>
-                  <p>${currentLanguage.main.main_2}</p>
-                  <p>${currentLanguage.main.main_3}</p>
-                  <p>
-                    ${currentLanguage.main.main_4.text}
-                      <a class="embedded-anchor" href="#"
-                      onclick="renderContent('guide')">
-                      ${currentLanguage.main.main_4.anchor}
-                      </a>
-                    .
+          <div class="paragraph">
+            <h2>${currentLanguage.main.header}</h2>
+            <p>${currentLanguage.main.main_1}</p>
+            <p>${currentLanguage.main.main_2}</p>
+            <p>${currentLanguage.main.main_3}</p>
+            <p>
+              ${currentLanguage.main.main_4.text}
+                <a class="embedded-anchor" href="#"
+                onclick="renderContent('guide')">
+                ${currentLanguage.main.main_4.anchor}
+                </a>
+              .
 
-                  </p>
-                  <p>
-                    ${currentLanguage.main.main_5.text}
-                      <a class="embedded-anchor" href="#"
-                      onclick="renderContent('contact')">
-                      ${currentLanguage.main.main_5.anchor}
-                      </a>.
-                  </p>
-                </div>
+            </p>
+            <p>
+              ${currentLanguage.main.main_5.text}
+                <a class="embedded-anchor" href="#"
+                onclick="renderContent('contact')">
+                ${currentLanguage.main.main_5.anchor}
+                </a>.
+            </p>
+          </div>
 
-                <div class="paragraph">
-                  <h2>${currentLanguage.main.photos.header}</h2>
-                  <p>${currentLanguage.main.photos.text}.</p>
-                  <a href="https://cluster.kuvat.fi/kuvat/2024_014+-+Haalarilanit"/>2024</a>
-                </div>
+          <div class="paragraph">
+            <h2>${currentLanguage.main.photos.header}</h2>
+            <p>${currentLanguage.main.photos.text}.</p>
+            <a href="https://cluster.kuvat.fi/kuvat/2024_014+-+Haalarilanit"/>2024</a>
+          </div>
 
-                <div>
-                  <span class="tournament-join"></span>
-                </div>
-                `;
+          <div>
+            <span class="tournament-join"></span>
+          </div>
+          `;
       countdownTimer();
       break;
 
@@ -131,41 +131,40 @@ const renderContent = (content) => {
 
     case "guide":
       contentHolder.innerHTML = `
-<h1>Opasteet</h1>
-<img src="assets/floorplan.svg" id="floorplan"/>
-<div class="paragraph">
-  <p>Haalarilaneille on 24h sisäänkäynti, joka tapahtuu parkkipaikan puoleisista ovista. Opastekarttaan on merkitty ovet, mistä tulee kulkea sekä tapahtuma-alueelle, että mm. vessoihin.</p>
-  <p>Tapahtuman ajan LAB-ammattikorkeakoulun parkkipaikat ovat vapaita pysäköinnille, eli niissä ei ole tällöin pysäköinninvalvontaa. Sisäänkäynti on esteetön.</p>
-</div>
-`;
+        <h1>${currentLanguage.guidance.header}</h1>
+        <img src="assets/floorplan.svg" id="floorplan"/>
+        <div class="paragraph">
+          <p>${currentLanguage.guidance.paragraph_1}</p>
+          <p>${currentLanguage.guidance.paragraph_2}</p>
+        </div>
+        `;
       break;
 
     case "tournament":
       contentHolder.innerHTML = `
-                <h1>Turnaukset</h1>
-                <div class="paragraph center">
-                    <p>Vuoden 2025 turnausten aikataulut julkaistaan myöhemmin. Kiitokset kärsivällisyydestä!</p>
-                </div>
-            `;
+          <h1>${currentLanguage.tournaments.header}</h1>
+          <div class="paragraph center">
+              <p>${currentLanguage.tournaments.text}</p>
+          </div>
+        `;
       break;
 
     case "contact":
       contentHolder.innerHTML = `
             <div>
-                <h1>Yhteystiedot</h1>
-                <h2>Yrityssuhdevastaava</h2>
+                <h1>${currentLanguage.contacts.header}</h1>
                 <div class="paragraph center">
-                    <p>Jeremias Wahlsten</p>
-                    <p>Markkinointi, Live, Turnaukset</p>
+                    <p>${currentLanguage.contacts.contact_1.name}</p>
+                    <p>${currentLanguage.contacts.contact_1.responsibilities}</p>
                 </div>
                 <div class="paragraph center">
-                    <p>Miko Mattila</p>
-                    <p>Infra, Logistiikka</p>
+                    <p>${currentLanguage.contacts.contact_2.name}</p>
+                    <p>${currentLanguage.contacts.contact_2.responsibilities}</p>
                     <p>miko.mattila@ruut.me</p>
                 </div>
                 <div class="paragraph center">
-                    <p>Tapio Wallden</p>
-                    <p>Kioski, Turvallisuus</p>
+                    <p>${currentLanguage.contacts.contact_3.name}</p>
+                    <p>${currentLanguage.contacts.contact_3.responsibilities}</p>
                 </div>
             </div>
             `;
@@ -173,19 +172,19 @@ const renderContent = (content) => {
 
     case "pack":
       contentHolder.innerHTML = `
-                <h1>Pakkauslista</h1>
+                <h1>${currentLanguage.equipment.header}</h1>
                 <div class="paragraph">
-                    <p>Pakkaa mukaan tarvitsemasi laitteet, ottaen huomioon konepaikan rajoitteet</p>
+                    <p>${currentLanguage.equipment.descriptor}</p>
                     <ul id="pack-list">
-                        <li>Tietokone/Konsoli</li>
-                        <li>Näyttö</li>
-                        <li>Näppäimistö/Ohjain</li>
-                        <li>Hiiri & Hiirimatto</li>
-                        <li>Kuulokkeet</li>
-                        <li>Jatkojohto</li>
-                        <li>Verkkokaapeli (10m)</li>
-                        <li>Puhelimen / Kuulokkeiden latausjohto</li>
-                        <li>Taskurahaa / Mobilepay</li>
+                        <li>${currentLanguage.equipment.equipment_1}</li>                      
+                        <li>${currentLanguage.equipment.equipment_2}</li>
+                        <li>${currentLanguage.equipment.equipment_3}</li>
+                        <li>${currentLanguage.equipment.equipment_4}</li>
+                        <li>${currentLanguage.equipment.equipment_5}</li>
+                        <li>${currentLanguage.equipment.equipment_6}</li>
+                        <li>${currentLanguage.equipment.equipment_7}</li>
+                        <li>${currentLanguage.equipment.equipment_8}</li>
+                        <li>${currentLanguage.equipment.equipment_9}</li>
                     </ul>
                 </div>
             `;
@@ -307,6 +306,43 @@ const finnish = {
       point_3: "Järjestäjillä on oikeus poistaa henkilö tapahtumapaikalta. Lipun hintaa ei palauteta. Erityistapauksissa on mahdollista, että henkilö poistetaan välittömästi paikalta",
       point_4: "Tekijä on aina vastuussa aiheuttamistaan vahingoista ja mahdollisista korvauksista"
     }
+  },
+  guidance: {
+    header: "Opasteet",
+    paragraph_1: "Haalarilaneille on 24h sisäänkäynti, joka tapahtuu parkkipaikan puoleisista ovista. Opastekarttaan on merkitty ovet, mistä tulee kulkea sekä tapahtuma-alueelle, että mm. vessoihin.",
+    paragraph_2: "Tapahtuman ajan LAB-ammattikorkeakoulun parkkipaikat ovat vapaita pysäköinnille, eli niissä ei ole tällöin pysäköinninvalvontaa. Sisäänkäynti on esteetön."
+  },
+  tournaments: {
+    header: "Turnaukset",
+    text: "Vuoden 2025 turnausten aikataulut julkaistaan myöhemmin. Kiitokset kärsivällisyydestä!"
+  },
+  contacts: {
+    header: "Yhteystiedot",
+    contact_1: {
+      name: "Jeremias Wahlsten",
+      responsibilities: "Markkinointi, Live, Turnaukset"
+    },
+    contact_2: {
+      name: "Miko Mattila",
+      responsibilities: "Infra, Logistiikka"
+    },
+    contact_3: {
+      name: "Tapio Wallden",
+      responsibilities: "Kioski, Turvallisuus"
+    }
+  },
+  equipment: {
+    header: "Pakkauslista",
+    descriptor: "Pakkaa mukaan tarvitsemasi laitteet, ottaen huomioon konepaikan rajoitteet",
+    equipment_1: "Tietokone/Konsoli",
+    equipment_2: "Näyttö",
+    equipment_3: "Näppäimistö/Ohjain",
+    equipment_4: "Hiiri & Hiirimatto",
+    equipment_5: "Kuulokkeet",
+    equipment_6: "Jatkojohto",
+    equipment_7: "Verkkokaapeli (10m)",
+    equipment_8: "Puhelimen / Kuulokkeiden latausjohto",
+    equipment_9: "Taskurahaa / Mobilepay"
   }
 }
 
@@ -379,5 +415,42 @@ const english = {
       point_3: "Organizers have the right to remove a person from the event area. No refund of the ticket will be provided in the case of removal. On special occasions a person can be removed immediately from the event area.",
       point_4: "The perpetrator is always responsible for any damage caused and its compensation."
     }
+  },
+  guidance: {
+    header: "Guidance",
+    paragraph_1: "Entrance to the event is open for 24h a day and it is located near the LAB-University's parking lot. Entrance and doors to toilets are marked on the event map above.",
+    paragraph_2: "During the event the LAB parking lot is free and there will be no parking control. Entrance is barrier-free."
+  },
+  tournaments: {
+    header: "Tournaments",
+    text: "2025 Tournaments and their times will be posted later. Thank you for your patience."
+  },
+  contacts: {
+    header: "Contacts",
+    contact_1: {
+      name: "Jeremias Wahlsten",
+      responsibilities: "Marketing, Live, Tournaments"
+    },
+    contact_2: {
+      name: "Miko Mattila",
+      responsibilities: "Infrastructure, Logistics"
+    },
+    contact_3: {
+      name: "Tapio Wallden",
+      responsibilities: "Stand, Security"
+    }
+  },
+  equipment: {
+    header: "Packing list",
+    descriptor: "Bring all your needed gaming gear but be mindful of the restrictions of your seat",
+    equipment_1: "Computer/Console",
+    equipment_2: "Monitor",
+    equipment_3: "Keyboard/Controller",
+    equipment_4: "Moutse & Mousepad",
+    equipment_5: "Headphones",
+    equipment_6: "Extension cord",
+    equipment_7: "Network cable (10m)",
+    equipment_8: "Phone / Headphone charger",
+    equipment_9: "Cash / Mobilepay"
   }
 }

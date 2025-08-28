@@ -48,6 +48,7 @@ const renderContent = (content) => {
                 </a>
               .
 
+
             </p>
             <p>
               ${currentLanguage.main.main_5.text}
@@ -57,6 +58,13 @@ const renderContent = (content) => {
                 </a>.
             </p>
           </div>
+                <div class="paragraph">
+                  <h2>Kuvapankit</h2>
+                  <p>Alhaalla on linkki kuvapankkiin. Kuvat on otettu tapahtumapaikalta.</p>
+                  <h2>
+                    <a href="https://cluster.kuvat.fi/kuvat/2024_014+-+Haalarilanit"/>2024</a>
+                  </h2>
+                </div>
 
           <div class="paragraph">
             <h2>${currentLanguage.main.photos.header}</h2>
@@ -196,7 +204,7 @@ const renderContent = (content) => {
 };
 
 const countdownTimer = () => {
-  const eventDate = new Date(2025, 10, 9, 15).getTime();
+  const eventDate = new Date(2025, 9, 9, 15).getTime();
 
   // Initial starting time on page load
   let timeDifference = eventDate - new Date().getTime();
@@ -231,7 +239,7 @@ const displayTime = (timeDifference) => {
   let countdown = `${days} päivää,
     ${hours} tuntia,
     ${minutes} minuuttia,
-    ${seconds} sekuntia.`;
+    ${seconds} sekuntia`;
 
   // Displaying the time difference
   document.getElementById("event-countdown").innerHTML = countdown;

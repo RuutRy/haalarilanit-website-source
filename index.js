@@ -1,19 +1,20 @@
-let switchStatus = false; 
+let switchStatus = true;
 let currentPage = "main";
 
 // Loading the main content for the user from the get-go
 document.addEventListener("DOMContentLoaded", () => {
   renderContent("main");
-  const currentLanguage = switchStatus ? english : finnish;
-  const translationButton = document.getElementById("translation");
-  translationButton.textContent = currentLanguage.translation_button.title; 
-  
-  translationButton.addEventListener("click", () => { 
-    switchStatus = !switchStatus
-    translationButton.textContent = switchStatus ? "in English" : "suomeksi"; 
-    renderContent(currentPage);
-  })
+  switchLanguage()
 });
+
+const switchLanguage = () => {
+  const translationButton = document.getElementById("translation");
+  switchStatus = !switchStatus
+  const currentLanguage = switchStatus ? finnish : english;
+  translationButton.textContent = currentLanguage.translation_button.title; 
+  translationButton.textContent = switchStatus ? "FI" : "EN";
+  renderContent(currentPage);
+}
 
 const renderContent = (content) => {
   let contentHolder = document.getElementById("nav-content");
@@ -58,13 +59,6 @@ const renderContent = (content) => {
                 </a>.
             </p>
           </div>
-                <div class="paragraph">
-                  <h2>Kuvapankit</h2>
-                  <p>Alhaalla on linkki kuvapankkiin. Kuvat on otettu tapahtumapaikalta.</p>
-                  <h2>
-                    <a href="https://cluster.kuvat.fi/kuvat/2024_014+-+Haalarilanit"/>2024</a>
-                  </h2>
-                </div>
 
           <div class="paragraph">
             <h2>${currentLanguage.main.photos.header}</h2>
@@ -145,6 +139,21 @@ const renderContent = (content) => {
           <p>${currentLanguage.guidance.paragraph_1}</p>
           <p>${currentLanguage.guidance.paragraph_2}</p>
         </div>
+        <h1>${currentLanguage.equipment.header}</h1>
+        <div class="paragraph">
+            <p>${currentLanguage.equipment.descriptor}</p>
+            <ul id="pack-list">
+                <li>${currentLanguage.equipment.equipment_1}</li>
+                <li>${currentLanguage.equipment.equipment_2}</li>
+                <li>${currentLanguage.equipment.equipment_3}</li>
+                <li>${currentLanguage.equipment.equipment_4}</li>
+                <li>${currentLanguage.equipment.equipment_5}</li>
+                <li>${currentLanguage.equipment.equipment_6}</li>
+                <li>${currentLanguage.equipment.equipment_7}</li>
+                <li>${currentLanguage.equipment.equipment_8}</li>
+                <li>${currentLanguage.equipment.equipment_9}</li>
+            </ul>
+        </div>
         `;
       break;
 
@@ -175,26 +184,6 @@ const renderContent = (content) => {
                     <p>${currentLanguage.contacts.contact_3.responsibilities}</p>
                 </div>
             </div>
-            `;
-      break;
-
-    case "pack":
-      contentHolder.innerHTML = `
-                <h1>${currentLanguage.equipment.header}</h1>
-                <div class="paragraph">
-                    <p>${currentLanguage.equipment.descriptor}</p>
-                    <ul id="pack-list">
-                        <li>${currentLanguage.equipment.equipment_1}</li>                      
-                        <li>${currentLanguage.equipment.equipment_2}</li>
-                        <li>${currentLanguage.equipment.equipment_3}</li>
-                        <li>${currentLanguage.equipment.equipment_4}</li>
-                        <li>${currentLanguage.equipment.equipment_5}</li>
-                        <li>${currentLanguage.equipment.equipment_6}</li>
-                        <li>${currentLanguage.equipment.equipment_7}</li>
-                        <li>${currentLanguage.equipment.equipment_8}</li>
-                        <li>${currentLanguage.equipment.equipment_9}</li>
-                    </ul>
-                </div>
             `;
       break;
 
@@ -236,10 +225,12 @@ const displayTime = (timeDifference) => {
   let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
   let seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-  let countdown = `${days} päivää,
-    ${hours} tuntia,
-    ${minutes} minuuttia,
-    ${seconds} sekuntia`;
+  const currentLanguage = switchStatus ? english : finnish
+
+  let countdown = `${days} ${currentLanguage.main.time.d},
+    ${hours} ${currentLanguage.main.time.h},
+    ${minutes} ${currentLanguage.main.time.m},
+    ${seconds} ${currentLanguage.main.time.s}`;
 
   // Displaying the time difference
   document.getElementById("event-countdown").innerHTML = countdown;
@@ -253,6 +244,10 @@ const finnish = {
     time: {
       time: "Aika: to 9.10. Klo 15:00 - su 12.10.2025 klo 12:00",
       where: "Paikka: LAB-kampuksen liikuntasali",
+      d: "päivää",
+      h: "tuntia",
+      m: "minuuttia",
+      s: "sekuntia",
     },
     purchase_button: "Osta lippu",
     header: "Mistä on kyse?",
@@ -361,7 +356,11 @@ const english = {
   main: {
     time: {
       time: "Thu 9.10. from 15:00 - Sun 12.10.2025 till 12:00",
-      where: "Where: LAB University of Applied Sciences' gymnasium"
+      where: "Where: Sports hall of LAB University of Applied Sciences",
+      d: "days",
+      h: "hours",
+      m: "minutes",
+      s: "seconds",
     },
     purchase_button: "Buy your ticket",
     header: "What's this all about?",

@@ -44,13 +44,19 @@ nav li {
 nav a {
     text-decoration: none;
     color: var(--palette-light);
-    padding: 1em;
+    padding: 24px;
     display: block;
     transition: background-color 0.3s ease;
+
 }
 nav a:hover {
     color: var(--accent);
     transition: 0.15s;
+
+}
+
+#translation {
+    color: var(--accent);
 }
 
 body {
@@ -258,22 +264,6 @@ body {
     will-change: box-shadow, transform;
 }
 
-#translation {
-    display: block;
-    align-items: center;
-    font-family: "Groteskia";
-    margin: 0 auto;
-    appearance: none;
-    background-color: var(--palette-light);
-    color: var(--palette-dark);
-    font-size: 32px;
-    box-sizing: border-box;
-    cursor: pointer;
-    height: 4h;
-    min-width: 20%;
-    line-height: 1;
-}
-
 #ticket-button:hover {
     background-color: var(--accent);
 }
@@ -373,8 +363,8 @@ footer {
         }
 
         a {
-            padding-left: 1vw;
-            padding-right: 1vw;
+            padding-left: 4px;
+            padding-right: 4px;
         }
     }
 

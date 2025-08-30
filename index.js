@@ -13,6 +13,7 @@ const switchLanguage = () => {
   const currentLanguage = switchStatus ? finnish : english;
   translationButton.textContent = currentLanguage.translation_button.title; 
   translationButton.textContent = switchStatus ? "FI" : "EN";
+  renderNav();
   renderContent(currentPage);
 }
 
@@ -236,9 +237,25 @@ const displayTime = (timeDifference) => {
   document.getElementById("event-countdown").innerHTML = countdown;
 };
 
+const renderNav = () => {
+  const currentLanguage = switchStatus ? english : finnish
+  document.getElementById("nav-main").textContent = currentLanguage.nav.main;
+  document.getElementById("nav-rules").textContent = currentLanguage.nav.rules;
+  document.getElementById("nav-guidance").textContent = currentLanguage.nav.guidance;
+  document.getElementById("nav-tournaments").textContent = currentLanguage.nav.tournaments;
+  document.getElementById("nav-contacts").textContent = currentLanguage.nav.contacts;
+}
+
 const finnish = {
   translation_button: {
     title: "suomeksi",
+  },
+  nav: {
+    main: "Etusivu",
+    rules: "Säännöt",
+    guidance: "Opasteet",
+    tournaments: "Turnaukset",
+    contacts: "Yhteystiedot"
   },
   main: {
     time: {
@@ -353,6 +370,13 @@ const english = {
   translation_button: {
     title: "in English",
   },
+  nav: {
+    main: "Main",
+    rules: "Rules",
+    guidance: "Guidance",
+    tournaments: "Tournaments",
+    contacts: "Contacts"
+  },
   main: {
     time: {
       time: "Thu 9.10. from 15:00 - Sun 12.10.2025 till 12:00",
@@ -448,7 +472,7 @@ const english = {
     }
   },
   equipment: {
-    header: "Packing list",
+    header: "Essential equipment",
     descriptor: "Bring all your needed gaming gear but be mindful of the restrictions of your seat",
     equipment_1: "Computer/Console",
     equipment_2: "Monitor",

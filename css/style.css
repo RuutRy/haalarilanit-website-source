@@ -354,17 +354,17 @@ footer {
     }
 
     nav {
-        font-size: 11px;
+        font-size: 16px;
         max-width: 80vw;
 
         li {
             text-align: center;
-            font-size: 14px;
+            font-size: 16px;
         }
 
         a {
-            padding-left: 4px;
-            padding-right: 4px;
+            padding-left: 5px;
+            padding-right: 5px;
         }
     }
 

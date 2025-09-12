@@ -62,6 +62,11 @@ const renderContent = (content) => {
           </div>
 
           <div class="paragraph">
+            <h2>${currentLanguage.safer_space.header}</h2>
+            <a href=${currentLanguage.safer_space.pdf}>${currentLanguage.safer_space.click}</a>
+          </div>
+
+          <div class="paragraph">
             <h2>${currentLanguage.main.photos.header}</h2>
             <p>${currentLanguage.main.photos.text}.</p>
             <a href="https://cluster.kuvat.fi/kuvat/2024_014+-+Haalarilanit"/>2024</a>
@@ -363,6 +368,11 @@ const finnish = {
     equipment_7: "Verkkokaapeli (10m)",
     equipment_8: "Puhelimen / Kuulokkeiden latausjohto",
     equipment_9: "Taskurahaa / Mobilepay"
+  },
+  safer_space: {
+    header: "Turvallisemman tilan periaatteet",
+    click: "Klikkaa ja lue turvallisemman tilan periaatteet",
+    pdf: "https://ltky.fi/wp-content/uploads/2024/03/LTKY-turvallisemman-tilan-periaatteet.pdf"
   }
 }
 
@@ -483,5 +493,10 @@ const english = {
     equipment_7: "Network cable (10m)",
     equipment_8: "Phone / Headphone charger",
     equipment_9: "Cash / Mobilepay"
+  },
+  safer_space: {
+    header: "Safer space policy",
+    click: "Click here to read the safer space policy",
+    pdf: "https://ltky.fi/wp-content/uploads/2024/03/LTKYs-Safer-Space-policy.pdf"
   }
 }

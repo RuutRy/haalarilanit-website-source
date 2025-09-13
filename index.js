@@ -179,11 +179,12 @@ const renderContent = (content) => {
                 <div class="paragraph center">
                     <p>${currentLanguage.contacts.contact_1.name}</p>
                     <p>${currentLanguage.contacts.contact_1.responsibilities}</p>
+                    <p>${emails.jeremias}</p>
                 </div>
                 <div class="paragraph center">
                     <p>${currentLanguage.contacts.contact_2.name}</p>
                     <p>${currentLanguage.contacts.contact_2.responsibilities}</p>
-                    <p>miko.mattila@ruut.me</p>
+                    <p>${emails.miko}</p>
                 </div>
                 <div class="paragraph center">
                     <p>${currentLanguage.contacts.contact_3.name}</p>
@@ -249,6 +250,12 @@ const renderNav = () => {
   document.getElementById("nav-guidance").textContent = currentLanguage.nav.guidance;
   document.getElementById("nav-tournaments").textContent = currentLanguage.nav.tournaments;
   document.getElementById("nav-contacts").textContent = currentLanguage.nav.contacts;
+}
+
+const emails = {
+  miko: "miko.mattila@ruut.me",
+  jeremias: "jeremias.wahlsten@ruut.me",
+  tapio: ""
 }
 
 const finnish = {
@@ -345,15 +352,15 @@ const finnish = {
     header: "Yhteystiedot",
     contact_1: {
       name: "Jeremias Wahlsten",
-      responsibilities: "Markkinointi, Live, Turnaukset"
+      responsibilities: "Markkinointi, Live, Turnaukset",
     },
     contact_2: {
       name: "Miko Mattila",
-      responsibilities: "Infra, Logistiikka"
+      responsibilities: "Infra, Logistiikka",
     },
     contact_3: {
       name: "Tapio Wallden",
-      responsibilities: "Kioski, Turvallisuus"
+      responsibilities: "Kioski, Turvallisuus",
     }
   },
   equipment: {

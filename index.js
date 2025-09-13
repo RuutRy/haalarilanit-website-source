@@ -179,17 +179,16 @@ const renderContent = (content) => {
                 <div class="paragraph center">
                     <p>${currentLanguage.contacts.contact_1.name}</p>
                     <p>${currentLanguage.contacts.contact_1.responsibilities}</p>
-                    <p>${currentLanguage.contacts.contact_1.email}</p>
+                    <p>${emails.jeremias}</p>
                 </div>
                 <div class="paragraph center">
                     <p>${currentLanguage.contacts.contact_2.name}</p>
                     <p>${currentLanguage.contacts.contact_2.responsibilities}</p>
-                    <p>${currentLanguage.contacts.contact_2.email}</p>
+                    <p>${emails.miko}</p>
                 </div>
                 <div class="paragraph center">
                     <p>${currentLanguage.contacts.contact_3.name}</p>
                     <p>${currentLanguage.contacts.contact_3.responsibilities}</p>
-                    <p>${currentLanguage.contacts.contact_3.email}</p>
                 </div>
             </div>
             `;
@@ -251,6 +250,12 @@ const renderNav = () => {
   document.getElementById("nav-guidance").textContent = currentLanguage.nav.guidance;
   document.getElementById("nav-tournaments").textContent = currentLanguage.nav.tournaments;
   document.getElementById("nav-contacts").textContent = currentLanguage.nav.contacts;
+}
+
+const emails = {
+  miko: "miko.mattila@ruut.me",
+  jeremias: "jeremias.wahlsten@ruut.me",
+  tapio: ""
 }
 
 const finnish = {
@@ -348,17 +353,14 @@ const finnish = {
     contact_1: {
       name: "Jeremias Wahlsten",
       responsibilities: "Markkinointi, Live, Turnaukset",
-      email: "jeremias.wahlsten@ruut.me"
     },
     contact_2: {
       name: "Miko Mattila",
       responsibilities: "Infra, Logistiikka",
-      email: "miko.mattila@ruut.me"
     },
     contact_3: {
       name: "Tapio Wallden",
       responsibilities: "Kioski, Turvallisuus",
-      email: ""
     }
   },
   equipment: {
@@ -475,18 +477,15 @@ const english = {
     header: "Contacts",
     contact_1: {
       name: "Jeremias Wahlsten",
-      responsibilities: "Marketing, Live, Tournaments",
-      email: "jeremias.wahlsten@ruut.me"
+      responsibilities: "Marketing, Live, Tournaments"
     },
     contact_2: {
       name: "Miko Mattila",
-      responsibilities: "Infrastructure, Logistics",
-      email: "miko.mattila.@ruut.me"
+      responsibilities: "Infrastructure, Logistics"
     },
     contact_3: {
       name: "Tapio Wallden",
-      responsibilities: "Stand, Security",
-      email: ""
+      responsibilities: "Stand, Security"
     }
   },
   equipment: {

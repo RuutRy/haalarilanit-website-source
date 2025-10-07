@@ -163,14 +163,32 @@ const renderContent = (content) => {
         `;
       break;
 
-    case "tournament":
-      contentHolder.innerHTML = `
-          <h1>${currentLanguage.tournaments.header}</h1>
-          <div class="paragraph center">
-              <p>${currentLanguage.tournaments.text}</p>
-          </div>
-        `;
-      break;
+      case "tournament":
+        contentHolder.innerHTML = `
+                  <h1>${currentLanguage.tournaments.header}</h1>
+                    <div class="paragraph">
+                      <p class="tournament-p">${currentLanguage.tournaments.description}</p>
+                    </div>
+                    <div class="paragraph tournament-paragraph">
+                      <h2>${currentLanguage.tournaments.date.first}</h2>
+                      <p class="tournament-p">20:00-22:00 - Switch (???)</p>
+                    </div>
+            
+                    <div class="paragraph tournament-paragraph">
+                      <h2>${currentLanguage.tournaments.date.second}</h2>
+                      <p class="tournament-p">3:00-4:00 - Yöpeli</p>
+                      <p class="tournament-p">10:00-16:00 - NHL</p>
+                      <p class="tournament-p">14:00-21:00 - Ralli</p>
+                      <p class="tournament-p">17:00-0:00 - League of Legends</p>
+                    </div>
+            
+                    <div class="paragraph tournament-paragraph">
+                      <h2>${currentLanguage.tournaments.date.third}</h2>
+                      <p class="tournament-p">3:00-4:00 - Temple Run</p>
+                      <p class="tournament-p">14:00-0:00 - Counter Strike 2</p>
+                    </div>
+              `;
+        break;
 
     case "contact":
       contentHolder.innerHTML = `
@@ -346,7 +364,13 @@ const finnish = {
   },
   tournaments: {
     header: "Turnaukset",
-    text: "Vuoden 2025 turnausten aikataulut julkaistaan myöhemmin. Kiitokset kärsivällisyydestä!"
+    text: "Vuoden 2025 turnausten aikataulut julkaistaan myöhemmin. Kiitokset kärsivällisyydestä!",
+    description: "Haalarilaneilla järjestetään puolivakavia turnauksia. Tapahtuma-alueelle on ilmainen sisäänpääsy kaikille ja turnauksia voi tulla katsomaan ja kannustamaan paikan päälle!",
+    date: {
+      first: "Torstai 9.10.",
+      second: "Perjantai 10.10.",
+      third: "Lauantai 11.10."
+    }
   },
   contacts: {
     header: "Yhteystiedot",
@@ -471,7 +495,13 @@ const english = {
   },
   tournaments: {
     header: "Tournaments",
-    text: "2025 Tournaments and their times will be posted later. Thank you for your patience."
+    text: "2025 Tournaments and their times will be posted later. Thank you for your patience.",
+    description: "Semi-formal tournaments are arranged at Haalarilanit. The entrance to the event is free and you may come spectate and express your support on the spot.",
+    date: {
+      first: "Thursday 9.10.",
+      second: "Friday 10.10.",
+      third: "Saturday 11.10."
+    }
   },
   contacts: {
     header: "Contacts",

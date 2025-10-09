@@ -180,12 +180,24 @@ const renderContent = (content) => {
                       <p class="tournament-p">10:00-16:00 - NHL</p>
                       <p class="tournament-p">14:00-21:00 - Ralli</p>
                       <p class="tournament-p">17:00-0:00 - League of Legends</p>
+                      <span class="tournament-join">
+                        ${currentLanguage.tournaments.links.apply} League of Legends
+                        <a class="embedded-anchor" href="https://challonge.com/jp5oue14">
+                          ${currentLanguage.tournaments.links.here}
+                        </a>
+                      </span>
                     </div>
             
                     <div class="paragraph tournament-paragraph">
                       <h2>${currentLanguage.tournaments.date.third}</h2>
                       <p class="tournament-p">3:00-4:00 - Temple Run</p>
                       <p class="tournament-p">14:00-0:00 - Counter Strike 2</p>
+                      <span class="tournament-join">
+                        ${currentLanguage.tournaments.links.apply} Counter Strike 2
+                        <a class="embedded-anchor" href="https://challonge.com/rr6ljfpz">
+                          ${currentLanguage.tournaments.links.here}
+                        </a>
+                      </span>
                     </div>
               `;
         break;
@@ -370,6 +382,10 @@ const finnish = {
       first: "Torstai 9.10.",
       second: "Perjantai 10.10.",
       third: "Lauantai 11.10."
+    },
+    links: {
+      apply: "Ilmoittaudu mukaan",
+      here: "TÄSTÄ!"
     }
   },
   contacts: {
@@ -501,6 +517,10 @@ const english = {
       first: "Thursday 9.10.",
       second: "Friday 10.10.",
       third: "Saturday 11.10."
+    },
+    links: {
+      apply: "Apply to",
+      here: "HERE!"
     }
   },
   contacts: {

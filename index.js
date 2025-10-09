@@ -171,7 +171,7 @@ const renderContent = (content) => {
                     </div>
                     <div class="paragraph tournament-paragraph">
                       <h2>${currentLanguage.tournaments.date.first}</h2>
-                      <p class="tournament-p">20:00-22:00 - Switch (???)</p>
+                      <p class="tournament-p">20:00-22:00 - Switch</p>
                     </div>
             
                     <div class="paragraph tournament-paragraph">
@@ -524,7 +524,7 @@ const english = {
     equipment_1: "Computer/Console",
     equipment_2: "Monitor",
     equipment_3: "Keyboard/Controller",
-    equipment_4: "Moutse & Mousepad",
+    equipment_4: "Mouse & Mousepad",
     equipment_5: "Headphones",
     equipment_6: "Extension cord",
     equipment_7: "Network cable (10m)",

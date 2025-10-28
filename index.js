@@ -70,7 +70,7 @@ const renderContent = (content) => {
             <span class="tournament-join"></span>
           </div>
           `;
-      countdownTimer();
+    //  countdownTimer();
       break;
 
     case "rules":

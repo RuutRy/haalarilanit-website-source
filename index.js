@@ -25,17 +25,11 @@ const renderContent = (content) => {
     case "main":
       contentHolder.innerHTML = `
           <img src="assets/logotext.svg" id="haalarilanit-logo"/>
+          
           <div class="paragraph">
-              <h3>${currentLanguage.main.time.time}</h3>
-              <h3>${currentLanguage.main.time.where}</h3>
-              <p id="event-countdown"></p>
+            <h2>${currentLanguage.event_end.message}</h2>
           </div>
 
-          <div id="button-holder">
-              <form action="https://ruut.eventiolive.fi/events/6895e7678a0c35132a8b456a/">
-              <input id="ticket-button" type="submit" value="${currentLanguage.main.purchase_button}"/>
-              </form>
-          </div>
 
           <div class="paragraph">
             <h2>${currentLanguage.main.header}</h2>
@@ -76,7 +70,7 @@ const renderContent = (content) => {
             <span class="tournament-join"></span>
           </div>
           `;
-      countdownTimer();
+    //  countdownTimer();
       break;
 
     case "rules":
@@ -164,71 +158,20 @@ const renderContent = (content) => {
       break;
 
       case "tournament":
-        contentHolder.innerHTML = `
-                  <h1>${currentLanguage.tournaments.header}</h1>
-                    <div class="paragraph">
-                      <p class="tournament-p">${currentLanguage.tournaments.description}</p>
-                    </div>
-                    <div class="paragraph tournament-paragraph">
-                      <h2>${currentLanguage.tournaments.date.first}</h2>
-                      <p class="tournament-p">20:00-22:00 - Switch</p>
-                    </div>
-            
-                    <div class="paragraph tournament-paragraph">
-                      <h2>${currentLanguage.tournaments.date.second}</h2>
-                      <p class="tournament-p">3:00-4:00 - Yöpeli</p>
-                      <p class="tournament-p">10:00-16:00 - NHL</p>
-                      <p class="tournament-p">14:00-21:00 - Ralli</p>
-                      <p class="tournament-p">17:00-0:00 - League of Legends</p>
-                      <span class="tournament-join">
-                        ${currentLanguage.tournaments.links.apply} League of Legends
-                        <a class="embedded-anchor" href="https://challonge.com/jp5oue14">
-                          ${currentLanguage.tournaments.links.here}
-                        </a>
-                      </span>
-                    </div>
-            
-                    <div class="paragraph tournament-paragraph">
-                      <h2>${currentLanguage.tournaments.date.third}</h2>
-                      <p class="tournament-p">3:00-4:00 - Temple Run</p>
-                      <p class="tournament-p">14:00-0:00 - Counter Strike 2</p>
-                      <span class="tournament-join">
-                        ${currentLanguage.tournaments.links.apply} Counter Strike 2
-                        <a class="embedded-anchor" href="https://challonge.com/rr6ljfpz">
-                          ${currentLanguage.tournaments.links.here}
-                        </a>
-                      </span>
-                    </div>
-              `;
+        contentHolder.innerHTML = ``;
         break;
 
     case "contact":
       contentHolder.innerHTML = `
-            <div>
-                <h1>${currentLanguage.contacts.header}</h1>
-                <div class="paragraph center">
-                    <p>${currentLanguage.contacts.contact_1.name}</p>
-                    <p>${currentLanguage.contacts.contact_1.responsibilities}</p>
-                    <p>${emails.jeremias}</p>
-                </div>
-                <div class="paragraph center">
-                    <p>${currentLanguage.contacts.contact_2.name}</p>
-                    <p>${currentLanguage.contacts.contact_2.responsibilities}</p>
-                    <p>${emails.miko}</p>
-                </div>
-                <div class="paragraph center">
-                    <p>${currentLanguage.contacts.contact_3.name}</p>
-                    <p>${currentLanguage.contacts.contact_3.responsibilities}</p>
-                </div>
-            </div>
             `;
       break;
 
     default:
-      contentHolder.innerHTML = `<h2>Sisältöä ei löytynyt.</h2>`;
+      contentHolder.innerHTML = `<h2>${currentLanguage.content_unavailable}</h2>`;
   }
 };
 
+/*
 const countdownTimer = () => {
   const eventDate = new Date(2025, 9, 9, 15).getTime();
 
@@ -243,7 +186,9 @@ const countdownTimer = () => {
     displayTime(timeDifference);
   }, 1000);
 };
+*/
 
+/*
 const displayTime = (timeDifference) => {
   if (!document.getElementById("event-countdown")) {
     return;
@@ -272,6 +217,7 @@ const displayTime = (timeDifference) => {
   // Displaying the time difference
   document.getElementById("event-countdown").innerHTML = countdown;
 };
+*/
 
 const renderNav = () => {
   const currentLanguage = switchStatus ? english : finnish
@@ -282,11 +228,6 @@ const renderNav = () => {
   document.getElementById("nav-contacts").textContent = currentLanguage.nav.contacts;
 }
 
-const emails = {
-  miko: "miko.mattila@ruut.me",
-  jeremias: "jeremias.wahlsten@ruut.me",
-  tapio: ""
-}
 
 const finnish = {
   translation_button: {
@@ -374,35 +315,6 @@ const finnish = {
     paragraph_1: "Haalarilaneille on 24h sisäänkäynti, joka tapahtuu parkkipaikan puoleisista ovista. Opastekarttaan on merkitty ovet, mistä tulee kulkea sekä tapahtuma-alueelle, että mm. vessoihin.",
     paragraph_2: "Tapahtuman ajan LAB-ammattikorkeakoulun parkkipaikat ovat vapaita pysäköinnille, eli niissä ei ole tällöin pysäköinninvalvontaa. Sisäänkäynti on esteetön."
   },
-  tournaments: {
-    header: "Turnaukset",
-    text: "Vuoden 2025 turnausten aikataulut julkaistaan myöhemmin. Kiitokset kärsivällisyydestä!",
-    description: "Haalarilaneilla järjestetään puolivakavia turnauksia. Tapahtuma-alueelle on ilmainen sisäänpääsy kaikille ja turnauksia voi tulla katsomaan ja kannustamaan paikan päälle!",
-    date: {
-      first: "Torstai 9.10.",
-      second: "Perjantai 10.10.",
-      third: "Lauantai 11.10."
-    },
-    links: {
-      apply: "Ilmoittaudu mukaan",
-      here: "TÄSTÄ!"
-    }
-  },
-  contacts: {
-    header: "Yhteystiedot",
-    contact_1: {
-      name: "Jeremias Wahlsten",
-      responsibilities: "Markkinointi, Live, Turnaukset",
-    },
-    contact_2: {
-      name: "Miko Mattila",
-      responsibilities: "Infra, Logistiikka",
-    },
-    contact_3: {
-      name: "Tapio Wallden",
-      responsibilities: "Kioski, Turvallisuus",
-    }
-  },
   equipment: {
     header: "Pakkauslista",
     descriptor: "Pakkaa mukaan tarvitsemasi laitteet, ottaen huomioon konepaikan rajoitteet",
@@ -420,7 +332,11 @@ const finnish = {
     header: "Turvallisemman tilan periaatteet",
     click: "Klikkaa ja lue turvallisemman tilan periaatteet",
     pdf: "https://ltky.fi/wp-content/uploads/2024/03/LTKY-turvallisemman-tilan-periaatteet.pdf"
-  }
+  },
+  event_end: {
+    message: "Tapahtuma on päättynyt. Nähdään ensi vuonna!"
+  },
+  content_unavailable: "Sisältöä ei löytynyt."
 }
 
 const english = {
@@ -509,35 +425,6 @@ const english = {
     paragraph_1: "Entrance to the event is open for 24h a day and it is located near the LAB-University's parking lot. Entrance and doors to toilets are marked on the event map above.",
     paragraph_2: "During the event the LAB parking lot is free and there will be no parking control. Entrance is barrier-free."
   },
-  tournaments: {
-    header: "Tournaments",
-    text: "2025 Tournaments and their times will be posted later. Thank you for your patience.",
-    description: "Semi-formal tournaments are arranged at Haalarilanit. The entrance to the event is free and you may come spectate and express your support on the spot.",
-    date: {
-      first: "Thursday 9.10.",
-      second: "Friday 10.10.",
-      third: "Saturday 11.10."
-    },
-    links: {
-      apply: "Apply to",
-      here: "HERE!"
-    }
-  },
-  contacts: {
-    header: "Contacts",
-    contact_1: {
-      name: "Jeremias Wahlsten",
-      responsibilities: "Marketing, Live, Tournaments"
-    },
-    contact_2: {
-      name: "Miko Mattila",
-      responsibilities: "Infrastructure, Logistics"
-    },
-    contact_3: {
-      name: "Tapio Wallden",
-      responsibilities: "Stand, Security"
-    }
-  },
   equipment: {
     header: "Essential equipment",
     descriptor: "Bring all your needed gaming gear but be mindful of the restrictions of your seat",
@@ -555,5 +442,9 @@ const english = {
     header: "Safer space policy",
     click: "Click here to read the safer space policy",
     pdf: "https://ltky.fi/wp-content/uploads/2024/03/LTKYs-Safer-Space-policy.pdf"
-  }
+  },
+  event_end: {
+    message: "The event has ended. See you next year!"
+  },
+  content_unavailable: "Content not found"
 }

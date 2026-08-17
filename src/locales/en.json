@@ -1,0 +1,145 @@
+{
+  "translation_button": {
+    "title": "in English"
+  },
+  "nav": {
+    "main": "Main",
+    "rules": "Rules",
+    "guidance": "Guidance",
+    "tournaments": "Tournaments",
+    "contacts": "Contacts"
+  },
+  "main": {
+    "time": {
+      "where": "Where: Sports hall of LAB University of Applied Sciences",
+      "d": "days",
+      "h": "hours",
+      "m": "minutes",
+      "s": "seconds",
+      "started": "The event has started!",
+      "endsin": "Time left",
+      "at_start": "from",
+      "at_end": "till"
+    },
+    "purchase_button": "Buy your ticket",
+    "header": "What's this all about?",
+    "main_1": "Haalarilanit is a big LAN-gaming event that has been held at the LAB University's gymnasium in Lappeenranta.",
+    "main_2": "The most epic gaming event of autumn will start when almost 200 gamers gather to enjoy the joy of gaming together. If you are a passionate eSport gamer or a casual weekend gaming enjoyer, there is definitely enough gamers to play with.",
+    "main_3": "Different gaming tournaments are held during the event where best of the best compete for the first place in different games like Counter Strike 2 or NHL. This will be your chance show what you are made of while competing agains your friends and foes.",
+    "main_4": {
+      "text": "Bring your own Computer, connect it to the LAN and you are ready to experience the captivating world of LAN-parties. At the event there is a stand where you can buy drinks and something to eat during your gaming moments ",
+      "anchor": "(check event map)"
+    },
+    "main_5": {
+      "text": "The event area is alcohol free zone so all alcoholic drinks are prohibited to bring inside. You don't need previous experience from a LAN-party event to attend and feel free to ask about this event from our ",
+      "anchor": "main organizers"
+    },
+    "photos": {
+      "header": "Photos",
+      "text": "Link is under this text. Photos have been taken from the event area."
+    }
+  },
+  "rules": {
+    "header": "Rules",
+    "dont_bring": {
+      "header": "You cannot bring these things to the event area",
+      "category_1": "Items that can hurt other people (knifes etc)",
+      "category_2": "Alcohol or drugs",
+      "category_3": "Explosives or other dangerous substancess"
+    },
+    "substances": {
+      "header": "Alcohol and smoking",
+      "point_1": "Usage and posession of alcohol or other intoxicants is prohibited in the event area. You must leave all alcoholic bewerages and other intoxicants outside of the event area.",
+      "point_2": "Smoking and vaping is allowed only at the places marked as smoking zones. Trash cans for cigarette butts can be found at the smoking places and must be used."
+    },
+    "power": {
+      "header": "Electricity Grid",
+      "point_1": "Connecting household appliances and other high-power electrical devices to your electrical outlet is strictly prohibited. Each gamer gets one electrical outlet  which is sufficient for 350W of power.",
+      "point_2": "At the event there is a microwave and electric kettle for everyone to use. If your computer needs more then 350W of power, please contact the organizers before the event."
+    },
+    "damages": {
+      "header": "Event area and damage",
+      "text": "Damaging and messing up the event area strictly prohibited. For example usage of stickers on walls. If you damage something you are always liable for compensation."
+    },
+    "network": {
+      "header": "Internet and network",
+      "beginning": "You cannot do these things on the events network:",
+      "category_1": "DHCP-servers",
+      "category_2": "Interfering with network traffic",
+      "category_3": "Monitoring traffic other than traffic from your own computer",
+      "category_4": "Connecting additional devices, such as switches or firewalls",
+      "category_5": "Retrieving or distributing copurighted material or material that violates Finnish law"
+    },
+    "sleep": {
+      "header": "Sleeping",
+      "text": "For safety reasons sleeping is only allowed at your own seat. Sleeping on the floor or in other places on the event area is prohibited."
+    },
+    "other": {
+      "header": "Other things",
+      "point_1": "Every Finnish law must be followed during the event",
+      "point_2": "Organizers are not liable for any broken computers or other devices",
+      "point_3": "Organizers have the right to remove a person from the event area. No refund of the ticket will be provided in the case of removal. On special occasions a person can be removed immediately from the event area.",
+      "point_4": "The perpetrator is always responsible for any damage caused and its compensation."
+    }
+  },
+  "guidance": {
+    "header": "Guidance",
+    "paragraph_1": "Entrance to the event is open for 24h a day and it is located near the LAB-University's parking lot. Entrance and doors to toilets are marked on the event map above.",
+    "paragraph_2": "During the event the LAB parking lot is free and there will be no parking control. Entrance is barrier-free."
+  },
+  "tournaments": {
+    "header": "Tournaments",
+    "text": "2026 Tournaments and their times will be posted later.",
+    "description": "Semi-formal tournaments are arranged at Haalarilanit. The entrance to the event is free and you may come spectate and express your support on the spot.",
+    "date": {
+      "first": "Thursday 19.11.",
+      "second": "Friday 20.11.",
+      "third": "Saturday 21.11."
+    },
+    "links": {
+      "apply": "Apply to",
+      "here": "HERE!"
+    }
+  },
+  "contacts": {
+    "header": "Contacts",
+    "placeholder": "Contacts will be updated later.",
+    "contact_1": {
+      "name": "Placeholder",
+      "responsibilities": "Marketing, Live, Tournaments"
+    },
+    "contact_2": {
+      "name": "Placeholder2",
+      "responsibilities": "Infrastructure, Logistics"
+    },
+    "contact_3": {
+      "name": "Placeholder3",
+      "responsibilities": "Stand, Security"
+    }
+  },
+  "equipment": {
+    "header": "Essential equipment",
+    "descriptor": "Bring all your needed gaming gear but be mindful of the restrictions of your seat",
+    "equipment_1": "Computer/Console",
+    "equipment_2": "Monitor",
+    "equipment_3": "Keyboard/Controller",
+    "equipment_4": "Mouse & Mousepad",
+    "equipment_5": "Headphones",
+    "equipment_6": "Extension cord",
+    "equipment_7": "Network cable (10m)",
+    "equipment_8": "Phone / Headphone charger",
+    "equipment_9": "Cash / Mobilepay"
+  },
+  "safer_space": {
+    "header": "Safer space policy",
+    "click": "Click here to read the safer space policy"
+  },
+  "event_end": {
+    "message": "The event has ended. See you next year!"
+  },
+  "content_unavailable": "Content not found",
+  "footer": {
+    "copyright": "Copyright (c) {{year}} Ruut ry. All Rights Reserved."
+  },
+  "sponsors": "In cooperation with"
+}

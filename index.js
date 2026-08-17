@@ -11,7 +11,7 @@ const switchLanguage = () => {
   const translationButton = document.getElementById("translation");
   switchStatus = !switchStatus
   const currentLanguage = switchStatus ? finnish : english;
-  translationButton.textContent = currentLanguage.translation_button.title; 
+  translationButton.textContent = currentLanguage.translation_button.title;
   translationButton.textContent = switchStatus ? "FI" : "EN";
   renderNav();
   renderContent(currentPage);
@@ -25,11 +25,17 @@ const renderContent = (content) => {
     case "main":
       contentHolder.innerHTML = `
           <img src="assets/logotext.svg" id="haalarilanit-logo"/>
-          
           <div class="paragraph">
-            <h2>${currentLanguage.event_end.message}</h2>
+              <h3>${currentLanguage.main.time.time}</h3>
+              <h3>${currentLanguage.main.time.where}</h3>
+              <p id="event-countdown"></p>
           </div>
 
+          <div id="button-holder">
+              <form action="https://ruut.eventiolive.fi/events/6895e7678a0c35132a8b456a/">
+              <input id="ticket-button" type="submit" value="${currentLanguage.main.purchase_button}"/>
+              </form>
+          </div>
 
           <div class="paragraph">
             <h2>${currentLanguage.main.header}</h2>
@@ -64,13 +70,14 @@ const renderContent = (content) => {
             <h2>${currentLanguage.main.photos.header}</h2>
             <p>${currentLanguage.main.photos.text}.</p>
             <a href="https://cluster.kuvat.fi/kuvat/2024_014+-+Haalarilanit"/>2024</a>
+            <a href="https://cluster.kuvat.fi/kuvat/2025_023+-+Haalarilanit"/>2025</a>
           </div>
 
           <div>
             <span class="tournament-join"></span>
           </div>
           `;
-    //  countdownTimer();
+      countdownTimer();
       break;
 
     case "rules":
@@ -158,11 +165,73 @@ const renderContent = (content) => {
       break;
 
       case "tournament":
-        contentHolder.innerHTML = ``;
+        // TODO: Fill in tournament schedule for 2026
+        /*
+        contentHolder.innerHTML = `
+                  <h1>${currentLanguage.tournaments.header}</h1>
+                    <div class="paragraph">
+                      <p class="tournament-p">${currentLanguage.tournaments.description}</p>
+                    </div>
+                    <div class="paragraph tournament-paragraph">
+                      <h2>${currentLanguage.tournaments.date.first}</h2>
+                      <p class="tournament-p">20:00-22:00 - Switch</p>
+                    </div>
+
+                    <div class="paragraph tournament-paragraph">
+                      <h2>${currentLanguage.tournaments.date.second}</h2>
+                      <p class="tournament-p">3:00-4:00 - Yöpeli</p>
+                      <p class="tournament-p">10:00-16:00 - NHL</p>
+                      <p class="tournament-p">14:00-21:00 - Ralli</p>
+                      <p class="tournament-p">17:00-0:00 - League of Legends</p>
+                      <span class="tournament-join">
+                        ${currentLanguage.tournaments.links.apply} League of Legends
+                        <a class="embedded-anchor" href="https://challonge.com/jp5oue14">
+                          ${currentLanguage.tournaments.links.here}
+                        </a>
+                      </span>
+                    </div>
+
+                    <div class="paragraph tournament-paragraph">
+                      <h2>${currentLanguage.tournaments.date.third}</h2>
+                      <p class="tournament-p">3:00-4:00 - Temple Run</p>
+                      <p class="tournament-p">14:00-0:00 - Counter Strike 2</p>
+                      <span class="tournament-join">
+                        ${currentLanguage.tournaments.links.apply} Counter Strike 2
+                        <a class="embedded-anchor" href="https://challonge.com/rr6ljfpz">
+                          ${currentLanguage.tournaments.links.here}
+                        </a>
+                      </span>
+                    </div>
+              `;
+        */
+        contentHolder.innerHTML = `
+          <h1>${currentLanguage.tournaments.header}</h1>
+          <div class="paragraph">
+            <p class="tournament-p">${currentLanguage.tournaments.text}</p>
+          </div>
+        `;
         break;
 
     case "contact":
       contentHolder.innerHTML = `
+            <div>
+                <h1>${currentLanguage.contacts.header}</h1>
+                <div class="paragraph center">
+                    <p>${currentLanguage.contacts.contact_1.name}</p>
+                    <p>${currentLanguage.contacts.contact_1.responsibilities}</p>
+                    <p>${emails.contact_1}</p>
+                </div>
+                <div class="paragraph center">
+                    <p>${currentLanguage.contacts.contact_2.name}</p>
+                    <p>${currentLanguage.contacts.contact_2.responsibilities}</p>
+                    <p>${emails.contact_2}</p>
+                </div>
+                <div class="paragraph center">
+                    <p>${currentLanguage.contacts.contact_3.name}</p>
+                    <p>${currentLanguage.contacts.contact_3.responsibilities}</p>
+                    <p>${emails.contact_3}</p>
+                </div>
+            </div>
             `;
       break;
 
@@ -171,32 +240,30 @@ const renderContent = (content) => {
   }
 };
 
-/*
 const countdownTimer = () => {
-  const eventDate = new Date(2025, 9, 9, 15).getTime();
+  const eventDate = new Date(2026, 10, 19, 15).getTime();
 
   // Initial starting time on page load
-  let timeDifference = eventDate - new Date().getTime();
+  let timeDifference = eventDate - Date.now();
   displayTime(timeDifference);
 
   // Starting the second-by-second
   setInterval(() => {
-    timeDifference = eventDate - new Date().getTime();
+    timeDifference = eventDate - Date.now();
 
     displayTime(timeDifference);
   }, 1000);
 };
-*/
 
-/*
 const displayTime = (timeDifference) => {
+  const currentLanguage = switchStatus ? english : finnish
   if (!document.getElementById("event-countdown")) {
     return;
   }
   // If the event has already begun
   if (timeDifference < 0) {
     document.getElementById("event-countdown").innerHTML =
-      "Tapahtuma on alkanut!";
+      currentLanguage.main.time.started;
     return;
   }
 
@@ -207,8 +274,6 @@ const displayTime = (timeDifference) => {
   let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
   let seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-  const currentLanguage = switchStatus ? english : finnish
-
   let countdown = `${days} ${currentLanguage.main.time.d},
     ${hours} ${currentLanguage.main.time.h},
     ${minutes} ${currentLanguage.main.time.m},
@@ -217,8 +282,6 @@ const displayTime = (timeDifference) => {
   // Displaying the time difference
   document.getElementById("event-countdown").innerHTML = countdown;
 };
-*/
-
 const renderNav = () => {
   const currentLanguage = switchStatus ? english : finnish
   document.getElementById("nav-main").textContent = currentLanguage.nav.main;
@@ -228,6 +291,11 @@ const renderNav = () => {
   document.getElementById("nav-contacts").textContent = currentLanguage.nav.contacts;
 }
 
+const emails = {
+  contact_1: "",
+  contact_2: "",
+  contact_3: ""
+}
 
 const finnish = {
   translation_button: {
@@ -242,12 +310,13 @@ const finnish = {
   },
   main: {
     time: {
-      time: "Aika: to 9.10. Klo 15:00 - su 12.10.2025 klo 12:00",
+      time: "Aika: to 19.11. Klo 15:00 - su 22.11.2026 klo 12:00",
       where: "Paikka: LAB-kampuksen liikuntasali",
       d: "päivää",
       h: "tuntia",
       m: "minuuttia",
       s: "sekuntia",
+      started: "Tapahtuma on alkanut!",
     },
     purchase_button: "Osta lippu",
     header: "Mistä on kyse?",
@@ -273,7 +342,7 @@ const finnish = {
       header: "Tapahtuma-alueelle ei saa tuoda",
       category_1: "Toisten ihmisten vahingoittamiseen soveltuvia välineitä",
       category_2: "Alkoholia tai huumausaineita",
-      category_3: "Räjähteitä tai muita vaarallisia aineita" 
+      category_3: "Räjähteitä tai muita vaarallisia aineita"
     },
     substances: {
       header: "Alkoholi ja tupakointi",
@@ -315,6 +384,36 @@ const finnish = {
     paragraph_1: "Haalarilaneille on 24h sisäänkäynti, joka tapahtuu parkkipaikan puoleisista ovista. Opastekarttaan on merkitty ovet, mistä tulee kulkea sekä tapahtuma-alueelle, että mm. vessoihin.",
     paragraph_2: "Tapahtuman ajan LAB-ammattikorkeakoulun parkkipaikat ovat vapaita pysäköinnille, eli niissä ei ole tällöin pysäköinninvalvontaa. Sisäänkäynti on esteetön."
   },
+  tournaments: {
+    header: "Turnaukset",
+    text: "Vuoden 2026 turnausten aikataulut julkaistaan myöhemmin.",
+    description: "Haalarilaneilla järjestetään puolivakavia turnauksia. Tapahtuma-alueelle on ilmainen sisäänpääsy kaikille ja turnauksia voi tulla katsomaan ja kannustamaan paikan päälle!",
+    date: {
+      first: "Torstai 19.11.",
+      second: "Perjantai 20.11.",
+      third: "Lauantai 21.11."
+    },
+    links: {
+      apply: "Ilmoittaudu mukaan",
+      here: "TÄSTÄ!"
+    }
+  },
+  contacts: {
+    header: "Yhteystiedot",
+    placeholder: "Yhteystiedot päivitetään myöhemmin.",
+    contact_1: {
+      name: "Placeholder",
+      responsibilities: "Markkinointi, Live, Turnaukset",
+    },
+    contact_2: {
+      name: "Placeholder2",
+      responsibilities: "Infra, Logistiikka",
+    },
+    contact_3: {
+      name: "Placeholder3",
+      responsibilities: "Kioski, Turvallisuus",
+    }
+  },
   equipment: {
     header: "Pakkauslista",
     descriptor: "Pakkaa mukaan tarvitsemasi laitteet, ottaen huomioon konepaikan rajoitteet",
@@ -352,19 +451,20 @@ const english = {
   },
   main: {
     time: {
-      time: "Thu 9.10. from 15:00 - Sun 12.10.2025 till 12:00",
+      time: "Thu 19.11. from 15:00 - Sun 22.11.2026 till 12:00",
       where: "Where: Sports hall of LAB University of Applied Sciences",
       d: "days",
       h: "hours",
       m: "minutes",
       s: "seconds",
+      started: "The event has started!",
     },
     purchase_button: "Buy your ticket",
     header: "What's this all about?",
     main_1: "Haalarilanit is a big LAN-gaming event that has been held at the LAB University's gymnasium in Lappeenranta.",
     main_2: "The most epic gaming event of autumn will start when almost 200 gamers gather to enjoy the joy of gaming together. If you are a passionate eSport gamer or a casual weekend gaming enjoyer, there is definitely enough gamers to play with.",
     main_3: "Different gaming tournaments are held during the event where best of the best compete for the first place in different games like Counter Strike 2 or NHL. This will be your chance show what you are made of while competing agains your friends and foes.",
-    main_4: { 
+    main_4: {
       text: "Bring your own Computer, connect it to the LAN and you are ready to experience the captivating world of LAN-parties. At the event there is a stand where you can buy drinks and something to eat during your gaming moments ",
       anchor: "(check event map)"
     },
@@ -383,7 +483,7 @@ const english = {
       header: "You cannot bring these things to the event area",
       category_1: "Items that can hurt other people (knifes etc)",
       category_2: "Alcohol or drugs",
-      category_3: "Explosives or other dangerous substancess" 
+      category_3: "Explosives or other dangerous substancess"
     },
     substances: {
       header: "Alcohol and smoking",
@@ -425,6 +525,36 @@ const english = {
     paragraph_1: "Entrance to the event is open for 24h a day and it is located near the LAB-University's parking lot. Entrance and doors to toilets are marked on the event map above.",
     paragraph_2: "During the event the LAB parking lot is free and there will be no parking control. Entrance is barrier-free."
   },
+  tournaments: {
+    header: "Tournaments",
+    text: "2026 Tournaments and their times will be posted later.",
+    description: "Semi-formal tournaments are arranged at Haalarilanit. The entrance to the event is free and you may come spectate and express your support on the spot.",
+    date: {
+      first: "Thursday 19.11.",
+      second: "Friday 20.11.",
+      third: "Saturday 21.11."
+    },
+    links: {
+      apply: "Apply to",
+      here: "HERE!"
+    }
+  },
+  contacts: {
+    header: "Contacts",
+    placeholder: "Contacts will be updated later.",
+    contact_1: {
+      name: "Placeholder",
+      responsibilities: "Marketing, Live, Tournaments"
+    },
+    contact_2: {
+      name: "Placeholder2",
+      responsibilities: "Infrastructure, Logistics"
+    },
+    contact_3: {
+      name: "Placeholder3",
+      responsibilities: "Stand, Security"
+    }
+  },
   equipment: {
     header: "Essential equipment",
     descriptor: "Bring all your needed gaming gear but be mindful of the restrictions of your seat",
@@ -441,7 +571,7 @@ const english = {
   safer_space: {
     header: "Safer space policy",
     click: "Click here to read the safer space policy",
-    pdf: "https://ltky.fi/wp-content/uploads/2024/03/LTKYs-Safer-Space-policy.pdf"
+    pdf: "https://ltky.fi/wp-content/uploads/2026/08/LTKY-turvallisemman-tilan-periaatteet.pdf"
   },
   event_end: {
     message: "The event has ended. See you next year!"

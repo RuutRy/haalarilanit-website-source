@@ -1,0 +1,292 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-ink: #1f1828;
+  --color-ink-lift: #241b30;
+  --color-milk: #decdd2;
+  --color-accent: #c63f6a;
+  --color-accent-deep: #a12d55;
+  --color-end: #e0b14a;
+
+  --font-display: "Groteskia", sans-serif;
+
+  --text-fluid: clamp(1.1rem, 1.4vw + 1rem, 1.6rem);
+  --text-h1-fluid: clamp(2.2rem, 4vw + 1rem, 3.6rem);
+  --text-h2-fluid: clamp(1.8rem, 3vw + 1rem, 2.8rem);
+  --text-h3-fluid: clamp(1.4rem, 2vw + 1rem, 2rem);
+
+  --animate-pop-in: pop-in 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+
+  @keyframes pop-in {
+    from {
+      opacity: 0;
+      transform: scale(0.92) translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@font-face {
+  font-family: "Groteskia";
+  src: url("/fonts/groteskia/GROTESKIA.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  /* SVG tint filters - one logo file, any color
+     (https://angel-rs.github.io/css-color-filter-generator/) */
+  --white-filter: brightness(0) saturate(100%) invert(92%) sepia(10%) saturate(271%)
+    hue-rotate(295deg) brightness(91%) contrast(90%);
+  --accent-filter: brightness(0) saturate(100%) invert(36%) sepia(5%) saturate(5862%)
+    hue-rotate(290deg) brightness(109%) contrast(120%);
+  --black-filter: brightness(0) saturate(100%) invert(6%) sepia(7%) saturate(4412%)
+    hue-rotate(224deg) brightness(94%) contrast(90%);
+}
+
+/* Firefox renders transformed and untransformed text on different
+   compositing paths, which offsets the halves by ~1px against each
+   other. */
+.haala-flip-clock .fcc__digit_block > div:nth-child(1),
+.haala-flip-clock .fcc__digit_block > div:nth-child(2) {
+  transform: translateZ(0);
+}
+
+/* Flip clock: sizing only — colors come from FlipClock.tsx style props. */
+@media (max-width: 640px) {
+  .haala-flip-clock {
+    --fcc-digit-block-width: 30px;
+    --fcc-digit-block-height: 52px;
+    --fcc-digit-font-size: 32px;
+    --fcc-label-font-size: 11px;
+    --fcc-spacing: 4px;
+    --fcc-digit-block-spacing: 3px;
+  }
+}
+
+/* Shiny ticket CTA: pink gradient + periodic light sweep. */
+.shine-btn {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-deep) 100%);
+  box-shadow: 0 4px 20px color-mix(in srgb, var(--color-accent) 35%, transparent);
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.shine-btn:hover {
+  filter: brightness(1.2);
+  box-shadow: 0 6px 24px color-mix(in srgb, var(--color-accent) 50%, transparent);
+}
+
+.shine-btn::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg);
+  animation: shine-sweep 3.2s ease-in-out infinite;
+}
+
+@keyframes shine-sweep {
+  0% {
+    left: -60%;
+  }
+  60%,
+  100% {
+    left: 130%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shine-btn::after {
+    animation: none;
+  }
+}
+
+/* Frosted glass: ::before carries the backdrop-filter + tint, radially masked at the edges. */
+.glass-inline,
+.glass-panel {
+  position: relative;
+  isolation: isolate;
+}
+
+.glass-inline::before,
+.glass-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--color-ink) 26%, transparent);
+  -webkit-backdrop-filter: blur(2px) saturate(140%);
+  backdrop-filter: blur(2px) saturate(140%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 35%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, #000 35%, transparent 100%);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  z-index: -1;
+}
+
+.glass-inline {
+  display: inline-block;
+  padding: 0.15em 0.55em;
+  border-radius: 0.6em;
+}
+
+.glass-panel {
+  padding: 1.25rem 1.5rem;
+  border-radius: 20px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-milk);
+  font-family: var(--font-display);
+  font-size: var(--text-fluid);
+}
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: var(--font-display);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent: #c63f6a; /* our brand accent, not shadcn's gray */
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}

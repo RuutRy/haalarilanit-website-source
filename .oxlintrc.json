@@ -1,0 +1,18 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "env": {
+    "browser": true
+  },
+  "ignorePatterns": ["node_modules", "dist", "legacy-ref"],
+  "plugins": ["react", "typescript", "import", "unicorn", "jsx-a11y"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "perf": "warn"
+  },
+  "rules": {
+    "no-console": "warn",
+    "react/react-in-jsx-scope": "off",
+    "jsx-a11y/prefer-tag-over-role": "off"
+  }
+}

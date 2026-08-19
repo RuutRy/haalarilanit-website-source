@@ -4,5 +4,3 @@ legacy-ref/
 node_modules/
 dist/
 *.tsbuildinfo
-
-src/routeTree.gen.ts

@@ -37,26 +37,62 @@
   font-style: normal;
 }
 
-:root {
-  /* SVG tint filters - one logo file, any color
-     (https://angel-rs.github.io/css-color-filter-generator/) */
-  --white-filter: brightness(0) saturate(100%) invert(92%) sepia(10%) saturate(271%)
-    hue-rotate(295deg) brightness(91%) contrast(90%);
-  --accent-filter: brightness(0) saturate(100%) invert(36%) sepia(5%) saturate(5862%)
-    hue-rotate(290deg) brightness(109%) contrast(120%);
-  --black-filter: brightness(0) saturate(100%) invert(6%) sepia(7%) saturate(4412%)
-    hue-rotate(224deg) brightness(94%) contrast(90%);
+/* Wallpaper: parallax-js transforms .bg-wall (its first scene child is forced
+   position:relative, so size via width/height + negative margins). Scroll drift
+   sits on .drift - the lib overwrites the layer transform. Root clips the box. */
+.drift {
+  position: absolute;
+  inset: 0;
+  transform: translateY(var(--scroll-drift, 0px));
+  will-change: transform;
 }
 
-/* Firefox renders transformed and untransformed text on different
-   compositing paths, which offsets the halves by ~1px against each
-   other. */
+.bg-wall {
+  width: calc(100% + 2 * var(--parallax-over));
+  height: calc(100% + 2 * var(--parallax-over));
+  margin: calc(-1 * var(--parallax-over));
+  /* Dims the artwork toward the page background. */
+  filter: opacity(50%);
+  will-change: transform;
+}
+
+/* Inline artwork fills the wall box; slice = cover (crop, not letterbox).
+   Colors via --theme-* tokens. */
+.bg-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drift,
+  .bg-wall {
+    transform: none !important;
+    will-change: auto;
+  }
+  .shine-btn::after {
+    animation: none;
+  }
+}
+
+/* Flip clock: sizing only (colors via the --countdown-* tokens below) */
 .haala-flip-clock .fcc__digit_block > div:nth-child(1),
 .haala-flip-clock .fcc__digit_block > div:nth-child(2) {
   transform: translateZ(0);
 }
-
-/* Flip clock: sizing only — colors come from FlipClock.tsx style props. */
+/* Flip clock: three tokens per phase (card, text, separators). .concluded -
+   the event has started, clock counts to LAN OFF - rescopes them. FlipClock.tsx
+   consumes the vars. */
+.haala-flip-clock {
+  --countdown-card-bg: var(--foreground);
+  --countdown-card-text: var(--background);
+  --countdown-separator: var(--primary);
+}
+.haala-flip-clock.concluded {
+  --countdown-card-bg: var(--muted);
+  --countdown-card-text: var(--accent);
+  --countdown-separator: var(--foreground);
+}
 @media (max-width: 640px) {
   .haala-flip-clock {
     --fcc-digit-block-width: 30px;

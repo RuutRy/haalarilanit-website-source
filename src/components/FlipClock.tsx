@@ -6,8 +6,8 @@ type FlipClockProps = {
   startedLabel: string;
   labels: [string, string, string, string];
   onComplete?: () => void;
-  // "end" tones the separators amber so a countdown to LAN OFF reads
-  // differently from the countdown to the event start
+  // "end" adds .concluded, rescoping the --countdown-* tokens for the LAN-OFF
+  // countdown
   tone?: "start" | "end";
 };
 
@@ -22,24 +22,26 @@ export function FlipClock({
   tone = "start",
 }: FlipClockProps) {
   if (target.getTime() <= Date.now()) {
-    return <p className="py-6 text-center text-h3-fluid text-accent">{startedLabel}</p>;
+    return <p className="py-6 text-center text-h3-fluid text-primary">{startedLabel}</p>;
   }
 
   return (
-    <div className="haala-flip-clock flex justify-center py-6">
+    <div
+      className={`haala-flip-clock flex justify-center py-6 ${tone === "end" ? "concluded" : ""}`}
+    >
       <FlipClockCountdown
         to={target}
         labels={labels}
         showSeparators
         onComplete={onComplete}
         labelStyle={{
-          color: "var(--color-milk)",
+          color: "var(--foreground)",
           letterSpacing: 1,
           textTransform: "uppercase",
         }}
         digitBlockStyle={{
-          background: "var(--color-milk)",
-          color: "var(--color-ink)",
+          background: "var(--countdown-card-bg)",
+          color: "var(--countdown-card-text)",
           // Monospace digits: every glyph is exactly the same width,
           // so no digit can shift the halves horizontally.
           fontFamily:
@@ -50,10 +52,10 @@ export function FlipClock({
           MozOsxFontSmoothing: "grayscale",
         }}
         separatorStyle={{
-          color: tone === "end" ? "var(--color-end)" : "var(--color-accent)",
+          color: "var(--countdown-separator)",
         }}
         dividerStyle={{
-          color: "color-mix(in srgb, var(--color-ink) 22%, transparent)",
+          color: "color-mix(in srgb, var(--background) 22%, transparent)",
         }}
       />
     </div>

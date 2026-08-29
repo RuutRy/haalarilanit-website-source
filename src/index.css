@@ -1,36 +1,33 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+:root {
+  --background: #001c41;
+  --foreground: #eaf3ff;
+  --primary: #fc7f02;
+  --primary-foreground: var(--background);
+  --primary-hover: #cb6501;
+  --muted: #191b1c;
+  --muted-foreground: var(--foreground);
+  --secondary: var(--muted);
+  --secondary-foreground: var(--muted-foreground);
+  --accent: var(--primary);
+  --accent-foreground: var(--primary-foreground);
+  --card: var(--muted);
+  --card-foreground: var(--muted-foreground);
+  --popover: var(--muted);
+  --popover-foreground: var(--muted-foreground);
+  --border: color-mix(in srgb, var(--foreground) 20%, transparent);
+  --input: color-mix(in srgb, var(--foreground) 20%, transparent);
+  --ring: var(--primary);
+  --destructive: oklch(0.577 0.245 27.325);
+  --radius: 0.625rem;
 
-@custom-variant dark (&:is(.dark *));
+  --theme-bg: #001c41;
+  --theme-dot: #027ffc;
+  --panel-tint: color-mix(in srgb, var(--theme-bg) 50%, transparent);
 
-@theme {
-  --color-ink: #1f1828;
-  --color-ink-lift: #241b30;
-  --color-milk: #decdd2;
-  --color-accent: #c63f6a;
-  --color-accent-deep: #a12d55;
-  --color-end: #e0b14a;
-
+  --parallax-over: 200px;
+  --bloom-accent: color-mix(in srgb, var(--primary) 35%, transparent);
+  --bloom-accent-strong: color-mix(in srgb, var(--primary) 50%, transparent);
   --font-display: "Groteskia", sans-serif;
-
-  --text-fluid: clamp(1.1rem, 1.4vw + 1rem, 1.6rem);
-  --text-h1-fluid: clamp(2.2rem, 4vw + 1rem, 3.6rem);
-  --text-h2-fluid: clamp(1.8rem, 3vw + 1rem, 2.8rem);
-  --text-h3-fluid: clamp(1.4rem, 2vw + 1rem, 2rem);
-
-  --animate-pop-in: pop-in 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-
-  @keyframes pop-in {
-    from {
-      opacity: 0;
-      transform: scale(0.92) translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
 }
 
 @font-face {
@@ -71,23 +68,21 @@
   }
 }
 
-/* Shiny ticket CTA: pink gradient + periodic light sweep. */
+/* Shiny ticket CTA */
 .shine-btn {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-deep) 100%);
-  box-shadow: 0 4px 20px color-mix(in srgb, var(--color-accent) 35%, transparent);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+  box-shadow: 0 4px 20px var(--bloom-accent);
   transition:
     transform 0.15s ease,
     filter 0.15s ease,
     box-shadow 0.15s ease;
 }
-
 .shine-btn:hover {
   filter: brightness(1.2);
-  box-shadow: 0 6px 24px color-mix(in srgb, var(--color-accent) 50%, transparent);
+  box-shadow: 0 6px 24px var(--bloom-accent-strong);
 }
-
 .shine-btn::after {
   content: "";
   position: absolute;
@@ -95,11 +90,10 @@
   left: -60%;
   width: 40%;
   height: 200%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255 255 255 / 0.35), transparent);
   transform: skewX(-20deg);
   animation: shine-sweep 3.2s ease-in-out infinite;
 }
-
 @keyframes shine-sweep {
   0% {
     left: -60%;

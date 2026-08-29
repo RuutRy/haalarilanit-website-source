@@ -85,7 +85,8 @@
   "guidance": {
     "header": "Guidance",
     "paragraph_1": "Entrance to the event is open for 24h a day and it is located near the LAB-University's parking lot. Entrance and doors to toilets are marked on the event map above.",
-    "paragraph_2": "During the event the LAB parking lot is free and there will be no parking control. Entrance is barrier-free."
+    "paragraph_2": "During the event the LAB parking lot is free and there will be no parking control. Entrance is barrier-free.",
+    "floorplan_alt": "Event venue floor plan"
   },
   "tournaments": {
     "header": "Tournaments",

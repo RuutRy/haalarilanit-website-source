@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 
+import { PageContent, Section } from "../components/layout";
+import { Heading, Paragraph } from "../components/text";
+
 export const Route = createFileRoute("/tournament")({
   component: TournamentPage,
 });
@@ -9,11 +12,11 @@ function TournamentPage() {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col items-center gap-8">
-      <h1 className="glass-inline text-h1-fluid">{t("tournaments.header")}</h1>
-      <section className="w-full max-w-2xl">
-        <p className="glass-panel w-fit text-center">{t("tournaments.text")}</p>
-      </section>
-    </div>
+    <PageContent>
+      <Heading level={1} text={t("tournaments.header")} />
+      <Section className="max-w-2xl">
+        <Paragraph text={t("tournaments.text")} className="w-fit text-center" />
+      </Section>
+    </PageContent>
   );
 }

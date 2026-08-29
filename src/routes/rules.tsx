@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 
+import { PageContent, Section } from "../components/layout";
+import { Heading, List, Paragraph } from "../components/text";
+
 export const Route = createFileRoute("/rules")({
   component: RulesPage,
 });
@@ -9,61 +12,67 @@ function RulesPage() {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col items-center gap-8">
-      <h1 className="glass-inline text-h1-fluid">{t("rules.header")}</h1>
+    <PageContent>
+      <Heading level={1} text={t("rules.header")} />
 
-      <section className="flex w-full max-w-3xl flex-col gap-2">
-        <h2 className="glass-inline text-h2-fluid">{t("rules.dont_bring.header")}</h2>
-        <ul className="glass-panel list-inside list-disc ps-0 text-justify">
-          <li>{t("rules.dont_bring.category_1")}</li>
-          <li>{t("rules.dont_bring.category_2")}</li>
-          <li>{t("rules.dont_bring.category_3")}</li>
-        </ul>
-      </section>
+      <Section>
+        <Heading level={2} text={t("rules.dont_bring.header")} />
+        <List
+          items={[
+            t("rules.dont_bring.category_1"),
+            t("rules.dont_bring.category_2"),
+            t("rules.dont_bring.category_3"),
+          ]}
+        />
+      </Section>
 
-      <section className="flex w-full max-w-3xl flex-col gap-2">
-        <h2 className="glass-inline text-h2-fluid">{t("rules.substances.header")}</h2>
-        <p className="glass-panel text-justify">{t("rules.substances.point_1")}</p>
-        <p className="glass-panel text-justify">{t("rules.substances.point_2")}</p>
-      </section>
+      <Section>
+        <Heading level={2} text={t("rules.substances.header")} />
+        <Paragraph text={t("rules.substances.point_1")} />
+        <Paragraph text={t("rules.substances.point_2")} />
+      </Section>
 
-      <section className="flex w-full max-w-3xl flex-col gap-2">
-        <h2 className="glass-inline text-h2-fluid">{t("rules.power.header")}</h2>
-        <p className="glass-panel text-justify">{t("rules.power.point_1")}</p>
-        <p className="glass-panel text-justify">{t("rules.power.point_2")}</p>
-      </section>
+      <Section>
+        <Heading level={2} text={t("rules.power.header")} />
+        <Paragraph text={t("rules.power.point_1")} />
+        <Paragraph text={t("rules.power.point_2")} />
+      </Section>
 
-      <section className="flex w-full max-w-3xl flex-col gap-2">
-        <h2 className="glass-inline text-h2-fluid">{t("rules.damages.header")}</h2>
-        <p className="glass-panel text-justify">{t("rules.damages.text")}</p>
-      </section>
+      <Section>
+        <Heading level={2} text={t("rules.damages.header")} />
+        <Paragraph text={t("rules.damages.text")} />
+      </Section>
 
-      <section className="flex w-full max-w-3xl flex-col gap-2">
-        <h2 className="glass-inline text-h2-fluid">{t("rules.network.header")}</h2>
-        <p className="glass-panel text-justify">{t("rules.network.beginning")}</p>
-        <ul className="glass-panel list-inside list-disc ps-0 text-justify">
-          <li>{t("rules.network.category_1")}</li>
-          <li>{t("rules.network.category_2")}</li>
-          <li>{t("rules.network.category_3")}</li>
-          <li>{t("rules.network.category_4")}</li>
-          <li>{t("rules.network.category_5")}</li>
-        </ul>
-      </section>
+      <Section>
+        <Heading level={2} text={t("rules.network.header")} />
+        <Paragraph text={t("rules.network.beginning")} />
+        <List
+          items={[
+            t("rules.network.category_1"),
+            t("rules.network.category_2"),
+            t("rules.network.category_3"),
+            t("rules.network.category_4"),
+            t("rules.network.category_5"),
+          ]}
+        />
+      </Section>
 
-      <section className="flex w-full max-w-3xl flex-col gap-2">
-        <h2 className="glass-inline text-h2-fluid">{t("rules.sleep.header")}</h2>
-        <p className="glass-panel text-justify">{t("rules.sleep.text")}</p>
-      </section>
+      <Section>
+        <Heading level={2} text={t("rules.sleep.header")} />
+        <Paragraph text={t("rules.sleep.text")} />
+      </Section>
 
-      <section className="flex w-full max-w-3xl flex-col gap-2">
-        <h2 className="glass-inline text-h2-fluid">{t("rules.other.header")}</h2>
-        <ul className="glass-panel list-inside list-disc ps-0 text-justify">
-          <li>{t("rules.other.point_1")}</li>
-          <li>{t("rules.other.point_2")}</li>
-          <li>{t("rules.other.point_3")}</li>
-          <li>{t("rules.other.point_4")}</li>
-        </ul>
-      </section>
-    </div>
+      <Section>
+        <Heading level={2} text={t("rules.other.header")} />
+        <List
+          items={[
+            t("rules.other.point_1"),
+            t("rules.other.point_2"),
+            t("rules.other.point_3"),
+            t("rules.other.point_4"),
+          ]}
+        />
+      </Section>
+    </PageContent>
   );
 }

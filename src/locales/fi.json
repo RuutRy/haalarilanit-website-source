@@ -85,7 +85,8 @@
   "guidance": {
     "header": "Opasteet",
     "paragraph_1": "Haalarilaneille on 24h sisäänkäynti, joka tapahtuu parkkipaikan puoleisista ovista. Opastekarttaan on merkitty ovet, mistä tulee kulkea sekä tapahtuma-alueelle, että mm. vessoihin.",
-    "paragraph_2": "Tapahtuman ajan LAB-ammattikorkeakoulun parkkipaikat ovat vapaita pysäköinnille, eli niissä ei ole tällöin pysäköinninvalvontaa. Sisäänkäynti on esteetön."
+    "paragraph_2": "Tapahtuman ajan LAB-ammattikorkeakoulun parkkipaikat ovat vapaita pysäköinnille, eli niissä ei ole tällöin pysäköinninvalvontaa. Sisäänkäynti on esteetön.",
+    "floorplan_alt": "Tapahtumapaikan pohjakartta"
   },
   "tournaments": {
     "header": "Turnaukset",

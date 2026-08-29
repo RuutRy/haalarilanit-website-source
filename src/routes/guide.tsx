@@ -1,6 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 
+import { PageContent, Section } from "../components/layout";
+import { MonoImage } from "../components/media/MonoImage";
+import { Heading, List, Paragraph } from "../components/text";
+
 export const Route = createFileRoute("/guide")({
   component: GuidePage,
 });
@@ -9,41 +13,42 @@ function GuidePage() {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col items-center gap-8">
-      <h1 className="glass-inline text-h1-fluid">{t("guidance.header")}</h1>
+    <PageContent>
+      <Heading level={1} text={t("guidance.header")} />
 
-      <div className="glass-panel w-full max-w-2xl p-3 sm:p-4">
-        <img
+      <div className="bg-panel w-full max-w-2xl p-3 sm:p-4">
+        <MonoImage
           src="/assets/floorplan.svg"
-          alt="Tapahtumapaikan pohjakartta"
-          width={1053}
-          height={1365}
-          decoding="async"
-          className="h-auto w-full [filter:var(--white-filter)]"
+          alt={t("guidance.floorplan_alt")}
+          width={1053.263}
+          height={1365.383}
+          className="w-full"
         />
       </div>
 
-      <section className="flex w-full max-w-3xl flex-col gap-2">
-        <p className="glass-panel text-justify">{t("guidance.paragraph_1")}</p>
-        <p className="glass-panel text-justify">{t("guidance.paragraph_2")}</p>
-      </section>
+      <Section>
+        <Paragraph text={t("guidance.paragraph_1")} />
+        <Paragraph text={t("guidance.paragraph_2")} />
+      </Section>
 
-      <h1 className="glass-inline text-h1-fluid">{t("equipment.header")}</h1>
+      <Heading level={1} text={t("equipment.header")} />
 
-      <section className="flex w-full max-w-3xl flex-col gap-2">
-        <p className="glass-panel text-justify">{t("equipment.descriptor")}</p>
-        <ul className="glass-panel list-disc ps-6 text-start">
-          <li>{t("equipment.equipment_1")}</li>
-          <li>{t("equipment.equipment_2")}</li>
-          <li>{t("equipment.equipment_3")}</li>
-          <li>{t("equipment.equipment_4")}</li>
-          <li>{t("equipment.equipment_5")}</li>
-          <li>{t("equipment.equipment_6")}</li>
-          <li>{t("equipment.equipment_7")}</li>
-          <li>{t("equipment.equipment_8")}</li>
-          <li>{t("equipment.equipment_9")}</li>
-        </ul>
-      </section>
-    </div>
+      <Section>
+        <Paragraph text={t("equipment.descriptor")} />
+        <List
+          items={[
+            t("equipment.equipment_1"),
+            t("equipment.equipment_2"),
+            t("equipment.equipment_3"),
+            t("equipment.equipment_4"),
+            t("equipment.equipment_5"),
+            t("equipment.equipment_6"),
+            t("equipment.equipment_7"),
+            t("equipment.equipment_8"),
+            t("equipment.equipment_9"),
+          ]}
+        />
+      </Section>
+    </PageContent>
   );
 }

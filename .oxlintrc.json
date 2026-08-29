@@ -3,7 +3,7 @@
   "env": {
     "browser": true
   },
-  "ignorePatterns": ["node_modules", "dist", "legacy-ref"],
+  "ignorePatterns": ["node_modules", "dist", "legacy-ref", "src/routeTree.gen.ts"],
   "plugins": ["react", "typescript", "import", "unicorn", "jsx-a11y"],
   "categories": {
     "correctness": "error",

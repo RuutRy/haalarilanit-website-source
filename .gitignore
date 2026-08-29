@@ -4,3 +4,5 @@ legacy-ref/
 node_modules/
 dist/
 *.tsbuildinfo
+
+.tanstack/

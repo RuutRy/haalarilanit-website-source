@@ -1,5 +1,8 @@
 {
   "printWidth": 100,
+  "ignorePatterns": [
+    "src/routeTree.gen.ts"
+  ],
   "sortImports": {
     "groups": [
       "type-import",

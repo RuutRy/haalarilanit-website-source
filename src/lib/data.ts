@@ -7,22 +7,25 @@ export const event = {
 
 export const contacts: Contact[] = [
   {
-    name: "Placeholder",
-    rolesFi: ["Markkinointi", "Live", "Turnaukset"],
-    rolesEn: ["Marketing", "Live", "Tournaments"],
-    email: "placeholder@example.com",
-  },
-  {
-    name: "Placeholder2",
+    name: "Noora Parkko",
     rolesFi: ["Infra", "Logistiikka"],
     rolesEn: ["Infra", "Logistics"],
-    email: "placeholder2@example.com",
+    email: "noora.parkko@ruut.me",
+    telegram: "saaranooraniilo",
   },
   {
-    name: "Placeholder3",
+    name: "Jesse Mäkelä",
+    rolesFi: ["Markkinointi", "Live", "Turnaukset"],
+    rolesEn: ["Marketing", "Live", "Tournaments"],
+    email: "jesse.makela@ruut.me",
+    telegram: "MakelaJ",
+  },
+  {
+    name: "Lauri Sorsa",
     rolesFi: ["Kioski", "Turvallisuus"],
     rolesEn: ["Kiosk", "Safety"],
-    email: "placeholder3@example.com",
+    email: "lauri.sorsa@cluster.fi",
+    telegram: "LauriSorsa",
   },
 ];
 

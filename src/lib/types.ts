@@ -3,6 +3,7 @@ export type Contact = {
   rolesFi: string[];
   rolesEn: string[];
   email: string;
+  telegram: string;
 };
 
 export type Sponsor = {

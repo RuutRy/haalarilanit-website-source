@@ -38,29 +38,33 @@ export function Sponsors() {
   return (
     <div className="flex flex-col items-center gap-8">
       <h1 className="text-h1-fluid">{t("sponsors")}</h1>
-      <LogoSoup
-        logos={sponsors.map((s) => ({ src: s.logo, alt: s.name }))}
-        baseSize={baseSize}
-        gap={28}
-        alignBy="visual-center-y"
-        renderImage={({ src, alt, ...rest }) => {
-          const sponsor = sponsors.find((s) => s.logo === src);
-          if (!sponsor) {
-            return <img src={src} alt={alt} {...rest} />;
-          }
-          // No filters - sponsor logos render exactly as provided.
-          // The hover feedback lives on the link itself.
-          return (
-            <LogoLink
-              href={sponsor.url}
-              name={sponsor.name}
-              src={src}
-              imgProps={rest}
-              imgClassName=""
-            />
-          );
-        }}
-      />
+      {/* One shared panel + shadow behind the whole wall. */}
+      <div className="bg-panel rounded-2xl p-8 shadow-lg">
+        <LogoSoup
+          logos={sponsors.map((s) => ({ src: s.logo, alt: s.name }))}
+          baseSize={baseSize}
+          gap={28}
+          alignBy="visual-center-y"
+          renderImage={({ src, alt, ...rest }) => {
+            const sponsor = sponsors.find((s) => s.logo === src);
+            if (!sponsor) {
+              return <img src={src} alt={alt} {...rest} />;
+            }
+            // No filters - sponsor logos render exactly as provided.
+            // The hover feedback lives on the link itself.
+            return (
+              <LogoLink
+                href={sponsor.url}
+                name={sponsor.name}
+                src={src}
+                imgProps={rest}
+                imgClassName=""
+                linkClassName="inline-flex items-center rounded-xl p-2 transition-transform hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              />
+            );
+          }}
+        />
+      </div>
     </div>
   );
 }

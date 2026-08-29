@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import "./lib/i18n";
 import { TooltipProvider } from "./components/ui/tooltip";
 import { routeTree } from "./routeTree.gen";
+import "./tailwind.css";
 import "./index.css";
 
 function NotFound() {

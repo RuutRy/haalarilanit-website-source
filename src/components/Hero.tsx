@@ -74,7 +74,7 @@ export function Hero() {
           >
             {/* Event running: started message, amber-toned countdown to
                 LAN OFF, with the ends-in label below the clock */}
-            <h3 className="text-h3-fluid text-accent">{t("main.time.started")}</h3>
+            <h3 className="text-h3-fluid text-primary">{t("main.time.started")}</h3>
             <FlipClock
               target={event.end}
               startedLabel={t("event_end.message")}
@@ -82,7 +82,7 @@ export function Hero() {
               onComplete={refresh}
               tone="end"
             />
-            <h3 className="text-h3-fluid text-end">{t("main.time.endsin")}</h3>
+            <h3 className="text-h3-fluid text-primary">{t("main.time.endsin")}</h3>
           </div>
         ) : (
           <div key="before" className="motion-safe:animate-pop-in flex flex-col items-center gap-2">

@@ -96,12 +96,17 @@ export function Hero() {
         )}
       </div>
 
+      {/* If event link doesn't exist, show a message instead */}
+      {!links.ticket && (
+        <p className="text-h3-fluid text-primary">{t("main.ticket_not_yet_available")}</p>
+      )}
+
       {/* Purchase stays visible until the event has ended */}
-      {!concluded && (
+      {!concluded && links.ticket && (
         <form action={links.ticket}>
           <Button
             type="submit"
-            className="shine-btn h-auto rounded-full px-10 py-3 text-lg text-white transition-transform hover:-translate-y-0.5"
+            className="shine-btn h-auto rounded-full px-10 py-3 text-lg text-foreground transition-transform hover:-translate-y-0.5"
           >
             {t("main.purchase_button")}
           </Button>

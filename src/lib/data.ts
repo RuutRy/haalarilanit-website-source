@@ -34,7 +34,7 @@ export const sponsors: Sponsor[] = [
 
 // Every link and configurable URI lives here
 export const links = {
-  ticket: "https://ruut.eventiolive.fi/events/6895e7678a0c35132a8b456a/",
+  ticket: "",
   saferSpace:
     "https://ltky.fi/wp-content/uploads/2026/08/LTKY-turvallisemman-tilan-periaatteet.pdf",
   photos: [

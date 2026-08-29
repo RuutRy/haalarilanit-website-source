@@ -17,11 +17,12 @@
       "m": "minuuttia",
       "s": "sekuntia",
       "started": "Tapahtuma on alkanut!",
-      "endsin": "Laneja jäljellä",
+      "endsin": "Lanit OFF",
       "at_start": "klo",
       "at_end": "klo"
     },
     "purchase_button": "Osta lippu",
+    "ticket_not_yet_available": "Lipunmyynti alkaa pian!",
     "header": "Mistä on kyse?",
     "main_1": "Haalarilanit on suuri lanitapahtuma, jota on järjestetty LAB-kampuksen liikuntasalissa Lappeenrannassa.",
     "main_2": "Luvassa on syksyn eeppisin pelihetki, kun lähes kaksisataa pelaajaa kerääntyy yhteen saliin ja nauttii yhdessä pelaamisen ilosta. Olitpa sitten intohimoinen e-urheilija tai rento viikonlopun pelaaja, peliseuraa riittää varmasti.",

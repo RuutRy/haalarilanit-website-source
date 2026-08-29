@@ -17,11 +17,12 @@
       "m": "minutes",
       "s": "seconds",
       "started": "The event has started!",
-      "endsin": "Time left",
+      "endsin": "LAN OFF",
       "at_start": "from",
       "at_end": "till"
     },
     "purchase_button": "Buy your ticket",
+    "ticket_not_yet_available": "Tickets available soon!",
     "header": "What's this all about?",
     "main_1": "Haalarilanit is a big LAN-gaming event that has been held at the LAB University's gymnasium in Lappeenranta.",
     "main_2": "The most epic gaming event of autumn will start when almost 200 gamers gather to enjoy the joy of gaming together. If you are a passionate eSport gamer or a casual weekend gaming enjoyer, there is definitely enough gamers to play with.",

@@ -141,5 +141,9 @@
   "footer": {
     "copyright": "Copyright (c) {{year}} Ruut ry. Kaikki oikeudet pidätetään."
   },
-  "sponsors": "Yhteistyökumppanit"
+  "sponsors": "Yhteistyökumppanit",
+  "a11y": {
+    "opens_new_tab": "{{name}} - avautuu uuteen välilehteen",
+    "logo_alt": "Haalarilanit"
+  }
 }

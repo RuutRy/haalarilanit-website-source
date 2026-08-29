@@ -141,5 +141,9 @@
   "footer": {
     "copyright": "Copyright (c) {{year}} Ruut ry. All Rights Reserved."
   },
-  "sponsors": "In cooperation with"
+  "sponsors": "In cooperation with",
+  "a11y": {
+    "opens_new_tab": "{{name}} - opens in a new tab",
+    "logo_alt": "Haalarilanit"
+  }
 }

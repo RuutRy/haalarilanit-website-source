@@ -5,7 +5,7 @@ import { event, links } from "../lib/data";
 import i18n from "../lib/i18n";
 import { formatEventTime } from "../lib/time";
 import { FlipClock } from "./FlipClock";
-import { GlassLogo } from "./GlassLogo";
+import { Logo } from "./media/Logo";
 import { Button } from "./ui/button";
 
 // Re-render at the next phase boundary; resyncs on visibility change.
@@ -54,9 +54,9 @@ export function Hero() {
 
   return (
     <>
-      <GlassLogo />
+      <Logo />
 
-      <div className="glass-panel flex w-full max-w-xl flex-col items-center gap-2">
+      <div className="bg-panel flex w-full max-w-xl flex-col items-center gap-2">
         {/* Time line is data-driven: weekday + dates + times come from
             event data, the words around them from translations */}
         <h3 className="text-h3-fluid">

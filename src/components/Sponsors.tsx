@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { sponsors } from "../lib/data";
-import { LogoLink } from "./LogoLink";
+import { LogoLink } from "./media/LogoLink";
 
 // Logos step 56–96px by 2; each step re-runs Logo Soup's canvas normalization.
 function useSponsorBaseSize() {

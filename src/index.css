@@ -32,9 +32,12 @@
 
 @font-face {
   font-family: "Groteskia";
-  src: url("/fonts/groteskia/GROTESKIA.otf") format("opentype");
+  src:
+    url("/fonts/groteskia/GROTESKIA.woff2") format("woff2"),
+    url("/fonts/groteskia/GROTESKIA.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 /* Wallpaper: parallax-js transforms .bg-wall (its first scene child is forced

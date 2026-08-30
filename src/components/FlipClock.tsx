@@ -1,4 +1,5 @@
 import FlipClockCountdown from "@leenguyen/react-flip-clock-countdown";
+// oxlint-disable-next-line import/no-unassigned-import -- clock styles
 import "@leenguyen/react-flip-clock-countdown/dist/index.css";
 
 type FlipClockProps = {

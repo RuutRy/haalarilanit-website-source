@@ -1,5 +1,7 @@
 import { event } from "./data";
 
+const pad = (n: number) => n.toString().padStart(2, "0");
+
 // Builds the event time line from the event data:
 //   to 19.11. klo 15:00 - su 22.11.2026 klo 12:00
 // Weekdays come from Intl (localized), the words around the times are
@@ -7,8 +9,6 @@ import { event } from "./data";
 // differs from the end year.
 export function formatEventTime(lang: string, atStart: string, atEnd: string): string {
   const { start, end } = event;
-
-  const pad = (n: number) => n.toString().padStart(2, "0");
 
   const formatSingle = (date: Date, showYear: boolean, atWord: string): string => {
     const weekday = new Intl.DateTimeFormat(lang, { weekday: "short" }).format(date);

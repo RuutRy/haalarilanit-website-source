@@ -1,5 +1,6 @@
 import Parallax from "parallax-js";
 import { useEffect, useRef, type RefObject } from "react";
+import { useIdleCallbackEffect } from "react-timing-hooks";
 
 import { BackgroundImage } from "./BackgroundImage";
 
@@ -13,25 +14,39 @@ function useParallaxBg(
   rootRef: RefObject<HTMLDivElement | null>,
   sceneRef: RefObject<HTMLDivElement | null>,
 ) {
+  // init does layout reads (offsetWidth); idle-scheduling keeps them off the
+  // startup path. browsers without requestIdleCallback skip the parallax
+  useIdleCallbackEffect(
+    (runIdle) => {
+      const scene = sceneRef.current;
+      if (prefersReducedMotion || !scene) return;
+
+      let instance: Parallax | undefined;
+      runIdle(() => {
+        instance = new Parallax(scene, {
+          relativeInput: true,
+          clipRelativeInput: true,
+          calibrateX: false, // calibration re-zeros input; meant for gyro, not mouse
+          calibrateY: false,
+          invertX: false, // lib default is opposite-cursor; the bg follows the cursor
+          invertY: false,
+          limitX: LIMIT,
+          limitY: LIMIT,
+          frictionX: 0.08,
+          frictionY: 0.08,
+          scalarX: 1,
+          scalarY: 1,
+        });
+      });
+
+      return () => instance?.destroy();
+    },
+    [sceneRef],
+  );
+
   useEffect(() => {
     const root = rootRef.current;
-    const scene = sceneRef.current;
-    if (prefersReducedMotion || !root || !scene) return;
-
-    const instance = new Parallax(scene, {
-      relativeInput: true,
-      clipRelativeInput: true,
-      calibrateX: false, // calibration re-zeros input; meant for gyro, not mouse
-      calibrateY: false,
-      invertX: false, // lib default is opposite-cursor; the bg follows the cursor
-      invertY: false,
-      limitX: LIMIT,
-      limitY: LIMIT,
-      frictionX: 0.08,
-      frictionY: 0.08,
-      scalarX: 1,
-      scalarY: 1,
-    });
+    if (!root) return;
 
     const onScroll = () => {
       root.style.setProperty(
@@ -42,11 +57,8 @@ function useParallaxBg(
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      instance.destroy();
-    };
-  }, [rootRef, sceneRef]);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [rootRef]);
 }
 
 export function Background() {

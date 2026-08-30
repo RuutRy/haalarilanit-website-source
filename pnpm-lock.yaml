@@ -29,6 +29,9 @@ importers:
       react-dom:
         specifier: ^19.2.8
         version: 19.2.8(react@19.2.8)
+      react-timing-hooks:
+        specifier: ^5.2.0
+        version: 5.2.0(react@19.2.8)
       shadcn:
         specifier: ^4.18.0
         version: 4.18.0(typescript@7.0.2)
@@ -2881,6 +2884,11 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  react-timing-hooks@5.2.0:
+    resolution: {integrity: sha512-TV3l9xcwKrUKMg+fahcajYmvRNfXLw11x/D6Y5dYrWwtRxXNtprs8ef2XvrqsZnf2LIFYmFBpv3k8NJsWzgsrw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   react@19.2.8:
     resolution: {integrity: sha512-PWaYA1L/q9u2u7xYQi+Y3L3Yfnie7XyLeaJICV1MGD6LprsBxcAqGjYyr0eY3p+QdsA+x/Irkt4Qif8D63+Sbw==}
@@ -5823,6 +5831,10 @@ snapshots:
       tslib: 2.8.1
     optionalDependencies:
       '@types/react': 19.2.18
+
+  react-timing-hooks@5.2.0(react@19.2.8):
+    dependencies:
+      react: 19.2.8
 
   react@19.2.8: {}
 

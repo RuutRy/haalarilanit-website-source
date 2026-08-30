@@ -6,7 +6,7 @@ import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import { faviconPlugin } from "./vite-plugin-favicon.ts";
 
 export default defineConfig({
-  plugins: [tanstackRouter(), react(), tailwindcss(), faviconPlugin()],
+  plugins: [tanstackRouter({ autoCodeSplitting: true }), react(), tailwindcss(), faviconPlugin()],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),

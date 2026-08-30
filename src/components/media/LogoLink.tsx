@@ -8,7 +8,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { MonoImage } from "./MonoImage";
 
 const linkClass =
-  "inline-flex items-center rounded-xl p-2 transition-transform hover:-translate-y-1 hover:bg-foreground/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
+  "group inline-flex items-center rounded-xl p-2 transition-transform hover:-translate-y-1 hover:bg-foreground/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
 
 type LogoLinkProps = {
   href: string;
@@ -47,7 +47,7 @@ export function LogoLink({
             <MonoImage
               src={src}
               alt={name}
-              className={cn("transition-colors hover:bg-primary", imgClassName)}
+              className={cn("transition-colors group-hover:bg-primary", imgClassName)}
             />
           ) : (
             <img

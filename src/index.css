@@ -1,0 +1,184 @@
+:root {
+  --background: #001c41;
+  --foreground: #eaf3ff;
+  --primary: #fc7f02;
+  --primary-foreground: var(--background);
+  --primary-hover: #cb6501;
+  --muted: #191b1c;
+  --muted-foreground: var(--foreground);
+  --secondary: var(--muted);
+  --secondary-foreground: var(--muted-foreground);
+  --accent: var(--primary);
+  --accent-foreground: var(--primary-foreground);
+  --card: var(--muted);
+  --card-foreground: var(--muted-foreground);
+  --popover: var(--muted);
+  --popover-foreground: var(--muted-foreground);
+  --border: color-mix(in srgb, var(--foreground) 20%, transparent);
+  --input: color-mix(in srgb, var(--foreground) 20%, transparent);
+  --ring: var(--primary);
+  --destructive: oklch(0.577 0.245 27.325);
+  --radius: 0.625rem;
+
+  --theme-bg: #001c41;
+  --theme-dot: #027ffc;
+  --panel-tint: color-mix(in srgb, var(--theme-bg) 50%, transparent);
+
+  --parallax-over: 200px;
+  --bloom-accent: color-mix(in srgb, var(--primary) 35%, transparent);
+  --bloom-accent-strong: color-mix(in srgb, var(--primary) 50%, transparent);
+  --font-display: "Groteskia", sans-serif;
+}
+
+@font-face {
+  font-family: "Groteskia";
+  src:
+    url("/fonts/groteskia/GROTESKIA.woff2") format("woff2"),
+    url("/fonts/groteskia/GROTESKIA.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Wallpaper: parallax-js transforms .bg-wall (its first scene child is forced
+   position:relative, so size via width/height + negative margins). Scroll drift
+   sits on .drift - the lib overwrites the layer transform. Root clips the box. */
+.drift {
+  position: absolute;
+  inset: 0;
+  transform: translateY(var(--scroll-drift, 0px));
+  will-change: transform;
+}
+
+.bg-wall {
+  width: calc(100% + 2 * var(--parallax-over));
+  height: calc(100% + 2 * var(--parallax-over));
+  margin: calc(-1 * var(--parallax-over));
+  /* Dims the artwork toward the page background. */
+  filter: opacity(50%);
+  will-change: transform;
+}
+
+/* Inline artwork fills the wall box; slice = cover (crop, not letterbox).
+   Colors via --theme-* tokens. */
+.bg-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drift,
+  .bg-wall {
+    transform: none !important;
+    will-change: auto;
+  }
+  .shine-btn::after {
+    animation: none;
+  }
+}
+
+/* Flip clock: sizing only (colors via the --countdown-* tokens below) */
+.haala-flip-clock .fcc__digit_block > div:nth-child(1),
+.haala-flip-clock .fcc__digit_block > div:nth-child(2) {
+  transform: translateZ(0);
+}
+/* Flip clock: three tokens per phase (card, text, separators). .concluded -
+   the event has started, clock counts to LAN OFF - rescopes them. FlipClock.tsx
+   consumes the vars. */
+.haala-flip-clock {
+  --countdown-card-bg: var(--foreground);
+  --countdown-card-text: var(--background);
+  --countdown-separator: var(--primary);
+}
+.haala-flip-clock.concluded {
+  --countdown-card-bg: var(--muted);
+  --countdown-card-text: var(--accent);
+  --countdown-separator: var(--foreground);
+}
+@media (max-width: 640px) {
+  .haala-flip-clock {
+    --fcc-digit-block-width: 30px;
+    --fcc-digit-block-height: 52px;
+    --fcc-digit-font-size: 32px;
+    --fcc-label-font-size: 11px;
+    --fcc-spacing: 4px;
+    --fcc-digit-block-spacing: 3px;
+  }
+}
+
+/* Shiny ticket CTA */
+.shine-btn {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+  box-shadow: 0 4px 20px var(--bloom-accent);
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.shine-btn:hover {
+  filter: brightness(1.2);
+  box-shadow: 0 6px 24px var(--bloom-accent-strong);
+}
+.shine-btn::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255 255 255 / 0.35), transparent);
+  transform: skewX(-20deg);
+  animation: shine-sweep 3.2s ease-in-out infinite;
+}
+@keyframes shine-sweep {
+  0% {
+    left: -60%;
+  }
+  60%,
+  100% {
+    left: 130%;
+  }
+}
+
+/* Solid-tint panels: no backdrop-filter, so the parallax bg doesn't repaint them */
+.bg-panel,
+.bg-inline {
+  position: relative;
+  background: var(--panel-tint);
+}
+
+/* Mono artwork tinted via CSS (see MonoImage.tsx): the image masks the box,
+   the background is the tint. 100%/100% stretches the drawing to the box's
+   exact size. */
+@layer components {
+  .mono-image {
+    display: block;
+    background-color: var(--foreground);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    mask: var(--mono-img) center / 100% 100% no-repeat;
+  }
+}
+.bg-inline {
+  display: inline-block;
+  padding: 0.15em 0.55em;
+  border-radius: 0.6em;
+}
+.bg-panel {
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-lg);
+}
+
+/* Root reset (bg/color/font-family are owned by @layer base via semantic tokens;
+   fluid body font-size is a brand value with no semantic token, kept here.) */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-size: var(--text-fluid);
+}

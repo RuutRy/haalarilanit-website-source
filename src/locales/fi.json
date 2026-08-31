@@ -1,0 +1,151 @@
+{
+  "translation_button": {
+    "title": "suomeksi"
+  },
+  "nav": {
+    "main": "Etusivu",
+    "rules": "Säännöt",
+    "guidance": "Opasteet",
+    "tournaments": "Turnaukset",
+    "contacts": "Yhteystiedot"
+  },
+  "main": {
+    "time": {
+      "where": "Paikka: LAB-kampuksen liikuntasali",
+      "d": "päivää",
+      "h": "tuntia",
+      "m": "minuuttia",
+      "s": "sekuntia",
+      "started": "Tapahtuma on alkanut!",
+      "endsin": "Lanit OFF",
+      "at_start": "klo",
+      "at_end": "klo"
+    },
+    "purchase_button": "Osta lippu",
+    "ticket_not_yet_available": "Lipunmyynti alkaa pian!",
+    "header": "Mistä on kyse?",
+    "main_1": "Haalarilanit on suuri lanitapahtuma, jota on järjestetty LAB-kampuksen liikuntasalissa Lappeenrannassa.",
+    "main_2": "Luvassa on syksyn eeppisin pelihetki, kun lähes kaksisataa pelaajaa kerääntyy yhteen saliin ja nauttii yhdessä pelaamisen ilosta. Olitpa sitten intohimoinen e-urheilija tai rento viikonlopun pelaaja, peliseuraa riittää varmasti.",
+    "main_3": "Laneilla järjestetään lukuisia turnauksia, joissa pelaajat pääsevät tavoittelemaan ykköspaikkaa - Onko CS2 sinun lajisi, vai loistatko NHL-jäällä? Entä oletko ralliratojen kuningas ajosimulaattorilla? Nyt on sinun mahdollisuutesi näyttää taitosi niin järjestetyissä turnauksissa kuin ystäviesi kesken kisatessa!",
+    "main_4": {
+      "text": "Tuo oma koneesi, liitä se kiinni verkkoon ja oletkin valmis kokemaan mukaansatempaavia pelikokemuksia! Lisäksi paikan päällä on kioski, josta voit hankkia pientä juotavaa ja purtavaa nautittavaksi kesken pelihetkien ",
+      "anchor": "kts. Tapahtumapaikka"
+    },
+    "main_5": {
+      "text": "Tapahtuma-alue on päihteetön eikä alueelle saa tuoda alkoholijuomia. Voit osallistua laneille matalalla kynnyksellä ja ilman mitään aikaisempaa kokemusta! Mikäli sinulla herää kysymyksiä Haalarilaneihin liittyen, ota yhteyttä ",
+      "anchor": "pääjärjestäjiin"
+    },
+    "photos": {
+      "header": "Kuvapankki",
+      "text": "Alhaalla on linkki kuvapankkiin. Kuvat on otettu tapahtumapaikalta."
+    }
+  },
+  "rules": {
+    "header": "Säännöt",
+    "dont_bring": {
+      "header": "Tapahtuma-alueelle ei saa tuoda",
+      "category_1": "Toisten ihmisten vahingoittamiseen soveltuvia välineitä",
+      "category_2": "Alkoholia tai huumausaineita",
+      "category_3": "Räjähteitä tai muita vaarallisia aineita"
+    },
+    "substances": {
+      "header": "Alkoholi ja tupakointi",
+      "point_1": "Alkoholin tai muiden päihdeaineiden nauttiminen ja hallussapito tapahtuma-alueella on ehdottomasti kiellettyä. Alkoholituotteet ja muut päihteet tulee jättää tapahtuman sisäänkäynnin lähelle niille erikseen osoitettuun paikkaan.",
+      "point_2": "Tupakoiminen ja sähkötupakointi on sallittua vain sille merkityllä alueella. Paikalla on tumppeja varten astia ja sitä tulee myös käyttää."
+    },
+    "power": {
+      "header": "Sähköverkko",
+      "point_1": "Kodinkoneiden ja muiden suuritehoisten sähkölaitteiden kytkeminen konepaikalle on ehdottomasti kiellettyä. Jokaiselle konepaikalle on varattu yksi sähköpistoke, josta riittää kullekin konepaikalle 350 W sähköteho.",
+      "point_2": "Tapahtuma-alueelta löytyy yleiseen käyttöön tarkoitettu mikro ja vedenkeitin. Mikäli tietokoneesi tai muut sähkölaitteesi tarvitsevat yhteensä enemmän kuin 350 W sähkötehoa, ole ennakkoon yhteydessä järjestäjiin."
+    },
+    "damages": {
+      "header": "Tapahtuma-alueen vauriot",
+      "text": "Tapahtuma-alueiden vaurioittaminen ja sotkeminen on ehdottomasti kiellettyä. Esimerkiksi tarrojen liimailu seiniin. Vahingonaiheuttaja on aina korvausvelvollinen."
+    },
+    "network": {
+      "header": "Verkko",
+      "beginning": "Tapahtuma-alueen verkossa on kiellettyä:",
+      "category_1": "DHCP-palvelimet",
+      "category_2": "Verkkoliikenteen häiritseminen",
+      "category_3": "Muun liikenteen seuraaminen, kuin sen, jonka pääte- tai lähtöpiste, on oma tietokone",
+      "category_4": "Ylimääräisten laitteiden, kuten kytkinten tai palomuurin kytkeminen",
+      "category_5": "Tekijänoikeudella suojatun tai Suomen lain vastaisen materiaalin haku tai levitys"
+    },
+    "sleep": {
+      "header": "Nukkuminen",
+      "text": "Turvallisuussyistä nukkuminen on sallittua ainoastaan omalla konepaikalla pystyasennossa (esimerkiksi pää konepaikalla). Nukkuminen lattialla tai muualla tapahtuma-alueella ei ole sallittua."
+    },
+    "other": {
+      "header": "Muuta",
+      "point_1": "Kaikki Suomen lait ovat voimassa tapahtumassa",
+      "point_2": "Järjestäjät eivät vastaa mahdollisista laiterikoista",
+      "point_3": "Järjestäjillä on oikeus poistaa henkilö tapahtumapaikalta. Lipun hintaa ei palauteta. Erityistapauksissa on mahdollista, että henkilö poistetaan välittömästi paikalta",
+      "point_4": "Tekijä on aina vastuussa aiheuttamistaan vahingoista ja mahdollisista korvauksista"
+    }
+  },
+  "guidance": {
+    "header": "Opasteet",
+    "paragraph_1": "Haalarilaneille on 24h sisäänkäynti, joka tapahtuu parkkipaikan puoleisista ovista. Opastekarttaan on merkitty ovet, mistä tulee kulkea sekä tapahtuma-alueelle, että mm. vessoihin.",
+    "paragraph_2": "Tapahtuman ajan LAB-ammattikorkeakoulun parkkipaikat ovat vapaita pysäköinnille, eli niissä ei ole tällöin pysäköinninvalvontaa. Sisäänkäynti on esteetön.",
+    "floorplan_alt": "Tapahtumapaikan pohjakartta"
+  },
+  "tournaments": {
+    "header": "Turnaukset",
+    "text": "Vuoden 2026 turnausten aikataulut julkaistaan myöhemmin.",
+    "description": "Haalarilaneilla järjestetään puolivakavia turnauksia. Tapahtuma-alueelle on ilmainen sisäänpääsy kaikille ja turnauksia voi tulla katsomaan ja kannustamaan paikan päälle!",
+    "date": {
+      "first": "Torstai 19.11.",
+      "second": "Perjantai 20.11.",
+      "third": "Lauantai 21.11."
+    },
+    "links": {
+      "apply": "Ilmoittaudu mukaan",
+      "here": "TÄSTÄ!"
+    }
+  },
+  "contacts": {
+    "header": "Yhteystiedot",
+    "placeholder": "Yhteystiedot päivitetään myöhemmin.",
+    "contact_1": {
+      "name": "Placeholder",
+      "responsibilities": "Markkinointi, Live, Turnaukset"
+    },
+    "contact_2": {
+      "name": "Placeholder2",
+      "responsibilities": "Infra, Logistiikka"
+    },
+    "contact_3": {
+      "name": "Placeholder3",
+      "responsibilities": "Kioski, Turvallisuus"
+    }
+  },
+  "equipment": {
+    "header": "Pakkauslista",
+    "descriptor": "Pakkaa mukaan tarvitsemasi laitteet, ottaen huomioon konepaikan rajoitteet",
+    "equipment_1": "Tietokone/Konsoli",
+    "equipment_2": "Näyttö",
+    "equipment_3": "Näppäimistö/Ohjain",
+    "equipment_4": "Hiiri & Hiirimatto",
+    "equipment_5": "Kuulokkeet",
+    "equipment_6": "Jatkojohto",
+    "equipment_7": "Verkkokaapeli (10m)",
+    "equipment_8": "Puhelimen / Kuulokkeiden latausjohto",
+    "equipment_9": "Taskurahaa / Mobilepay"
+  },
+  "safer_space": {
+    "header": "Turvallisemman tilan periaatteet",
+    "click": "Klikkaa ja lue turvallisemman tilan periaatteet"
+  },
+  "event_end": {
+    "message": "Tapahtuma on päättynyt. Nähdään ensi vuonna!"
+  },
+  "content_unavailable": "Sisältöä ei löytynyt.",
+  "footer": {
+    "copyright": "Copyright (c) {{year}} Ruut ry. Kaikki oikeudet pidätetään."
+  },
+  "sponsors": "Yhteistyökumppanit",
+  "a11y": {
+    "opens_new_tab": "{{name}} - avautuu uuteen välilehteen",
+    "logo_alt": "Haalarilanit"
+  }
+}

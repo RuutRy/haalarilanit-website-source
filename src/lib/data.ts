@@ -1,0 +1,63 @@
+import type { Contact, Organizer, PhotoEntry, Sponsor } from "./types";
+
+export const event = {
+  start: new Date(2026, 10, 19, 15),
+  end: new Date(2026, 10, 22, 12),
+};
+
+export const contacts: Contact[] = [
+  {
+    name: "Noora Parkko",
+    rolesFi: ["Infra", "Logistiikka"],
+    rolesEn: ["Infra", "Logistics"],
+    email: "noora.parkko@ruut.me",
+    telegram: "saaranooraniilo",
+  },
+  {
+    name: "Jesse Mäkelä",
+    rolesFi: ["Markkinointi", "Live", "Turnaukset"],
+    rolesEn: ["Marketing", "Live", "Tournaments"],
+    email: "jesse.makela@ruut.me",
+    telegram: "MakelaJ",
+  },
+  {
+    name: "Lauri Sorsa",
+    rolesFi: ["Kioski", "Turvallisuus"],
+    rolesEn: ["Kiosk", "Safety"],
+    email: "lauri.sorsa@cluster.fi",
+    telegram: "LauriSorsa",
+  },
+];
+
+// Logo files go in public/sponsors/.
+export const sponsors: Sponsor[] = [
+  // { name: "Ruut ry", logo: "/assets/ruut.svg", url: "https://ruut.me" },
+  // { name: "Cluster ry", logo: "/assets/cluster.svg", url: "https://cluster.fi" },
+];
+
+// Every link and configurable URI lives here
+export const links = {
+  ticket: "",
+  saferSpace:
+    "https://ltky.fi/wp-content/uploads/2026/08/LTKY-turvallisemman-tilan-periaatteet.pdf",
+  photos: [
+    {
+      label: "2024",
+      url: "https://cluster.kuvat.fi/kuvat/2024_014+-+Haalarilanit",
+    },
+    {
+      label: "2025",
+      url: "https://cluster.kuvat.fi/kuvat/2025_023+-+Haalarilanit",
+    },
+  ] satisfies PhotoEntry[],
+  // Rendered dynamically in the footer - add an entry and a logo shows
+  // up automatically.
+  organizers: [
+    { name: "Ruut ry", logo: "/assets/ruut.svg", url: "https://ruut.me" },
+    {
+      name: "Cluster ry",
+      logo: "/assets/cluster.svg",
+      url: "https://cluster.fi",
+    },
+  ] satisfies Organizer[],
+};

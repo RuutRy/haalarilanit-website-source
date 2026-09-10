@@ -1,52 +1,12 @@
-// vite-plugin-favicon.ts
-//
-// Generates /assets/favicon.svg from the :root tokens in src/index.css, so
-// the icon rethemes from the same source of truth as the site. Dev: a
-// middleware serves it. Build: emitted as a real file.
-
-import type { Plugin } from "vite";
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
-
-const ROUTE = "/assets/favicon.svg";
-const CSS_FILE = "src/index.css";
-const CORNER_RADIUS = 56;
-
-const TOKENS = {
-  logoFill: "foreground", // the logo itself, and its outer glow color
-  fill: "theme-bg",     // solid base color sitting behind the gradient
-  gradStart: "theme-dot",   // gradient overlay, top-left stop
-  gradEnd: "theme-bg", // gradient overlay, bottom-right stop
-} as const;
-
-const GRADIENT_OVERLAY_OPACITY = 0.43;
-
-const GLOW_OPACITY = 0.6;
-const GLOW_BLUR_STD_DEV = 32;
-
-// Resolves one level of var()
-function token(css: string, name: string): string {
-  const raw = css.match(new RegExp(`--${name}:\\s*([^;]+)`))?.[1].trim();
-  if (!raw) throw new Error(`favicon plugin: --${name} not found in ${CSS_FILE}`);
-  const ref = raw.match(/^var\(--([\w-]+)\)$/);
-  return ref ? token(css, ref[1]) : raw;
-}
-
-function faviconSvg(css: string): string {
-  const logoFill = token(css, TOKENS.logoFill);
-  const fill = token(css, TOKENS.fill);
-  const gradStart = token(css, TOKENS.gradStart);
-  const gradEnd = token(css, TOKENS.gradEnd);
-
-  return `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="${gradStart}"/>
-      <stop offset="100%" stop-color="${gradEnd}"/>
+      <stop offset="0%" stop-color="{{var:theme-dot}}"/>
+      <stop offset="100%" stop-color="{{var:theme-bg}}"/>
     </linearGradient>
     <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="${GLOW_BLUR_STD_DEV}" result="blur"/>
-      <feFlood flood-color="${logoFill}" flood-opacity="${GLOW_OPACITY}" result="glowColor"/>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="32" result="blur"/>
+      <feFlood flood-color="{{var:favicon-foreground}}" flood-opacity="0.6" result="glowColor"/>
       <feComposite in="glowColor" in2="blur" operator="in" result="glow"/>
       <feMerge>
         <feMergeNode in="glow"/>
@@ -56,14 +16,14 @@ function faviconSvg(css: string): string {
   </defs>
 
   <!-- Rectangle: solid base fill -->
-  <rect x="0" y="0" width="512" height="512" rx="${CORNER_RADIUS}" ry="${CORNER_RADIUS}" fill="${fill}"/>
+  <rect x="0" y="0" width="512" height="512" rx="56" ry="56" fill="{{var:theme-bg}}"/>
 
   <!-- Gradient Fill: clipped to the same shape, Normal blend-->
-  <rect x="0" y="0" width="512" height="512" rx="${CORNER_RADIUS}" ry="${CORNER_RADIUS}" fill="url(#bgGrad)" opacity="${GRADIENT_OVERLAY_OPACITY}"/>
+  <rect x="0" y="0" width="512" height="512" rx="56" ry="56" fill="url(#bgGrad)" opacity="0.43"/>
 
   <!-- Logo itself -->
   <g transform="translate(107,20)" filter="url(#glow)">
-    <g transform="translate(-1,472) scale(0.1,-0.1)" fill="${logoFill}" stroke="none">
+    <g transform="translate(-1,472) scale(0.1,-0.1)" fill="{{var:favicon-foreground}}" stroke="none">
 <path d="M1147 4702 c-10 -10 -17 -23 -17 -28 0 -4 28 -37 62 -71 54 -55 61
 -66 50 -81 -28 -39 -25 -44 76 -145 l100 -102 -16 -33 c-16 -32 -16 -35 3 -48
 18 -13 25 -9 87 53 37 37 68 72 68 78 0 10 -381 395 -391 395 -3 0 -13 -8 -22
@@ -116,33 +76,4 @@ l28 57 0 708 c0 817 12 737 -108 737 -119 0 -107 82 -107 -714 0 -647 -1 -694
 65 71 65 78 0 21 -100 181 -124 198 -11 8 -27 14 -36 14 -8 0 -50 -35 -93 -78z"/>
     </g>
   </g>
-</svg>`;
-}
-
-export function faviconPlugin(): Plugin {
-  let svg = "";
-
-  return {
-    name: "favicon-route",
-
-    configResolved(config) {
-      svg = faviconSvg(readFileSync(resolve(config.root, CSS_FILE), "utf8"));
-    },
-
-    configureServer(server) {
-      server.middlewares.use(ROUTE, (_req, res) => {
-        res.setHeader("Content-Type", "image/svg+xml");
-        res.setHeader("Cache-Control", "no-cache");
-        res.end(svg);
-      });
-    },
-
-    generateBundle() {
-      this.emitFile({
-        type: "asset",
-        fileName: ROUTE.slice(1), // assets/favicon.svg
-        source: svg,
-      });
-    },
-  };
-}
+</svg>

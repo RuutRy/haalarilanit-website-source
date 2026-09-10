@@ -60,17 +60,18 @@
   width: calc(100% + 2 * var(--parallax-over));
   height: calc(100% + 2 * var(--parallax-over));
   margin: calc(-1 * var(--parallax-over));
-  /* Dims the artwork toward the page background. */
-  filter: opacity(50%);
   will-change: transform;
 }
 
-/* Inline artwork fills the wall box; slice = cover (crop, not letterbox).
-   Colors via --theme-* tokens. */
+/* Background artwork: generated at build time by vite-plugin-theme-assets from
+   src/assets/templates/background.svg. Fixed pixel size keeps the dot size
+   constant across viewports; 2960px covers up to 2560px-wide windows incl.
+   the 400px parallax overdraw. */
 .bg-art {
   display: block;
   width: 100%;
   height: 100%;
+  background: url("/assets/background.svg") center / 2960px auto no-repeat;
 }
 
 @media (prefers-reduced-motion: reduce) {

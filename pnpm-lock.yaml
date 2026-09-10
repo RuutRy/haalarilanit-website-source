@@ -81,6 +81,9 @@ importers:
       lefthook:
         specifier: ^2.1.10
         version: 2.1.10
+      lightningcss:
+        specifier: ^1.33.0
+        version: 1.33.0
       oxfmt:
         specifier: ^0.63.0
         version: 0.63.0

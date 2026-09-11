@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
 
 import { Link as RouterLink } from "@tanstack/react-router";
+import { ExternalLink } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -19,7 +20,7 @@ type TextLinkProps = {
 
 // A text link in the accent color. `to` for internal routes, `href` for
 // external URLs; className extends (e.g. "bg-inline" for the standalone
-// highlight style).
+// highlight style). External links get the arrow so they read as off-site.
 export function TextLink({ text, to, href, className }: TextLinkProps) {
   const cls = cn(linkCls, className);
   if (to) {
@@ -31,6 +32,10 @@ export function TextLink({ text, to, href, className }: TextLinkProps) {
   }
   return (
     <a href={href} target="_blank" rel="noopener" className={cls}>
+      <ExternalLink
+        aria-hidden
+        className="mr-[0.15em] inline-block size-[0.85em] align-[-0.05em] opacity-80"
+      />
       {text}
     </a>
   );

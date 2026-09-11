@@ -53,10 +53,16 @@ export const links = {
   // Rendered dynamically in the footer - add an entry and a logo shows
   // up automatically.
   organizers: [
-    { name: "Ruut ry", logo: "/assets/ruut.svg", url: "https://ruut.me" },
+    {
+      name: "Ruut ry",
+      logo: "/assets/ruut.svg",
+      logoWhite: "/assets/ruut-white.svg",
+      url: "https://ruut.me",
+    },
     {
       name: "Cluster ry",
       logo: "/assets/cluster.svg",
+      logoWhite: "/assets/cluster-white.svg",
       url: "https://cluster.fi",
     },
   ] satisfies Organizer[],

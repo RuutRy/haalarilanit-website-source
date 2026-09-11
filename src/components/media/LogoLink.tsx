@@ -14,6 +14,9 @@ type LogoLinkProps = {
   href: string;
   name: string;
   src: string;
+  // White version of src for the tinted-at-rest look; stacked so the
+  // cross-fade lines up.
+  whiteSrc?: string;
   linkClassName?: string;
   imgClassName?: string;
   imgProps?: ImgHTMLAttributes<HTMLImageElement>;
@@ -27,6 +30,7 @@ export function LogoLink({
   href,
   name,
   src,
+  whiteSrc,
   linkClassName,
   imgClassName,
   imgProps,
@@ -44,11 +48,30 @@ export function LogoLink({
           className={linkClassName ?? linkClass}
         >
           {tinted ? (
-            <MonoImage
-              src={src}
-              alt={name}
-              className={cn("transition-colors group-hover:bg-primary", imgClassName)}
-            />
+            whiteSrc ? (
+              // Both layers share the box, so the cross-fade lines up.
+              <span role="img" aria-label={name} className={cn("relative block", imgClassName)}>
+                <MonoImage
+                  src={whiteSrc}
+                  alt=""
+                  className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-0"
+                />
+                <img
+                  src={src}
+                  alt=""
+                  aria-hidden
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                />
+              </span>
+            ) : (
+              <MonoImage
+                src={src}
+                alt={name}
+                className={cn("transition-colors group-hover:bg-primary", imgClassName)}
+              />
+            )
           ) : (
             <img
               src={src}

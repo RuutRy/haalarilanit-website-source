@@ -14,7 +14,10 @@ export type Sponsor = {
 
 export type Organizer = {
   name: string;
+  // Shown on hover
   logo: string;
+  // Shown at rest, tinted via the mono mask
+  logoWhite: string;
   url: string;
 };
 

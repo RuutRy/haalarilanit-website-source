@@ -1,9 +1,9 @@
 :root {
-  --background: #001c41;
-  --foreground: #eaf3ff;
-  --primary: #fc7f02;
+  --background: #09002e;
+  --foreground: #ffeec8;
+  --primary: #e38717;
   --primary-foreground: var(--background);
-  --primary-hover: #cb6501;
+  --primary-hover: oklab(from var(--primary) calc(l + 0.1) a b);
   --muted: #191b1c;
   --muted-foreground: var(--foreground);
   --secondary: var(--muted);
@@ -20,9 +20,15 @@
   --destructive: oklch(0.577 0.245 27.325);
   --radius: 0.625rem;
 
-  --theme-bg: #001c41;
-  --theme-dot: #027ffc;
-  --panel-tint: color-mix(in srgb, var(--theme-bg) 50%, transparent);
+  --theme-bg: #09002e;
+  --theme-dot: #e38717;
+  --theme-vignette: #1f1728;
+  --favicon-foreground: #ffeec8;
+  --panel-tint: color-mix(
+    in srgb,
+    color-mix(in srgb, var(--theme-vignette) 20%, var(--theme-bg)) 60%,
+    transparent
+  );
 
   --parallax-over: 200px;
   --bloom-accent: color-mix(in srgb, var(--primary) 35%, transparent);
@@ -54,17 +60,18 @@
   width: calc(100% + 2 * var(--parallax-over));
   height: calc(100% + 2 * var(--parallax-over));
   margin: calc(-1 * var(--parallax-over));
-  /* Dims the artwork toward the page background. */
-  filter: opacity(50%);
   will-change: transform;
 }
 
-/* Inline artwork fills the wall box; slice = cover (crop, not letterbox).
-   Colors via --theme-* tokens. */
+/* Background artwork: generated at build time by vite-plugin-theme-assets from
+   src/assets/templates/background.svg. Fixed pixel size keeps the dot size
+   constant across viewports; 2960px covers up to 2560px-wide windows incl.
+   the 400px parallax overdraw. */
 .bg-art {
   display: block;
   width: 100%;
   height: 100%;
+  background: url("/assets/background.svg") center / 2960px auto no-repeat;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -2,8 +2,6 @@ import Parallax from "parallax-js";
 import { useEffect, useRef, type RefObject } from "react";
 import { useIdleCallbackEffect } from "react-timing-hooks";
 
-import { BackgroundImage } from "./BackgroundImage";
-
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const LIMIT = 100; // px, max layer travel (the lib clamps final px after scalar)
@@ -70,7 +68,7 @@ export function Background() {
       <div className="drift">
         <div ref={sceneRef} className="parallax-scene absolute inset-0">
           <div className="bg-wall" data-depth="1">
-            <BackgroundImage />
+            <div className="bg-art" />
           </div>
         </div>
       </div>

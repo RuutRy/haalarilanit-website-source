@@ -17,6 +17,7 @@ export function Footer() {
               href={org.url}
               name={org.name}
               src={org.logo}
+              whiteSrc={org.logoWhite}
               tinted
               imgClassName="w-16 aspect-square"
             />

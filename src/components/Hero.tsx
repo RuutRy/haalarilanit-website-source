@@ -128,7 +128,7 @@ function TicketButton({ label }: { label: string }) {
     return (
       <Button
         type="submit"
-        className="shine-btn h-auto rounded-full px-10 py-3 text-lg text-foreground transition-transform hover:-translate-y-0.5"
+        className="shine-btn h-auto rounded-xl px-10 py-4.5 text-2xl text-foreground transition-transform hover:-translate-y-0.5 sm:px-18 sm:py-6 sm:text-3xl"
       >
         {label}
       </Button>
@@ -143,7 +143,7 @@ function TicketButton({ label }: { label: string }) {
         type="submit"
         disabled
         variant="ghost"
-        className="h-auto rounded-full bg-muted px-10 py-3 text-lg text-foreground line-through disabled:opacity-100"
+        className="h-auto rounded-xl bg-muted px-8 py-4 text-xl text-foreground line-through disabled:opacity-100 sm:px-10"
       >
         {label}
       </Button>

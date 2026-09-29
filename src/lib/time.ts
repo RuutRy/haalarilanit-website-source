@@ -27,3 +27,11 @@ export function formatEventTime(lang: string, atStart: string, atEnd: string): s
 
   return `${startStr} - ${endStr}`;
 }
+
+export function formatSingleDate(date: Date, atWord: string): string {
+  const day = pad(date.getDate());
+  const month = pad(date.getMonth() + 1);
+  const year = date.getFullYear();
+  const timeStr = `${pad(date.getHours())}:${pad(date.getMinutes())}`;
+  return `${day}.${month}.${year} ${atWord} ${timeStr}`;
+}

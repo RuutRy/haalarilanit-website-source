@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { event, links } from "../lib/data";
 import i18n from "../lib/i18n";
-import { formatEventTime } from "../lib/time";
+import { formatEventTime, formatSingleDate } from "../lib/time";
 import { FlipClock } from "./FlipClock";
 import { Logo } from "./media/Logo";
 import { Button } from "./ui/button";
@@ -104,14 +104,50 @@ export function Hero() {
       {/* Purchase stays visible until the event has ended */}
       {!concluded && links.ticket && (
         <form action={links.ticket}>
-          <Button
-            type="submit"
-            className="shine-btn h-auto rounded-full px-10 py-3 text-lg text-foreground transition-transform hover:-translate-y-0.5"
-          >
-            {t("main.purchase_button")}
-          </Button>
+          <TicketButton label={t("main.purchase_button")} />
         </form>
       )}
     </>
+  );
+}
+
+function TicketButton({ label }: { label: string }) {
+  const { t } = useTranslation();
+  const [now, setNow] = useState<number | null>(null);
+
+  const open = now !== null && now >= event.ticketSales.getTime();
+
+  useEffect(() => {
+    setNow(Date.now());
+    if (open) return;
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, [open]);
+
+  if (open) {
+    return (
+      <Button
+        type="submit"
+        className="shine-btn h-auto rounded-full px-10 py-3 text-lg text-foreground transition-transform hover:-translate-y-0.5"
+      >
+        {label}
+      </Button>
+    );
+  }
+
+  const date = formatSingleDate(event.ticketSales, t("main.time.at_start"));
+
+  return (
+    <div className="flex flex-col items-center gap-2">
+      <Button
+        type="submit"
+        disabled
+        variant="ghost"
+        className="h-auto rounded-full bg-muted px-10 py-3 text-lg text-foreground line-through disabled:opacity-100"
+      >
+        {label}
+      </Button>
+      <p className="bg-inline text-h3-fluid text-foreground">{t("main.ticket_opens", { date })}</p>
+    </div>
   );
 }

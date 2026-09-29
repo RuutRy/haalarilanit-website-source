@@ -3,6 +3,7 @@ import type { Contact, Organizer, PhotoEntry, Sponsor } from "./types";
 export const event = {
   start: new Date(2026, 10, 19, 15),
   end: new Date(2026, 10, 22, 12),
+  ticketSales: new Date(2026, 9, 3, 12),
 };
 
 export const contacts: Contact[] = [
@@ -37,7 +38,7 @@ export const sponsors: Sponsor[] = [
 
 // Every link and configurable URI lives here
 export const links = {
-  ticket: "",
+  ticket: "https://kauppa.haalarilan.it/product/807d143f-c490-45a0-8923-d22a1ba9d215",
   saferSpace:
     "https://ltky.fi/wp-content/uploads/2026/08/LTKY-turvallisemman-tilan-periaatteet.pdf",
   photos: [

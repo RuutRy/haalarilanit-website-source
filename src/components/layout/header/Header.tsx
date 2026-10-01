@@ -38,7 +38,7 @@ export function Header() {
   return (
     <header ref={headerRef} className="sticky top-0 z-50 bg-(--panel-tint) py-2 backdrop-blur-lg">
       {/* Geometry matches main and the footer so content edges align. */}
-      <div className="mx-auto grid max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-4 px-4 sm:px-8">
+      <div className="mx-auto grid max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-2 px-4 fit:gap-4 sm:px-8">
         <Link
           to="/$lang"
           params={{ lang }}
@@ -52,7 +52,8 @@ export function Header() {
         </Link>
         <MobileMenu />
         <HeaderNav />
-        <div className="col-start-3 hidden justify-self-end md:block">
+        {/* Compact shrinks the pill, fit restores it. */}
+        <div className="col-start-3 hidden justify-self-end compact:block compact:[&_a]:w-7 compact:[&_a]:px-1 compact:[&_a]:text-xs fit:[&_a]:w-10 fit:[&_a]:px-2 fit:[&_a]:text-sm">
           <LangToggle />
         </div>
       </div>

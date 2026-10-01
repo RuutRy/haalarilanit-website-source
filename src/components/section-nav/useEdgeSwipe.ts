@@ -27,7 +27,7 @@ export function resolveSwipe(
   return null;
 }
 
-// Edge-swipe quick-jump below 2xl: @use-gesture/react supplies the
+// Edge-swipe quick-jump on touch: @use-gesture/react supplies the
 // window-level pointer plumbing (passive: false so the drag can claim the
 // gesture; vertical scrolling stays native via touch-action in index.css).
 // The binding mounts once, so enabled/onOpen ride refs.

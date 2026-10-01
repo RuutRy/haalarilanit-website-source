@@ -28,7 +28,7 @@ describe("resolveLangTarget", () => {
   });
 
   it("falls back to the tree root for unknown tails", () => {
-    expect(resolveLangTarget("/fi/not-found")).toBe("");
+    expect(resolveLangTarget("/fi/missing")).toBe("");
     expect(resolveLangTarget("/fi")).toBe("");
   });
 });

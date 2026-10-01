@@ -43,7 +43,7 @@
     url("/fonts/groteskia/GROTESKIA.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 /* Wallpaper: parallax-js transforms .bg-wall (its first scene child is forced
@@ -150,13 +150,6 @@
   }
 }
 
-/* Solid-tint panels: no backdrop-filter, so the parallax bg doesn't repaint them */
-.bg-panel,
-.bg-inline {
-  position: relative;
-  background: var(--panel-tint);
-}
-
 /* Mono artwork tinted via CSS (see MonoImage.tsx): the image masks the box,
    the background is the tint. 100%/100% stretches the drawing to the box's
    exact size. */
@@ -169,14 +162,128 @@
     mask: var(--mono-img) center / 100% 100% no-repeat;
   }
 }
+
+/* Inline chip (opt-in per element - the ticket date line): padding +
+   radius + the translucent tint. Text content at large doesn't use it. */
 .bg-inline {
+  position: relative;
   display: inline-block;
   padding: 0.15em 0.55em;
   border-radius: 0.6em;
+  background: var(--panel-tint);
 }
-.bg-panel {
-  padding: 1.25rem 1.5rem;
-  border-radius: var(--radius-lg);
+
+/* Flat document surface: everything from the first heading down. The
+   parallax wallpaper shows only in the strip above it. */
+.content-sheet {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  background: var(--background);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: 1.5rem 1rem 2rem;
+}
+
+/* Front-page hero strip: a static full viewport over the wallpaper.
+   Scrolling down simply lands on the content sheet below. */
+.hero-strip {
+  display: flex;
+  height: 100dvh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* Snap + anchor scrolling must clear the sticky site header. */
+html {
+  scroll-padding-top: 5rem;
+}
+
+/* Single-section pages: anchor affordances are pointless noise. */
+.no-anchors [data-copy-link] {
+  display: none;
+}
+
+/* Jump/deep-link feedback, two layers: the heading TEXT flashes accent
+   and fades back fast; the chip itself does one bigger, clearly visible
+   bounce (larger, but still a single bounce). */
+@keyframes chip-color {
+  0% {
+    color: var(--primary);
+  }
+  100% {
+    color: var(--foreground);
+  }
+}
+@keyframes chip-bounce {
+  0% {
+    translate: 0 0;
+    scale: 1;
+  }
+  20% {
+    translate: 0 -0.4rem;
+    scale: 1.15;
+  }
+  45% {
+    translate: 0 0.1rem;
+    scale: 1.02;
+  }
+  70% {
+    translate: 0 -0.1rem;
+    scale: 1.01;
+  }
+  100% {
+    translate: 0 0;
+    scale: 1;
+  }
+}
+.section-flash h1,
+.section-flash h2 {
+  animation:
+    chip-color 0.7s ease-out,
+    chip-bounce 1.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+/* Sections reveal as they enter the viewport - CSS scroll-driven, so
+   prerendered HTML stays fully visible without JS and browsers without
+   the timeline support simply never hide anything. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .content-sheet > *:not(.no-reveal) {
+      animation: section-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+@keyframes section-reveal {
+  from {
+    opacity: 0;
+    translate: 0 2rem;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* Back-to-top and the main-page header mark: threshold affordances,
+   green everywhere (see .browserslistrc). Their parked/visible state is
+   a class toggle computed from the shared scroll state (see
+   useScrollState.ts) and the elements' own CSS transitions perform the
+   fade. That is why nothing here animates on scroll: a scroll-driven
+   animation would churn through every intermediate position during
+   quick-nav glides, which the evaluate-on-scroll design avoids. */
+
+/* The header mark's parked state (hero owns the logo at the top of the
+   main page); toggled by Header from the shared scroll state. */
+.header-logo-parked {
+  opacity: 0;
+  translate: 0 -0.5rem;
+  pointer-events: none;
 }
 
 /* Root reset (bg/color/font-family are owned by @layer base via semantic tokens;

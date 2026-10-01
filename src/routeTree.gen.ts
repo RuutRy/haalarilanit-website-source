@@ -10,73 +10,108 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as GuideRouteImport } from './routes/guide'
-import { Route as RulesRouteImport } from './routes/rules'
-import { Route as TournamentRouteImport } from './routes/tournament'
+import { Route as LangRouteImport } from './routes/$lang'
+import { Route as LangIndexRouteImport } from './routes/$lang/index'
+import { Route as LangContactRouteImport } from './routes/$lang/contact'
+import { Route as LangGuideRouteImport } from './routes/$lang/guide'
+import { Route as LangRulesRouteImport } from './routes/$lang/rules'
+import { Route as LangTournamentRouteImport } from './routes/$lang/tournament'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ContactRoute = ContactRouteImport.update({
+const LangRoute = LangRouteImport.update({
+  id: '/$lang',
+  path: '/$lang',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LangIndexRoute = LangIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangContactRoute = LangContactRouteImport.update({
   id: '/contact',
   path: '/contact',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LangRoute,
 } as any)
-const GuideRoute = GuideRouteImport.update({
+const LangGuideRoute = LangGuideRouteImport.update({
   id: '/guide',
   path: '/guide',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LangRoute,
 } as any)
-const RulesRoute = RulesRouteImport.update({
+const LangRulesRoute = LangRulesRouteImport.update({
   id: '/rules',
   path: '/rules',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LangRoute,
 } as any)
-const TournamentRoute = TournamentRouteImport.update({
+const LangTournamentRoute = LangTournamentRouteImport.update({
   id: '/tournament',
   path: '/tournament',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LangRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/contact': typeof ContactRoute
-  '/guide': typeof GuideRoute
-  '/rules': typeof RulesRoute
-  '/tournament': typeof TournamentRoute
+  '/$lang': typeof LangRouteWithChildren
+  '/$lang/contact': typeof LangContactRoute
+  '/$lang/guide': typeof LangGuideRoute
+  '/$lang/rules': typeof LangRulesRoute
+  '/$lang/tournament': typeof LangTournamentRoute
+  '/$lang/': typeof LangIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/contact': typeof ContactRoute
-  '/guide': typeof GuideRoute
-  '/rules': typeof RulesRoute
-  '/tournament': typeof TournamentRoute
+  '/$lang/contact': typeof LangContactRoute
+  '/$lang/guide': typeof LangGuideRoute
+  '/$lang/rules': typeof LangRulesRoute
+  '/$lang/tournament': typeof LangTournamentRoute
+  '/$lang': typeof LangIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/contact': typeof ContactRoute
-  '/guide': typeof GuideRoute
-  '/rules': typeof RulesRoute
-  '/tournament': typeof TournamentRoute
+  '/$lang': typeof LangRouteWithChildren
+  '/$lang/contact': typeof LangContactRoute
+  '/$lang/guide': typeof LangGuideRoute
+  '/$lang/rules': typeof LangRulesRoute
+  '/$lang/tournament': typeof LangTournamentRoute
+  '/$lang/': typeof LangIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contact' | '/guide' | '/rules' | '/tournament'
+  fullPaths:
+    | '/'
+    | '/$lang'
+    | '/$lang/contact'
+    | '/$lang/guide'
+    | '/$lang/rules'
+    | '/$lang/tournament'
+    | '/$lang/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contact' | '/guide' | '/rules' | '/tournament'
-  id: '__root__' | '/' | '/contact' | '/guide' | '/rules' | '/tournament'
+  to:
+    | '/'
+    | '/$lang/contact'
+    | '/$lang/guide'
+    | '/$lang/rules'
+    | '/$lang/tournament'
+    | '/$lang'
+  id:
+    | '__root__'
+    | '/'
+    | '/$lang'
+    | '/$lang/contact'
+    | '/$lang/guide'
+    | '/$lang/rules'
+    | '/$lang/tournament'
+    | '/$lang/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ContactRoute: typeof ContactRoute
-  GuideRoute: typeof GuideRoute
-  RulesRoute: typeof RulesRoute
-  TournamentRoute: typeof TournamentRoute
+  LangRoute: typeof LangRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -88,44 +123,82 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/contact': {
-      id: '/contact'
+    '/$lang': {
+      id: '/$lang'
+      path: '/$lang'
+      fullPath: '/$lang'
+      preLoaderRoute: typeof LangRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$lang/': {
+      id: '/$lang/'
+      path: '/'
+      fullPath: '/$lang/'
+      preLoaderRoute: typeof LangIndexRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/contact': {
+      id: '/$lang/contact'
       path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/$lang/contact'
+      preLoaderRoute: typeof LangContactRouteImport
+      parentRoute: typeof LangRoute
     }
-    '/guide': {
-      id: '/guide'
+    '/$lang/guide': {
+      id: '/$lang/guide'
       path: '/guide'
-      fullPath: '/guide'
-      preLoaderRoute: typeof GuideRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/$lang/guide'
+      preLoaderRoute: typeof LangGuideRouteImport
+      parentRoute: typeof LangRoute
     }
-    '/rules': {
-      id: '/rules'
+    '/$lang/rules': {
+      id: '/$lang/rules'
       path: '/rules'
-      fullPath: '/rules'
-      preLoaderRoute: typeof RulesRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/$lang/rules'
+      preLoaderRoute: typeof LangRulesRouteImport
+      parentRoute: typeof LangRoute
     }
-    '/tournament': {
-      id: '/tournament'
+    '/$lang/tournament': {
+      id: '/$lang/tournament'
       path: '/tournament'
-      fullPath: '/tournament'
-      preLoaderRoute: typeof TournamentRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/$lang/tournament'
+      preLoaderRoute: typeof LangTournamentRouteImport
+      parentRoute: typeof LangRoute
     }
   }
 }
 
+interface LangRouteChildren {
+  LangContactRoute: typeof LangContactRoute
+  LangGuideRoute: typeof LangGuideRoute
+  LangRulesRoute: typeof LangRulesRoute
+  LangTournamentRoute: typeof LangTournamentRoute
+  LangIndexRoute: typeof LangIndexRoute
+}
+
+const LangRouteChildren: LangRouteChildren = {
+  LangContactRoute: LangContactRoute,
+  LangGuideRoute: LangGuideRoute,
+  LangRulesRoute: LangRulesRoute,
+  LangTournamentRoute: LangTournamentRoute,
+  LangIndexRoute: LangIndexRoute,
+}
+
+const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ContactRoute: ContactRoute,
-  GuideRoute: GuideRoute,
-  RulesRoute: RulesRoute,
-  TournamentRoute: TournamentRoute,
+  LangRoute: LangRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}

@@ -6,13 +6,20 @@ import { sponsors } from "../lib/data";
 import { LogoLink } from "./media/LogoLink";
 
 // Logos step 56–96px by 2; each step re-runs Logo Soup's canvas normalization.
+// baseSize is a JS prop driving Logo Soup's canvas, so CSS clamp can't own it.
+// fixed initial size on server and client alike so prerendered HTML hydrates
+// cleanly; mobile briefly repaints to the real size in the effect below —
+// accepted over hydration-unsafe matchMedia init
+const INITIAL_SPONSOR_SIZE = sponsorSizeFor(1200);
+
 function useSponsorBaseSize() {
-  const [size, setSize] = useState(() => sponsorSizeFor(window.innerWidth));
+  const [size, setSize] = useState(INITIAL_SPONSOR_SIZE);
   useEffect(() => {
     const onResize = () => {
       const next = sponsorSizeFor(window.innerWidth);
       setSize((prev) => (prev === next ? prev : next));
     };
+    onResize();
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
@@ -38,8 +45,8 @@ export function Sponsors() {
   return (
     <div className="flex flex-col items-center gap-8">
       <h1 className="text-h1-fluid">{t("sponsors")}</h1>
-      {/* One shared panel + shadow behind the whole wall. */}
-      <div className="bg-panel rounded-2xl p-8 shadow-lg">
+      {/* One shared panel behind the whole wall. */}
+      <div className="rounded-2xl p-8">
         <LogoSoup
           logos={sponsors.map((s) => ({ src: s.logo, alt: s.name }))}
           baseSize={baseSize}

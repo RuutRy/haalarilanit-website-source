@@ -8,8 +8,8 @@ type ParagraphProps = {
   className?: string;
 };
 
-// Body paragraph on a panel, justified. className for one-offs
-// ("w-fit text-center"); children for rich content and overrides text.
+// Body paragraph, justified. className for one-offs, children for rich
+// content and overrides text.
 export function Paragraph({ text, children, className }: ParagraphProps) {
-  return <p className={cn("bg-panel text-justify", className)}>{children ?? text}</p>;
+  return <p className={cn("text-justify", className)}>{children ?? text}</p>;
 }

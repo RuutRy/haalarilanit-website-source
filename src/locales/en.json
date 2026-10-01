@@ -1,7 +1,4 @@
 {
-  "translation_button": {
-    "title": "in English"
-  },
   "nav": {
     "main": "Main",
     "rules": "Rules",
@@ -85,56 +82,12 @@
     }
   },
   "guidance": {
-    "header": "Guidance",
-    "paragraph_1": "Entrance to the event is open for 24h a day and it is located near the LAB-University's parking lot. Entrance and doors to toilets are marked on the event map above.",
-    "paragraph_2": "During the event the LAB parking lot is free and there will be no parking control. Entrance is barrier-free.",
     "floorplan_alt": "Event venue floor plan"
   },
-  "tournaments": {
-    "header": "Tournaments",
-    "text": "2026 Tournaments and their times will be posted later.",
-    "description": "Semi-formal tournaments are arranged at Haalarilanit. The entrance to the event is free and you may come spectate and express your support on the spot.",
-    "date": {
-      "first": "Thursday 19.11.",
-      "second": "Friday 20.11.",
-      "third": "Saturday 21.11."
-    },
-    "links": {
-      "apply": "Apply to",
-      "here": "HERE!"
-    }
-  },
   "contacts": {
-    "header": "Contacts",
-    "placeholder": "Contacts will be updated later.",
-    "contact_1": {
-      "name": "Placeholder",
-      "responsibilities": "Marketing, Live, Tournaments"
-    },
-    "contact_2": {
-      "name": "Placeholder2",
-      "responsibilities": "Infrastructure, Logistics"
-    },
-    "contact_3": {
-      "name": "Placeholder3",
-      "responsibilities": "Stand, Security"
-    }
-  },
-  "equipment": {
-    "header": "Essential equipment",
-    "descriptor": "Bring all your needed gaming gear but be mindful of the restrictions of your seat",
-    "equipment_1": "Computer/Console",
-    "equipment_2": "Monitor",
-    "equipment_3": "Keyboard/Controller",
-    "equipment_4": "Mouse & Mousepad",
-    "equipment_5": "Headphones",
-    "equipment_6": "Extension cord",
-    "equipment_7": "Network cable (10m)",
-    "equipment_8": "Phone / Headphone charger",
-    "equipment_9": "Cash / Mobilepay"
+    "placeholder": "Contacts will be updated later."
   },
   "safer_space": {
-    "header": "Safer space policy",
     "click": "Click here to read the safer space policy"
   },
   "event_end": {
@@ -142,11 +95,24 @@
   },
   "content_unavailable": "Content not found",
   "footer": {
-    "copyright": "Copyright (c) {{year}} Ruut ry. All Rights Reserved."
+    "copyright": "Copyright (c) {{year}} Ruut ry. All Rights Reserved.",
+    "site": "Site",
+    "event": "Event",
+    "ticket": "Ticket shop",
+    "safer_space": "Safer space policy",
+    "photos": "Photos"
   },
   "sponsors": "In cooperation with",
   "a11y": {
     "opens_new_tab": "{{name}} - opens in a new tab",
-    "logo_alt": "Haalarilanit"
+    "logo_alt": "Haalarilanit",
+    "open_menu": "Open menu",
+    "copy_link": "Copy link to heading",
+    "copied": "Link copied",
+    "toc": "On this page",
+    "back_to_top": "Back to top",
+    "go_up": "Go up",
+    "zoom_image": "Open image enlarged",
+    "close": "Close"
   }
 }

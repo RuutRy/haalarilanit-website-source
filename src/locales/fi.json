@@ -1,7 +1,4 @@
 {
-  "translation_button": {
-    "title": "suomeksi"
-  },
   "nav": {
     "main": "Etusivu",
     "rules": "Säännöt",
@@ -85,56 +82,12 @@
     }
   },
   "guidance": {
-    "header": "Opasteet",
-    "paragraph_1": "Haalarilaneille on 24h sisäänkäynti, joka tapahtuu parkkipaikan puoleisista ovista. Opastekarttaan on merkitty ovet, mistä tulee kulkea sekä tapahtuma-alueelle, että mm. vessoihin.",
-    "paragraph_2": "Tapahtuman ajan LAB-ammattikorkeakoulun parkkipaikat ovat vapaita pysäköinnille, eli niissä ei ole tällöin pysäköinninvalvontaa. Sisäänkäynti on esteetön.",
     "floorplan_alt": "Tapahtumapaikan pohjakartta"
   },
-  "tournaments": {
-    "header": "Turnaukset",
-    "text": "Vuoden 2026 turnausten aikataulut julkaistaan myöhemmin.",
-    "description": "Haalarilaneilla järjestetään puolivakavia turnauksia. Tapahtuma-alueelle on ilmainen sisäänpääsy kaikille ja turnauksia voi tulla katsomaan ja kannustamaan paikan päälle!",
-    "date": {
-      "first": "Torstai 19.11.",
-      "second": "Perjantai 20.11.",
-      "third": "Lauantai 21.11."
-    },
-    "links": {
-      "apply": "Ilmoittaudu mukaan",
-      "here": "TÄSTÄ!"
-    }
-  },
   "contacts": {
-    "header": "Yhteystiedot",
-    "placeholder": "Yhteystiedot päivitetään myöhemmin.",
-    "contact_1": {
-      "name": "Placeholder",
-      "responsibilities": "Markkinointi, Live, Turnaukset"
-    },
-    "contact_2": {
-      "name": "Placeholder2",
-      "responsibilities": "Infra, Logistiikka"
-    },
-    "contact_3": {
-      "name": "Placeholder3",
-      "responsibilities": "Kioski, Turvallisuus"
-    }
-  },
-  "equipment": {
-    "header": "Pakkauslista",
-    "descriptor": "Pakkaa mukaan tarvitsemasi laitteet, ottaen huomioon konepaikan rajoitteet",
-    "equipment_1": "Tietokone/Konsoli",
-    "equipment_2": "Näyttö",
-    "equipment_3": "Näppäimistö/Ohjain",
-    "equipment_4": "Hiiri & Hiirimatto",
-    "equipment_5": "Kuulokkeet",
-    "equipment_6": "Jatkojohto",
-    "equipment_7": "Verkkokaapeli (10m)",
-    "equipment_8": "Puhelimen / Kuulokkeiden latausjohto",
-    "equipment_9": "Taskurahaa / Mobilepay"
+    "placeholder": "Yhteystiedot päivitetään myöhemmin."
   },
   "safer_space": {
-    "header": "Turvallisemman tilan periaatteet",
     "click": "Klikkaa ja lue turvallisemman tilan periaatteet"
   },
   "event_end": {
@@ -142,11 +95,24 @@
   },
   "content_unavailable": "Sisältöä ei löytynyt.",
   "footer": {
-    "copyright": "Copyright (c) {{year}} Ruut ry. Kaikki oikeudet pidätetään."
+    "copyright": "Copyright (c) {{year}} Ruut ry. Kaikki oikeudet pidätetään.",
+    "site": "Sivut",
+    "event": "Tapahtuma",
+    "ticket": "Lippukauppa",
+    "safer_space": "Turvallisemman tilan periaatteet",
+    "photos": "Kuvat"
   },
   "sponsors": "Yhteistyökumppanit",
   "a11y": {
     "opens_new_tab": "{{name}} - avautuu uuteen välilehteen",
-    "logo_alt": "Haalarilanit"
+    "logo_alt": "Haalarilanit",
+    "open_menu": "Avaa valikko",
+    "copy_link": "Kopioi linkki otsikkoon",
+    "copied": "Linkki kopioitu",
+    "toc": "Osion sisältö",
+    "back_to_top": "Takaisin ylös",
+    "go_up": "Ylös",
+    "zoom_image": "Avaa kuva suurennettuna",
+    "close": "Sulje"
   }
 }

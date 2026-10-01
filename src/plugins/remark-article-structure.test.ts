@@ -4,9 +4,9 @@ import remarkParse from "remark-parse";
 import { unified } from "unified";
 import { expect, test } from "vitest";
 
-import remarkH2Sections from "./remark-h2-sections";
+import remarkArticleStructure from "./remark-article-structure";
 
-const processor = unified().use(remarkParse).use(remarkH2Sections);
+const processor = unified().use(remarkParse).use(remarkArticleStructure);
 
 function runMd(md: string): Root {
   const tree = processor.parse(md) as Root;
@@ -67,6 +67,16 @@ test("an embedded component ends a section", () => {
   expect(section.children.map((c) => c.type)).toEqual(["heading", "paragraph"]);
 });
 
+test("an mdx export ends a section", () => {
+  const tree = processor.parse("## One\n\ntext a") as Root;
+  tree.children.push({ type: "export", value: "export const x = 1" } as never);
+  processor.runSync(tree);
+  const section = sheetChildren(tree).find((c) => c.type === "section") as unknown as {
+    children: { type: string }[];
+  };
+  expect(section.children.map((c) => c.type)).toEqual(["heading", "paragraph"]);
+});
+
 test("a soft block (Img/Center) stays inside its section with its prose", () => {
   for (const name of ["Img", "Center"]) {
     const tree = processor.parse("## One\n\ntext a\n\ntext b") as Root;
@@ -87,7 +97,7 @@ test("a soft block (Img/Center) stays inside its section with its prose", () => 
 test("prose after a soft block raises no orphan warning; prose after other components still does", () => {
   // The transform is a plain (tree, file) function - drive it directly with
   // a message-collecting file stub, no VFile needed.
-  const transform = remarkH2Sections() as unknown as (
+  const transform = remarkArticleStructure() as unknown as (
     tree: Root,
     file: { message: (msg: string, node?: RootContent) => void },
   ) => void;
@@ -125,6 +135,14 @@ test("subpage: StripSpace precedes the sheet; a full sheet has no no-anchors", (
 test("a sheet with fewer than two sections gets no-anchors", () => {
   const root = runMd("# Title\n\n## Only\n\nx");
   expect(sheetClass(root)).toContain("no-anchors");
+});
+
+test("a page with no h2 gets no sheet (bare content, no injected chrome)", () => {
+  // The contact page's shape: prose and components, no ## anywhere.
+  const tree = processor.parse("hello\n\nworld") as Root;
+  processor.runSync(tree);
+  expect(tree.children.some((c) => (c.type as string) === "sheet")).toBe(false);
+  expect(tree.children.map((c) => c.type)).toEqual(["paragraph", "paragraph"]);
 });
 
 test("front page: leading components become the hero strip; hint and nav injected", () => {

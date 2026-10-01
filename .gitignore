@@ -2,6 +2,9 @@
 
 node_modules/
 dist/
+.tss-server/
 *.tsbuildinfo
 
 .tanstack/
+.superpowers/
+.playwright-mcp/

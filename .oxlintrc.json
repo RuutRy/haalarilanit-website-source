@@ -14,5 +14,19 @@
     "no-console": "warn",
     "react/react-in-jsx-scope": "off",
     "jsx-a11y/prefer-tag-over-role": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["scripts/**/*.mjs"],
+      "rules": { "no-console": "off" }
+    },
+    {
+      "files": ["src/components/text/Article.tsx"],
+      "rules": { "no-console": "off" }
+    },
+    {
+      "files": ["src/hooks/useIdleCallbackEffect.ts"],
+      "rules": { "react-hooks/exhaustive-deps": "off" }
+    }
+  ]
 }

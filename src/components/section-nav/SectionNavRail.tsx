@@ -24,7 +24,7 @@ export function SectionNavRail({ items, visible, onText, onJump }: SectionNavRai
       className={cn(
         "fixed top-1/2 z-40 hidden w-56 -translate-y-1/2 transition-all duration-300 2xl:block",
         "left-[calc(max((100vw-72rem)/2+2rem,2rem)-14.5rem)]" /* sheet half-width (24rem) + gap, floor 2rem */,
-        "rounded-xl border border-foreground/10 bg-background p-2 shadow-lg",
+        "rounded-xl bg-(--panel-tint) p-2 shadow-lg backdrop-blur-lg",
         onText ? "translate-x-0 opacity-100" : "pointer-events-none -translate-x-3 opacity-0",
       )}
     >

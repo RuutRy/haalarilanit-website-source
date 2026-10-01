@@ -4,7 +4,13 @@ import { Article } from "../../components/text";
 import i18n from "../../lib/i18n";
 
 export const Route = createFileRoute("/$lang/tournament")({
-  head: () => ({ meta: [{ title: `${i18n.t("nav.tournaments")} - Haalarilanit` }] }),
+  head: () => ({
+    meta: [
+      { title: `${i18n.t("nav.tournaments")} - Haalarilanit` },
+      { name: "description", content: i18n.t("meta.tournaments") },
+      { property: "og:description", content: i18n.t("meta.tournaments") },
+    ],
+  }),
   component: TournamentPage,
 });
 

@@ -23,7 +23,7 @@ export function ContactCard({ contact, lang }: ContactCardProps) {
   const spacerCls = `${rowCls} opacity-0`;
 
   return (
-    <section className="flex w-full max-w-xs flex-col items-center gap-1 rounded-2xl border border-foreground/10 bg-background p-4 text-center shadow-lg min-h-40">
+    <section className="frost flex w-full max-w-xs flex-col items-center gap-1 rounded-2xl p-4 text-center shadow-lg min-h-40">
       <p className="text-h3-fluid">{contact.name}</p>
       <p className="text-fluid text-foreground/70">{contact[ROLE_KEY[lang]].join(" · ")}</p>
       <div className="mt-auto flex w-full flex-col gap-1">

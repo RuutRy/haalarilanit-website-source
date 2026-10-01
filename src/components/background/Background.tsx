@@ -6,6 +6,10 @@ import { useIdleCallbackEffect } from "@/hooks/useIdleCallbackEffect";
 // module-scope read is fine in the browser; guard for the Node prerender pass
 const prefersReducedMotion =
   typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+// Parallax is cursor-driven and costs main-thread work - desktop only.
+const wantsParallax =
+  typeof window !== "undefined" &&
+  window.matchMedia("(min-width: 48rem) and (pointer: fine)").matches;
 
 const LIMIT = 100; // px, max layer travel (the lib clamps final px after scalar)
 const SCROLL_RANGE = 1400; // px, scroll distance over which drift maxes out
@@ -20,7 +24,7 @@ function useParallaxBg(
   useIdleCallbackEffect(
     (runIdle) => {
       const scene = sceneRef.current;
-      if (prefersReducedMotion || !scene) return;
+      if (prefersReducedMotion || !wantsParallax || !scene) return;
 
       let instance: Parallax | undefined;
       runIdle(() => {

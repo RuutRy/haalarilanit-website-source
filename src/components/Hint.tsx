@@ -17,7 +17,7 @@ export function Hint({
       <TooltipContent
         side={side}
         sideOffset={8}
-        className="border-foreground/15 bg-background px-3 py-1.5 text-sm text-foreground"
+        className="border-foreground/15 bg-(--panel-tint) px-3 py-1.5 text-sm text-foreground backdrop-blur-lg"
       >
         {label}
       </TooltipContent>

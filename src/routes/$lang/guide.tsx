@@ -4,7 +4,13 @@ import { Article } from "../../components/text";
 import i18n from "../../lib/i18n";
 
 export const Route = createFileRoute("/$lang/guide")({
-  head: () => ({ meta: [{ title: `${i18n.t("nav.guidance")} - Haalarilanit` }] }),
+  head: () => ({
+    meta: [
+      { title: `${i18n.t("nav.guidance")} - Haalarilanit` },
+      { name: "description", content: i18n.t("meta.guidance") },
+      { property: "og:description", content: i18n.t("meta.guidance") },
+    ],
+  }),
   component: GuidePage,
 });
 

@@ -3,7 +3,6 @@
 export const MDX_BLOCKS = {
   sectionNav: "SectionNav",
   backToTop: "BackToTop",
-  stripSpace: "StripSpace",
   scrollHint: "ScrollHint",
 } as const;
 

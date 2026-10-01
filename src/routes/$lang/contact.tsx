@@ -1,20 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { PageContent } from "../../components/layout";
 import { Article } from "../../components/text";
-import { DEFAULT_LANG, isLang } from "../../lib/lang";
+import i18n from "../../lib/i18n";
 
 export const Route = createFileRoute("/$lang/contact")({
+  head: () => ({ meta: [{ title: `${i18n.t("nav.contacts")} - Haalarilanit` }] }),
   component: ContactPage,
 });
 
 function ContactPage() {
-  const { lang: langParam } = Route.useParams();
-  const lang = isLang(langParam) ? langParam : DEFAULT_LANG;
-
-  return (
-    <PageContent>
-      <Article name="contact" lang={lang} />
-    </PageContent>
-  );
+  const { lang } = Route.useParams();
+  return <Article name="contact" lang={lang} />;
 }

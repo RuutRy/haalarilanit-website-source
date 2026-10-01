@@ -1,7 +1,7 @@
 import Parallax from "parallax-js";
 import { useEffect, useRef, type RefObject } from "react";
 
-import { useIdleCallbackEffect } from "@/lib/useIdleCallbackEffect";
+import { useIdleCallbackEffect } from "@/hooks/useIdleCallbackEffect";
 
 // module-scope read is fine in the browser; guard for the Node prerender pass
 const prefersReducedMotion =

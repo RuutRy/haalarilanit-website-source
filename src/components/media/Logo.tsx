@@ -1,15 +1,23 @@
+import type { ComponentProps } from "react";
+
 import { useTranslation } from "react-i18next";
 
 import { MonoImage } from "./MonoImage";
 
-// The site logo. `sm` renders a compact header-size mark; the default
-// is the big hero art.
-export function Logo({ className, size = "hero" }: { className?: string; size?: "sm" | "hero" }) {
+// `sm` is the compact header mark; default is the hero art. Rest props
+// pass through - the main page tags its hero logo with data-hero-logo
+// so the header can time its own mark to the hero's exit.
+export function Logo({
+  className,
+  size = "hero",
+  ...rest
+}: { className?: string; size?: "sm" | "hero" } & ComponentProps<"span">) {
   const { t } = useTranslation();
 
   return (
     <span
       className={`inline-block ${size === "sm" ? "" : "px-6 py-5 sm:px-10 sm:py-7"} ${className ?? ""}`}
+      {...rest}
     >
       <MonoImage
         src="/assets/logotext.svg"

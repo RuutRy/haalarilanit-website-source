@@ -1,28 +1,22 @@
-import { createFileRoute, useRouter } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { createFileRoute } from "@tanstack/react-router";
 
-import type { Lang } from "../lib/lang";
+import { Article } from "../components/text";
+import { SITE_URL } from "../lib/data";
+import { syncRouteLanguage } from "../lib/i18n";
+import { DEFAULT_LANG } from "../lib/lang";
 
-import { DEFAULT_LANG, isLang } from "../lib/lang";
-
-// Root: sniff language (localStorage -> navigator -> fi) and forward
-// to the language tree. The redirect runs after mount so hydration
-// matches the language-neutral prerendered shell (no #418).
-function sniffLang(): Lang {
-  const stored = localStorage.getItem("language");
-  if (isLang(stored)) return stored;
-  const nav = navigator.language?.slice(0, 2);
-  return isLang(nav) ? nav : DEFAULT_LANG;
-}
-
-function RedirectHome() {
-  const router = useRouter();
-  useEffect(() => {
-    void router.navigate({ to: "/$lang", params: { lang: sniffLang() }, replace: true });
-  }, [router]);
-  return null;
-}
-
+// Root serves the default (Finnish) tree's front page - identical to /fi,
+// canonical points there. No client-side language redirect.
 export const Route = createFileRoute("/")({
-  component: RedirectHome,
+  beforeLoad: ({ preload }) => {
+    syncRouteLanguage(preload, DEFAULT_LANG);
+  },
+  head: () => ({
+    links: [{ rel: "canonical", href: `${SITE_URL}/fi` }],
+  }),
+  component: MainPage,
 });
+
+function MainPage() {
+  return <Article name="main" lang={DEFAULT_LANG} />;
+}

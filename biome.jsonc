@@ -1,0 +1,49 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+  "files": {
+    "includes": ["**", "!src/routeTree.gen.ts", "!**/*.svg"]
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "assist": {
+    "actions": { "source": { "organizeImports": "on" } }
+  },
+  "css": {
+    "parser": { "tailwindDirectives": true },
+    "linter": { "enabled": true }
+  },
+  "linter": {
+    "enabled": true,
+    "domains": { "react": "recommended" },
+    "rules": {
+      "preset": "recommended",
+      "suspicious": { "noConsole": "warn" },
+      "nursery": {
+        "useBaseline": {
+          // Browser-support bar: Baseline year 2023 is the closest
+          // expression of the vite build.target bar (chrome 120 /
+          // firefox 128 / safari 16.4). Coarser than the exact list -
+          // relative color syntax (oklab/oklch "from", Baseline 2024)
+          // passes via the function name but is green at every target
+          // browser, so that's an accepted alignment, not a gap.
+          "level": "error",
+          "options": { "available": 2023 }
+        }
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["src/components/text/Article.tsx"],
+      "linter": { "rules": { "suspicious": { "noConsole": "off" } } }
+    },
+    {
+      "includes": ["src/hooks/useIdleCallbackEffect.ts"],
+      "linter": { "rules": { "correctness": { "useExhaustiveDependencies": "off" } } }
+    }
+  ]
+}

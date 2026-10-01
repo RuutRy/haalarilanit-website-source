@@ -1,3 +1,2 @@
 allowBuilds:
-  '@tsparticles/engine': true
   lefthook: true

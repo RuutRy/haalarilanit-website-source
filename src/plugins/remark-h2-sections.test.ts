@@ -39,13 +39,13 @@ function id(node: unknown): string | undefined {
 
 test("h2 wraps following blocks into sections; h1 and leading prose stay outside", () => {
   const root = runMd("# Title\n\nintro\n\n## One\n\ntext a\n\n## Two\n\ntext b");
-  expect(sheetChildren(root).map((c) => c.type)).toEqual([
-    "mdxJsxFlowElement", // SectionNav, injected
+  expect(sheetChildren(root).map((c) => c.name ?? c.type)).toEqual([
     "heading",
     "paragraph",
     "section",
     "section",
-    "mdxJsxFlowElement", // BackToTop, injected
+    "SectionNav", // injected at the sheet end
+    "BackToTop", // injected last
   ]);
 });
 
@@ -67,14 +67,51 @@ test("an embedded component ends a section", () => {
   expect(section.children.map((c) => c.type)).toEqual(["heading", "paragraph"]);
 });
 
-test("h1/h2 get slug ids, duplicates get a numeric suffix", () => {
-  const root = runMd("# Same\n\n## Same\n\nx");
+test("a soft block (Img/Center) stays inside its section with its prose", () => {
+  for (const name of ["Img", "Center"]) {
+    const tree = processor.parse("## One\n\ntext a\n\ntext b") as Root;
+    tree.children.splice(2, 0, jsx(name));
+    processor.runSync(tree);
+    const section = sheetChildren(tree).find((c) => c.type === "section") as unknown as {
+      children: { type: string }[];
+    };
+    expect(section.children.map((c) => c.type)).toEqual([
+      "heading",
+      "paragraph",
+      "mdxJsxFlowElement",
+      "paragraph",
+    ]);
+  }
+});
+
+test("prose after a soft block raises no orphan warning; prose after other components still does", () => {
+  // The transform is a plain (tree, file) function - drive it directly with
+  // a message-collecting file stub, no VFile needed.
+  const transform = remarkH2Sections() as unknown as (
+    tree: Root,
+    file: { message: (msg: string, node?: RootContent) => void },
+  ) => void;
+  const messagesOf = (name: string) => {
+    const tree = processor.parse("## One\n\ntext a\n\ntext b") as Root;
+    tree.children.splice(2, 0, jsx(name));
+    const messages: string[] = [];
+    transform(tree, { message: (msg) => messages.push(msg) });
+    return messages;
+  };
+  expect(messagesOf("Img")).toHaveLength(0);
+  expect(messagesOf("Center")).toHaveLength(0);
+  expect(messagesOf("Sponsors")[0]).toContain("paragraph directly after a component");
+});
+
+test("h1/h2/h3 get slug ids, duplicates get a numeric suffix", () => {
+  const root = runMd("# Same\n\n## Same\n\n### Same\n\nx");
   const inner = sheetChildren(root);
-  expect(id(inner[1])).toBe("same"); // the h1
+  expect(id(inner.find((c) => c.type === "heading"))).toBe("same"); // the h1
   const section = inner.find((c) => c.type === "section") as unknown as {
     children: unknown[];
   };
   expect(id(section.children[0])).toBe("same-1"); // the h2 inside the section
+  expect(id(section.children[1])).toBe("same-2"); // the h3 stays inside the section
 });
 
 test("subpage: StripSpace precedes the sheet; a full sheet has no no-anchors", () => {
@@ -108,6 +145,6 @@ test("front page: leading components become the hero strip; hint and nav injecte
   };
   expect(strip.type).toBe("strip");
   expect(strip.children.at(-1)?.name).toBe("ScrollHint");
-  expect(sheetChildren(tree)[0]?.name).toBe("SectionNav");
+  expect(sheetChildren(tree).at(-2)?.name).toBe("SectionNav");
   expect(sheetClass(tree)).not.toContain("no-anchors");
 });

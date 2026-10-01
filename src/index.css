@@ -162,7 +162,7 @@
   }
 }
 
-/* Inline chip (ticket date line): padding + radius + tint. */
+/* Inline chip (ticket date line): padding + radius + frost. */
 .bg-inline {
   position: relative;
   display: inline-block;
@@ -171,15 +171,95 @@
   background: var(--panel-tint);
 }
 
-/* Flat document surface; children align to start, the column centers via mx-auto. */
+/* Frosted document surface: everything from the first heading down; the wallpaper
+   shows through the frost, which softens toward the edges. Children align to
+   start, the column centers via mx-auto. The frost lives on a masked ::before so
+   the text stays crisp while the blur fades in. */
 .content-sheet {
+  position: relative;
   display: flex;
   width: 100%;
   flex-direction: column;
   gap: 1.5rem;
-  background: var(--background);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  /* Pull up over main's top padding: the sheet starts flush under the
+     sticky header (no wallpaper gap - the frost is continuous). */
+  margin-top: -1.5rem;
+  border-radius: var(--radius-3xl) var(--radius-3xl) 0 0;
   padding: 1.5rem 1rem 2rem;
+}
+.content-sheet::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: calc(var(--radius) * 3) calc(var(--radius) * 3) 0 0;
+  background: var(--panel-tint);
+  --frost-blur: 12px;
+  /* The fade floors at 30% so the rounded surface stays discernible while
+     still ramping up; all four edges soften over 3.5rem (the 8vw term
+     tightens it on small screens so mobile reaches full frost fast). */
+  mask-image:
+    linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 0.3),
+      black min(3.5rem, 8vw),
+      black calc(100% - min(3.5rem, 8vw)),
+      rgb(0 0 0 / 0.3) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgb(0 0 0 / 0.3),
+      black min(3.5rem, 8vw),
+      black calc(100% - min(3.5rem, 8vw)),
+      rgb(0 0 0 / 0.3) 100%
+    );
+  mask-composite: intersect;
+}
+
+/* Frost pill behind a bare subpage heading (the contact page): no sheet, so
+   the heading carries its own frost instead of sitting on raw wallpaper. */
+.bare-heading {
+  border-radius: var(--radius-3xl);
+  padding: 1.25rem 2.5rem;
+}
+/* Frosted panel recipe: the tint + blur live on a masked ::before layer, so
+   content stays crisp while the frost ramps up uniformly from all four edges
+   (same ramp + 30% floor as the sheet). z-index -1 keeps it above the
+   wallpaper (z -10) and below the panel's own content. */
+.frost {
+  position: relative;
+}
+.frost::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--panel-tint);
+  mask-image:
+    linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 0.3),
+      black min(3.5rem, 8vw),
+      black calc(100% - min(3.5rem, 8vw)),
+      rgb(0 0 0 / 0.3) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgb(0 0 0 / 0.3),
+      black min(3.5rem, 8vw),
+      black calc(100% - min(3.5rem, 8vw)),
+      rgb(0 0 0 / 0.3) 100%
+    );
+  mask-composite: intersect;
+}
+@supports (backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px)) {
+  .frost::before,
+  .content-sheet::before,
+  .bg-inline {
+    -webkit-backdrop-filter: blur(var(--frost-blur, 16px));
+    backdrop-filter: blur(var(--frost-blur, 16px));
+  }
 }
 
 /* The sticky header's built height; consumed by the hero strip calc. */
@@ -235,27 +315,23 @@ html {
 @keyframes chip-bounce {
   0% {
     translate: 0 0;
-    scale: 1;
   }
   20% {
     translate: 0 -0.4rem;
-    scale: 1.15;
   }
   45% {
     translate: 0 0.1rem;
-    scale: 1.02;
   }
   70% {
     translate: 0 -0.1rem;
-    scale: 1.01;
   }
   100% {
     translate: 0 0;
-    scale: 1;
   }
 }
 .section-flash h1,
-.section-flash h2 {
+.section-flash h2,
+.section-flash h3 {
   animation:
     chip-color 0.7s ease-out,
     chip-bounce 1.3s cubic-bezier(0.34, 1.2, 0.64, 1);

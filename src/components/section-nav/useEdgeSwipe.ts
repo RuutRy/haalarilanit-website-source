@@ -1,4 +1,5 @@
-import { type RefObject, useEffect, useRef } from "react";
+import { useDrag } from "@use-gesture/react";
+import { type RefObject, useRef } from "react";
 
 export type SwipeSide = "left" | "right";
 
@@ -10,7 +11,7 @@ const EDGE = 40;
 const SLOP = 12;
 const DIST = 56;
 
-// Pure decision for one touchmove sample. "vertical" = hand the gesture
+// Pure decision for one drag sample. "vertical" = hand the gesture
 // back to scrolling, "commit" = open the panel, "steer" = horizontal
 // drag still under DIST (claim it), null = below slop (ignore).
 export function resolveSwipe(
@@ -26,11 +27,19 @@ export function resolveSwipe(
   return null;
 }
 
-// Edge-swipe quick-jump below 2xl: touch starting within EDGE px of a screen edge arms
-// the gesture; resolveSwipe classifies each move; non-passive touchmove only while
-// armed (prevents scroll/selection claiming the drag); touchcancel disarms when the
-// browser takes the gesture. Armed reads happen through armedRef so the listeners
-// never re-subscribe while scrolling.
+// Edge-swipe quick-jump below 2xl: a touch starting within EDGE px of a
+// screen edge arms the gesture; resolveSwipe classifies each move.
+// @use-gesture/react supplies the event plumbing (one window-level
+// binding, passive: false so the drag can claim the gesture). Drag runs
+// on POINTER events for touch, where preventDefault cannot freeze
+// scrolling - html { touch-action: pan-y pinch-zoom } (index.css) closes
+// that gap: vertical pans stay native, horizontal steals never pan the
+// page. The browser claiming a vertical scroll arrives as pointercancel
+// (= disarm, same outcome as the old touchcancel path). The window-level
+// binding mounts once (an effect with no dependency array), and the
+// controller memoized on [] captures the FIRST render's enabled/onOpen
+// closures - enabled/onOpen are read through refs so the long-lived
+// handler never goes stale.
 export function useEdgeSwipe(options: {
   enabled: boolean;
   armedRef: RefObject<boolean>;
@@ -38,54 +47,58 @@ export function useEdgeSwipe(options: {
 }): void {
   const { enabled, armedRef, onOpen } = options;
 
+  // The armed gesture (start point + side) while a drag is in flight.
+  const gestureRef = useRef<SwipeStart | null>(null);
+  const enabledRef = useRef(enabled);
+  enabledRef.current = enabled;
   const onOpenRef = useRef(onOpen);
   onOpenRef.current = onOpen;
 
-  useEffect(() => {
-    if (!enabled) return;
-    let start: SwipeStart | null = null;
+  useDrag(
+    (state) => {
+      // touch only - mice have no edge-swipe semantics here
+      // (pointerType lives on the event, not on the v10 state)
+      if (!("pointerType" in state.event) || state.event.pointerType !== "touch") return;
+      if (!enabledRef.current || !armedRef.current) return;
 
-    const onArm = (e: TouchEvent) => {
-      if (start || !armedRef.current) return;
-      const touch = e.touches[0];
-      let from: SwipeSide | null = null;
-      if (touch.clientX <= EDGE) from = "left";
-      else if (touch.clientX >= window.innerWidth - EDGE) from = "right";
-      if (!from) return;
-      start = { x: touch.clientX, y: touch.clientY, side: from };
-      // Non-passive only while the gesture is ours to steer.
-      addEventListener("touchmove", onSteer, { passive: false });
-    };
-    const disarm = () => {
-      if (!start) return;
-      start = null;
-      removeEventListener("touchmove", onSteer);
-    };
-    const onSteer = (e: TouchEvent) => {
-      if (!start) return;
+      if (state.first) {
+        const [x, y] = state.initial;
+        const side = x <= EDGE ? "left" : x >= window.innerWidth - EDGE ? "right" : null;
+        gestureRef.current = side ? { x, y, side } : null;
+        return;
+      }
+      const gesture = gestureRef.current;
+      if (!gesture) return;
+      if (state.last) {
+        gestureRef.current = null;
+        return;
+      }
+
       const result = resolveSwipe(
-        start,
-        { x: e.touches[0].clientX, y: e.touches[0].clientY },
+        gesture,
+        { x: state.values[0], y: state.values[1] },
         { slop: SLOP, dist: DIST },
       );
-      if (result === "vertical") return disarm();
+      if (result === "vertical") {
+        gestureRef.current = null;
+        state.cancel();
+        return;
+      }
       // Claim the drag from scroll/selection - including the committing move.
       if (result === "steer" || result === "commit") {
-        if (e.cancelable) e.preventDefault();
+        if (state.event.cancelable) state.event.preventDefault();
       }
       if (result === "commit") {
-        onOpenRef.current(start.side);
-        disarm();
+        gestureRef.current = null;
+        onOpenRef.current(gesture.side);
+        state.cancel();
       }
-    };
-    addEventListener("touchstart", onArm, { passive: true });
-    addEventListener("touchend", disarm, { passive: true });
-    addEventListener("touchcancel", disarm, { passive: true });
-    return () => {
-      disarm();
-      removeEventListener("touchstart", onArm);
-      removeEventListener("touchend", disarm);
-      removeEventListener("touchcancel", disarm);
-    };
-  }, [enabled, armedRef]);
+    },
+    // Prerender-safe: hooks run during SSR, where window is undefined -
+    // use-gesture skips window binding when the target is undefined.
+    {
+      target: typeof window === "undefined" ? undefined : window,
+      eventOptions: { passive: false },
+    },
+  );
 }

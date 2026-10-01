@@ -28,13 +28,21 @@ export function FlipClock({
 
   return (
     <div
-      className={`haala-flip-clock flex justify-center py-6 ${tone === "end" ? "concluded" : ""}`}
+      className={`haala-flip-clock flex justify-center py-[0.6em] ${tone === "end" ? "concluded" : ""}`}
     >
       <FlipClockCountdown
         to={target}
         labels={labels}
         showSeparators
         onComplete={onComplete}
+        // SSR must render the clock: without it the library renders null
+        // until its mount effect flips the ready state, so hydration
+        // inserts the full-height clock and the page shifts down. With it
+        // the server renders the full-size clock at 00:00:00:00 (the
+        // initial time delta is zero-clamped on both sides, so the markup
+        // matches exactly), and the mount effect ticks the real values
+        // into the same fixed-size blocks - no layout change.
+        renderOnServer
         labelStyle={{
           color: "var(--foreground)",
           letterSpacing: 1,

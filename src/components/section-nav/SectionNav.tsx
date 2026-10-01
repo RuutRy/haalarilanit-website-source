@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { jumpToSection } from "./jump-to-section";
 import { SectionNavRail } from "./SectionNavRail";
 import { SectionNavSheet } from "./SectionNavSheet";
+import { SectionNavTrigger } from "./SectionNavTrigger";
 import { type SwipeSide, useEdgeSwipe } from "./useEdgeSwipe";
 import { useSectionSpy } from "./useSectionSpy";
 
@@ -10,8 +11,8 @@ import { useSectionSpy } from "./useSectionSpy";
 const DEEP_LINK_DELAY_MS = 400;
 
 // Dock-style TOC, hung just left of the content sheet (desktop 2xl+).
-// On smaller screens there is no visible trigger at all: a horizontal
-// swipe starting near either screen edge opens the quick-jump as a
+// On smaller screens a pill trigger (SectionNavTrigger) and a horizontal
+// swipe starting near either screen edge both open the quick-jump as a
 // floating overlay panel (from the swiped side). The mdx content is the
 // single source of truth: the nav reads `.content-sheet h2[id]` after
 // mount and renders nothing on the server.
@@ -38,6 +39,11 @@ export function SectionNav() {
     },
     [markVisible],
   );
+
+  const toggleFromTrigger = useCallback(() => {
+    setSide("left");
+    setOpen((open) => !open);
+  }, []);
 
   // Deep-link feedback: a URL hash names the section you arrived at -
   // jump to it and flash the heading once the auto-scroll settles.
@@ -73,6 +79,7 @@ export function SectionNav() {
   return (
     <>
       <SectionNavRail items={items} visible={visible} onText={onText} onJump={jump} />
+      <SectionNavTrigger open={open} onText={onText} onToggle={toggleFromTrigger} />
       <SectionNavSheet
         items={items}
         visible={visible}

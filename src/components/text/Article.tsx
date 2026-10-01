@@ -1,5 +1,5 @@
 import { useRouter } from "@tanstack/react-router";
-import { Check, ChevronDown, Link } from "lucide-react";
+import { Check, Link } from "lucide-react";
 import type {
   ComponentType,
   MouseEvent as ReactMouseEvent,
@@ -22,10 +22,17 @@ import { PhotoGalleries } from "../articles/PhotoGalleries";
 import { SaferSpaceLink } from "../articles/SaferSpaceLink";
 import { DiscordWidget } from "../DiscordWidget";
 import { Hero } from "../Hero";
+import { Img } from "../media/Img";
 import { Lightbox } from "../media/Lightbox";
 import { Sponsors } from "../Sponsors";
-import { Paragraph, TextLink, TextPanel } from "./index";
+// Direct imports, NOT the ./index barrel: index re-exports Article, and the
+// cycle made Mark undefined in dev SSR (it is read at module-eval time
+// when mdxComponents is built; render-time reads survived the cycle).
+import { Mark } from "./Mark";
+import { Paragraph } from "./Paragraph";
 import type { To } from "./TextLink";
+import { TextLink } from "./TextLink";
+import { TextPanel } from "./TextPanel";
 
 const articles = import.meta.glob<{
   default: ComponentType<{ components?: MDXComponents }>;
@@ -129,7 +136,7 @@ function AnchoredChip({
   className,
   children,
 }: {
-  as: "h1" | "h2";
+  as: "h1" | "h2" | "h3";
   id?: string;
   className: string;
   children?: ReactNode;
@@ -163,8 +170,12 @@ function H2({ id, children }: { id?: string; children?: ReactNode }) {
     </AnchoredChip>
   );
 }
-function H3({ children }: { children?: ReactNode }) {
-  return createElement("h3", { className: "self-center text-h3-fluid" }, children);
+function H3({ id, children }: { id?: string; children?: ReactNode }) {
+  return (
+    <AnchoredChip as="h3" id={id} className="text-h3-fluid">
+      {children}
+    </AnchoredChip>
+  );
 }
 
 // Article links: internal -> router path (children pass through untouched,
@@ -185,12 +196,12 @@ function A({ href, children }: { href?: string; children?: ReactNode }) {
   return <TextLink href={href}>{children}</TextLink>;
 }
 
-// GitHub-style ![alt](src) - local /assets/ and third-party https URLs
-// both work (MDX's default URL transform allows them). Every article
-// image opens in the shared Lightbox (click / tap, exit top right).
+// GitHub-style ![alt](src) renders as a plain image (local /assets/ and
+// third-party https URLs both work - MDX's default URL transform allows
+// them). Click-to-zoom is opt-in: wrap content in <Lightbox> in the mdx.
 function MdxImg({ src, alt }: { src?: string; alt?: string }) {
   if (!src) return null;
-  return <Lightbox src={src} alt={alt ?? ""} />;
+  return <img src={src} alt={alt ?? ""} loading="lazy" className="block max-w-full rounded-lg" />;
 }
 
 // Opt-in centering for mdx prose.
@@ -217,9 +228,18 @@ function MdxUl({ children }: { children?: ReactNode }) {
 // below it so the strip sits flush against the sheet.
 const StripSpace = () => <div aria-hidden className="dots-strip -mb-8 h-12" />;
 
-// Bottom-of-hero scroll hint (plugin places it in the hero strip).
+// Bottom-of-hero scroll hint (plugin places it in the hero strip). No
+// disc: three bare chevrons, each a masked span with a moving primary->light
+// gradient sweep (.shine-chevron) plus a bloom glow, cascading in opacity -
+// the solid bottom one is the pull. All three animate in unison. mt-auto
+// pins the stack above the strip's bottom padding (pairs with the Hero
+// wrapper's mt-auto). Sizes cap against cqh like the rest of the hero.
 const ScrollHint = () => (
-  <ChevronDown aria-hidden className="size-6 animate-bounce text-primary/70" />
+  <div data-scroll-hint aria-hidden className="mt-auto flex shrink-0 flex-col items-center">
+    <span className="shine-chevron size-[min(2.5rem,4cqh)] opacity-40" />
+    <span className="shine-chevron -mt-[0.4em] size-[min(2.5rem,4cqh)] opacity-70" />
+    <span className="shine-chevron -mt-[0.4em] size-[min(2.5rem,4cqh)]" />
+  </div>
 );
 
 const mdxComponents: MDXComponents = {
@@ -233,8 +253,15 @@ const mdxComponents: MDXComponents = {
   a: A,
   img: MdxImg,
   Center,
+  Mark,
 
   DiscordWidget,
+
+  // Media: <Img> gets an explicitly authored size (see MDX_SOFT_BLOCKS - it
+  // stays inside its ## section); <Lightbox> is the explicit click-to-zoom
+  // opt-in wrapper.
+  Img,
+  Lightbox,
 
   // Full-page building blocks embedded from the mdx files.
   Hero,

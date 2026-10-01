@@ -40,10 +40,12 @@
     "home": "Etusivulle"
   },
   "footer": {
-    "copyright": "Copyright (c) {{year}} Ruut ry. Kaikki oikeudet pidätetään.",
+    "copyright": "© {{year}} Ruut ry",
+    "links": "Linkit",
     "site": "Sivut",
     "event": "Tapahtuma",
-    "ticket": "Lippukauppa"
+    "ticket": "Lippukauppa",
+    "safer_space": "Turvallisempi tila"
   },
   "sponsors": "Yhteistyökumppanit",
   "a11y": {
@@ -52,10 +54,11 @@
     "open_menu": "Avaa valikko",
     "copy_link": "Kopioi linkki otsikkoon",
     "copied": "Linkki kopioitu",
-    "toc": "Osion sisältö",
+    "toc": "Sivun sisältö",
     "back_to_top": "Takaisin ylös",
     "go_up": "Ylös",
     "zoom_image": "Avaa kuva suurennettuna",
-    "close": "Sulje"
+    "close": "Sulje",
+    "expand_widget": "Avaa Discord-widget"
   }
 }

@@ -46,9 +46,8 @@
   font-display: block;
 }
 
-/* Wallpaper: parallax-js transforms .bg-wall (its first scene child is forced
-   position:relative, so size via width/height + negative margins). Scroll drift
-   sits on .drift - the lib overwrites the layer transform. Root clips the box. */
+/* parallax-js owns .bg-wall's transform (hence width/height + negative
+   margins); scroll drift rides the child .drift layer. */
 .drift {
   position: absolute;
   inset: 0;
@@ -63,10 +62,7 @@
   will-change: transform;
 }
 
-/* Background artwork: generated at build time by vite-plugin-theme-assets from
-   src/assets/templates/background.svg. Fixed pixel size keeps the dot size
-   constant across viewports; 2960px covers up to 2560px-wide windows incl.
-   the 400px parallax overdraw. */
+/* Build-time generated artwork; fixed size keeps the dot pitch constant. */
 .bg-art {
   display: block;
   width: 100%;
@@ -92,11 +88,7 @@
   transform: translateZ(0);
 }
 
-/* Flip clock: every size derives from the strip's height in cqh units
-   (the .hero-strip size container), so the clock scales with the space
-   the hero has - no JS, no hydration resize. The px values are the
-   design-size ceilings (desktop 80px blocks, mobile 52px). Colors via
-   the --countdown-* tokens below. */
+/* Flip clock sizes derive from the strip's height (cqh); px values are the design ceilings. */
 .haala-flip-clock {
   --fcc-digit-block-height: min(80px, 9cqh);
   --fcc-digit-block-width: min(46px, 5.2cqh);
@@ -159,9 +151,7 @@
   }
 }
 
-/* Mono artwork tinted via CSS (see MonoImage.tsx): the image masks the box,
-   the background is the tint. 100%/100% stretches the drawing to the box's
-   exact size. */
+/* Mono artwork tinted via CSS (see MonoImage.tsx): image as mask, background as tint. */
 @layer components {
   .mono-image {
     display: block;
@@ -172,8 +162,7 @@
   }
 }
 
-/* Inline chip (opt-in per element - the ticket date line): padding +
-   radius + the translucent tint. Text content at large doesn't use it. */
+/* Inline chip (ticket date line): padding + radius + tint. */
 .bg-inline {
   position: relative;
   display: inline-block;
@@ -182,21 +171,18 @@
   background: var(--panel-tint);
 }
 
-/* Flat document surface: everything from the first heading down; the wallpaper shows only above it. */
+/* Flat document surface; children align to start, the column centers via mx-auto. */
 .content-sheet {
   display: flex;
   width: 100%;
   flex-direction: column;
-  align-items: center;
   gap: 1.5rem;
   background: var(--background);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   padding: 1.5rem 1rem 2rem;
 }
 
-/* Sticky header height, kept in sync with the Header's construction
-   (py-2 + the sm logo / nav row): 80px below md, 90px at md+. Consumed
-   by the hero strip's first-viewport calc. */
+/* The sticky header's built height; consumed by the hero strip calc. */
 :root {
   --header-h: 5rem;
 }
@@ -208,22 +194,12 @@
 
 .hero-strip {
   display: flex;
-  /* Size container: the strip's height is exactly the calc() value - the
-     content cannot grow it - and every piece inside sizes against it in
-     cqh units, so the hero always fits the first viewport heightwise with
-     NO JavaScript and nothing resizes at hydration (the SSR markup is
-     final). The height must be explicit (not min-height): a size
-     container's queryable block size does not come from min-height
-     clamping, and cqh would resolve to 0. Overflow, should content ever
-     exceed the caps, paints under the opaque sheet that follows. */
+  /* Size container with an explicit height: nothing resizes at hydration,
+     and inner pieces size in cqh. (min-height wouldn't make the block size
+     queryable - cqh would resolve to 0.) */
   container-type: size;
-  /* Exactly the first viewport below the header: the strip pulls itself
-     up over main's top padding (-mt) and spans 100dvh minus the sticky
-     header (--header-h). On load the whole hero is in view - content
-     centered in the space, the scroll hint pinned above the strip's
-     bottom padding - and the content sheet starts at the fold. The static
-     --header-h guess can drift a few px on mid widths (the header nav
-     wraps ~768-850px); that only moves the fold by as much. */
+  /* Exactly the first viewport below the header; --header-h can drift a
+     few px on mid widths. */
   margin-top: -1.5rem;
   height: calc(100dvh - var(--header-h));
   flex-direction: column;
@@ -235,15 +211,10 @@
 }
 
 /* Snap + anchor scrolling must clear the sticky site header. */
-/* Vertical pans belong to the page, horizontal pans to the edge-swipe
-   quick-jump: pan-y keeps native vertical scrolling while horizontal edge
-   drags stay addressable as pointer events (drag = pointer events, where
-   preventDefault cannot freeze scrolling the way a non-passive touchmove
-   could). pinch-zoom is spelled out because bare pan-y would strip zoom
-   page-wide (WCAG 1.4.4). Intersection up the ancestor chain applies it
-   page-wide. */
+/* Vertical pans stay native while horizontal edge drags remain addressable
+   as pointer events; pinch-zoom spelled out (bare pan-y would strip zoom). */
 html {
-  scroll-padding-top: 5rem;
+  scroll-padding-top: var(--header-h);
   touch-action: pan-y pinch-zoom;
 }
 
@@ -290,13 +261,7 @@ html {
     chip-bounce 1.3s cubic-bezier(0.34, 1.2, 0.64, 1);
 }
 
-/* Shiny scroll chevrons: no disc - the icon itself masks the shape and a
-   light band rides the up-right 45-degree diagonal across it (bottom-left
-   -> top-right, exiting fully before the next pass); a bloom glow lifts
-   the chevron off the dotted wallpaper. Opacity cascades down the stack
-   (the solid bottom one is the pull). Bounce and shine run on every
-   chevron in unison - one animation, no stagger. Reduced motion: static
-   chevrons, no shine. */
+/* Shiny scroll chevrons: masked shape, diagonal light band, bloom glow. */
 .shine-chevron {
   --chevron-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='4 7 16 10' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   position: relative;

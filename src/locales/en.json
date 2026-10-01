@@ -7,11 +7,12 @@
     "contacts": "Contacts"
   },
   "meta": {
-    "main": "Haalarilanit is a big LAN event held at the LAB campus sports hall in Lappeenranta: almost two hundred players, tournaments and company at the most epic gaming session of the autumn.",
+    "main": "Haalarilanit is a big LAN event at the LAB campus sports hall in Lappeenranta: nearly two hundred players, tournaments and company.",
     "rules": "The rules of Haalarilanit: the event area is substance-free, each seat has 350 W of power and Finnish law applies. Read the rules before the event.",
     "guidance": "Info for Haalarilanit: entry, parking, your LAN seat and a packing list - everything you need to know before arriving at the venue.",
     "tournaments": "Haalarilanit tournaments: CS2, NHL, League of Legends and the Nintendo Switch Challenge. Compete for glory and prizes - free entry for spectators.",
-    "contacts": "Contact the main organizers of Haalarilanit. Questions about the event, tickets and partnerships - reach us by email or Telegram."
+    "contacts": "Contact the main organizers of Haalarilanit. Questions about the event, tickets and partnerships - reach us by email or Telegram.",
+    "title": "Haalarilanit 2026 – the big LAN event in Lappeenranta"
   },
   "main": {
     "time": {

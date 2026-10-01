@@ -2,15 +2,15 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { Article } from "../../components/text";
 import i18n from "../../lib/i18n";
+import { currentLang, seoHead } from "../../lib/metadata";
 
 export const Route = createFileRoute("/$lang/tournament")({
-  head: () => ({
-    meta: [
-      { title: `${i18n.t("nav.tournaments")} - Haalarilanit` },
-      { name: "description", content: i18n.t("meta.tournaments") },
-      { property: "og:description", content: i18n.t("meta.tournaments") },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      path: `/${currentLang()}/tournaments`,
+      title: `${i18n.t("nav.tournaments")} - Haalarilanit`,
+      description: i18n.t("meta.tournaments"),
+    }),
   component: TournamentPage,
 });
 

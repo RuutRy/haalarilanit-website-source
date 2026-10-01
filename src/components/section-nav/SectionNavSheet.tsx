@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { SectionNavItem } from "./SectionNavItem";
 import type { SwipeSide } from "./useEdgeSwipe";
@@ -35,17 +35,18 @@ export function SectionNavSheet({
     <Sheet modal={false} open={open} onOpenChange={onOpenChange}>
       <SheetContent
         side={side}
+        // aria-label keeps the dialog named without the visible title the
+        // desktop rail doesn't have either (the variants stay identical).
+        aria-label={t("a11y.toc")}
         className={cn(
-          "my-auto max-h-[75dvh] w-64 overflow-y-auto rounded-xl border border-foreground/10 bg-(--panel-tint) p-2 text-foreground backdrop-blur-lg",
+          // Borderless frosted card; kill the primitive's side border.
+          "my-auto max-h-[75dvh] w-64 overflow-y-auto rounded-xl bg-(--panel-tint) p-2 text-foreground backdrop-blur-lg data-[side=left]:border-r-0 data-[side=right]:border-l-0",
           side === "left"
             ? "data-[side=left]:left-4 data-[side=left]:h-fit data-[side=left]:w-64"
             : "data-[side=right]:right-4 data-[side=right]:h-fit data-[side=right]:w-64",
         )}
       >
-        <SheetHeader>
-          <SheetTitle>{t("a11y.toc")}</SheetTitle>
-        </SheetHeader>
-        <ul className="flex flex-col gap-1 px-3 pb-3">
+        <ul className="flex flex-col gap-1 px-3 py-3">
           {items.map((item) => (
             <SectionNavItem
               key={item.id}

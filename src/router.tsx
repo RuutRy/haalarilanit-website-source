@@ -1,6 +1,6 @@
 import { createRouter } from "@tanstack/react-router";
 
-import i18n from "./lib/i18n";
+import { NotFoundPage } from "./routes/not-found";
 import { routeTree } from "./routeTree.gen";
 
 export function getRouter() {
@@ -11,22 +11,28 @@ export function getRouter() {
     // below are forced back to instant.
     scrollRestorationBehavior: "smooth",
     defaultPreload: "render",
-    defaultNotFoundComponent: () => (
-      <h2 className="text-center">{i18n.t("content_unavailable")}</h2>
-    ),
+    // Hydration on real 404 hits (unknown URLs) must match the
+    // prerendered /404.html tree - i.e. the /not-found route component.
+    defaultNotFoundComponent: () => <NotFoundPage />,
   });
 
-  // Browser back/forward must restore the scroll position instantly -
-  // a smooth glide through page history feels broken. Flip the behavior
-  // for popstate restorations, then restore it once the scroll has run
-  // (it happens synchronously in onRendered, well under the delay).
-  // Browser-only: getRouter also runs during SSR.
+  // Browser back/forward must restore scroll instantly - a smooth glide
+  // through page history feels broken. scrollRestorationBehavior is only
+  // read globally (router-core), so flip it around the popstate
+  // restoration: instant before the restore, back to smooth once the
+  // router has rendered that navigation. The timeout covers popstates
+  // that produce no navigation (same-URL back).
   if (typeof window !== "undefined") {
     addEventListener("popstate", () => {
       router.options.scrollRestorationBehavior = "instant";
-      setTimeout(() => {
+      const unsubscribe = router.subscribe("onRendered", () => {
+        unsubscribe();
         router.options.scrollRestorationBehavior = "smooth";
-      }, 100);
+      });
+      setTimeout(() => {
+        unsubscribe();
+        router.options.scrollRestorationBehavior = "smooth";
+      }, 2000);
     });
   }
 

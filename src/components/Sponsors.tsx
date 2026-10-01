@@ -7,9 +7,7 @@ import { LogoLink } from "./media/LogoLink";
 
 // Logos step 56–96px by 2; each step re-runs Logo Soup's canvas normalization.
 // baseSize is a JS prop driving Logo Soup's canvas, so CSS clamp can't own it.
-// fixed initial size on server and client alike so prerendered HTML hydrates
-// cleanly; mobile briefly repaints to the real size in the effect below —
-// accepted over hydration-unsafe matchMedia init
+// Prerender-safe initial size; the real size is measured after mount.
 const INITIAL_SPONSOR_SIZE = sponsorSizeFor(1200);
 
 function useSponsorBaseSize() {

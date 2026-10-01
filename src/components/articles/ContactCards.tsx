@@ -1,14 +1,14 @@
 import { useTranslation } from "react-i18next";
 
 import { contacts } from "../../lib/data";
-import { DEFAULT_LANG, isLang } from "../../lib/lang";
+import { useActiveLang } from "../../lib/lang";
 import { ContactCard } from "../ContactCard";
 import { Paragraph } from "../text";
 
 // Contact cards from data.ts; when every name is empty, a placeholder line.
 export function ContactCards() {
-  const { t, i18n } = useTranslation();
-  const lang = isLang(i18n.language) ? i18n.language : DEFAULT_LANG;
+  const { t } = useTranslation();
+  const lang = useActiveLang();
 
   const visibleContacts = contacts.filter((c) => c.name.trim().length > 0);
 

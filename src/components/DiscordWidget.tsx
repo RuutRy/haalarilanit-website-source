@@ -1,9 +1,7 @@
 import { links } from "../lib/data";
 
-// Live Discord server widget (official embed): online member count and
-// the channel list. Configured per server in data.ts - a social entry
-// with widgetGuildId (the server must have its widget enabled).
-// Sandbox follows Discord's recommended embed config.
+// Official Discord widget embed (Server Settings → Widget), Discord's recommended
+// markup: 350×500, transparent background, sandboxed like the vendor snippet.
 export function DiscordWidget() {
   const discord = links.socials.find((s) => s.widgetGuildId);
   if (!discord) return null;
@@ -12,8 +10,8 @@ export function DiscordWidget() {
     <iframe
       src={`https://discord.com/widget?id=${discord.widgetGuildId}&theme=dark`}
       width="350"
-      height="420"
-      frameBorder="0"
+      height="500"
+      frameBorder={0}
       // oxlint-disable-next-line react/iframe-missing-sandbox -- vendor-recommended embed config
       sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
       title={discord.name}

@@ -12,9 +12,10 @@ import { useTranslation } from "react-i18next";
 
 import type { MDXComponents } from "@/lib/mdx";
 
+import { SectionNav } from "@/components/section-nav";
 import { copyText } from "@/lib/clipboard";
 import { flashHeading } from "@/lib/heading-flash";
-import { stripLang } from "@/lib/lang";
+import { DEFAULT_LANG, isLang, stripLang } from "@/lib/lang";
 import { MDX_BLOCKS } from "@/lib/mdx-blocks";
 import { cn } from "@/lib/utils";
 
@@ -25,7 +26,6 @@ import { ContactCards } from "../articles/ContactCards";
 import { Floorplan } from "../articles/Floorplan";
 import { PhotoGalleries } from "../articles/PhotoGalleries";
 import { SaferSpaceLink } from "../articles/SaferSpaceLink";
-import { SectionNav } from "../articles/SectionNav";
 import { DiscordWidget } from "../DiscordWidget";
 import { Hero } from "../Hero";
 import { Lightbox } from "../media/Lightbox";
@@ -183,7 +183,7 @@ function A({ href, children }: { href?: string; children?: ReactNode }) {
     // template-string key needs a cast against the typed registry.
     const path = `/$lang${stripLang(href)}` as keyof typeof router.routesByPath;
     if (!router.routesByPath[path]) {
-      console.warn(`article link "${href}" does not match a route`); // oxlint-disable-line no-console -- content typo signal
+      console.warn(`article link "${href}" does not match a route`);
     }
     return <TextLink to={href as To}>{children}</TextLink>;
   }
@@ -255,12 +255,13 @@ const mdxComponents: MDXComponents = {
 };
 
 export function Article({ name, lang }: { name: string; lang: string }) {
-  const path = `../../content/${lang}/${name}.mdx`;
+  const active = isLang(lang) ? lang : DEFAULT_LANG;
+  const path = `../../content/${active}/${name}.mdx`;
   const mod = articles[path];
 
   if (!mod) {
     // Missing language file: fall back to the default tree; console.warn surfaces the gap in dev and prerender builds.
-    if (lang !== "fi") console.warn(`article "${name}" missing for lang "${lang}", using fi`); // oxlint-disable-line no-console -- build/regression signal, not app logging
+    if (active !== "fi") console.warn(`article "${name}" missing for lang "${active}", using fi`);
     const fallback = articles[`../../content/fi/${name}.mdx`];
     if (!fallback) return null;
     return (

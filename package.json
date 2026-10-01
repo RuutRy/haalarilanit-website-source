@@ -2,6 +2,9 @@
   "name": "haalarilanit",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -11,7 +14,7 @@
     "format:check": "oxfmt --check src",
     "typecheck": "tsc -b --noEmit",
     "test": "vitest run",
-    "scan": "doiuse src/index.css"
+    "scan": "node scripts/scan-css.mjs"
   },
   "browserslist": [
     "chrome >= 120",
@@ -53,6 +56,7 @@
     "lightningcss": "^1.33.0",
     "oxfmt": "^0.63.0",
     "oxlint": "^1.78.0",
+    "postcss": "^8.5.28",
     "react-i18next": "^17.0.11",
     "remark-parse": "^11.0.0",
     "tailwindcss": "^4.3.3",

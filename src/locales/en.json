@@ -12,7 +12,7 @@
     "guidance": "Info for Haalarilanit: entry, parking, your LAN seat and a packing list - everything you need to know before arriving at the venue.",
     "tournaments": "Haalarilanit tournaments: CS2, NHL, League of Legends and the Nintendo Switch Challenge. Compete for glory and prizes - free entry for spectators.",
     "contacts": "Contact the main organizers of Haalarilanit. Questions about the event, tickets and partnerships - reach us by email or Telegram.",
-    "title": "Haalarilanit 2026 – the big LAN event in Lappeenranta"
+    "title": "Haalarilanit {{year}} – the big LAN event in Lappeenranta"
   },
   "main": {
     "time": {

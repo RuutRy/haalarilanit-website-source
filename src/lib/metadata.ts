@@ -1,7 +1,7 @@
 // Route-head meta wiring: per-route canonical + og:url, og:locale per
 // language, Event JSON-LD on the front page.
 
-import { event, SITE_URL } from "./data";
+import { event, eventYear, SITE_URL } from "./data";
 import i18n from "./i18n";
 
 const OG_LOCALES: Record<string, string> = { fi: "fi_FI", en: "en_US" };
@@ -18,12 +18,12 @@ export function isoHelsinki(date: Date): string {
   return `${date.getFullYear()}-${part(date.getMonth() + 1)}-${part(date.getDate())}T${part(date.getHours())}:${part(date.getMinutes())}:00+02:00`;
 }
 
-export function eventJsonLd(name: string, description: string): string {
+export function eventJsonLd(description: string): string {
   const lang = currentLang();
   return JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Event",
-    name,
+    name: `${event.name} ${eventYear}`,
     description,
     startDate: isoHelsinki(event.start),
     endDate: isoHelsinki(event.end),

@@ -12,7 +12,7 @@
     "guidance": "Tietoa Haalarilaneille: sisäänkäynti, parkkipaikka, lanipaikka ja pakkauslista - kaikki mitä tapahtumapaikalle saapumiseen tarvitsee tietää.",
     "tournaments": "Haalarilanien turnaukset: CS2, NHL, League of Legends ja Nintendo Switch Challenge. Kilpaile kunniasta ja palkinnoista - katsojille ilmainen sisäänpääsy.",
     "contacts": "Yhteystiedot Haalarilanien pääjärjestäjiin. Kysymykset tapahtumasta, lipuista ja yhteistyöstä - tavoitat meidät sähköpostitse ja Telegramissa.",
-    "title": "Haalarilanit 2026 – LAN-tapahtuma Lappeenrannassa"
+    "title": "Haalarilanit {{year}} – LAN-tapahtuma Lappeenrannassa"
   },
   "main": {
     "time": {

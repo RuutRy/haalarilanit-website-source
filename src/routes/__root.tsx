@@ -11,7 +11,7 @@ import { Background } from "../components/background/Background";
 import { Footer } from "../components/layout/Footer";
 import { Header } from "../components/layout/header";
 import { TooltipProvider } from "../components/ui/tooltip";
-import { SITE_URL } from "../lib/data";
+import { event, eventYear, SITE_URL } from "../lib/data";
 import { syncRouteLanguage } from "../lib/i18n";
 import {
   DEFAULT_LANG,
@@ -65,7 +65,7 @@ export const Route = createRootRoute({
       { property: "og:image", content: `${SITE_URL}/assets/og-image.png` },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: "Haalarilanit 2026 logotype" },
+      { property: "og:image:alt", content: `${event.name} ${eventYear} logotype` },
       { property: "og:type", content: "website" },
       { name: "theme-color", content: "#e38717" },
       { name: "twitter:card", content: "summary_large_image" },

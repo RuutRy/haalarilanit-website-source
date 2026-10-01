@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { Article } from "../components/text";
+import { eventYear } from "../lib/data";
 import i18n, { syncRouteLanguage } from "../lib/i18n";
 import { DEFAULT_LANG } from "../lib/lang";
 import { eventJsonLd, seoHead } from "../lib/metadata";
@@ -14,9 +15,9 @@ export const Route = createFileRoute("/")({
   head: () =>
     seoHead({
       path: "/fi",
-      title: i18n.t("meta.title"),
+      title: i18n.t("meta.title", { year: eventYear }),
       description: i18n.t("meta.main"),
-      jsonLd: eventJsonLd("Haalarilanit 2026", i18n.t("meta.main")),
+      jsonLd: eventJsonLd(i18n.t("meta.main")),
     }),
   component: MainPage,
 });

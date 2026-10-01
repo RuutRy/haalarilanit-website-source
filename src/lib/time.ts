@@ -28,6 +28,9 @@ export function formatEventTime(lang: string, atStart: string, atEnd: string): s
   return `${startStr} - ${endStr}`;
 }
 
+// One-off date in the site's format: 03.10.2026 klo 12 (lang is
+// reserved for future localized variants; the numeric format is
+// language-neutral).
 export function formatSingleDate(date: Date, atWord: string): string {
   const day = pad(date.getDate());
   const month = pad(date.getMonth() + 1);

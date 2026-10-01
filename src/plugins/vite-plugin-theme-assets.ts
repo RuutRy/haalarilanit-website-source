@@ -6,9 +6,10 @@
 // change. Build: emitted as real files.
 
 import type { Plugin } from "vite";
+
+import { transform, type TokenOrValue } from "lightningcss";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { transform, type TokenOrValue } from "lightningcss";
 
 interface ThemeAsset {
   template: string;
@@ -38,7 +39,12 @@ function customProperties(css: string, file: string): Map<string, TokenOrValue[]
 
 // var() chains are followed until a value with no var() left. Only rgb colors
 // and bare tokens survive SVG output - anything else is a config error.
-function tokenString(name: string, props: Map<string, TokenOrValue[]>, file: string, stack: string[]): string {
+function tokenString(
+  name: string,
+  props: Map<string, TokenOrValue[]>,
+  file: string,
+  stack: string[],
+): string {
   if (!name.startsWith("--")) name = `--${name}`;
   const value = props.get(name);
   if (!value) throw new Error(`theme-assets: --${name} not found in ${file}`);

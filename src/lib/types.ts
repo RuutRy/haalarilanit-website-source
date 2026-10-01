@@ -25,3 +25,11 @@ export type PhotoEntry = {
   label: string;
   url: string;
 };
+
+// Social channel. widgetGuildId is optional - set it for a Discord
+// server with its widget enabled to embed the live widget.
+export type Social = {
+  name: string;
+  url: string;
+  widgetGuildId?: string;
+};

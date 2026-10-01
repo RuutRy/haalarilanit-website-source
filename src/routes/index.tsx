@@ -1,59 +1,28 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useTranslation } from "react-i18next";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
+import { useEffect } from "react";
 
-import { Hero } from "../components/Hero";
-import { PageContent, Section } from "../components/layout";
-import { Sponsors } from "../components/Sponsors";
-import { Heading, Paragraph, TextLink } from "../components/text";
-import { links } from "../lib/data";
+import type { Lang } from "../lib/lang";
+
+import { DEFAULT_LANG, isLang } from "../lib/lang";
+
+// Root: sniff language (localStorage -> navigator -> fi) and forward
+// to the language tree. The redirect runs after mount so hydration
+// matches the language-neutral prerendered shell (no #418).
+function sniffLang(): Lang {
+  const stored = localStorage.getItem("language");
+  if (isLang(stored)) return stored;
+  const nav = navigator.language?.slice(0, 2);
+  return isLang(nav) ? nav : DEFAULT_LANG;
+}
+
+function RedirectHome() {
+  const router = useRouter();
+  useEffect(() => {
+    void router.navigate({ to: "/$lang", params: { lang: sniffLang() }, replace: true });
+  }, [router]);
+  return null;
+}
 
 export const Route = createFileRoute("/")({
-  component: MainPage,
+  component: RedirectHome,
 });
-
-function MainPage() {
-  const { t } = useTranslation();
-
-  return (
-    <PageContent className="gap-10 text-center">
-      {/* Hero: logo, time line, flip clock phases, ticket CTA */}
-      <Hero />
-
-      {/* What's this all about */}
-      <Section className="gap-4">
-        <Heading level={2} text={t("main.header")} />
-        <Paragraph text={t("main.main_1")} />
-        <Paragraph text={t("main.main_2")} />
-        <Paragraph text={t("main.main_3")} />
-        <Paragraph>
-          {t("main.main_4.text")}
-          <TextLink to="/guide" text={t("main.main_4.anchor")} />.
-        </Paragraph>
-        <Paragraph>
-          {t("main.main_5.text")}
-          <TextLink to="/contact" text={t("main.main_5.anchor")} />.
-        </Paragraph>
-      </Section>
-
-      {/* Sponsor logos between the intro and the policy sections */}
-      <Sponsors />
-
-      {/* Safer space policy - link lives in data.ts */}
-      <Section className="max-w-none items-center">
-        <Heading level={2} text={t("safer_space.header")} />
-        <TextLink href={links.saferSpace} text={t("safer_space.click")} className="bg-inline" />
-      </Section>
-
-      {/* Photo galleries */}
-      <Section className="max-w-none items-center">
-        <Heading level={2} text={t("main.photos.header")} />
-        <Paragraph text={t("main.photos.text")} className="w-fit" />
-        <div className="flex gap-4">
-          {links.photos.map((photo) => (
-            <TextLink key={photo.label} href={photo.url} text={photo.label} className="bg-inline" />
-          ))}
-        </div>
-      </Section>
-    </PageContent>
-  );
-}

@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { event, links } from "../lib/data";
+import { event, links, ticketSalesStart } from "../lib/data";
 import i18n from "../lib/i18n";
 import { formatEventTime, formatSingleDate } from "../lib/time";
+import { Blur } from "./Blur";
 import { FlipClock } from "./FlipClock";
 import { Logo } from "./media/Logo";
 import { Button } from "./ui/button";
@@ -54,9 +55,13 @@ export function Hero() {
 
   return (
     <>
-      <Logo />
+      {/* Only element carrying the frosted Blur treatment: the hero
+          floats over the live wallpaper. */}
+      <Blur className="self-center">
+        <Logo />
+      </Blur>
 
-      <div className="bg-panel flex w-full max-w-xl flex-col items-center gap-2">
+      <Blur className="flex w-full max-w-xl flex-col items-center gap-2">
         {/* Time line is data-driven: weekday + dates + times come from
             event data, the words around them from translations */}
         <h3 className="text-h3-fluid">
@@ -94,14 +99,16 @@ export function Hero() {
             />
           </div>
         )}
-      </div>
+      </Blur>
 
       {/* If event link doesn't exist, show a message instead */}
       {!links.ticket && (
         <p className="text-h3-fluid text-primary">{t("main.ticket_not_yet_available")}</p>
       )}
 
-      {/* Purchase stays visible until the event has ended */}
+      {/* Purchase stays visible until the event has ended. Before the
+          shop opens the button is a plain outline and the sales-start
+          date shows below it (no countdown clock). */}
       {!concluded && links.ticket && (
         <form action={links.ticket}>
           <TicketButton label={t("main.purchase_button")} />
@@ -111,11 +118,15 @@ export function Hero() {
   );
 }
 
+// The ticket purchase button, 1:1 with upstream: locked until
+// ticketSalesStart it renders as a muted ghost button (grey, struck
+// through, no accent/shine) with the sales-start date below; when the
+// moment passes it goes live with the shine treatment.
 function TicketButton({ label }: { label: string }) {
   const { t } = useTranslation();
   const [now, setNow] = useState<number | null>(null);
 
-  const open = now !== null && now >= event.ticketSales.getTime();
+  const open = now !== null && now >= ticketSalesStart.getTime();
 
   useEffect(() => {
     setNow(Date.now());
@@ -135,7 +146,7 @@ function TicketButton({ label }: { label: string }) {
     );
   }
 
-  const date = formatSingleDate(event.ticketSales, t("main.time.at_start"));
+  const date = formatSingleDate(ticketSalesStart, t("main.time.at_start"));
 
   return (
     <div className="flex flex-col items-center gap-2">

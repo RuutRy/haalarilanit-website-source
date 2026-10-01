@@ -1,10 +1,13 @@
-import type { Contact, Organizer, PhotoEntry, Sponsor } from "./types";
+import type { Contact, Organizer, PhotoEntry, Social, Sponsor } from "./types";
 
 export const event = {
   start: new Date(2026, 10, 19, 15),
   end: new Date(2026, 10, 22, 12),
-  ticketSales: new Date(2026, 9, 3, 12),
 };
+
+// Ticket shop opens at this moment - the purchase button is greyed out
+// with the sales-start date below it until then (see Hero's TicketButton).
+export const ticketSalesStart = new Date(2026, 9, 3, 12);
 
 export const contacts: Contact[] = [
   {
@@ -39,8 +42,11 @@ export const sponsors: Sponsor[] = [
 // Every link and configurable URI lives here
 export const links = {
   ticket: "https://kauppa.haalarilan.it/product/807d143f-c490-45a0-8923-d22a1ba9d215",
-  saferSpace:
-    "https://ltky.fi/wp-content/uploads/2026/08/LTKY-turvallisemman-tilan-periaatteet.pdf",
+  // Safer space policy, one PDF per language tree (checked live)
+  saferSpace: {
+    fi: "https://ltky.fi/wp-content/uploads/2026/08/LTKY-turvallisemman-tilan-periaatteet.pdf",
+    en: "https://ltky.fi/wp-content/uploads/2024/03/LTKYs-Safer-Space-policy.pdf",
+  },
   photos: [
     {
       label: "2024",
@@ -67,4 +73,15 @@ export const links = {
       url: "https://cluster.fi",
     },
   ] satisfies Organizer[],
+  socials: [
+    {
+      name: "Instagram",
+      url: "https://www.instagram.com/haalarilanit/",
+    },
+    {
+      name: "Discord",
+      url: "https://discord.com/invite/KmzPVjnAWE",
+      widgetGuildId: "1240709326134312960",
+    },
+  ] satisfies Social[],
 };

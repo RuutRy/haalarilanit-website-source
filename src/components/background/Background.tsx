@@ -1,8 +1,11 @@
 import Parallax from "parallax-js";
 import { useEffect, useRef, type RefObject } from "react";
-import { useIdleCallbackEffect } from "react-timing-hooks";
 
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+import { useIdleCallbackEffect } from "@/lib/useIdleCallbackEffect";
+
+// module-scope read is fine in the browser; guard for the Node prerender pass
+const prefersReducedMotion =
+  typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const LIMIT = 100; // px, max layer travel (the lib clamps final px after scalar)
 const SCROLL_RANGE = 1400; // px, scroll distance over which drift maxes out

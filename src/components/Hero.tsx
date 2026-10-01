@@ -55,30 +55,43 @@ export function Hero() {
   const concluded = now >= event.end.getTime();
 
   return (
-    <>
+    // One content wrapper so the strip's flex centering treats the hero as
+    // a unit; text-center - the hero speaks centered; wrapped lines (the
+    // date range on narrow screens) align centered too.
+    //
+    // THE FIT, CSS-ONLY: this wrapper's font-size is the hero's scale knob
+    // - min(clamp(rem), 3.4vw, 2.1cqh) - and every size below is in em, so
+    // the whole hero scales as one unit: never wider than the viewport
+    // allows (3.4vw keeps the 13em logo under 70vw), never taller than the
+    // strip's height allows (2.1cqh; the strip is the size container), and
+    // never below the rem floor. Accessibility font scaling rides the rem
+    // clamp and is re-capped by cqh - the hero cannot overflow the first
+    // viewport on any phone. Wrapping shrinks with the font, so line
+    // counts stay bounded. No JS, nothing resizes at hydration.
+    <div className="mt-auto flex w-full flex-col items-center gap-[0.75em] text-center text-[min(clamp(0.875rem,1.25vw+0.625rem,1.25rem),3.4vw,2.1cqh)]">
       <Blur className="self-center">
         <Logo data-hero-logo />
       </Blur>
 
-      <Blur className="flex w-full max-w-xl flex-col items-center gap-2">
+      <Blur className="flex w-full max-w-2xl flex-col items-center gap-[0.4em]">
         {/* Time line is data-driven: weekday + dates + times come from
             event data, the words around them from translations */}
-        <h3 className="text-h3-fluid">
+        <h3 className="text-[1.6em]">
           {formatEventTime(lang, t("main.time.at_start"), t("main.time.at_end"))}
         </h3>
-        <h3 className="text-h3-fluid">{t("main.time.where")}</h3>
+        <h3 className="text-[1.6em]">{t("main.time.where")}</h3>
         {concluded ? (
           <div key="concluded" className="motion-safe:animate-pop-in">
-            <p className="py-6 text-h2-fluid">{t("event_end.message")}</p>
+            <p className="py-[0.55em] text-[2.2em]">{t("event_end.message")}</p>
           </div>
         ) : now >= event.start.getTime() ? (
           <div
             key="running"
-            className="motion-safe:animate-pop-in flex flex-col items-center gap-2"
+            className="motion-safe:animate-pop-in flex flex-col items-center gap-[0.4em]"
           >
             {/* Event running: started message, amber-toned countdown to
                 LAN OFF, with the ends-in label below the clock */}
-            <h3 className="text-h3-fluid text-primary">{t("main.time.started")}</h3>
+            <h3 className="text-[1.6em] text-primary">{t("main.time.started")}</h3>
             <FlipClock
               target={event.end}
               startedLabel={t("event_end.message")}
@@ -86,10 +99,13 @@ export function Hero() {
               onComplete={refresh}
               tone="end"
             />
-            <h3 className="text-h3-fluid text-primary">{t("main.time.endsin")}</h3>
+            <h3 className="text-[1.6em] text-primary">{t("main.time.endsin")}</h3>
           </div>
         ) : (
-          <div key="before" className="motion-safe:animate-pop-in flex flex-col items-center gap-2">
+          <div
+            key="before"
+            className="motion-safe:animate-pop-in flex flex-col items-center gap-[0.4em]"
+          >
             <FlipClock
               target={event.start}
               startedLabel={t("main.time.started")}
@@ -102,7 +118,7 @@ export function Hero() {
 
       {/* If event link doesn't exist, show a message instead */}
       {!links.ticket && (
-        <p className="text-h3-fluid text-primary">{t("main.ticket_not_yet_available")}</p>
+        <p className="text-[1.6em] text-primary">{t("main.ticket_not_yet_available")}</p>
       )}
 
       {/* Before the shop opens the button is a muted ghost with the sales-start date below. */}
@@ -111,7 +127,7 @@ export function Hero() {
           <TicketButton label={t("main.purchase_button")} />
         </form>
       )}
-    </>
+    </div>
   );
 }
 
@@ -133,7 +149,7 @@ function TicketButton({ label }: { label: string }) {
     return (
       <Button
         type="submit"
-        className="shine-btn h-auto rounded-xl px-12 py-11 text-5xl text-foreground transition-transform hover:-translate-y-0.5 sm:px-24 sm:py-13.5 sm:text-6xl"
+        className="shine-btn h-auto rounded-xl px-12 py-[0.92em] text-[2.4em] text-foreground transition-transform hover:-translate-y-0.5 sm:px-24 sm:py-[0.9em] sm:text-[3em]"
       >
         {label}
       </Button>
@@ -143,16 +159,16 @@ function TicketButton({ label }: { label: string }) {
   const date = formatSingleDate(ticketSalesStart, t("main.time.at_start"));
 
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div className="flex flex-col items-center gap-[0.4em]">
       <Button
         type="submit"
         disabled
         variant="ghost"
-        className="h-auto rounded-xl bg-muted px-12 py-10 text-4xl text-foreground line-through disabled:opacity-100 sm:px-16"
+        className="h-auto rounded-xl bg-muted px-12 py-[0.9em] text-[1.8em] text-foreground line-through disabled:opacity-100 sm:px-16"
       >
         {label}
       </Button>
-      <p className="bg-inline text-h3-fluid text-foreground">{t("main.ticket_opens", { date })}</p>
+      <p className="bg-inline text-[1.6em] text-foreground">{t("main.ticket_opens", { date })}</p>
     </div>
   );
 }

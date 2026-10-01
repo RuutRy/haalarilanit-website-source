@@ -5,7 +5,7 @@ import type { Data, Literal, Parent, RootContent } from "mdast";
 import { findAfter } from "unist-util-find-after";
 import { visit } from "unist-util-visit";
 
-import { MDX_BLOCKS } from "../lib/mdx-blocks.ts";
+import { MDX_BLOCKS, MDX_SOFT_BLOCKS } from "../lib/mdx-blocks.ts";
 
 // mdast doesn't know the MDX node kinds, nor the section/sheet/strip blocks
 // this plugin emits, so they are declared and unioned locally. The reference
@@ -56,10 +56,17 @@ type TextSource = {
   children?: TextSource[];
 };
 
+// Soft blocks (MDX_SOFT_BLOCKS) live inside their section: they do not
+// end one, and prose directly after them is a normal section body.
+function isSoftBlock(n: MdxNode): n is MdxJsxFlowElement {
+  return n.type === "mdxJsxFlowElement" && !!n.name && MDX_SOFT_BLOCKS.has(n.name);
+}
+
 // Like remark-sectionize but only for depth-2 headings: `# Title` and any
 // leading content stay outside the panels. Flow JSX (embedded components)
 // also ends a section so blocks like <Sponsors /> stay standalone.
 function isSectionEnd(n: MdxNode | { type: string; depth?: number }): boolean {
+  if (isSoftBlock(n as MdxNode)) return false;
   return (
     (n.type === "heading" && (n.depth ?? 0) <= 2) ||
     n.type === "export" ||
@@ -71,6 +78,21 @@ function transform(tree: MdxRoot, file: { message: (msg: string, node?: RootCont
   // Slugs must be unique per page, so the slugger lives per file run.
   const slugger = new GithubSlugger();
 
+  // Pass 1 - anchor ids on every h1-h3, wherever it sits (root level or
+  // inside a section panel): copy-link, hash navigation, the nav tree.
+  // A separate pass because sectionize splices nodes into sections and the
+  // walk never descends into the replaced node - a single pass would miss
+  // every section-internal heading.
+  visit(tree, "heading", (node) => {
+    if (node.depth < 1 || node.depth > 3) return;
+    const text = (node.children ?? []).map((c: TextSource) => c.value ?? headingText(c)).join("");
+    node.data = {
+      ...node.data,
+      hProperties: { ...node.data?.hProperties, id: slugger.slug(text) },
+    };
+  });
+
+  // Pass 2 - sectionize: top-level h2s only.
   visit(tree, (node, index, parent) => {
     if (!parent?.children) return;
     if (typeof index !== "number") return;
@@ -80,7 +102,7 @@ function transform(tree: MdxRoot, file: { message: (msg: string, node?: RootCont
       // Prose right after an embedded component renders with no panel
       // (components end sections) - flag it so authors notice.
       const prev = parent.children[index - 1];
-      if (prev?.type === "mdxJsxFlowElement") {
+      if (prev?.type === "mdxJsxFlowElement" && !isSoftBlock(prev)) {
         file.message(
           "paragraph directly after a component renders outside a panel; move it under a ## section",
           node,
@@ -88,16 +110,7 @@ function transform(tree: MdxRoot, file: { message: (msg: string, node?: RootCont
       }
       return;
     }
-    // Both h1 and h2 get anchor ids for copy-link / hash navigation.
-    if (node.type === "heading" && (node.depth === 1 || node.depth === 2)) {
-      const text = (node.children ?? []).map((c: TextSource) => c.value ?? headingText(c)).join("");
-      node.data = {
-        ...node.data,
-        hProperties: { ...node.data?.hProperties, id: slugger.slug(text) },
-      };
-      // An h2 also starts a section - fall through to sectionize below.
-      if (node.depth !== 2) return;
-    }
+    // An h2 starts a section - sectionize below.
     if (!(node.type === "heading" && node.depth === 2)) return;
 
     const end = findAfter(parent, node, isSectionEnd);
@@ -142,10 +155,11 @@ function wrapSheet(root: MdxRoot) {
   const sheet: Sheet = {
     type: "sheet",
     children: [
-      // SectionNav counts its sections client-side and hides itself; the
-      // plugin is the single place that knows a sheet exists.
-      inject(MDX_BLOCKS.sectionNav),
       ...kids.slice(start),
+      // SectionNav counts its sections client-side and hides itself; the
+      // plugin is the single place that knows a sheet exists. Injected at
+      // the sheet's end so its sticky handle docks alongside BackToTop.
+      inject(MDX_BLOCKS.sectionNav),
       // Back-to-top: CSS-fixed above the footer (see BackToTop).
       inject(MDX_BLOCKS.backToTop),
     ],

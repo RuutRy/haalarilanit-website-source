@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { LangToggle } from "@/components/lang-toggle";
@@ -23,24 +23,30 @@ export function Header() {
   // Main page: the hero owns the logo at top; the small mark parks until
   // the hero mark has gone under the header bar (measured live from the
   // hero logo's rect, so the swap tracks the fluid logo size on every
-  // viewport). Reads are safe during hydration too: the SSR HTML is
-  // already in place, so the hero logo exists when this first runs - and
-  // on the server document is absent, which keeps the parked SSR state.
+  // viewport).
+  //
+  // The live measurement must NOT run during hydration: a reload lands on
+  // the restored scroll position before React hydrates, so the hero is
+  // already gone and the client's first render would say "unparked" against
+  // the SSR's parked markup - an attribute mismatch React does not patch up,
+  // which parks the logo until the next real scroll. Until mounted, the
+  // hero counts as never-gone (Infinity), matching the parked SSR state;
+  // the mount re-render is a plain client render and patches the class.
   const isMain = stripLang(pathname) === "" || stripLang(pathname) === "/";
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const { y, vh } = useScrollState();
   const headerRef = useRef<HTMLElement>(null);
   const heroLogo =
-    typeof document === "undefined" || !isMain
-      ? null
-      : document.querySelector<HTMLElement>("[data-hero-logo]");
+    !mounted || !isMain ? null : document.querySelector<HTMLElement>("[data-hero-logo]");
   const heroBottom = heroLogo?.getBoundingClientRect().bottom ?? Number.POSITIVE_INFINITY;
   const headerBottom = headerRef.current?.getBoundingClientRect().bottom ?? 0;
   const parked = isMain && y <= vh && heroBottom > headerBottom - HERO_GRACE_PX;
 
   return (
-    <header ref={headerRef} className="sticky top-0 z-50 bg-background px-4 py-2">
-      {/* Three-column grid: hamburger right on mobile (toggle lives in its menu), inline nav centered, toggle right on desktop. */}
-      <div className="mx-auto grid max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-4">
+    <header ref={headerRef} className="sticky top-0 z-50 bg-background py-2">
+      {/* Three-column grid: hamburger right on mobile (toggle lives in its menu), inline nav centered, toggle right on desktop. The max-w-6xl + px-4/sm:px-8 geometry matches main and the footer, so every band's content edges align. */}
+      <div className="mx-auto grid max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-4 px-4 sm:px-8">
         <Link
           to="/$lang"
           params={{ lang }}

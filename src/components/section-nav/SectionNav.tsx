@@ -12,7 +12,8 @@ import { type SectionNavItemData, useSectionSpy } from "./useSectionSpy";
 // Deep-link glide waits for fonts/layout to settle.
 const DEEP_LINK_DELAY_MS = 400;
 
-// Dock-style TOC: rail on 2xl+, edge-swipe/trigger sheet below. Sections and
+// Dock-style TOC: rail from 72rem (where main centers and the trigger
+// detaches), edge-swipe/trigger sheet below. Sections and
 // on-screen marks come from useSectionSpy (measured after mount, rAF on scroll).
 export function SectionNav() {
   const [open, setOpen] = useState(false);

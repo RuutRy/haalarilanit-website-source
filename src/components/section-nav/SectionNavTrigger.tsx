@@ -3,9 +3,10 @@ import { useTranslation } from "react-i18next";
 
 import { cn } from "@/lib/utils";
 
-// Quick-jump handle below 2xl (the rail owns desktop), sticky at the sheet's
-// end like BackToTop so it docks above the footer. The h-0 wrapper takes no
-// layout slot; the negative margins cancel main's padding.
+// Quick-jump handle below 72rem - main's content stops being flush with the
+// screen edge above that, and the rail owns the TOC there. Sticky at the
+// sheet's end like BackToTop so it docks above the footer. The h-0 wrapper
+// takes no layout slot; the negative margins cancel main's padding.
 export function SectionNavTrigger({
   open,
   onText,
@@ -20,7 +21,7 @@ export function SectionNavTrigger({
 
   return (
     // no-reveal: keep the section-reveal animation from overriding the visibility transitions.
-    <div className="no-reveal sticky bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 h-0 w-full -mb-8 -ml-8 self-stretch sm:-ml-12 2xl:hidden">
+    <div className="no-reveal sticky bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 h-0 w-full -mb-8 -ml-8 self-stretch sm:-ml-12 min-[72rem]:hidden">
       <button
         type="button"
         aria-label={t("a11y.toc")}
@@ -28,7 +29,7 @@ export function SectionNavTrigger({
         tabIndex={show ? 0 : -1}
         onClick={onToggle}
         className={cn(
-          "pointer-events-auto absolute bottom-0 left-0 flex h-9 w-6 items-center justify-center rounded-r-full border border-l-0 border-foreground/10 bg-(--panel-tint) text-foreground shadow-lg backdrop-blur-lg transition-all duration-300",
+          "pointer-events-auto absolute bottom-0 left-0 flex h-9 w-6 items-center justify-center rounded-r-full border border-l-0 border-foreground/10 bg-(--panel-tint) text-foreground shadow-lg backdrop-blur-lg transition-[opacity,translate] duration-300",
           "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
           show ? "translate-x-0 opacity-100" : "pointer-events-none -translate-x-3 opacity-0",
         )}

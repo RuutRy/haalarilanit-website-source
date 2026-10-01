@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 import { event, links } from "../../lib/data";
 import { useActiveLang } from "../../lib/lang";
 import { formatEventTime } from "../../lib/time";
+import { Frost } from "../Frost";
 import { Logo } from "../media/Logo";
-import { Blur } from "./Blur";
 import { FlipClock } from "./FlipClock";
 import { TicketButton } from "./TicketButton";
 import { usePhaseNow } from "./usePhaseNow";
@@ -29,11 +29,11 @@ export function Hero() {
     // 3.4vw and 2.1cqh); everything inside is sized in em, so the hero fits
     // the first viewport on any device with CSS alone.
     <div className="mt-auto flex w-full flex-col items-center gap-[0.75em] text-center text-[min(clamp(0.875rem,1.25vw+0.625rem,1.25rem),3.4vw,2.1cqh)]">
-      <Blur className="self-center">
+      <Frost className="self-center">
         <Logo data-hero-logo />
-      </Blur>
+      </Frost>
 
-      <Blur className="flex w-full max-w-2xl flex-col items-center gap-[0.4em]">
+      <Frost className="flex w-full max-w-2xl flex-col items-center gap-[0.4em]">
         {/* Time line from event data + translations */}
         <h3 className="text-[1.6em]">
           {formatEventTime(lang, t("main.time.at_start"), t("main.time.at_end"))}
@@ -72,7 +72,7 @@ export function Hero() {
             />
           </div>
         )}
-      </Blur>
+      </Frost>
 
       {!links.ticket && (
         <p className="text-[1.6em] text-primary">{t("main.ticket_not_yet_available")}</p>

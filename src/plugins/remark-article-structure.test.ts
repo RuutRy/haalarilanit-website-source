@@ -124,10 +124,9 @@ test("h1/h2/h3 get slug ids, duplicates get a numeric suffix", () => {
   expect(id(section.children[1])).toBe("same-2"); // the h3 stays inside the section
 });
 
-test("subpage: StripSpace precedes the sheet; a full sheet has no no-anchors", () => {
+test("subpage: the sheet starts at the h1; a full sheet has no no-anchors", () => {
   const root = runMd("# Title\n\n## One\n\nx\n\n## Two\n\ny");
-  expect(root.children[0].type).toBe("mdxJsxFlowElement");
-  expect((root.children[0] as { name?: string }).name).toBe("StripSpace");
+  expect(root.children[0].type).toBe("sheet");
   expect(sheetClass(root)).toContain("content-sheet");
   expect(sheetClass(root)).not.toContain("no-anchors");
 });
@@ -137,12 +136,24 @@ test("a sheet with fewer than two sections gets no-anchors", () => {
   expect(sheetClass(root)).toContain("no-anchors");
 });
 
-test("a page with no h2 gets no sheet (bare content, no injected chrome)", () => {
-  // The contact page's shape: prose and components, no ## anywhere.
+test("a page with no headings gets no sheet (bare content, no injected chrome)", () => {
+  // No h1 and no ##: not a subpage, no sections - nothing to wrap.
   const tree = processor.parse("hello\n\nworld") as Root;
   processor.runSync(tree);
   expect(tree.children.some((c) => (c.type as string) === "sheet")).toBe(false);
   expect(tree.children.map((c) => c.type)).toEqual(["paragraph", "paragraph"]);
+});
+
+test("a subpage with no ## gets no sheet (bare content, per-card frost)", () => {
+  // The contact page's shape: h1 + a component, no ## anywhere.
+  const tree = processor.parse("# Contacts") as Root;
+  tree.children.push(jsx("ContactCards"));
+  processor.runSync(tree);
+  expect(tree.children.some((c) => (c.type as string) === "sheet")).toBe(false);
+  expect(tree.children.map((c) => (c as { type: string }).type)).toEqual([
+    "heading",
+    "mdxJsxFlowElement",
+  ]);
 });
 
 test("front page: leading components become the hero strip; hint and nav injected", () => {

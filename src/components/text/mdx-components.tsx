@@ -12,6 +12,7 @@ import { Floorplan } from "../articles/Floorplan";
 import { PhotoGalleries } from "../articles/PhotoGalleries";
 import { SaferSpaceLink } from "../articles/SaferSpaceLink";
 import { Sponsors } from "../articles/Sponsors";
+import { Frost } from "../Frost";
 import { Hero } from "../hero/Hero";
 import { Img } from "../media/Img";
 import { Lightbox } from "../media/Lightbox";
@@ -67,16 +68,14 @@ function MdxUl({ children }: { children?: ReactNode }) {
   return <ul className={cn(COLUMN, "list-inside list-disc ps-0 text-justify")}>{children}</ul>;
 }
 
-// Dots window above a subpage sheet; -mb-8 keeps it flush against the sheet.
-const StripSpace = () => <div aria-hidden className="dots-strip -mb-8 h-12" />;
-
-// Bottom-of-hero scroll hint (the plugin places it in the hero strip); visuals in .shine-chevron.
+// Bottom-of-hero scroll hint (the plugin places it in the hero strip): a frosted
+// pill with three chevrons; visuals in .shine-chevron.
 const ScrollHint = () => (
-  <div data-scroll-hint aria-hidden className="mt-auto flex shrink-0 flex-col items-center">
+  <Frost className="mt-auto flex shrink-0 flex-col items-center px-5 py-4">
     <span className="shine-chevron size-[min(2.5rem,4cqh)] opacity-40" />
     <span className="shine-chevron mt-[-0.4em] size-[min(2.5rem,4cqh)] opacity-70" />
     <span className="shine-chevron mt-[-0.4em] size-[min(2.5rem,4cqh)]" />
-  </div>
+  </Frost>
 );
 
 export const mdxComponents: MDXComponents = {
@@ -107,6 +106,5 @@ export const mdxComponents: MDXComponents = {
   ContactCards,
   [MDX_BLOCKS.sectionNav]: SectionNav,
   [MDX_BLOCKS.backToTop]: BackToTop,
-  [MDX_BLOCKS.stripSpace]: StripSpace,
   [MDX_BLOCKS.scrollHint]: ScrollHint,
 };

@@ -72,7 +72,7 @@ function CopyLinkButton({ copied, onCopy }: { copied: boolean; onCopy: () => voi
       data-copy-link
       aria-label={copied ? t("a11y.copied") : t("a11y.copy_link")}
       title={copied ? t("a11y.copied") : t("a11y.copy_link")}
-      className="pointer-events-none absolute top-1/2 left-full ml-2 -translate-y-1/2 rounded-full border bg-(--panel-tint) p-1.5 opacity-0 backdrop-blur-md transition-opacity group-hover:pointer-events-auto group-hover:opacity-100 focus-visible:pointer-events-auto focus-visible:opacity-100 md:pointer-events-auto"
+      className="pointer-events-none absolute top-1/2 left-full ml-2 -mt-[3px] -translate-y-1/2 rounded-full border bg-(--panel-tint) p-1.5 opacity-0 backdrop-blur-lg transition-opacity group-hover:pointer-events-auto group-hover:opacity-100 focus-visible:pointer-events-auto focus-visible:opacity-100 md:pointer-events-auto"
       onPointerDown={(e) => e.stopPropagation()}
       onClick={onCopy}
     >
@@ -106,16 +106,11 @@ function AnchoredChip({
   children?: ReactNode;
 }) {
   const hold = useHoldToCopy(id ?? "");
-  // The copy button rides INSIDE the chip: the flash animation (chip-bounce)
-  // transforms the heading, and a sibling button would stay put behind the
-  // moving text - nested, the two move and center as one.
-  const chip = createElement(
-    as,
-    { className: cn("relative", className) },
-    children,
-    id ? <CopyLinkButton copied={hold.copied} onCopy={hold.copy} /> : null,
-  );
+  const chip = createElement(as, { className }, children);
   if (!id) return chip;
+  // The button is a sibling of the chip and never animates: the flash is
+  // translate-only (no scale), so the heading can never grow into it and
+  // it stays easy to click while the flash plays.
   return (
     <span
       id={id}
@@ -123,27 +118,52 @@ function AnchoredChip({
       className="group relative mx-auto grid w-fit select-none [-webkit-touch-callout:none]"
     >
       {chip}
+      <CopyLinkButton copied={hold.copied} onCopy={hold.copy} />
     </span>
   );
 }
 
-export function H1({ id, children }: { id?: string; children?: ReactNode }) {
+export function H1({
+  id,
+  className,
+  children,
+}: {
+  id?: string;
+  className?: string;
+  children?: ReactNode;
+}) {
   return (
-    <AnchoredChip as="h1" id={id} className="text-h1-fluid">
+    <AnchoredChip as="h1" id={id} className={cn("text-h1-fluid", className)}>
       {children}
     </AnchoredChip>
   );
 }
-export function H2({ id, children }: { id?: string; children?: ReactNode }) {
+export function H2({
+  id,
+  className,
+  children,
+}: {
+  id?: string;
+  className?: string;
+  children?: ReactNode;
+}) {
   return (
-    <AnchoredChip as="h2" id={id} className="text-h2-fluid">
+    <AnchoredChip as="h2" id={id} className={cn("text-h2-fluid", className)}>
       {children}
     </AnchoredChip>
   );
 }
-export function H3({ id, children }: { id?: string; children?: ReactNode }) {
+export function H3({
+  id,
+  className,
+  children,
+}: {
+  id?: string;
+  className?: string;
+  children?: ReactNode;
+}) {
   return (
-    <AnchoredChip as="h3" id={id} className="text-h3-fluid">
+    <AnchoredChip as="h3" id={id} className={cn("text-h3-fluid", className)}>
       {children}
     </AnchoredChip>
   );

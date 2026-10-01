@@ -36,7 +36,7 @@ export function SectionNavSheet({
       <SheetContent
         side={side}
         className={cn(
-          "my-auto max-h-[75dvh] w-64 overflow-y-auto rounded-xl border border-foreground/10 bg-background p-2 text-foreground",
+          "my-auto max-h-[75dvh] w-64 overflow-y-auto rounded-xl border border-foreground/10 bg-(--panel-tint) p-2 text-foreground backdrop-blur-lg",
           side === "left"
             ? "data-[side=left]:left-4 data-[side=left]:h-fit data-[side=left]:w-64"
             : "data-[side=right]:right-4 data-[side=right]:h-fit data-[side=right]:w-64",

@@ -86,15 +86,23 @@
   }
 }
 
-/* Flip clock: sizing only (colors via the --countdown-* tokens below) */
+/* Flip clock: keep the flip halves on their own compositor layers. */
 .haala-flip-clock .fcc__digit_block > div:nth-child(1),
 .haala-flip-clock .fcc__digit_block > div:nth-child(2) {
   transform: translateZ(0);
 }
-/* Flip clock: three tokens per phase (card, text, separators). .concluded -
-   the event has started, clock counts to LAN OFF - rescopes them. FlipClock.tsx
-   consumes the vars. */
+
+/* Flip clock: every size derives from the strip's height in cqh units
+   (the .hero-strip size container), so the clock scales with the space
+   the hero has - no JS, no hydration resize. The px values are the
+   design-size ceilings (desktop 80px blocks, mobile 52px). Colors via
+   the --countdown-* tokens below. */
 .haala-flip-clock {
+  --fcc-digit-block-height: min(80px, 9cqh);
+  --fcc-digit-block-width: min(46px, 5.2cqh);
+  --fcc-digit-font-size: min(50px, 5.6cqh);
+  --fcc-label-font-size: min(1rem, 1.75cqh);
+  --fcc-spacing: min(8px, 1cqh);
   --countdown-card-bg: var(--foreground);
   --countdown-card-text: var(--background);
   --countdown-separator: var(--primary);
@@ -106,12 +114,12 @@
 }
 @media (max-width: 640px) {
   .haala-flip-clock {
-    --fcc-digit-block-width: 30px;
-    --fcc-digit-block-height: 52px;
-    --fcc-digit-font-size: 32px;
-    --fcc-label-font-size: 11px;
-    --fcc-spacing: 4px;
-    --fcc-digit-block-spacing: 3px;
+    --fcc-digit-block-height: min(52px, 9cqh);
+    --fcc-digit-block-width: min(30px, 5.2cqh);
+    --fcc-digit-font-size: min(32px, 5.6cqh);
+    --fcc-label-font-size: min(11px, 1.75cqh);
+    --fcc-spacing: min(4px, 0.9cqh);
+    --fcc-digit-block-spacing: min(3px, 0.45cqh);
   }
 }
 
@@ -186,22 +194,57 @@
   padding: 1.5rem 1rem 2rem;
 }
 
+/* Sticky header height, kept in sync with the Header's construction
+   (py-2 + the sm logo / nav row): 80px below md, 90px at md+. Consumed
+   by the hero strip's first-viewport calc. */
+:root {
+  --header-h: 5rem;
+}
+@media (min-width: 48rem) {
+  :root {
+    --header-h: 5.625rem;
+  }
+}
+
 .hero-strip {
   display: flex;
-  /* min-height, not height: fluid type and the logo scale with viewport
-     WIDTH, so on a short-but-wide window the hero's content is taller than
-     one viewport - a fixed height would overflow it into the sheet below
-     (and under the header above). The strip grows instead. */
-  min-height: 100dvh;
+  /* Size container: the strip's height is exactly the calc() value - the
+     content cannot grow it - and every piece inside sizes against it in
+     cqh units, so the hero always fits the first viewport heightwise with
+     NO JavaScript and nothing resizes at hydration (the SSR markup is
+     final). The height must be explicit (not min-height): a size
+     container's queryable block size does not come from min-height
+     clamping, and cqh would resolve to 0. Overflow, should content ever
+     exceed the caps, paints under the opaque sheet that follows. */
+  container-type: size;
+  /* Exactly the first viewport below the header: the strip pulls itself
+     up over main's top padding (-mt) and spans 100dvh minus the sticky
+     header (--header-h). On load the whole hero is in view - content
+     centered in the space, the scroll hint pinned above the strip's
+     bottom padding - and the content sheet starts at the fold. The static
+     --header-h guess can drift a few px on mid widths (the header nav
+     wraps ~768-850px); that only moves the fold by as much. */
+  margin-top: -1.5rem;
+  height: calc(100dvh - var(--header-h));
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
+  justify-content: safe center;
+  gap: min(1.5rem, 2cqh);
+  /* breathing room under the bottom-pinned scroll hint */
+  padding-bottom: min(0.75rem, 1.5cqh);
 }
 
 /* Snap + anchor scrolling must clear the sticky site header. */
+/* Vertical pans belong to the page, horizontal pans to the edge-swipe
+   quick-jump: pan-y keeps native vertical scrolling while horizontal edge
+   drags stay addressable as pointer events (drag = pointer events, where
+   preventDefault cannot freeze scrolling the way a non-passive touchmove
+   could). pinch-zoom is spelled out because bare pan-y would strip zoom
+   page-wide (WCAG 1.4.4). Intersection up the ancestor chain applies it
+   page-wide. */
 html {
   scroll-padding-top: 5rem;
+  touch-action: pan-y pinch-zoom;
 }
 
 /* The plugin marks sheets with fewer than two sections; copy-link buttons hide there (SectionNav defers to the same rule). */
@@ -245,6 +288,64 @@ html {
   animation:
     chip-color 0.7s ease-out,
     chip-bounce 1.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+/* Shiny scroll chevrons: no disc - the icon itself masks the shape and a
+   light band rides the up-right 45-degree diagonal across it (bottom-left
+   -> top-right, exiting fully before the next pass); a bloom glow lifts
+   the chevron off the dotted wallpaper. Opacity cascades down the stack
+   (the solid bottom one is the pull). Bounce and shine run on every
+   chevron in unison - one animation, no stagger. Reduced motion: static
+   chevrons, no shine. */
+.shine-chevron {
+  --chevron-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='4 7 16 10' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  position: relative;
+  display: inline-block;
+  background: var(--primary);
+  -webkit-mask: var(--chevron-mask) center / 100% 100% no-repeat;
+  mask: var(--chevron-mask) center / 100% 100% no-repeat;
+  filter: drop-shadow(0 0 0.3rem var(--bloom-accent));
+  animation: hint-bounce 1.6s ease-in-out infinite;
+}
+.shine-chevron::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 32%,
+    color-mix(in srgb, var(--primary) 30%, white) 50%,
+    transparent 68%
+  );
+  animation: chevron-shine 5s linear infinite;
+}
+@keyframes chevron-shine {
+  0% {
+    transform: translate(-100%, 100%);
+  }
+  50% {
+    transform: translate(100%, -100%);
+  }
+  100% {
+    transform: translate(100%, -100%);
+  }
+}
+@keyframes hint-bounce {
+  0%,
+  100% {
+    translate: 0 -18%;
+  }
+  50% {
+    translate: 0 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shine-chevron {
+    animation: none;
+  }
+  .shine-chevron::after {
+    display: none;
+  }
 }
 
 /* Sections reveal on entry; CSS scroll-driven so no-JS and non-supporting browsers simply never hide anything. */

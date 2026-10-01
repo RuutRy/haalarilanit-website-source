@@ -1,41 +1,39 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { flashHeading } from "@/lib/heading-flash";
 import { jumpToSection } from "./jump-to-section";
 import { SectionNavRail } from "./SectionNavRail";
 import { SectionNavSheet } from "./SectionNavSheet";
 import { SectionNavTrigger } from "./SectionNavTrigger";
+import { whenScrollSettled } from "./scroll-settle";
 import { type SwipeSide, useEdgeSwipe } from "./useEdgeSwipe";
-import { useSectionSpy } from "./useSectionSpy";
+import { type SectionNavItemData, useSectionSpy } from "./useSectionSpy";
 
 // Deep-link glide waits for fonts/layout to settle.
 const DEEP_LINK_DELAY_MS = 400;
 
-// Dock-style TOC, hung just left of the content sheet (desktop 2xl+).
-// On smaller screens a pill trigger (SectionNavTrigger) and a horizontal
-// swipe starting near either screen edge both open the quick-jump as a
-// floating overlay panel (from the swiped side). The mdx content is the
-// single source of truth: the nav reads `.content-sheet h2[id]` after
-// mount and renders nothing on the server.
-//
-// Sections on screen are tracked by measuring heading positions (rAF on
-// scroll): every visible section's entry is bolded, the rest stay dim -
-// so the marks follow scrolling AND programmatic jumps alike. The last
-// non-empty set holds over gaps between section panels.
-//
-// The rail only shows while the article text is on screen - hidden over
-// the hero strip and past the sheet's end.
+// Dock-style TOC: rail on 2xl+, edge-swipe/trigger sheet below. Sections and
+// on-screen marks come from useSectionSpy (measured after mount, rAF on scroll).
 export function SectionNav() {
   const [open, setOpen] = useState(false);
   const [side, setSide] = useState<SwipeSide>("left");
 
   const { items, visible, onText, markVisible } = useSectionSpy();
 
+  // The page-title h1 scrolls to the literal top and clears the hash.
   const jump = useCallback(
-    (id: string) => {
-      jumpToSection(id);
-      // Optimistic: the clicked section marks instantly; the scrollspy
-      // keeps the rest honest while the glide passes through.
-      markVisible(id);
+    (item: SectionNavItemData) => {
+      if (item.isTop) {
+        scrollTo({ top: 0, behavior: "smooth" });
+        whenScrollSettled(() => {
+          history.replaceState(null, "", location.pathname);
+          flashHeading(item.id);
+        });
+      } else {
+        jumpToSection(item.id);
+      }
+      // Optimistic: mark the clicked section instantly; the scrollspy corrects during the glide.
+      markVisible(item.id);
     },
     [markVisible],
   );
@@ -45,24 +43,26 @@ export function SectionNav() {
     setOpen((open) => !open);
   }, []);
 
-  // Deep-link feedback: a URL hash names the section you arrived at -
-  // jump to it and flash the heading once the auto-scroll settles.
+  // Deep link: jump to the hashed section once the auto-scroll settles.
   useEffect(() => {
     if (items.length === 0) return;
     let initial = "";
     try {
       initial = decodeURIComponent(location.hash.slice(1));
     } catch {
-      initial = location.hash.slice(1); // malformed escape: matches no section id, deep-link simply skipped
+      initial = location.hash.slice(1); // malformed escape: deep link skipped
     }
-    if (!initial || !items.some((i) => i.id === initial)) return;
-    const timer = setTimeout(() => jump(initial), DEEP_LINK_DELAY_MS);
+    const matched = items.find((i) => i.id === initial);
+    if (!matched) return;
+    const timer = setTimeout(() => {
+      jumpToSection(matched.id);
+      markVisible(matched.id);
+    }, DEEP_LINK_DELAY_MS);
     return () => clearTimeout(timer);
-  }, [items, jump]);
+  }, [items, markVisible]);
 
-  // The swipe recognizer only arms while the article text is on screen;
-  // onText changes on every scroll frame, so it is read through a ref -
-  // the touch listeners must not re-subscribe while scrolling.
+  // onText changes on every scroll frame; read through a ref so the touch
+  // listeners never resubscribe.
   const onTextRef = useRef(onText);
   onTextRef.current = onText;
   useEdgeSwipe({

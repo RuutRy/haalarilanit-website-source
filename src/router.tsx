@@ -1,6 +1,6 @@
 import { createRouter } from "@tanstack/react-router";
 
-import { NotFoundPage } from "./routes/not-found";
+import { NotFoundPage } from "./components/NotFoundPage";
 import { routeTree } from "./routeTree.gen";
 
 export function getRouter() {
@@ -11,17 +11,14 @@ export function getRouter() {
     // below are forced back to instant.
     scrollRestorationBehavior: "smooth",
     defaultPreload: "render",
-    // Hydration on real 404 hits (unknown URLs) must match the
-    // prerendered /404.html tree - i.e. the /not-found route component.
+    // Hydration on real 404 hits (unknown URLs) must match the served 404
+    // document's tree - the /fi/404 page renders this same component.
     defaultNotFoundComponent: () => <NotFoundPage />,
   });
 
-  // Browser back/forward must restore scroll instantly - a smooth glide
-  // through page history feels broken. scrollRestorationBehavior is only
-  // read globally (router-core), so flip it around the popstate
-  // restoration: instant before the restore, back to smooth once the
-  // router has rendered that navigation. The timeout covers popstates
-  // that produce no navigation (same-URL back).
+  // Back/forward must restore scroll instantly (a glide through history
+  // feels broken). The option is read globally, so flip it around each
+  // popstate restoration; the timeout covers no-op popstates.
   if (typeof window !== "undefined") {
     addEventListener("popstate", () => {
       router.options.scrollRestorationBehavior = "instant";

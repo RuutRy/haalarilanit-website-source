@@ -21,8 +21,6 @@ export function Blur({
   blur?: keyof typeof BLUR;
 }) {
   return (
-    <div className={cn("rounded-2xl bg-[var(--panel-tint)]", BLUR[blur], className)}>
-      {children}
-    </div>
+    <div className={cn("rounded-2xl bg-(--panel-tint)", BLUR[blur], className)}>{children}</div>
   );
 }

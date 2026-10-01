@@ -8,13 +8,10 @@ type SectionNavItemProps = {
   item: SectionNavItemData;
   active: boolean;
   variant: "rail" | "sheet";
-  onJump: (id: string) => void;
+  onJump: (item: SectionNavItemData) => void;
 };
 
-// Rail items: a leading chevron marks the sections on screen (slides
-// in, standard TOC affordance) - text bolds and nudges inward slightly.
-// The sheet variant differs only in radius, hover, font sizes, and
-// dimmed colors (documented against the pre-split markup).
+// Tree depth indents the row 0.75rem per level (page title leftmost).
 export function SectionNavItem({ item, active, variant, onJump }: SectionNavItemProps) {
   const chevronClass = cn(
     "size-3.5 text-primary",
@@ -36,13 +33,16 @@ export function SectionNavItem({ item, active, variant, onJump }: SectionNavItem
   );
 
   return (
-    <li className="flex items-center gap-0.5">
+    <li
+      className="flex items-center gap-0.5"
+      style={{ paddingInlineStart: `${item.depth * 0.75}rem` }}
+    >
       <span aria-hidden className="flex w-3.5 shrink-0 justify-center">
         <ChevronRight className={chevronClass} />
       </span>
       <button
         type="button"
-        onClick={() => onJump(item.id)}
+        onClick={() => onJump(item)}
         aria-current={active ? "true" : undefined}
         className={buttonClass}
       >

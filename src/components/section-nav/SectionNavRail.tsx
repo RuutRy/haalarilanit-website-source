@@ -9,7 +9,7 @@ type SectionNavRailProps = {
   items: SectionNavItemData[];
   visible: Set<string>;
   onText: boolean;
-  onJump: (id: string) => void;
+  onJump: (item: SectionNavItemData) => void;
 };
 
 // Hung off the sheet's left edge (2xl+), shown only while the article

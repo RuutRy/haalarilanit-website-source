@@ -2,12 +2,11 @@ import { LogoSoup } from "@sanity-labs/logo-soup/react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { sponsors } from "../lib/data";
-import { LogoLink } from "./media/LogoLink";
+import { sponsors } from "../../lib/data";
+import { LogoLink } from "../media/LogoLink";
 
-// Logos step 56–96px by 2; each step re-runs Logo Soup's canvas normalization.
-// baseSize is a JS prop driving Logo Soup's canvas, so CSS clamp can't own it.
-// Prerender-safe initial size; the real size is measured after mount.
+// Logo Soup's baseSize is a JS prop, so sizing steps live here instead of CSS.
+// Prerender-safe initial; re-measured after mount.
 const INITIAL_SPONSOR_SIZE = sponsorSizeFor(1200);
 
 function useSponsorBaseSize() {
@@ -41,7 +40,7 @@ export function Sponsors() {
   if (sponsors.length === 0) return null;
 
   return (
-    <div className="flex flex-col items-center gap-8">
+    <div className="flex w-full flex-col items-center gap-8">
       <h1 className="text-h1-fluid">{t("sponsors")}</h1>
       {/* One shared panel behind the whole wall. */}
       <div className="rounded-2xl p-8">
@@ -55,8 +54,7 @@ export function Sponsors() {
             if (!sponsor) {
               return <img src={src} alt={alt} {...rest} />;
             }
-            // No filters - sponsor logos render exactly as provided.
-            // The hover feedback lives on the link itself.
+            // No filters; the hover feedback lives on the link.
             return (
               <LogoLink
                 href={sponsor.url}

@@ -10,11 +10,8 @@ type LangToggleOptionProps = {
   lang: Lang;
 };
 
-// One cell of the segmented FI | EN pill: a real link to the same page
-// in the target tree - crawlable (the prerender crawler crosses trees
-// through these) and a no-JS fallback. The click also remembers the
-// choice: the inline head script in __root sends a returning visitor
-// from / to this tree before anything paints.
+// Real link to the same page in the target tree (crawlable, no-JS fallback);
+// the click remembers the choice.
 export function LangToggleOption({ label, selected, to, lang }: LangToggleOptionProps) {
   return (
     <Link

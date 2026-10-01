@@ -7,10 +7,8 @@ type ImgProps = {
   h?: number;
 };
 
-// Plain article image with an explicitly authored size (no min/max logic -
-// the mdx sets the size it wants; unset dimensions follow the aspect
-// ratio, and max-w-full guards overflow). No centering: wrap in <Center>
-// per article. No lightbox: wrap in <Lightbox> when click-to-zoom is wanted.
+// Authored size in rem (unset dimensions follow the aspect ratio); centering
+// and zoom are explicit <Center>/<Lightbox> wraps.
 export function Img({ src, alt, w, h }: ImgProps) {
   return (
     <img

@@ -4,15 +4,10 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Hint } from "@/components/Hint";
 
-// Lightbox for article images, on the radix Dialog primitive (the same one
-// the nav Sheet builds on): Escape, aria wiring, focus-on-open, portal and
-// cleanup come from the primitive. modal={false} keeps the page behind
-// scrollable at its position - the same contract as the nav sheets - so the
-// explicit backdrop button stays as the guaranteed click-to-close. The
-// backdrop classes live on Content: a non-modal radix Overlay renders null,
-// so Content carries the dim/blur/fade exactly like the old container did.
-// aria-describedby={undefined} is kept as the explicit "no description
-// element" idiom since the alt text is the label.
+// Non-modal radix Dialog: the page behind stays scrollable, so the backdrop
+// button is the guaranteed click-to-close. Backdrop classes live on Content
+// (a non-modal Overlay renders null). aria-describedby={undefined}: the alt
+// text is the label.
 export function Lightbox({ src, alt }: { src: string; alt: string }) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
@@ -23,7 +18,7 @@ export function Lightbox({ src, alt }: { src: string; alt: string }) {
         <button
           type="button"
           aria-label={t("a11y.zoom_image")}
-          className="group/img mx-auto block w-fit max-w-full cursor-zoom-in rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          className="group/img block w-fit max-w-full cursor-zoom-in rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         >
           <img
             src={src}

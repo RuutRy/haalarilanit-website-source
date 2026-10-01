@@ -4,13 +4,9 @@ import { links } from "../../lib/data";
 import { useActiveLang } from "../../lib/lang";
 import { TextLink } from "../text";
 
-// Safer space policy link, extracted from the front page shell.
+// Centering is <Center>'s job.
 export function SaferSpaceLink() {
   const { t } = useTranslation();
   const lang = useActiveLang();
-  return (
-    <div className="flex justify-center">
-      <TextLink href={links.saferSpace[lang]} text={t("safer_space.click")} />
-    </div>
-  );
+  return <TextLink href={links.saferSpace[lang]} text={t("safer_space.click")} />;
 }

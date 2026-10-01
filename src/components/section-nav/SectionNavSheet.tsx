@@ -12,12 +12,10 @@ type SectionNavSheetProps = {
   side: SwipeSide;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onJump: (id: string) => void;
+  onJump: (item: SectionNavItemData) => void;
 };
 
-// Mobile quick-jump panel (edge-swipe opens it). Selecting an entry
-// jumps AND closes - replacing the radix SheetClose wrapper with an
-// explicit onOpenChange(false); rendered DOM is identical.
+// Mobile quick-jump panel (edge-swipe opens it); selecting an entry jumps and closes.
 export function SectionNavSheet({
   items,
   visible,
@@ -28,8 +26,8 @@ export function SectionNavSheet({
 }: SectionNavSheetProps) {
   const { t } = useTranslation();
 
-  const jumpAndClose = (id: string) => {
-    onJump(id);
+  const jumpAndClose = (item: SectionNavItemData) => {
+    onJump(item);
     onOpenChange(false);
   };
 

@@ -5,11 +5,8 @@ import { resolveLangTarget } from "@/lib/navigation";
 
 import { LangToggleOption } from "./LangToggleOption";
 
-// Subtle segmented FI | EN control, pinned to the top right of the
-// header (desktop) and reused in the mobile menu + footer. Real links
-// to the same page in the other tree. w-fit matters in the mobile
-// menu: a plain flex div there would stretch the pill across the
-// whole sheet, leaving the EN cell a vast empty half.
+// Segmented FI | EN control; reused in the mobile menu + footer. w-fit keeps
+// it from stretching across the mobile sheet.
 export function LangToggle() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const current = langFromPath(pathname);

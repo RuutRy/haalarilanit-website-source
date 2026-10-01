@@ -7,10 +7,8 @@ import { visit } from "unist-util-visit";
 
 import { MDX_BLOCKS, MDX_SOFT_BLOCKS } from "../lib/mdx-blocks.ts";
 
-// mdast doesn't know the MDX node kinds, nor the section/sheet/strip blocks
-// this plugin emits, so they are declared and unioned locally. The reference
-// above loads the MDX/remark-rehype type augmentations (mdast Data
-// hName/hProperties) the plugin's trees actually carry.
+// Local types: mdast doesn't know the MDX node kinds or the blocks this
+// plugin emits; the reference above loads the mdast Data augmentations.
 
 interface MdxJsxFlowElement extends Parent {
   type: "mdxJsxFlowElement";
@@ -48,23 +46,19 @@ interface MdxRoot {
   children: MdxNode[];
 }
 
-// Heading text can sit at any depth (emphasis, links, ...), so extraction
-// walks this loose shape instead of mdast's phrasing union.
+// Heading text can sit at any depth (emphasis, links), so walk a loose shape.
 type TextSource = {
   type?: string;
   value?: string;
   children?: TextSource[];
 };
 
-// Soft blocks (MDX_SOFT_BLOCKS) live inside their section: they do not
-// end one, and prose directly after them is a normal section body.
+// Soft blocks don't end a section; prose after them is normal body.
 function isSoftBlock(n: MdxNode): n is MdxJsxFlowElement {
   return n.type === "mdxJsxFlowElement" && !!n.name && MDX_SOFT_BLOCKS.has(n.name);
 }
 
-// Like remark-sectionize but only for depth-2 headings: `# Title` and any
-// leading content stay outside the panels. Flow JSX (embedded components)
-// also ends a section so blocks like <Sponsors /> stay standalone.
+// Only h2 sectionizes; `# Title`, leading content and embedded components stay outside panels.
 function isSectionEnd(n: MdxNode | { type: string; depth?: number }): boolean {
   if (isSoftBlock(n as MdxNode)) return false;
   return (
@@ -78,11 +72,8 @@ function transform(tree: MdxRoot, file: { message: (msg: string, node?: RootCont
   // Slugs must be unique per page, so the slugger lives per file run.
   const slugger = new GithubSlugger();
 
-  // Pass 1 - anchor ids on every h1-h3, wherever it sits (root level or
-  // inside a section panel): copy-link, hash navigation, the nav tree.
-  // A separate pass because sectionize splices nodes into sections and the
-  // walk never descends into the replaced node - a single pass would miss
-  // every section-internal heading.
+  // Anchor ids on h1-h3, in their own pass: sectionize's spliced sections
+  // are never revisited by the walk below.
   visit(tree, "heading", (node) => {
     if (node.depth < 1 || node.depth > 3) return;
     const text = (node.children ?? []).map((c: TextSource) => c.value ?? headingText(c)).join("");
@@ -92,15 +83,13 @@ function transform(tree: MdxRoot, file: { message: (msg: string, node?: RootCont
     };
   });
 
-  // Pass 2 - sectionize: top-level h2s only.
   visit(tree, (node, index, parent) => {
     if (!parent?.children) return;
     if (typeof index !== "number") return;
     // Top-level only: no nested sections inside a section.
     if (parent.type !== "root") return;
     if (node.type === "paragraph") {
-      // Prose right after an embedded component renders with no panel
-      // (components end sections) - flag it so authors notice.
+      // Prose right after a component renders with no panel - flag it.
       const prev = parent.children[index - 1];
       if (prev?.type === "mdxJsxFlowElement" && !isSoftBlock(prev)) {
         file.message(
@@ -110,7 +99,6 @@ function transform(tree: MdxRoot, file: { message: (msg: string, node?: RootCont
       }
       return;
     }
-    // An h2 starts a section - sectionize below.
     if (!(node.type === "heading" && node.depth === 2)) return;
 
     const end = findAfter(parent, node, isSectionEnd);
@@ -136,14 +124,9 @@ function headingText(node: TextSource): string {
   return (node.children ?? []).map((c) => c.value ?? headingText(c)).join("");
 }
 
-// Flat document surface. Two layouts:
-// - Article starts with `# Title` (subpages): the WHOLE article sits on the
-//   sheet, with a StripSpace dots window above it.
-// - Article starts with components/prose (front page): leading content is
-//   the hero strip over the wallpaper (full viewport, scroll hint appended);
-//   the sheet starts at the first ##.
-// Pages with fewer than two ## sections get "no-anchors" (copy-link
-// buttons hidden via CSS).
+// Wrap the flat children into a sheet. Subpages (leading `# Title`) get the
+// whole article plus a dots window; the front page puts the leading content
+// in the hero strip and the sheet starts at the first ##.
 function wrapSheet(root: MdxRoot) {
   const kids = root.children ?? [];
   const firstSection = kids.findIndex((n) => n.type === "section");
@@ -156,11 +139,8 @@ function wrapSheet(root: MdxRoot) {
     type: "sheet",
     children: [
       ...kids.slice(start),
-      // SectionNav counts its sections client-side and hides itself; the
-      // plugin is the single place that knows a sheet exists. Injected at
-      // the sheet's end so its sticky handle docks alongside BackToTop.
+      // Injected at the sheet's end so the sticky handle docks with BackToTop.
       inject(MDX_BLOCKS.sectionNav),
-      // Back-to-top: CSS-fixed above the footer (see BackToTop).
       inject(MDX_BLOCKS.backToTop),
     ],
     data: {
@@ -176,12 +156,7 @@ function wrapSheet(root: MdxRoot) {
     : [
         {
           type: "strip",
-          children: [
-            ...kids.slice(0, start),
-            // Scroll hint: the hero viewport invites the one-gesture roll
-            // into the content sheet.
-            inject(MDX_BLOCKS.scrollHint),
-          ],
+          children: [...kids.slice(0, start), inject(MDX_BLOCKS.scrollHint)],
           data: { hName: "div", hProperties: { className: ["hero-strip"] } },
         },
         sheet,
@@ -195,6 +170,6 @@ const inject = (name: string): MdxJsxFlowElement => ({
   children: [],
 });
 
-export default function remarkH2Sections() {
+export default function remarkArticleStructure() {
   return transform;
 }

@@ -1,6 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
 
-export type SectionNavItemData = { id: string; label: string };
+export type SectionNavItemData = {
+  id: string;
+  label: string;
+  /** Tree depth: 0 = shallowest heading on the page (leftmost in the nav). */
+  depth: number;
+  /** The page-title h1: a nav click scrolls to the literal page top. */
+  isTop: boolean;
+};
 
 export function useSectionSpy(): {
   items: SectionNavItemData[];
@@ -19,21 +26,26 @@ export function useSectionSpy(): {
   useEffect(() => {
     const sheet = document.querySelector(".content-sheet");
     if (!sheet) return;
-    // The plugin decides anchor-worthiness (>= 2 sections). No-anchors sheets
-    // hide copy-link buttons AND this nav - one rule, one owner.
+    // no-anchors sheets (fewer than two sections) hide the copy-link buttons
+    // and this nav too.
     if (sheet.classList.contains("no-anchors")) return;
 
     // The anchor id lives on the heading's wrapper span (see Article).
-    const headings = [...sheet.querySelectorAll<HTMLElement>("h2")].filter(
+    const headings = [...sheet.querySelectorAll<HTMLElement>("h1, h2, h3")].filter(
       (h): h is HTMLElement & { parentElement: HTMLElement } => !!h.parentElement?.id,
     );
 
-    const found = headings.map((h) => ({ id: h.parentElement.id, label: h.textContent ?? "" }));
+    // Depth relative to the shallowest heading, so h1-less pages still indent from the left.
+    const minLevel = headings.length ? Math.min(...headings.map((h) => Number(h.tagName[1]))) : 1;
+    const found = headings.map((h) => ({
+      id: h.parentElement.id,
+      label: h.textContent ?? "",
+      depth: Number(h.tagName[1]) - minLevel,
+      isTop: h.tagName === "H1",
+    }));
     setItems(found);
 
-    // Which sections are on screen: a heading counts as visible while
-    // its wrapper sits between the header line and 75% of the viewport.
-    // The last non-empty set holds over gaps between section panels.
+    // A heading is visible while its wrapper is between the header and 75% of the viewport.
     let lastNonEmpty = new Set<string>();
     let raf = 0;
     const measure = () => {
@@ -47,8 +59,7 @@ export function useSectionSpy(): {
       }
       if (next.size > 0) lastNonEmpty = next;
       setVisible(new Set(lastNonEmpty));
-      // Rail/FAB visibility: on the actual text = the sheet's body is
-      // roughly filling the viewport (past the hero, above its end).
+      // On-text: the sheet roughly fills the viewport (past the hero, above its end).
       const sheetRect = sheet.getBoundingClientRect();
       setOnText(
         sheetRect.top < window.innerHeight * 0.4 && sheetRect.bottom > window.innerHeight * 0.6,
@@ -59,8 +70,7 @@ export function useSectionSpy(): {
     };
     addEventListener("scroll", onScroll, { passive: true });
     addEventListener("resize", onScroll);
-    // Marks animate in ~100ms after load (also covers the native
-    // deep-link anchor jump, which is instant before hydration).
+    // Covers the native deep-link anchor jump, which lands before hydration.
     const initialMeasure = setTimeout(measure, 100);
     return () => {
       removeEventListener("scroll", onScroll);

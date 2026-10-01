@@ -1,9 +1,5 @@
-// vite-plugin-theme-assets.ts
-//
-// Renders src/assets/templates/*.svg into real assets by replacing
-// {{var:name}} placeholders with values resolved from the custom properties
-// of src/index.css. Dev: middleware serves each route, watcher re-renders on
-// change. Build: emitted as real files.
+// Renders src/assets/templates/*.svg, resolving {{var:name}} placeholders
+// against the custom properties of src/index.css.
 
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";

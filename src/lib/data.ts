@@ -6,10 +6,8 @@ export const SITE_URL = "https://haalarilan.it";
 export const event = {
   start: new Date(2026, 10, 19, 15),
   end: new Date(2026, 10, 22, 12),
+  ticketSales: new Date(2026, 9, 3, 12),
 };
-
-// Ticket shop opens at this moment (see Hero's TicketButton).
-export const ticketSalesStart = new Date(2026, 9, 3, 12);
 
 export const contacts: Contact[] = [
   {

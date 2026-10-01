@@ -2,11 +2,8 @@
 // done - used to defer the hash write and mark sections settled.
 const SETTLE_MS = 200;
 
-// Resolve cb once scrolling has been quiet for SETTLE_MS: a programmatic
-// glide keeps firing scroll events, so the timer only completes once the
-// browser is done scrolling - and with no glide it fires on its own.
-// (scrollend would be the exact signal but is not green across the
-// build-target bar - see vite.config.ts.)
+// Resolves cb once scrolling has been quiet for SETTLE_MS (scrollend isn't
+// green across the build target).
 export function whenScrollSettled(cb: () => void): void {
   let timer = 0;
   const fire = () => {

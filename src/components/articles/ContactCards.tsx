@@ -2,8 +2,8 @@ import { useTranslation } from "react-i18next";
 
 import { contacts } from "../../lib/data";
 import { useActiveLang } from "../../lib/lang";
-import { ContactCard } from "../ContactCard";
 import { Paragraph } from "../text";
+import { ContactCard } from "./ContactCard";
 
 // Contact cards from data.ts; when every name is empty, a placeholder line.
 export function ContactCards() {

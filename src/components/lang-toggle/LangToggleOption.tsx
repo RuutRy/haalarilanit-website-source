@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-import { storeLang, type Lang } from "@/lib/lang";
+import { type Lang, storeLang } from "@/lib/lang";
 import { cn } from "@/lib/utils";
 
 type LangToggleOptionProps = {

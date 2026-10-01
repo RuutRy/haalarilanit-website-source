@@ -2,10 +2,8 @@ import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
 
 import { cn } from "@/lib/utils";
-
-import type { SectionNavItemData } from "./useSectionSpy";
-
 import { SectionNavItem } from "./SectionNavItem";
+import type { SectionNavItemData } from "./useSectionSpy";
 
 type SectionNavRailProps = {
   items: SectionNavItemData[];

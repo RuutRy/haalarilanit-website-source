@@ -19,8 +19,8 @@ pnpm dev
 ## Checks
 
 ```sh
-pnpm lint
-pnpm format
+pnpm lint       # biome check (format, import order, lint)
+pnpm lint:fix   # biome check --write (fixes formatting + safe issues)
 pnpm typecheck
 pnpm build
 ```
@@ -31,4 +31,4 @@ pnpm build
 pnpm exec lefthook install
 ```
 
-Runs formatting + lint on every commit, and typecheck on push.
+Runs Biome (`lint:fix`) on every commit, and typecheck + tests on push.

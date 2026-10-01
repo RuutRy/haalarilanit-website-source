@@ -1,4 +1,4 @@
-import { Outlet, createFileRoute, notFound } from "@tanstack/react-router";
+import { createFileRoute, notFound, Outlet } from "@tanstack/react-router";
 
 import { syncRouteLanguage } from "../lib/i18n";
 import { isLang } from "../lib/lang";

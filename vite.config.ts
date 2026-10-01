@@ -1,11 +1,11 @@
 import { execSync } from "node:child_process";
 import { fileURLToPath, URL } from "node:url";
 import mdx from "@mdx-js/rollup";
-import remarkH2Sections from "./src/plugins/remark-h2-sections.ts";
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+import remarkH2Sections from "./src/plugins/remark-h2-sections.ts";
 import { themeAssetsPlugin } from "./src/plugins/vite-plugin-theme-assets.ts";
 
 // Short commit hash baked into the bundle (footer legal bar links to
@@ -25,11 +25,12 @@ export default defineConfig({
     "import.meta.env.VITE_COMMIT_HASH": JSON.stringify(commitHash),
   },
   build: {
-    // The JS green gate (see the browserslist field in package.json):
-    // everything is transpiled down to these browsers at build time -
-    // anything untranspilable for them fails the build, so non-green
-    // syntax cannot ship. Web APIs are not transpiled; keep the API
-    // surface to green ones (pnpm scan gates the CSS side via doiuse).
+    // The browser-support bar - THE single source of truth (nothing reads
+    // a browserslist field): everything is transpiled down to these
+    // targets at build time - anything untranspilable for them fails the
+    // build, so non-green syntax cannot ship. Web APIs are not
+    // transpiled; keep the API surface to green ones (Biome's
+    // useBaseline rule gates authored CSS against the same bar).
     target: ["chrome120", "edge120", "firefox128", "safari16.4"],
   },
   plugins: [

@@ -2,11 +2,9 @@ import { useTranslation } from "react-i18next";
 
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-
+import { SectionNavItem } from "./SectionNavItem";
 import type { SwipeSide } from "./useEdgeSwipe";
 import type { SectionNavItemData } from "./useSectionSpy";
-
-import { SectionNavItem } from "./SectionNavItem";
 
 type SectionNavSheetProps = {
   items: SectionNavItemData[];

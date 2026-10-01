@@ -28,8 +28,8 @@ function onScroll() {
 
 // Shared scroll state for the threshold affordances (header mark, up
 // button): one rAF-throttled subscription, listeners only while someone
-// is subscribed. Scroll events + rAF are green across the browserslist
-// bar (package.json); nothing scroll-timeline based.
+// is subscribed. Scroll events + rAF are green across the build-target
+// bar (vite.config.ts); nothing scroll-timeline based.
 function subscribe(listener: () => void): () => void {
   if (listeners.size === 0) {
     state = read(); // page can load already scrolled (restoration, refresh)

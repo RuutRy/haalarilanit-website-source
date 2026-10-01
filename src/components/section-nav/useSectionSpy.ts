@@ -25,10 +25,10 @@ export function useSectionSpy(): {
 
     // The anchor id lives on the heading's wrapper span (see Article).
     const headings = [...sheet.querySelectorAll<HTMLElement>("h2")].filter(
-      (h) => h.parentElement?.id,
+      (h): h is HTMLElement & { parentElement: HTMLElement } => !!h.parentElement?.id,
     );
 
-    const found = headings.map((h) => ({ id: h.parentElement!.id, label: h.textContent ?? "" }));
+    const found = headings.map((h) => ({ id: h.parentElement.id, label: h.textContent ?? "" }));
     setItems(found);
 
     // Which sections are on screen: a heading counts as visible while
@@ -40,9 +40,9 @@ export function useSectionSpy(): {
       raf = 0;
       const next = new Set<string>();
       for (const h of headings) {
-        const rect = h.parentElement!.getBoundingClientRect();
+        const rect = h.parentElement.getBoundingClientRect();
         if (rect.top < window.innerHeight * 0.75 && rect.bottom > 96) {
-          next.add(h.parentElement!.id);
+          next.add(h.parentElement.id);
         }
       }
       if (next.size > 0) lastNonEmpty = next;

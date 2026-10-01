@@ -1,11 +1,11 @@
-import { HeadContent, Outlet, Scripts, createRootRoute, redirect } from "@tanstack/react-router";
-import { StrictMode, type ReactNode } from "react";
+import { createRootRoute, HeadContent, Outlet, redirect, Scripts } from "@tanstack/react-router";
+import { type ReactNode, StrictMode } from "react";
 
-// oxlint-disable-next-line import/no-unassigned-import -- i18n init
+// side-effect import: i18n init
 import "../lib/i18n";
-// oxlint-disable-next-line import/no-unassigned-import -- tailwind
+// side-effect import: tailwind
 import "../tailwind.css";
-// oxlint-disable-next-line import/no-unassigned-import -- theme tokens
+// side-effect import: theme tokens
 import "../index.css";
 import { Background } from "../components/background/Background";
 import { Footer } from "../components/layout/Footer";
@@ -16,8 +16,8 @@ import { syncRouteLanguage } from "../lib/i18n";
 import {
   DEFAULT_LANG,
   isLang,
-  LANGS,
   LANG_404_META_NAME,
+  LANGS,
   preferredLang,
   useActiveLang,
 } from "../lib/lang";
@@ -141,6 +141,7 @@ function RootDocument({ children }: { children: ReactNode }) {
         {/* After HeadContent: the script reads the 404 marker meta the
             route head rendered. Still parser-blocking, so every redirect
             here happens before any paint. */}
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: build-time constant; all config crosses JSON.stringify with `<` escaped */}
         <script dangerouslySetInnerHTML={{ __html: LANG_REDIRECT_SCRIPT }} />
       </head>
       <body>

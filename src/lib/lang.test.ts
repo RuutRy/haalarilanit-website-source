@@ -36,7 +36,7 @@ function withStorage(run: () => void, seed?: [string, string]): void {
   const map = new Map<string, string>(seed ? [seed] : []);
   const original = (globalThis as Record<string, unknown>).localStorage;
   (globalThis as Record<string, unknown>).localStorage = {
-    getItem: (key: string) => (map.has(key) ? map.get(key)! : null),
+    getItem: (key: string) => map.get(key) ?? null,
     setItem: (key: string, value: string) => void map.set(key, value),
   };
   try {

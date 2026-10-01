@@ -38,7 +38,7 @@
   },
   "overrides": [
     {
-      "includes": ["src/components/text/Article.tsx"],
+      "includes": ["src/components/text/Article.tsx", "src/components/text/mdx-components.tsx"],
       "linter": { "rules": { "suspicious": { "noConsole": "off" } } }
     },
     {

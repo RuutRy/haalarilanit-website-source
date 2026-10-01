@@ -3,23 +3,9 @@ import { useTranslation } from "react-i18next";
 
 import { cn } from "@/lib/utils";
 
-// Mobile quick-jump indicator: the edge-swipe is invisible, so the sheet
-// gets a slim handle hugging the left viewport edge. IN FLOW, sticky like
-// BackToTop (same bottom offset; the remark plugin injects it at the
-// sheet's end): over the article it rides the viewport's bottom-left, at
-// the page end it docks above the footer instead of floating over it - the
-// sticky containing block is the sheet, never the footer. The h-0 wrapper
-// occupies no layout slot and -mb-8 trims its share of the sheet's flex
-// gap; the handle paints above the wrapper line. The negative left margins
-// cancel main's px-4/sm:px-8 + the sheet's 1rem padding; self-stretch keeps
-// the negative-margin box full-width within the sheet's column layout.
-// 2xl:hidden - the rail owns desktop.
-//
-// Dynamics: opening the sheet retracts the handle under the edge (fade +
-// slide) and closing returns it along the same transition. No extra hint
-// animation on first show - the plain slide-in reads calm; a wiggle after
-// the pop-in just read as glitchy. aria-expanded tracks the sheet; the
-// handle leaves the tab order while hidden or retracted.
+// Quick-jump handle below 2xl (the rail owns desktop), sticky at the sheet's
+// end like BackToTop so it docks above the footer. The h-0 wrapper takes no
+// layout slot; the negative margins cancel main's padding.
 export function SectionNavTrigger({
   open,
   onText,
@@ -33,8 +19,7 @@ export function SectionNavTrigger({
   const show = onText && !open;
 
   return (
-    // no-reveal keeps the section-reveal view() animation from overriding
-    // the handle's visibility transitions (it targets direct sheet children).
+    // no-reveal: keep the section-reveal animation from overriding the visibility transitions.
     <div className="no-reveal sticky bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 h-0 w-full -mb-8 -ml-8 self-stretch sm:-ml-12 2xl:hidden">
       <button
         type="button"

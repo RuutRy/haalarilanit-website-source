@@ -22,22 +22,10 @@ import {
   useActiveLang,
 } from "../lib/lang";
 
-// Runs in <head>, after HeadContent's tags (a script this late still
-// executes before any body content paints). Two jobs:
-// 1. the bare root always normalizes to the visitor's tree: remembered
-//    language, else the default (/fi) - history-replaced, pre-paint;
-// 2. on a 404 document (marker meta, stamped with the language it
-//    renders in - only the prerendered 404 pages have it) the visitor
-//    goes to /<lang>/404, a real prerendered page in that language. The
-//    URL's tree wins over the remembered language; the per-tree pages
-//    stamp their own language, which stops the loop.
-// This is necessarily client JS (the static host can neither read
-// localStorage nor split its single 404 override per tree), but it is
-// pre-paint and single-hop, and bots/no-JS visitors keep the static 404
-// status with no JS involvement at all.
-// Every interpolated value crosses JSON.stringify exactly once (and `<` is
-// escaped so the payload can never terminate the script element or smuggle
-// markup, however the constants below change):
+// Pre-paint head script: sends the bare root to the visitor's language and
+// 404 hits of the static document (marker meta) to /<lang>/404. It has to be
+// client JS - the static host can neither read localStorage nor split its 404
+// override per tree. The payload crosses JSON.stringify once with `<` escaped.
 const LANG_REDIRECT_CONFIG = JSON.stringify({
   langs: LANGS,
   default: DEFAULT_LANG,
@@ -47,22 +35,16 @@ const LANG_REDIRECT_CONFIG = JSON.stringify({
 const LANG_REDIRECT_SCRIPT = `try{var c=${LANG_REDIRECT_CONFIG},p=location.pathname,l=localStorage.getItem("lang"),m=document.querySelector('meta[name="'+c.marker+'"]');if(p==="/"||p===""){location.replace("/"+(c.langs.indexOf(l)>=0?l:c.default))}else if(m){var s=p.split("/")[1],w=c.langs.indexOf(s)>=0?s:c.langs.indexOf(l)>=0?l:c.default,t="/"+w+"/404";if(p!==t)location.replace(t)}}catch(e){}`;
 
 export const Route = createRootRoute({
-  // Runs before every child's beforeLoad (top-down), on every real load:
-  // the i18n instance is a process-wide singleton on the server, and
-  // without this sync an earlier /en request would leave it English for
-  // the next SSR'd URL - e.g. an unknown path renders an English 404
-  // that the client then hydrates back to Finnish. Tree paths pin the
-  // language to the URL; language-less paths (404s) prefer the visitor's
-  // remembered language (browser only - the server has no localStorage).
+  // The i18n instance is shared between SSR renders: without this sync the
+  // previous page's language would leak into the next one. Tree paths pin
+  // the language; 404s prefer the remembered one (the server has no
+  // localStorage).
   beforeLoad: ({ preload, location }) => {
     syncRouteLanguage(preload, preferredLang(location.pathname));
-    // 404s always render at /<lang>/404: full-page loads bounce pre-paint
-    // via the head script (before this ever runs); soft navigations get
-    // the same redirect here, history-replaced so back skips the broken
-    // URL. "/" is a real page (the script normalizes it) and /not-found
-    // exists only to be prerendered into /404.html - neither redirects.
+    // 404s render only at /<lang>/404 (full-page loads bounce pre-paint);
+    // "/" is a real page (the head script normalizes it).
     const segment = location.pathname.split("/")[1];
-    if (!isLang(segment) && location.pathname !== "/" && location.pathname !== "/not-found") {
+    if (!isLang(segment) && location.pathname !== "/") {
       throw redirect({
         to: "/$lang/404",
         params: { lang: preferredLang(location.pathname) },
@@ -128,19 +110,13 @@ function RootLayout() {
 }
 
 function RootDocument({ children }: { children: ReactNode }) {
-  // <html lang> follows the effective language - the URL's tree, or the
-  // remembered language on language-less paths (preferredLang, synced in
-  // beforeLoad). useActiveLang reads the synced i18n instance, so the
-  // attribute tracks a post-hydration 404 language flip like the rest
-  // of the page.
+  // <html lang> follows the effective language (URL tree, remembered on 404s).
   const lang = useActiveLang();
   return (
     <html lang={lang}>
       <head>
         <HeadContent />
-        {/* After HeadContent: the script reads the 404 marker meta the
-            route head rendered. Still parser-blocking, so every redirect
-            here happens before any paint. */}
+        {/* After HeadContent so the 404 marker meta is parsed; pre-paint redirects. */}
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: build-time constant; all config crosses JSON.stringify with `<` escaped */}
         <script dangerouslySetInnerHTML={{ __html: LANG_REDIRECT_SCRIPT }} />
       </head>

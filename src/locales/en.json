@@ -1,6 +1,6 @@
 {
   "nav": {
-    "main": "Main",
+    "main": "Front page",
     "rules": "Rules",
     "guidance": "Guidance",
     "tournaments": "Tournaments",
@@ -40,10 +40,12 @@
     "home": "To the front page"
   },
   "footer": {
-    "copyright": "Copyright (c) {{year}} Ruut ry. All Rights Reserved.",
+    "copyright": "© {{year}} Ruut ry",
+    "links": "Links",
     "site": "Site",
     "event": "Event",
-    "ticket": "Ticket shop"
+    "ticket": "Ticket shop",
+    "safer_space": "Safer space policy"
   },
   "sponsors": "In cooperation with",
   "a11y": {
@@ -56,6 +58,7 @@
     "back_to_top": "Back to top",
     "go_up": "Go up",
     "zoom_image": "Open image enlarged",
-    "close": "Close"
+    "close": "Close",
+    "expand_widget": "Expand the Discord widget"
   }
 }

@@ -18,16 +18,12 @@ i18n.use(initReactI18next).init({
   interpolation: { escapeValue: false },
 });
 
-// Route beforeLoad hook: point the global language at the URL's tree.
-// Links preload routes on mount (defaultPreload "render"), and preloading
-// runs the target route's beforeLoad - including links into the other
-// language tree. Preloading must never flip the language of the page
-// being viewed, so only real navigations sync here; on full page loads
-// init above already read the language from the URL.
+// Called from route beforeLoad. Preload also runs beforeLoad (defaultPreload
+// "render") and must never flip the viewed page's language, so only real
+// navigations sync here.
 export function syncRouteLanguage(preload: boolean, lang: Lang): void {
   if (preload) return;
-  // Synchronous with bundled resources: the language is applied before
-  // this returns, so the render that follows the navigation sees it.
+  // Synchronous with bundled resources: the next render sees the new language.
   void i18n.changeLanguage(lang);
 }
 

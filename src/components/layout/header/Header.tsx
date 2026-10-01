@@ -20,18 +20,10 @@ export function Header() {
   const { t } = useTranslation();
   const lang = langFromPath(useRouterState({ select: (s) => s.location.pathname }));
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  // Main page: the hero owns the logo at top; the small mark parks until
-  // the hero mark has gone under the header bar (measured live from the
-  // hero logo's rect, so the swap tracks the fluid logo size on every
-  // viewport).
-  //
-  // The live measurement must NOT run during hydration: a reload lands on
-  // the restored scroll position before React hydrates, so the hero is
-  // already gone and the client's first render would say "unparked" against
-  // the SSR's parked markup - an attribute mismatch React does not patch up,
-  // which parks the logo until the next real scroll. Until mounted, the
-  // hero counts as never-gone (Infinity), matching the parked SSR state;
-  // the mount re-render is a plain client render and patches the class.
+  // The small mark parks while the hero logo is still under the header.
+  // Measured only after mount: the hydration render must match the parked
+  // SSR markup (a reload lands on restored scroll, hero already gone);
+  // the mount re-render patches the class.
   const isMain = stripLang(pathname) === "" || stripLang(pathname) === "/";
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -45,7 +37,7 @@ export function Header() {
 
   return (
     <header ref={headerRef} className="sticky top-0 z-50 bg-background py-2">
-      {/* Three-column grid: hamburger right on mobile (toggle lives in its menu), inline nav centered, toggle right on desktop. The max-w-6xl + px-4/sm:px-8 geometry matches main and the footer, so every band's content edges align. */}
+      {/* Geometry matches main and the footer so content edges align. */}
       <div className="mx-auto grid max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-4 px-4 sm:px-8">
         <Link
           to="/$lang"

@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LangRouteImport } from './routes/$lang'
-import { Route as NotFoundRouteImport } from './routes/not-found'
 import { Route as LangIndexRouteImport } from './routes/$lang/index'
 import { Route as Lang404RouteImport } from './routes/$lang/404'
 import { Route as LangContactRouteImport } from './routes/$lang/contact'
@@ -27,11 +26,6 @@ const IndexRoute = IndexRouteImport.update({
 const LangRoute = LangRouteImport.update({
   id: '/$lang',
   path: '/$lang',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NotFoundRoute = NotFoundRouteImport.update({
-  id: '/not-found',
-  path: '/not-found',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LangIndexRoute = LangIndexRouteImport.update({
@@ -68,7 +62,6 @@ const LangTournamentRoute = LangTournamentRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$lang': typeof LangRouteWithChildren
-  '/not-found': typeof NotFoundRoute
   '/$lang/404': typeof Lang404Route
   '/$lang/contact': typeof LangContactRoute
   '/$lang/guide': typeof LangGuideRoute
@@ -78,7 +71,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/not-found': typeof NotFoundRoute
   '/$lang/404': typeof Lang404Route
   '/$lang/contact': typeof LangContactRoute
   '/$lang/guide': typeof LangGuideRoute
@@ -90,7 +82,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$lang': typeof LangRouteWithChildren
-  '/not-found': typeof NotFoundRoute
   '/$lang/404': typeof Lang404Route
   '/$lang/contact': typeof LangContactRoute
   '/$lang/guide': typeof LangGuideRoute
@@ -103,7 +94,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/$lang'
-    | '/not-found'
     | '/$lang/404'
     | '/$lang/contact'
     | '/$lang/guide'
@@ -113,7 +103,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/not-found'
     | '/$lang/404'
     | '/$lang/contact'
     | '/$lang/guide'
@@ -124,7 +113,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/$lang'
-    | '/not-found'
     | '/$lang/404'
     | '/$lang/contact'
     | '/$lang/guide'
@@ -136,7 +124,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LangRoute: typeof LangRouteWithChildren
-  NotFoundRoute: typeof NotFoundRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -153,13 +140,6 @@ declare module '@tanstack/react-router' {
       path: '/$lang'
       fullPath: '/$lang'
       preLoaderRoute: typeof LangRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/not-found': {
-      id: '/not-found'
-      path: '/not-found'
-      fullPath: '/not-found'
-      preLoaderRoute: typeof NotFoundRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$lang/': {
@@ -230,7 +210,6 @@ const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LangRoute: LangRouteWithChildren,
-  NotFoundRoute: NotFoundRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

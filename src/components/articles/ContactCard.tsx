@@ -1,6 +1,6 @@
 import { MailIcon, SendIcon } from "lucide-react";
 
-import type { Contact } from "../lib/types";
+import type { Contact } from "../../lib/types";
 
 // Roles per language; a new language = an entry here + a matching Contact field.
 const ROLE_KEY = { fi: "rolesFi", en: "rolesEn" } as const;
@@ -34,7 +34,7 @@ export function ContactCard({ contact, lang }: ContactCardProps) {
           </a>
         ) : (
           <span aria-hidden="true" className={spacerCls}>
-            <MailIcon className="size-5" />a
+            <MailIcon className="size-5" />
           </span>
         )}
         {hasTelegram ? (
@@ -49,7 +49,7 @@ export function ContactCard({ contact, lang }: ContactCardProps) {
           </a>
         ) : (
           <span aria-hidden="true" className={spacerCls}>
-            <SendIcon className="size-5" />a
+            <SendIcon className="size-5" />
           </span>
         )}
       </div>

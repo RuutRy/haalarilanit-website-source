@@ -1,26 +1,20 @@
+import { useRouter } from "@tanstack/react-router";
+import { Check, ChevronDown, Link } from "lucide-react";
 import type {
   ComponentType,
   MouseEvent as ReactMouseEvent,
-  PointerEvent as ReactPointerEvent,
   ReactNode,
+  PointerEvent as ReactPointerEvent,
 } from "react";
-
-import { useRouter } from "@tanstack/react-router";
-import { Link, ChevronDown, Check } from "lucide-react";
 import { createElement, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-
-import type { MDXComponents } from "@/lib/mdx";
-
 import { SectionNav } from "@/components/section-nav";
 import { copyText } from "@/lib/clipboard";
 import { flashHeading } from "@/lib/heading-flash";
 import { DEFAULT_LANG, isLang, stripLang } from "@/lib/lang";
+import type { MDXComponents } from "@/lib/mdx";
 import { MDX_BLOCKS } from "@/lib/mdx-blocks";
 import { cn } from "@/lib/utils";
-
-import type { To } from "./TextLink";
-
 import { BackToTop } from "../articles/BackToTop";
 import { ContactCards } from "../articles/ContactCards";
 import { Floorplan } from "../articles/Floorplan";
@@ -31,6 +25,7 @@ import { Hero } from "../Hero";
 import { Lightbox } from "../media/Lightbox";
 import { Sponsors } from "../Sponsors";
 import { Paragraph, TextLink, TextPanel } from "./index";
+import type { To } from "./TextLink";
 
 const articles = import.meta.glob<{
   default: ComponentType<{ components?: MDXComponents }>;

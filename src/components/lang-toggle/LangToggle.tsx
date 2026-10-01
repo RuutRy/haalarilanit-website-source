@@ -16,6 +16,7 @@ export function LangToggle() {
   const target = resolveLangTarget(pathname);
 
   return (
+    // biome-ignore lint/a11y/useSemanticElements: a fieldset's UA styles (border, min-inline-size) would need resets in this pixel-tuned pill; role=group + aria-label is complete for AT
     <div
       role="group"
       aria-label="Kieli / Language"

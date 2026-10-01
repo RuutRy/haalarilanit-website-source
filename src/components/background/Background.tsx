@@ -1,5 +1,5 @@
 import Parallax from "parallax-js";
-import { useEffect, useRef, type RefObject } from "react";
+import { type RefObject, useEffect, useRef } from "react";
 
 import { useIdleCallbackEffect } from "@/hooks/useIdleCallbackEffect";
 

@@ -12,7 +12,7 @@ export function DiscordWidget() {
       width="350"
       height="500"
       frameBorder={0}
-      // oxlint-disable-next-line react/iframe-missing-sandbox -- vendor-recommended embed config
+      // vendor-recommended embed config (Discord's own widget snippet)
       sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
       title={discord.name}
       className="max-w-full rounded-lg"

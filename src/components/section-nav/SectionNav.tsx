@@ -19,25 +19,22 @@ export function SectionNav() {
   const [open, setOpen] = useState(false);
   const [side, setSide] = useState<SwipeSide>("left");
 
-  const { items, visible, onText, markVisible } = useSectionSpy();
+  const { items, visible, onText } = useSectionSpy();
 
-  // The page-title h1 scrolls to the literal top and clears the hash.
-  const jump = useCallback(
-    (item: SectionNavItemData) => {
-      if (item.isTop) {
-        scrollTo({ top: 0, behavior: "smooth" });
-        whenScrollSettled(() => {
-          history.replaceState(null, "", location.pathname);
-          flashHeading(item.id);
-        });
-      } else {
-        jumpToSection(item.id);
-      }
-      // Optimistic: mark the clicked section instantly; the scrollspy corrects during the glide.
-      markVisible(item.id);
-    },
-    [markVisible],
-  );
+  // The scrollspy owns the active rows; clicks only set the uri and glide.
+  const jump = useCallback((item: SectionNavItemData) => {
+    if (item.isTop) {
+      history.replaceState(null, "", location.pathname);
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      scrollTo({ top: 0, behavior: reduce ? "instant" : "smooth" });
+    } else {
+      jumpToSection(item.id);
+    }
+    whenScrollSettled(() => {
+      document.documentElement.classList.remove("gliding");
+      flashHeading(item.id);
+    });
+  }, []);
 
   const toggleFromTrigger = useCallback(() => {
     setSide("left");
@@ -53,14 +50,15 @@ export function SectionNav() {
     } catch {
       initial = location.hash.slice(1); // malformed escape: deep link skipped
     }
-    const matched = items.find((i) => i.id === initial);
+    // A click mid-glide leaves the suffixed form in the url; match it too.
+    const matched =
+      items.find((i) => i.id === initial) ?? items.find((i) => i.id === initial.replace(/-$/, ""));
     if (!matched) return;
     const timer = setTimeout(() => {
-      jumpToSection(matched.id);
-      markVisible(matched.id);
+      jump(matched);
     }, DEEP_LINK_DELAY_MS);
     return () => clearTimeout(timer);
-  }, [items, markVisible]);
+  }, [items, jump]);
 
   // onText changes on every scroll frame; read through a ref so the touch
   // listeners never resubscribe.

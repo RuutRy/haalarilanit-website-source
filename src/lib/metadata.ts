@@ -34,7 +34,7 @@ export function eventJsonLd(description: string): string {
       name: "LAB-kampuksen liikuntasali",
       address: { "@type": "PostalAddress", addressLocality: "Lappeenranta", addressCountry: "FI" },
     },
-    image: [`${SITE_URL}/og-image.png`],
+    image: [`${SITE_URL}/assets/og-image.png`],
     url: `${SITE_URL}/${lang}`,
     organizer: { "@type": "Organization", name: "RuutRy" },
   });

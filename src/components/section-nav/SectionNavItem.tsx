@@ -19,12 +19,6 @@ type SectionNavItemProps = {
 // through color + chevron + a layout-inert scale; hover through a fading wash.
 export function SectionNavItem({ item, active, variant, onJump }: SectionNavItemProps) {
   const rail = variant === "rail";
-  const chevronClass = cn(
-    rail ? "size-[0.875em]" : "size-3.5",
-    "text-primary",
-    variant === "sheet" && "transition-all duration-300",
-    active ? "translate-x-0 opacity-100" : "-translate-x-1 opacity-0",
-  );
   const buttonClass = cn(
     "flex w-full items-center py-1 text-left leading-snug focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
     rail
@@ -53,7 +47,14 @@ export function SectionNavItem({ item, active, variant, onJump }: SectionNavItem
         aria-hidden
         className={cn("flex shrink-0 justify-center", rail ? "w-[0.875em]" : "w-3.5")}
       >
-        <ChevronRight className={chevronClass} />
+        {/* Chevrons mark the sections in view - spy data, never the click. */}
+        <ChevronRight
+          className={cn(
+            rail ? "size-[0.875em]" : "size-3.5",
+            "text-primary transition-[opacity,translate] duration-150",
+            active ? "translate-x-0 opacity-100" : "-translate-x-1 opacity-0",
+          )}
+        />
       </span>
       <button
         type="button"

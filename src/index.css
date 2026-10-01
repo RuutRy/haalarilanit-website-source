@@ -298,6 +298,12 @@ html {
   touch-action: pan-y pinch-zoom;
 }
 
+/* Nav jumps glide: set for the duration of a fragment jump, so the browser's
+   own scroll-to-fragment animates instead of snapping. */
+html.gliding {
+  scroll-behavior: smooth;
+}
+
 /* The plugin marks sheets with fewer than two sections; copy-link buttons hide there (SectionNav defers to the same rule). */
 .no-anchors [data-copy-link] {
   display: none;

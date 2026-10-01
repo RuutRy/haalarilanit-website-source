@@ -11,6 +11,8 @@ export const Route = createFileRoute("/$lang/404")({
   head: ({ params }) => ({
     meta: [
       { title: i18n.t("not_found.header") },
+      { name: "description", content: i18n.t("not_found.text") },
+      { property: "og:description", content: i18n.t("not_found.text") },
       { name: "robots", content: "noindex" },
       { name: LANG_404_META_NAME, content: isLang(params.lang) ? params.lang : DEFAULT_LANG },
     ],

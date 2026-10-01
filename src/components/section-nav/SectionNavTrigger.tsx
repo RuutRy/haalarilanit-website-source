@@ -28,8 +28,8 @@ export function SectionNavTrigger({
         tabIndex={show ? 0 : -1}
         onClick={onToggle}
         className={cn(
-          "pointer-events-auto absolute bottom-0 left-0 flex h-9 w-6 items-center justify-center rounded-r-full border border-l-0 border-foreground/10 bg-background/80 text-foreground shadow-lg backdrop-blur-sm transition-all duration-300",
-          "hover:bg-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
+          "pointer-events-auto absolute bottom-0 left-0 flex h-9 w-6 items-center justify-center rounded-r-full border border-l-0 border-foreground/10 bg-(--panel-tint) text-foreground shadow-lg backdrop-blur-lg transition-all duration-300",
+          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
           show ? "translate-x-0 opacity-100" : "pointer-events-none -translate-x-3 opacity-0",
         )}
       >

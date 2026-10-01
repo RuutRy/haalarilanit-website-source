@@ -132,6 +132,16 @@ function wrapSheet(root: MdxRoot) {
   const firstSection = kids.findIndex((n) => n.type === "section");
   const sections = kids.filter((n) => n.type === "section").length;
   const subpage = kids[0]?.type === "heading" && kids[0]?.depth === 1;
+  // A subpage without ## sections stays bare: no sheet, no chrome - its cards
+  // carry their own frost, and the heading gets a frost pill of its own.
+  if (subpage && sections === 0) {
+    const head = kids[0];
+    head.data = {
+      ...head.data,
+      hProperties: { ...head.data?.hProperties, className: ["frost", "bare-heading"] },
+    };
+    return;
+  }
   const start = subpage ? 0 : firstSection;
   if (start < 0 || start >= kids.length) return;
 
@@ -152,7 +162,7 @@ function wrapSheet(root: MdxRoot) {
   };
 
   root.children = subpage
-    ? [inject(MDX_BLOCKS.stripSpace), sheet]
+    ? [sheet]
     : [
         {
           type: "strip",

@@ -32,7 +32,7 @@ export function MobileMenu() {
       </SheetTrigger>
       <SheetContent
         side="right"
-        className="w-64 border-l-foreground/10 bg-background p-4 text-foreground"
+        className="w-64 border-l-foreground/10 bg-(--panel-tint) p-4 text-foreground backdrop-blur-lg"
       >
         {/* mt-14 clears the absolutely positioned close button in
             the sheet's top right corner */}

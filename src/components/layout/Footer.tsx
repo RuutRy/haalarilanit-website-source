@@ -17,12 +17,12 @@ export function Footer() {
   const lang = langFromPath(pathname);
 
   return (
-    <footer className="mt-auto bg-background py-6">
+    <footer className="mt-auto bg-(--panel-tint) py-6 backdrop-blur-lg">
       {/* One wrapping flex row; the lines re-arrange per breakpoint. Geometry matches main. */}
       <div className="mx-auto flex max-w-6xl flex-wrap items-start gap-x-8 gap-y-2.5 px-4 sm:px-8 lg:items-center">
         {/* fluid ps inset keeps the groups off the edge on wrapped layouts */}
         <nav
-          className="order-1 flex gap-x-8 ps-[5vw] lg:order-2 lg:flex-1 lg:justify-end lg:ps-0"
+          className="order-1 flex gap-x-8 ps-[5vw] lg:order-2 lg:flex-1 lg:justify-end lg:me-[5%] lg:ps-0"
           aria-label={t("footer.links")}
         >
           <div className="flex flex-col items-start gap-0.5 lg:gap-1">
@@ -33,32 +33,32 @@ export function Footer() {
                 params={{ lang }}
                 className="py-1 text-xs text-foreground/70 transition-colors hover:text-primary lg:text-sm"
               >
-                <LinkIcon aria-hidden className={LINK_ICON_CLS} />
                 {t("nav.rules")}
+                <LinkIcon aria-hidden className={LINK_ICON_CLS} />
               </Link>
               <Link
                 to="/$lang/guide"
                 params={{ lang }}
                 className="py-1 text-xs text-foreground/70 transition-colors hover:text-primary lg:text-sm"
               >
-                <LinkIcon aria-hidden className={LINK_ICON_CLS} />
                 {t("nav.guidance")}
+                <LinkIcon aria-hidden className={LINK_ICON_CLS} />
               </Link>
               <Link
                 to="/$lang/tournament"
                 params={{ lang }}
                 className="py-1 text-xs text-foreground/70 transition-colors hover:text-primary lg:text-sm"
               >
-                <LinkIcon aria-hidden className={LINK_ICON_CLS} />
                 {t("nav.tournaments")}
+                <LinkIcon aria-hidden className={LINK_ICON_CLS} />
               </Link>
               <Link
                 to="/$lang/contact"
                 params={{ lang }}
                 className="py-1 text-xs text-foreground/70 transition-colors hover:text-primary lg:text-sm"
               >
-                <LinkIcon aria-hidden className={LINK_ICON_CLS} />
                 {t("nav.contacts")}
+                <LinkIcon aria-hidden className={LINK_ICON_CLS} />
               </Link>
             </div>
           </div>
@@ -72,8 +72,8 @@ export function Footer() {
                   rel="noreferrer"
                   className="py-1 text-xs text-foreground/70 transition-colors hover:text-primary lg:text-sm"
                 >
-                  <ExternalLink aria-hidden className={LINK_ICON_CLS} />
                   {t("footer.ticket")}
+                  <ExternalLink aria-hidden className={LINK_ICON_CLS} />
                 </a>
               )}
               <a
@@ -82,8 +82,8 @@ export function Footer() {
                 rel="noreferrer"
                 className="py-1 text-xs text-foreground/70 transition-colors hover:text-primary lg:text-sm"
               >
-                <ExternalLink aria-hidden className={LINK_ICON_CLS} />
                 {t("footer.safer_space")}
+                <ExternalLink aria-hidden className={LINK_ICON_CLS} />
               </a>
             </div>
           </div>
@@ -135,8 +135,8 @@ export function Footer() {
               className="rounded bg-foreground/10 px-1.5 py-0.5 font-mono text-xs text-foreground/60 transition-colors hover:text-primary"
             >
               <code className="flex items-center gap-1">
-                <ExternalLink aria-hidden className={LINK_ICON_CLS} />
                 {import.meta.env.VITE_COMMIT_HASH}
+                <ExternalLink aria-hidden className={LINK_ICON_CLS} />
               </code>
             </a>
           </p>

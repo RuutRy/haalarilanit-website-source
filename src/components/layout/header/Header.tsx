@@ -36,7 +36,7 @@ export function Header() {
   const parked = isMain && y <= vh && heroBottom > headerBottom - HERO_GRACE_PX;
 
   return (
-    <header ref={headerRef} className="sticky top-0 z-50 bg-background py-2">
+    <header ref={headerRef} className="sticky top-0 z-50 bg-(--panel-tint) py-2 backdrop-blur-lg">
       {/* Geometry matches main and the footer so content edges align. */}
       <div className="mx-auto grid max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-4 px-4 sm:px-8">
         <Link

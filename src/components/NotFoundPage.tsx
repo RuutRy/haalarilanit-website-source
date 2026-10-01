@@ -1,8 +1,8 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-
 import { preferredLang, useActiveLang } from "../lib/lang";
+import { Frost } from "./Frost";
 
 // 404s always render at /<lang>/404: full-page loads bounce pre-paint (head
 // script in __root), soft navigations via root beforeLoad, and tree-path
@@ -25,7 +25,7 @@ export function NotFoundPage() {
   }, [pathname, status, navigate]);
 
   return (
-    <div className="flex flex-col items-center gap-8 text-center">
+    <Frost className="mx-auto flex w-full max-w-lg flex-col items-center gap-8 px-10 py-12 text-center">
       <h1 className="text-h1-fluid">{t("not_found.header")}</h1>
       <p>{t("not_found.text")}</p>
       <Link
@@ -35,6 +35,6 @@ export function NotFoundPage() {
       >
         {t("not_found.home")}
       </Link>
-    </div>
+    </Frost>
   );
 }

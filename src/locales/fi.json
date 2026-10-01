@@ -2,14 +2,14 @@
   "nav": {
     "main": "Etusivu",
     "rules": "Säännöt",
-    "guidance": "Opasteet",
+    "guidance": "Tietoa",
     "tournaments": "Turnaukset",
     "contacts": "Yhteystiedot"
   },
   "meta": {
     "main": "Haalarilanit on suuri lanitapahtuma LAB-kampuksen liikuntasalissa Lappeenrannassa: lähes kaksisataa pelaajaa, turnauksia ja peliseuraa syksyn eeppisimmässä pelihetkessä.",
     "rules": "Haalarilanien säännöt: tapahtuma-alue on päihteetön, konepaikalla on 350 W teho ja Suomen lait ovat voimassa. Tutustu sääntöihin ennen tapahtumaa.",
-    "guidance": "Opasteet Haalarilaneille: sisäänkäynti, parkkipaikka, lanipaikka ja pakkauslista - kaikki mitä tapahtumapaikalle saapumiseen tarvitsee tietää.",
+    "guidance": "Tietoa Haalarilaneille: sisäänkäynti, parkkipaikka, lanipaikka ja pakkauslista - kaikki mitä tapahtumapaikalle saapumiseen tarvitsee tietää.",
     "tournaments": "Haalarilanien turnaukset: CS2, NHL, League of Legends ja Nintendo Switch Challenge. Kilpaile kunniasta ja palkinnoista - katsojille ilmainen sisäänpääsy.",
     "contacts": "Yhteystiedot Haalarilanien pääjärjestäjiin. Kysymykset tapahtumasta, lipuista ja yhteistyöstä - tavoitat meidät sähköpostitse ja Telegramissa."
   },
@@ -59,6 +59,7 @@
     "opens_new_tab": "{{name}} - avautuu uuteen välilehteen",
     "logo_alt": "Haalarilanit",
     "open_menu": "Avaa valikko",
+    "close_menu": "Sulje valikko",
     "copy_link": "Kopioi linkki otsikkoon",
     "copied": "Linkki kopioitu",
     "toc": "Sivun sisältö",

@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 export const LANGS = ["fi", "en"] as const;
 
 export type Lang = (typeof LANGS)[number];
@@ -15,9 +17,15 @@ export function stripLang(pathname: string): string {
   return isLang(segment) ? pathname.slice(1 + segment.length) : pathname;
 }
 
-// Language implied by a URL path; anything without a known lang
-// segment is the default tree.
 export function langFromPath(pathname: string): Lang {
   const segment = pathname.split("/")[1];
   return isLang(segment) ? segment : DEFAULT_LANG;
+}
+
+// The active tree's language. i18n is initialized from the URL and
+// re-synced in route beforeLoad, so i18n.language IS the URL language;
+// isLang guards renders outside both trees.
+export function useActiveLang(): Lang {
+  const { i18n } = useTranslation();
+  return isLang(i18n.language) ? i18n.language : DEFAULT_LANG;
 }

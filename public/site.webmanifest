@@ -1,0 +1,20 @@
+{
+  "name": "Haalarilanit",
+  "short_name": "Haalarilanit",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09002e",
+  "theme_color": "#e38717",
+  "icons": [
+    {
+      "src": "/assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ]
+}

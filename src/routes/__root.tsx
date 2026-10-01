@@ -57,15 +57,15 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Haalarilanit" },
-      // Embed card meta; og:image needs an absolute URL.
+      // Site-wide card meta; descriptions and og:locale are per route (see
+      // seoHead). og:image is a raster - platforms skip svg images.
       { property: "og:title", content: "Haalarilanit" },
-      {
-        property: "og:description",
-        content:
-          "Haalarilanit on suuri lanitapahtuma, jota on järjestetty LAB-kampuksen liikuntasalissa Lappeenrannassa. Luvassa on syksyn eeppisin pelihetki, kun lähes kaksisataa pelaajaa kerääntyy yhteen saliin ja nauttii yhdessä pelaamisen ilosta. Olitpa sitten intohimoinen e-urheilija tai rento viikonlopun pelaaja, peliseuraa riittää varmasti.",
-      },
+      { property: "og:site_name", content: "Haalarilanit" },
       { property: "og:url", content: SITE_URL },
-      { property: "og:image", content: `${SITE_URL}/assets/logotext.svg` },
+      { property: "og:image", content: `${SITE_URL}/assets/og-image.png` },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "Haalarilanit 2026 logotype" },
       { property: "og:type", content: "website" },
       { name: "theme-color", content: "#e38717" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -80,7 +80,11 @@ export const Route = createRootRoute({
         type: "font/woff2",
         crossOrigin: "anonymous",
       },
+      { rel: "icon", href: "/assets/favicon.ico", sizes: "any" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/assets/favicon-32x32.png" },
       { rel: "icon", type: "image/svg+xml", href: "/assets/favicon.svg" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/assets/apple-touch-icon.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
     ],
   }),
   component: RootComponent,

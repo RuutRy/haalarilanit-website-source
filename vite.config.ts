@@ -6,6 +6,7 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import remarkArticleStructure from "./src/plugins/remark-article-structure.ts";
+import { rasterAssetsPlugin } from "./src/plugins/vite-raster-assets.ts";
 import { themeAssetsPlugin } from "./src/plugins/vite-theme-assets.ts";
 
 // Short commit hash baked into the bundle (footer legal bar links to
@@ -53,6 +54,13 @@ export default defineConfig({
         { template: "src/assets/templates/favicon.svg", route: "/assets/favicon.svg" },
         { template: "src/assets/templates/background.svg", route: "/assets/background.svg" },
       ],
+    }),
+    rasterAssetsPlugin({
+      cssFile: "src/index.css",
+      faviconTemplate: "src/assets/templates/favicon.svg",
+      logotype: "public/assets/logotext.svg",
+      background: "#09002e",
+      themeColor: "#e38717",
     }),
   ],
   resolve: {

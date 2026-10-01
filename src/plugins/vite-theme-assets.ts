@@ -84,6 +84,12 @@ function render(root: string, options: ThemeAssetsOptions): Map<string, string> 
   return out;
 }
 
+/** Renders one template with the css custom properties (for raster-assets). */
+export function renderThemeAsset(root: string, cssFile: string, template: string): string {
+  const out = render(root, { cssFile, assets: [{ template, route: "single" }] });
+  return out.get("single") as string;
+}
+
 export function themeAssetsPlugin(options: ThemeAssetsOptions): Plugin {
   let rendered = new Map<string, string>();
 

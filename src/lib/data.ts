@@ -4,10 +4,14 @@ import type { Contact, Organizer, PhotoEntry, Social, Sponsor } from "./types";
 export const SITE_URL = "https://haalarilan.it";
 
 export const event = {
+  name: "Haalarilanit",
   start: new Date(2026, 10, 19, 15),
   end: new Date(2026, 10, 22, 12),
   ticketSales: new Date(2026, 9, 3, 12),
 };
+
+/** The event year everything ("Haalarilanit 2026") derives from. */
+export const eventYear = event.start.getFullYear();
 
 export const contacts: Contact[] = [
   {

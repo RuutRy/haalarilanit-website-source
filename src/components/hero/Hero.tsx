@@ -34,10 +34,10 @@ export function Hero() {
       </Frost>
 
       <Frost className="flex w-full max-w-2xl flex-col items-center gap-[0.4em]">
-        {/* Time line from event data + translations */}
-        <h3 className="text-[1.6em]">
+        {/* The page's one h1 */}
+        <h1 className="text-[1.6em]">
           {formatEventTime(lang, t("main.time.at_start"), t("main.time.at_end"))}
-        </h3>
+        </h1>
         <h3 className="text-[1.6em]">{t("main.time.where")}</h3>
         {concluded ? (
           <div key="concluded" className="motion-safe:animate-pop-in">

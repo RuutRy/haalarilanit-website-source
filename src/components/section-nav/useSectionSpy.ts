@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export type SectionNavItemData = {
   id: string;
@@ -9,19 +9,15 @@ export type SectionNavItemData = {
   isTop: boolean;
 };
 
+// Owns the nav's active rows; clicks never mark anything.
 export function useSectionSpy(): {
   items: SectionNavItemData[];
   visible: Set<string>;
   onText: boolean;
-  markVisible: (id: string) => void;
 } {
   const [items, setItems] = useState<SectionNavItemData[]>([]);
   const [visible, setVisible] = useState<Set<string>>(new Set());
   const [onText, setOnText] = useState(false);
-
-  const markVisible = useCallback((id: string) => {
-    setVisible((prev) => new Set(prev).add(id));
-  }, []);
 
   useEffect(() => {
     const sheet = document.querySelector(".content-sheet");
@@ -80,5 +76,5 @@ export function useSectionSpy(): {
     };
   }, []);
 
-  return { items, visible, onText, markVisible };
+  return { items, visible, onText };
 }

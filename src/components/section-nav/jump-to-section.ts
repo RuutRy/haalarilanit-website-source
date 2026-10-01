@@ -1,12 +1,9 @@
-import { flashHeading } from "@/lib/heading-flash";
-
-import { whenScrollSettled } from "./scroll-settle";
-
-// Glide to a section; the deferred hash write keeps scroll anchoring from fighting the glide.
+// Jumps to a section: the uri gets the clean `#${id}` instantly and the
+// browser's own scroll-to-fragment does the gliding (html.gliding keeps it
+// smooth; wheel/touch input cancels it natively). No custom scroll machinery.
 export function jumpToSection(id: string): void {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  whenScrollSettled(() => {
-    history.replaceState(null, "", `#${id}`);
-    flashHeading(id);
-  });
+  history.replaceState(null, "", `#${id}`);
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.documentElement.classList.add("gliding");
+  document.getElementById(id)?.scrollIntoView({ behavior: reduce ? "instant" : "smooth" });
 }

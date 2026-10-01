@@ -10,10 +10,7 @@ const BLUR = {
   lg: "backdrop-blur-lg",
 } as const;
 
-// Frosted backdrop wrapper: translucent tint + backdrop blur, so the
-// parallax wallpaper glows through softly. Opt-in per element (hero
-// content) — text content, mono images etc. never apply it directly.
-// `blur` picks the frost strength (default sm).
+// Frosted wrapper (translucent tint + backdrop blur), opt-in per element.
 export function Blur({
   children,
   className,

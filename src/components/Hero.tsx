@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { event, links, ticketSalesStart } from "../lib/data";
-import i18n from "../lib/i18n";
+import { useActiveLang } from "../lib/lang";
 import { formatEventTime, formatSingleDate } from "../lib/time";
 import { Blur } from "./Blur";
 import { FlipClock } from "./FlipClock";
@@ -42,6 +42,7 @@ function usePhaseNow() {
 // because of the clock.
 export function Hero() {
   const { t } = useTranslation();
+  const lang = useActiveLang();
   const { now, refresh } = usePhaseNow();
 
   const labels = [t("main.time.d"), t("main.time.h"), t("main.time.m"), t("main.time.s")] as [
@@ -55,17 +56,15 @@ export function Hero() {
 
   return (
     <>
-      {/* Only element carrying the frosted Blur treatment: the hero
-          floats over the live wallpaper. */}
       <Blur className="self-center">
-        <Logo />
+        <Logo data-hero-logo />
       </Blur>
 
       <Blur className="flex w-full max-w-xl flex-col items-center gap-2">
         {/* Time line is data-driven: weekday + dates + times come from
             event data, the words around them from translations */}
         <h3 className="text-h3-fluid">
-          {formatEventTime(i18n.language, t("main.time.at_start"), t("main.time.at_end"))}
+          {formatEventTime(lang, t("main.time.at_start"), t("main.time.at_end"))}
         </h3>
         <h3 className="text-h3-fluid">{t("main.time.where")}</h3>
         {concluded ? (
@@ -106,9 +105,7 @@ export function Hero() {
         <p className="text-h3-fluid text-primary">{t("main.ticket_not_yet_available")}</p>
       )}
 
-      {/* Purchase stays visible until the event has ended. Before the
-          shop opens the button is a plain outline and the sales-start
-          date shows below it (no countdown clock). */}
+      {/* Before the shop opens the button is a muted ghost with the sales-start date below. */}
       {!concluded && links.ticket && (
         <form action={links.ticket}>
           <TicketButton label={t("main.purchase_button")} />
@@ -118,10 +115,7 @@ export function Hero() {
   );
 }
 
-// The ticket purchase button, 1:1 with upstream: locked until
-// ticketSalesStart it renders as a muted ghost button (grey, struck
-// through, no accent/shine) with the sales-start date below; when the
-// moment passes it goes live with the shine treatment.
+// Locked (muted ghost) until ticketSalesStart, then live with the shine.
 function TicketButton({ label }: { label: string }) {
   const { t } = useTranslation();
   const [now, setNow] = useState<number | null>(null);

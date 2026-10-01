@@ -28,6 +28,5 @@ export function useIdleCallbackEffect(
       }
       cleanup?.();
     };
-    // oxlint-disable-next-line react-hooks/exhaustive-deps -- pass-through deps
   }, deps);
 }

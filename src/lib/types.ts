@@ -26,7 +26,7 @@ export type PhotoEntry = {
   url: string;
 };
 
-// widgetGuildId: set for a Discord server with its widget enabled to embed the live widget.
+// widgetGuildId: set for a Discord server with its widget enabled to embed the official widget iframe.
 export type Social = {
   name: string;
   url: string;

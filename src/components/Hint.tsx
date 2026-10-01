@@ -2,9 +2,6 @@ import type { ReactNode } from "react";
 
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
-// The one tooltip look, shared by every tooltip on the site: dark
-// trigger-agnostic bubble, same offset and typography as the organizer
-// logos' tooltip (see LogoLink). Wrap anything.
 export function Hint({
   label,
   children,

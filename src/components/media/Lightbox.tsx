@@ -44,7 +44,7 @@ export function Lightbox({ src, alt }: { src: string; alt: string }) {
           src={src}
           alt={alt}
           loading="lazy"
-          className="mx-auto block max-h-[85vh] max-w-full rounded-lg transition-transform group-hover/img:scale-[1.01]"
+          className="mx-auto block max-h-[85vh] max-w-full rounded-lg transition-transform group-hover/img:scale-101"
         />
       </button>
       {mounted &&
@@ -54,7 +54,7 @@ export function Lightbox({ src, alt }: { src: string; alt: string }) {
             role="dialog"
             aria-modal="true"
             aria-label={alt}
-            className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 p-4 backdrop-blur-lg data-open:animate-in data-open:fade-in-0"
+            className="fixed inset-0 z-60 flex items-center justify-center bg-black/80 p-4 backdrop-blur-lg data-open:animate-in data-open:fade-in-0"
           >
             <button
               type="button"

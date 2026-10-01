@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { jumpToSection } from "./jump-to-section";
 import { SectionNavRail } from "./SectionNavRail";
 import { SectionNavSheet } from "./SectionNavSheet";
-import { useEdgeSwipe, type SwipeSide } from "./useEdgeSwipe";
+import { type SwipeSide, useEdgeSwipe } from "./useEdgeSwipe";
 import { useSectionSpy } from "./useSectionSpy";
 
 // Deep-link glide waits for fonts/layout to settle.

@@ -5,11 +5,10 @@
 // of src/index.css. Dev: middleware serves each route, watcher re-renders on
 // change. Build: emitted as real files.
 
-import type { Plugin } from "vite";
-
-import { transform, type TokenOrValue } from "lightningcss";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { type TokenOrValue, transform } from "lightningcss";
+import type { Plugin } from "vite";
 
 interface ThemeAsset {
   template: string;

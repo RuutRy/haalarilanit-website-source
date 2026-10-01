@@ -1,4 +1,4 @@
-import { useEffect, type DependencyList } from "react";
+import { type DependencyList, useEffect } from "react";
 
 type RunIdle = (cb: () => void) => void;
 
@@ -6,7 +6,7 @@ type RunIdle = (cb: () => void) => void;
 // defers the callback via requestIdleCallback (setTimeout 0 fallback). pending
 // idle callbacks are cancelled on cleanup, along with the effect's own cleanup.
 export function useIdleCallbackEffect(
-  effect: (runIdle: RunIdle) => void | (() => void),
+  effect: (runIdle: RunIdle) => (() => void) | undefined,
   deps: DependencyList,
 ) {
   useEffect(() => {

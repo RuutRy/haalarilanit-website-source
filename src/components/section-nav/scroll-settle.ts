@@ -6,7 +6,7 @@ const SETTLE_MS = 200;
 // glide keeps firing scroll events, so the timer only completes once the
 // browser is done scrolling - and with no glide it fires on its own.
 // (scrollend would be the exact signal but is not green across the
-// browserslist bar - see package.json.)
+// build-target bar - see vite.config.ts.)
 export function whenScrollSettled(cb: () => void): void {
   let timer = 0;
   const fire = () => {

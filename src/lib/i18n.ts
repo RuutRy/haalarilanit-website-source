@@ -3,7 +3,7 @@ import { initReactI18next } from "react-i18next";
 
 import en from "../locales/en.json";
 import fi from "../locales/fi.json";
-import { DEFAULT_LANG, langFromPath, type Lang } from "./lang";
+import { DEFAULT_LANG, type Lang, langFromPath } from "./lang";
 
 // URL owns language: initialized from the path, re-synced in route beforeLoad.
 const i18n = createInstance();

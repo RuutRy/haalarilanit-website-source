@@ -1,11 +1,11 @@
-import type { ComponentProps, ReactNode } from "react";
-
 import { Link as RouterLink } from "@tanstack/react-router";
 import { ExternalLink } from "lucide-react";
+import type { ComponentProps, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
 type To = ComponentProps<typeof RouterLink>["to"];
+
 export type { To };
 
 const linkCls =

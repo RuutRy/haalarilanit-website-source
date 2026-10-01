@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useScrollState } from "@/hooks/useScrollState";
 
 // Back-to-top: a threshold affordance, green everywhere (see the
-// browserslist field in package.json). Visibility is a class toggle
+// build target in vite.config.ts). Visibility is a class toggle
 // computed from the shared scroll state: past 35% of the page's own
 // scrollable range it appears, below it (and at page top) it is hidden -
 // instant with scroll position, the short CSS transition only smooths

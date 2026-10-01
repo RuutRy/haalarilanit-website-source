@@ -1,8 +1,7 @@
 /// <reference types="@mdx-js/rollup" />
 
-import type { Data, Literal, Parent, RootContent } from "mdast";
-
 import GithubSlugger from "github-slugger";
+import type { Data, Literal, Parent, RootContent } from "mdast";
 import { findAfter } from "unist-util-find-after";
 import { visit } from "unist-util-visit";
 
@@ -13,36 +12,36 @@ import { MDX_BLOCKS } from "../lib/mdx-blocks.ts";
 // above loads the MDX/remark-rehype type augmentations (mdast Data
 // hName/hProperties) the plugin's trees actually carry.
 
-export interface MdxJsxFlowElement extends Parent {
+interface MdxJsxFlowElement extends Parent {
   type: "mdxJsxFlowElement";
   name?: string;
   attributes: unknown[];
 }
 
-export interface MdxExport extends Literal {
+interface MdxExport extends Literal {
   type: "export";
 }
 
-export interface Section {
+interface Section {
   type: "section";
   depth: number;
   children: MdxNode[];
   data?: Data;
 }
 
-export interface Sheet {
+interface Sheet {
   type: "sheet";
   children: MdxNode[];
   data?: Data;
 }
 
-export interface Strip {
+interface Strip {
   type: "strip";
   children: MdxNode[];
   data?: Data;
 }
 
-export type MdxNode = RootContent | MdxJsxFlowElement | MdxExport | Section | Sheet | Strip;
+type MdxNode = RootContent | MdxJsxFlowElement | MdxExport | Section | Sheet | Strip;
 
 interface MdxRoot {
   type: "root";
@@ -74,12 +73,13 @@ function transform(tree: MdxRoot, file: { message: (msg: string, node?: RootCont
 
   visit(tree, (node, index, parent) => {
     if (!parent?.children) return;
+    if (typeof index !== "number") return;
     // Top-level only: no nested sections inside a section.
     if (parent.type !== "root") return;
     if (node.type === "paragraph") {
       // Prose right after an embedded component renders with no panel
       // (components end sections) - flag it so authors notice.
-      const prev = parent.children[index! - 1];
+      const prev = parent.children[index - 1];
       if (prev?.type === "mdxJsxFlowElement") {
         file.message(
           "paragraph directly after a component renders outside a panel; move it under a ## section",
@@ -113,7 +113,7 @@ function transform(tree: MdxRoot, file: { message: (msg: string, node?: RootCont
       data: { hName: "section" },
     };
 
-    parent.children.splice(index!, between.length, section);
+    parent.children.splice(index, between.length, section);
   });
 
   wrapSheet(tree);

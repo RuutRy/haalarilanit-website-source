@@ -28,9 +28,17 @@ export function formatEventTime(lang: string, atStart: string, atEnd: string): s
   return `${startStr} - ${endStr}`;
 }
 
-// One-off date in the site's format: 03.10.2026 klo 12 (lang is
-// reserved for future localized variants; the numeric format is
-// language-neutral).
+// Language-neutral numeric range for embed cards: 19.-22.11.2026 when the
+// range shares a month, otherwise 30.11.2026 - 02.12.2026.
+export function formatDateRange(start: Date, end: Date): string {
+  const day = (d: Date) => pad(d.getDate());
+  const month = (d: Date) => pad(d.getMonth() + 1);
+  if (start.getFullYear() === end.getFullYear() && start.getMonth() === end.getMonth()) {
+    return `${day(start)}.-${day(end)}.${month(end)}.${end.getFullYear()}`;
+  }
+  return `${day(start)}.${month(start)}.${start.getFullYear()} - ${day(end)}.${month(end)}.${end.getFullYear()}`;
+}
+
 export function formatSingleDate(date: Date, atWord: string): string {
   const day = pad(date.getDate());
   const month = pad(date.getMonth() + 1);

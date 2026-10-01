@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
 
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { flashHeading } from "@/lib/heading-flash";
 import { cn } from "@/lib/utils";
 
 type Item = { id: string; label: string };
@@ -12,55 +13,24 @@ type Item = { id: string; label: string };
 // done - used to defer the hash write and mark sections settled.
 const SETTLE_MS = 200;
 
-// Jump to a section: smooth scroll and a flash pulse on the target
-// heading (also used on hash deep links).
-function flashHeading(id: string) {
-  const heading = document.getElementById(id);
-  heading?.classList.remove("section-flash");
-  void heading?.offsetWidth; // restart the flash animation
-  heading?.classList.add("section-flash");
-  setTimeout(() => heading?.classList.remove("section-flash"), 1800);
-}
-
-// The flash waits for the glide: firing it the moment the item is
-// clicked bounces the chip while the page is still scrolling toward it.
-// The settle signal is the scroll-quiet beat (the same signal the hash
-// write uses): a programmatic glide keeps firing scroll events, so the
-// timer only completes once the browser is done scrolling - and if the
-// target is already in view (no glide at all) it fires on its own.
-// Quiet-beat by choice: `scrollend` would be the fancier signal but is
-// not green across the browserslist bar (Safari 16.4), and the green
-// APIs here (scroll events + setTimeout) cover both cases anyway.
-function flashWhenSettled(id: string) {
+// Resolve cb once scrolling has been quiet for SETTLE_MS: a programmatic
+// glide keeps firing scroll events, so the timer only completes once the
+// browser is done scrolling - and with no glide it fires on its own.
+// (scrollend would be the exact signal but is not green across the
+// browserslist bar - see package.json.)
+function whenScrollSettled(cb: () => void): void {
   let timer = 0;
-  const flash = () => {
+  const fire = () => {
     clearTimeout(timer);
     removeEventListener("scroll", onScroll);
-    flashHeading(id);
+    cb();
   };
   const onScroll = () => {
     clearTimeout(timer);
-    timer = window.setTimeout(flash, SETTLE_MS);
+    timer = window.setTimeout(fire, SETTLE_MS);
   };
   addEventListener("scroll", onScroll, { passive: true });
-  timer = window.setTimeout(flash, SETTLE_MS);
-}
-
-// Write the section hash only after scrolling has settled. Writing it
-// while the glide runs goes through TanStack's patched history, whose
-// location update cuts the smooth scroll short and snaps instantly.
-function replaceHashWhenSettled(id: string) {
-  let timer = 0;
-  const arm = () => {
-    clearTimeout(timer);
-    timer = window.setTimeout(() => {
-      removeEventListener("scroll", onScroll);
-      history.replaceState(null, "", `#${id}`);
-    }, SETTLE_MS);
-  };
-  const onScroll = () => arm();
-  addEventListener("scroll", onScroll, { passive: true });
-  arm(); // no glide at all (already there) still lands the hash
+  timer = window.setTimeout(fire, SETTLE_MS);
 }
 
 // Dock-style TOC, hung just left of the content sheet (desktop 2xl+).
@@ -84,29 +54,34 @@ export function SectionNav() {
   const [visible, setVisible] = useState<Set<string>>(new Set());
   const [onText, setOnText] = useState(false);
   const [open, setOpen] = useState(false);
-  // Which side the floating panel opens from (follows the swipe).
   const [side, setSide] = useState<"left" | "right">("left");
   const onTextRef = useRef(onText);
   onTextRef.current = onText;
 
-  const jump = (id: string, after?: () => void) => {
+  const jump = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    replaceHashWhenSettled(id);
-    flashWhenSettled(id);
-    // Optimistic: the clicked section marks instantly, the scrollspy
-    // keeps the rest honest while the glide passes through.
+    whenScrollSettled(() => {
+      history.replaceState(null, "", `#${id}`);
+      flashHeading(id);
+    });
+    // Optimistic: the clicked section marks instantly; the scrollspy keeps
+    // the rest honest while the glide passes through.
     setVisible((prev) => new Set(prev).add(id));
-    after?.();
   };
 
   useEffect(() => {
+    const DEEP_LINK_DELAY_MS = 400; // fonts/layout settle before the glide
+
     const sheet = document.querySelector(".content-sheet");
     if (!sheet) return;
+    // The plugin decides anchor-worthiness (>= 2 sections). No-anchors sheets
+    // hide copy-link buttons AND this nav - one rule, one owner.
+    if (sheet.classList.contains("no-anchors")) return;
+
     // The anchor id lives on the heading's wrapper span (see Article).
     const headings = [...sheet.querySelectorAll<HTMLElement>("h2")].filter(
       (h) => h.parentElement?.id,
     );
-    if (headings.length < 3) return;
 
     const found = headings.map((h) => ({ id: h.parentElement!.id, label: h.textContent ?? "" }));
     setItems(found);
@@ -115,7 +90,7 @@ export function SectionNav() {
     // jump to it and flash the heading once the auto-scroll settles.
     const initial = decodeURIComponent(location.hash.slice(1));
     if (initial && found.some((i) => i.id === initial)) {
-      setTimeout(() => jump(initial), 400);
+      setTimeout(() => jump(initial), DEEP_LINK_DELAY_MS);
     }
 
     // Which sections are on screen: a heading counts as visible while
@@ -157,17 +132,9 @@ export function SectionNav() {
     };
   }, []);
 
-  // Edge-swipe quick-jump (below 2xl, where the rail doesn't exist):
-  // a touch landing within ~40px of either screen edge arms the gesture
-  // (fat fingers land well inside the edge); the first ~12px of travel
-  // commits the direction. Once horizontal intent is detected the
-  // touchmove is preventDefault()ed - non-passive, added only while
-  // armed - so the browser never claims the gesture for scrolling or
-  // text selection and the swipe works even when the drag runs over
-  // text. Vertical intent first hands the gesture straight back to
-  // scrolling; the browser taking the gesture over entirely (its own
-  // edge swipes) disarms via touchcancel. Armed only while the article
-  // text is on screen, like the rail.
+  // Edge-swipe quick-jump below 2xl: touch starting within EDGE px of a screen edge arms the gesture;
+  // the first SLOP px commit direction, DIST px open the panel. Non-passive touchmove only while armed
+  // (prevents scroll/selection claiming the drag); touchcancel disarms when the browser takes the gesture.
   useEffect(() => {
     if (items.length === 0) return;
     const EDGE = 40;
@@ -259,17 +226,12 @@ export function SectionNav() {
     <>
       {createPortal(
         <>
-          {/* Hung off the sheet's left edge: centered, shifted left by
-              the sheet half-width (24rem) plus a gap. Only when the
-              viewport is wide enough to actually have that room (2xl+,
-              below that the left offset would clip the rail offscreen).
-              Fades/slides in only once the article text is on screen.
-              Solid panel keeps it readable over the dotted wallpaper. */}
+          {/* Hung off the sheet's left edge (2xl+), shown only while the article text is on screen. */}
           <nav
             aria-label={t("a11y.toc")}
             className={cn(
               "fixed top-1/2 z-40 hidden w-56 -translate-y-1/2 transition-all duration-300 2xl:block",
-              "left-[calc(max((100vw-72rem)/2+2rem,2rem)-14.5rem)]",
+              "left-[calc(max((100vw-72rem)/2+2rem,2rem)-14.5rem)]" /* sheet half-width (24rem) + gap, floor 2rem */,
               "rounded-xl border border-foreground/10 bg-background p-2 shadow-lg",
               onText ? "translate-x-0 opacity-100" : "pointer-events-none -translate-x-3 opacity-0",
             )}
@@ -280,14 +242,7 @@ export function SectionNav() {
         document.body,
       )}
 
-      {/* Below 2xl: no trigger button at all - an edge swipe from
-          either side opens the panel (see the swipe effect above). The
-          panel is the desktop rail's floating sibling: a vertically
-          centered card over the dimmed page, opening from the swiped
-          side. inset-y-0 + my-auto + h-auto centers without transform,
-          so the slide-in animation keeps working; the data-[side]
-          prefixed overrides match the SheetContent base classes'
-          specificity (tailwind-merge dedupes same-variant conflicts). */}
+      {/* inset-y-0 + my-auto + h-fit centers without transform, keeping the slide-in animation alive. */}
       {items.length > 0 && (
         <Sheet modal={false} open={open} onOpenChange={setOpen}>
           <SheetContent

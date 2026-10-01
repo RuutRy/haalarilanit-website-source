@@ -10,6 +10,7 @@
     "format": "oxfmt src",
     "format:check": "oxfmt --check src",
     "typecheck": "tsc -b --noEmit",
+    "test": "vitest run",
     "scan": "doiuse src/index.css"
   },
   "browserslist": [
@@ -26,7 +27,6 @@
     "clsx": "^2.1.1",
     "github-slugger": "^2.0.0",
     "lucide-react": "^1.31.0",
-    "motion": "^13.4.4",
     "parallax-js": "^3.1.0",
     "radix-ui": "^1.6.7",
     "react": "^19.2.8",
@@ -41,6 +41,7 @@
     "@sanity-labs/logo-soup": "^1.2.2",
     "@tailwindcss/vite": "^4.3.3",
     "@tanstack/react-router": "^1.170.39",
+    "@types/mdast": "^4.0.4",
     "@types/node": "^26.2.0",
     "@types/parallax-js": "^3.1.3",
     "@types/react": "^19.2.18",
@@ -53,10 +54,13 @@
     "oxfmt": "^0.63.0",
     "oxlint": "^1.78.0",
     "react-i18next": "^17.0.11",
+    "remark-parse": "^11.0.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
+    "unified": "^11.0.5",
     "unist-util-find-after": "^5.0.0",
     "unist-util-visit": "^5.1.0",
-    "vite": "^8.2.1"
+    "vite": "^8.2.1",
+    "vitest": "^5.0.2"
   }
 }

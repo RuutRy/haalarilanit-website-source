@@ -17,14 +17,22 @@ import { DEFAULT_LANG, LANG_404_META_NAME, preferredLang, useActiveLang } from "
 export function NotFoundPage() {
   const { t } = useTranslation();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const status = useRouterState({ select: (s) => s.status });
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Only decide on a settled location: TanStack flips the pathname
+    // optimistically at navigation START, before the new route renders -
+    // bouncing on that transient would cancel every navigation AWAY from
+    // the 404 page (the card would see /fi mid-flight and replace back to
+    // /fi/404). Once idle, a non-404 URL here means the router rendered
+    // this card at a broken tree path - clean it into /<lang>/404.
+    if (status !== "idle") return;
     const lang = preferredLang(pathname);
     if (pathname !== `/${lang}/404`) {
       navigate({ to: "/$lang/404", params: { lang }, replace: true });
     }
-  }, [pathname, navigate]);
+  }, [pathname, status, navigate]);
 
   return (
     <div className="flex flex-col items-center gap-8 text-center">

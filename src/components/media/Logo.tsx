@@ -16,7 +16,7 @@ export function Logo({
 
   return (
     <span
-      className={`inline-block ${size === "sm" ? "" : "px-6 py-5 sm:px-10 sm:py-7"} ${className ?? ""}`}
+      className={`inline-block ${size === "sm" ? "" : "px-6 py-[1em] sm:px-10"} ${className ?? ""}`}
       {...rest}
     >
       <MonoImage
@@ -24,7 +24,7 @@ export function Logo({
         alt={t("a11y.logo_alt")}
         width={535}
         height={339}
-        className={size === "sm" ? "w-20 md:w-24" : "w-[min(70vw,480px)]"}
+        className={size === "sm" ? "w-20 md:w-24" : "h-[13em] w-auto"}
       />
     </span>
   );

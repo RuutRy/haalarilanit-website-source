@@ -173,8 +173,7 @@
   background: var(--panel-tint);
 }
 
-/* Flat document surface: everything from the first heading down. The
-   parallax wallpaper shows only in the strip above it. */
+/* Flat document surface: everything from the first heading down; the wallpaper shows only above it. */
 .content-sheet {
   display: flex;
   width: 100%;
@@ -186,11 +185,13 @@
   padding: 1.5rem 1rem 2rem;
 }
 
-/* Front-page hero strip: a static full viewport over the wallpaper.
-   Scrolling down simply lands on the content sheet below. */
 .hero-strip {
   display: flex;
-  height: 100dvh;
+  /* min-height, not height: fluid type and the logo scale with viewport
+     WIDTH, so on a short-but-wide window the hero's content is taller than
+     one viewport - a fixed height would overflow it into the sheet below
+     (and under the header above). The strip grows instead. */
+  min-height: 100dvh;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -202,14 +203,12 @@ html {
   scroll-padding-top: 5rem;
 }
 
-/* Single-section pages: anchor affordances are pointless noise. */
+/* The plugin marks sheets with fewer than two sections; copy-link buttons hide there (SectionNav defers to the same rule). */
 .no-anchors [data-copy-link] {
   display: none;
 }
 
-/* Jump/deep-link feedback, two layers: the heading TEXT flashes accent
-   and fades back fast; the chip itself does one bigger, clearly visible
-   bounce (larger, but still a single bounce). */
+/* Jump feedback: text flashes accent fast, chip does one bounce. */
 @keyframes chip-color {
   0% {
     color: var(--primary);
@@ -247,9 +246,7 @@ html {
     chip-bounce 1.3s cubic-bezier(0.34, 1.2, 0.64, 1);
 }
 
-/* Sections reveal as they enter the viewport - CSS scroll-driven, so
-   prerendered HTML stays fully visible without JS and browsers without
-   the timeline support simply never hide anything. */
+/* Sections reveal on entry; CSS scroll-driven so no-JS and non-supporting browsers simply never hide anything. */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .content-sheet > *:not(.no-reveal) {
@@ -270,16 +267,9 @@ html {
   }
 }
 
-/* Back-to-top and the main-page header mark: threshold affordances,
-   green everywhere (see .browserslistrc). Their parked/visible state is
-   a class toggle computed from the shared scroll state (see
-   useScrollState.ts) and the elements' own CSS transitions perform the
-   fade. That is why nothing here animates on scroll: a scroll-driven
-   animation would churn through every intermediate position during
-   quick-nav glides, which the evaluate-on-scroll design avoids. */
+/* Back-to-top + header mark: threshold classes from useScrollState; the elements' transitions do the fade. */
 
-/* The header mark's parked state (hero owns the logo at the top of the
-   main page); toggled by Header from the shared scroll state. */
+/* Parked state of the header mark (hero owns the logo at the top of the main page). */
 .header-logo-parked {
   opacity: 0;
   translate: 0 -0.5rem;

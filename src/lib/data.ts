@@ -19,7 +19,7 @@ export const contacts: Contact[] = [
     rolesFi: ["Infra", "Logistiikka"],
     rolesEn: ["Infra", "Logistics"],
     email: "noora.parkko@ruut.me",
-    telegram: "saaranooraniilo",
+    telegram: "LauriSorsa",
   },
   {
     name: "Jesse Mäkelä",

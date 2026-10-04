@@ -26,12 +26,12 @@ export function Footer() {
           aria-label={t("footer.links")}
         >
           <div className="flex flex-col items-start gap-0.5 lg:gap-1">
-            <h3 className="text-sm font-semibold text-primary uppercase">{t("footer.site")}</h3>
+            <h3 className="text-base font-semibold text-primary uppercase">{t("footer.site")}</h3>
             <div className="flex flex-col">
               <Link
                 to="/$lang/rules"
                 params={{ lang }}
-                className="py-1 text-xs text-foreground/70 transition-colors hover:text-primary lg:text-sm"
+                className="py-1 text-base text-foreground/70 transition-colors hover:text-primary"
               >
                 {t("nav.rules")}
                 <LinkIcon aria-hidden className={LINK_ICON_CLS} />
@@ -39,7 +39,7 @@ export function Footer() {
               <Link
                 to="/$lang/guide"
                 params={{ lang }}
-                className="py-1 text-xs text-foreground/70 transition-colors hover:text-primary lg:text-sm"
+                className="py-1 text-base text-foreground/70 transition-colors hover:text-primary"
               >
                 {t("nav.guidance")}
                 <LinkIcon aria-hidden className={LINK_ICON_CLS} />
@@ -47,7 +47,7 @@ export function Footer() {
               <Link
                 to="/$lang/tournament"
                 params={{ lang }}
-                className="py-1 text-xs text-foreground/70 transition-colors hover:text-primary lg:text-sm"
+                className="py-1 text-base text-foreground/70 transition-colors hover:text-primary"
               >
                 {t("nav.tournaments")}
                 <LinkIcon aria-hidden className={LINK_ICON_CLS} />
@@ -55,7 +55,7 @@ export function Footer() {
               <Link
                 to="/$lang/contact"
                 params={{ lang }}
-                className="py-1 text-xs text-foreground/70 transition-colors hover:text-primary lg:text-sm"
+                className="py-1 text-base text-foreground/70 transition-colors hover:text-primary"
               >
                 {t("nav.contacts")}
                 <LinkIcon aria-hidden className={LINK_ICON_CLS} />
@@ -63,14 +63,14 @@ export function Footer() {
             </div>
           </div>
           <div className="flex flex-col items-start gap-0.5 lg:gap-1">
-            <h3 className="text-sm font-semibold text-primary uppercase">{t("footer.event")}</h3>
+            <h3 className="text-base font-semibold text-primary uppercase">{t("footer.event")}</h3>
             <div className="flex flex-col">
               {links.ticket && (
                 <a
                   href={links.ticket}
                   target="_blank"
                   rel="noreferrer"
-                  className="py-1 text-xs text-foreground/70 transition-colors hover:text-primary lg:text-sm"
+                  className="py-1 text-base text-foreground/70 transition-colors hover:text-primary"
                 >
                   {t("footer.ticket")}
                   <ExternalLink aria-hidden className={LINK_ICON_CLS} />
@@ -80,7 +80,7 @@ export function Footer() {
                 href={links.saferSpace[lang]}
                 target="_blank"
                 rel="noreferrer"
-                className="py-1 text-xs text-foreground/70 transition-colors hover:text-primary lg:text-sm"
+                className="py-1 text-base text-foreground/70 transition-colors hover:text-primary"
               >
                 {t("footer.safer_space")}
                 <ExternalLink aria-hidden className={LINK_ICON_CLS} />
@@ -125,14 +125,14 @@ export function Footer() {
 
         {/* order-4 + w-full keep the legal row on its own line */}
         <div className="order-4 mt-5.5 flex w-full items-center justify-between gap-4 border-t border-foreground/10 pt-3.5">
-          <p className="flex flex-wrap items-center gap-2 text-xs text-foreground/50 lg:text-sm">
+          <p className="flex flex-wrap items-center gap-2 text-base text-foreground/50">
             {t("footer.copyright", { year: new Date().getFullYear() })}
             <a
               href={`https://github.com/RuutRy/haalarilanit-website-source/tree/${import.meta.env.VITE_COMMIT_HASH}`}
               target="_blank"
               rel="noreferrer"
               title={`build ${import.meta.env.VITE_COMMIT_HASH}`}
-              className="rounded bg-foreground/10 px-1.5 py-0.5 font-mono text-xs text-foreground/60 transition-colors hover:text-primary"
+              className="rounded bg-foreground/10 px-1.5 py-0.5 font-mono text-sm text-foreground/60 transition-colors hover:text-primary"
             >
               <code className="flex items-center gap-1">
                 {import.meta.env.VITE_COMMIT_HASH}

@@ -33,7 +33,7 @@ export const contacts: Contact[] = [
     rolesFi: ["Kioski", "Turvallisuus"],
     rolesEn: ["Kiosk", "Safety"],
     email: "lauri.sorsa@cluster.fi",
-    telegram: "LauriSorsa",
+    telegram: "Marathonmonday",
   },
 ];
 

@@ -20,7 +20,7 @@ export function Logo({
       {...rest}
     >
       <MonoImage
-        src="/assets/logotext.svg"
+        src="/assets/content/logotext.svg"
         alt={t("a11y.logo_alt")}
         width={535}
         height={339}

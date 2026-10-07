@@ -83,7 +83,7 @@ export default defineConfig({
     rasterAssetsPlugin({
       cssFile: "src/index.css",
       faviconTemplate: "src/assets/templates/favicon.svg",
-      logotype: "public/assets/logotext.svg",
+      logotype: "public/assets/content/logotext.svg",
       background: "#09002e",
       themeColor: "#e38717",
     }),

@@ -12,7 +12,8 @@ type SectionNavRailProps = {
   onJump: (item: SectionNavItemData) => void;
 };
 
-// Desktop TOC rail from 72rem, where the trigger hands over. The right edge
+// Desktop TOC rail from the rail breakpoint, where the trigger hands over.
+// The right edge
 // is one continuous clamp: 1.5rem off the text column, sliding out to 1.5rem
 // off the sheet's edge once the wallpaper fits the 20rem rail - no
 // thresholds, so resizing never snaps. Labels ride an em font knob (scale
@@ -25,7 +26,7 @@ export function SectionNavRail({ items, visible, onText, onJump }: SectionNavRai
   const { t } = useTranslation();
 
   return createPortal(
-    <div className="pointer-events-none fixed inset-x-0 top-1/2 z-40 hidden -translate-y-1/2 min-[72rem]:block">
+    <div className="pointer-events-none fixed inset-x-0 top-1/2 z-40 hidden -translate-y-1/2 rail:block">
       <nav
         aria-label={t("a11y.toc")}
         className={cn(

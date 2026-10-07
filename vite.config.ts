@@ -2,8 +2,11 @@ import { execSync } from "node:child_process";
 import { fileURLToPath, URL } from "node:url";
 import mdx from "@mdx-js/rollup";
 import tailwindcss from "@tailwindcss/vite";
+import { devtools } from "@tanstack/devtools-vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
+import remarkFrontmatter from "remark-frontmatter";
+import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import { defineConfig } from "vite";
 import remarkArticleStructure from "./src/plugins/remark-article-structure.ts";
 import { rasterAssetsPlugin } from "./src/plugins/vite-raster-assets.ts";
@@ -32,8 +35,18 @@ export default defineConfig({
     target: ["chrome120", "edge120", "firefox128", "safari16.4"],
   },
   plugins: [
+    // Devtools overlay in dev; stripped from builds (removeDevtoolsOnBuild).
+    devtools(),
     // Compile .mdx before TanStack Start's router pipeline sees the modules.
-    { ...mdx({ remarkPlugins: [remarkArticleStructure] }), enforce: "pre" },
+    // Frontmatter becomes a `frontmatter` export (per-route meta, read by
+    // src/lib/content-meta.ts); structure runs after it and hoists the
+    // export out of the sheet.
+    {
+      ...mdx({
+        remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter, remarkArticleStructure],
+      }),
+      enforce: "pre",
+    },
     tanstackStart({
       spa: { enabled: false },
       // The language toggle links into the other tree, so the crawler

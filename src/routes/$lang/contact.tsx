@@ -1,15 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { Article } from "../../components/text";
-import i18n from "../../lib/i18n";
+import { articleMeta } from "../../lib/content-meta";
 import { currentLang, seoHead } from "../../lib/metadata";
 
 export const Route = createFileRoute("/$lang/contact")({
-  head: () =>
+  head: ({ params }) =>
     seoHead({
       path: `/${currentLang()}/contact`,
-      title: `${i18n.t("nav.contacts")} - Haalarilanit`,
-      description: i18n.t("meta.contacts"),
+      ...articleMeta("contact", params.lang),
     }),
   component: ContactPage,
 });

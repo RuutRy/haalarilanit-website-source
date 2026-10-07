@@ -1,4 +1,6 @@
+import { TanStackDevtools } from "@tanstack/react-devtools";
 import { createRootRoute, HeadContent, Outlet, redirect, Scripts } from "@tanstack/react-router";
+import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { type ReactNode, StrictMode } from "react";
 
 // side-effect import: i18n init
@@ -125,7 +127,14 @@ function RootDocument({ children }: { children: ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: LANG_REDIRECT_SCRIPT }} />
       </head>
       <body>
-        <StrictMode>{children}</StrictMode>
+        <StrictMode>
+          {children}
+          {/* Dev-only: the vite plugin strips it from builds. */}
+          <TanStackDevtools
+            config={{ position: "bottom-right" }}
+            plugins={[{ name: "TanStack Router", render: <TanStackRouterDevtoolsPanel /> }]}
+          />
+        </StrictMode>
         <Scripts />
       </body>
     </html>

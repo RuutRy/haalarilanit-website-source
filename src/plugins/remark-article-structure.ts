@@ -129,26 +129,32 @@ function headingText(node: TextSource): string {
 // in the hero strip and the sheet starts at the first ##.
 function wrapSheet(root: MdxRoot) {
   const kids = root.children ?? [];
-  const firstSection = kids.findIndex((n) => n.type === "section");
-  const sections = kids.filter((n) => n.type === "section").length;
-  const subpage = kids[0]?.type === "heading" && kids[0]?.depth === 1;
+  // remark-mdx-frontmatter leaves a frontmatter export at the top; it renders
+  // nothing and must stay outside the sheet, so content starts after it.
+  const leadCount = kids[0]?.type === "mdxjsEsm" || kids[0]?.type === "yaml" ? 1 : 0;
+  const lead = leadCount ? kids.slice(0, leadCount) : [];
+  const content = kids.slice(leadCount);
+  const firstSection = content.findIndex((n) => n.type === "section");
+  const sections = content.filter((n) => n.type === "section").length;
+  const subpage = content[0]?.type === "heading" && content[0]?.depth === 1;
   // A subpage without ## sections stays bare: no sheet, no chrome - its cards
   // carry their own frost, and the heading gets a frost pill of its own.
   if (subpage && sections === 0) {
-    const head = kids[0];
+    const head = content[0];
     head.data = {
       ...head.data,
       hProperties: { ...head.data?.hProperties, className: ["frost", "bare-heading"] },
     };
+    // children stay as-is (any frontmatter lead included).
     return;
   }
   const start = subpage ? 0 : firstSection;
-  if (start < 0 || start >= kids.length) return;
+  if (start < 0 || start >= content.length) return;
 
   const sheet: Sheet = {
     type: "sheet",
     children: [
-      ...kids.slice(start),
+      ...content.slice(start),
       // Injected at the sheet's end so the sticky handle docks with BackToTop.
       inject(MDX_BLOCKS.sectionNav),
       inject(MDX_BLOCKS.backToTop),
@@ -162,11 +168,12 @@ function wrapSheet(root: MdxRoot) {
   };
 
   root.children = subpage
-    ? [sheet]
+    ? [...lead, sheet]
     : [
+        ...lead,
         {
           type: "strip",
-          children: [...kids.slice(0, start), inject(MDX_BLOCKS.scrollHint)],
+          children: [...content.slice(0, start), inject(MDX_BLOCKS.scrollHint)],
           data: { hName: "div", hProperties: { className: ["hero-strip"] } },
         },
         sheet,

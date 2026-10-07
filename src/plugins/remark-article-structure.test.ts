@@ -177,3 +177,36 @@ test("front page: leading components become the hero strip; hint and nav injecte
   expect(sheetChildren(tree).at(-2)?.name).toBe("SectionNav");
   expect(sheetClass(tree)).not.toContain("no-anchors");
 });
+
+// remark-mdx-frontmatter leaves the frontmatter export at the top; it renders
+// nothing and must not break the subpage/hero detection or enter the sheet.
+test("leading frontmatter export stays outside the sheet; subpage still detected", () => {
+  const tree: Root = {
+    type: "root",
+    children: [
+      { type: "mdxjsEsm", value: "export const frontmatter = {}" } as never,
+      { type: "heading", depth: 1, children: [{ type: "text", value: "Rules" }] } as never,
+      { type: "heading", depth: 2, children: [{ type: "text", value: "One" }] } as never,
+      { type: "paragraph", children: [{ type: "text", value: "x" }] } as never,
+    ],
+  };
+  processor.runSync(tree);
+  expect(tree.children[0].type).toBe("mdxjsEsm");
+  expect(tree.children[1].type).toBe("sheet");
+  expect(sheetClass(tree)).toContain("content-sheet");
+});
+
+test("leading frontmatter export: front page strip still forms after it", () => {
+  const tree: Root = {
+    type: "root",
+    children: [
+      { type: "mdxjsEsm", value: "export const frontmatter = {}" } as never,
+      jsx("Hero"),
+      { type: "heading", depth: 2, children: [{ type: "text", value: "One" }] } as never,
+      { type: "paragraph", children: [{ type: "text", value: "x" }] } as never,
+    ],
+  };
+  processor.runSync(tree);
+  expect(tree.children[0].type).toBe("mdxjsEsm");
+  expect(tree.children[1].type).toBe("strip");
+});

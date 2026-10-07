@@ -1,15 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { Article } from "../../components/text";
-import i18n from "../../lib/i18n";
+import { articleMeta } from "../../lib/content-meta";
 import { currentLang, seoHead } from "../../lib/metadata";
 
 export const Route = createFileRoute("/$lang/rules")({
-  head: () =>
+  head: ({ params }) =>
     seoHead({
       path: `/${currentLang()}/rules`,
-      title: `${i18n.t("nav.rules")} - Haalarilanit`,
-      description: i18n.t("meta.rules"),
+      ...articleMeta("rules", params.lang),
     }),
   component: RulesPage,
 });

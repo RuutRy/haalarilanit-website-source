@@ -43,8 +43,9 @@ export function eventJsonLd(description: string): string {
 export interface SeoPage {
   /** Route path the page is canonical for, e.g. "/fi" or "/en/contact". */
   path: string;
-  title: string;
-  description: string;
+  /** Missing -> the root head's site defaults stay in place. */
+  title?: string;
+  description?: string;
   /** schema.org JSON-LD (the front page's Event). */
   jsonLd?: string;
 }
@@ -55,10 +56,13 @@ export function seoHead(page: SeoPage) {
   const locale = OG_LOCALES[lang] ?? OG_LOCALES.fi;
   return {
     meta: [
-      { title: page.title },
-      { name: "description", content: page.description },
-      { property: "og:title", content: page.title },
-      { property: "og:description", content: page.description },
+      ...(page.title ? [{ title: page.title }, { property: "og:title", content: page.title }] : []),
+      ...(page.description
+        ? [
+            { name: "description", content: page.description },
+            { property: "og:description", content: page.description },
+          ]
+        : []),
       { property: "og:url", content: url },
       { property: "og:locale", content: locale },
       { property: "og:locale:alternate", content: locale === "en_US" ? "fi_FI" : "en_US" },

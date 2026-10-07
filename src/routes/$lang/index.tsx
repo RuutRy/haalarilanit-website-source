@@ -1,18 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { Article } from "../../components/text";
-import { eventYear } from "../../lib/data";
-import i18n from "../../lib/i18n";
+import { articleMeta } from "../../lib/content-meta";
+import { event, eventYear } from "../../lib/data";
 import { currentLang, eventJsonLd, seoHead } from "../../lib/metadata";
 
+// Title follows the site name like the og:image alt ("Haalarilanit 2026
+// logotype"); the description rides the article's frontmatter and feeds
+// both the meta and the JSON-LD.
 export const Route = createFileRoute("/$lang/")({
-  head: () =>
-    seoHead({
+  head: ({ params }) => {
+    const description = articleMeta("main", params.lang).description;
+    return seoHead({
       path: `/${currentLang()}`,
-      title: i18n.t("meta.title", { year: eventYear }),
-      description: i18n.t("meta.main"),
-      jsonLd: eventJsonLd(i18n.t("meta.main")),
-    }),
+      title: `${event.name} ${eventYear}`,
+      description,
+      jsonLd: description ? eventJsonLd(description) : undefined,
+    });
+  },
   component: MainPage,
 });
 

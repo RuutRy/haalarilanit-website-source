@@ -178,35 +178,61 @@ test("front page: leading components become the hero strip; hint and nav injecte
   expect(sheetClass(tree)).not.toContain("no-anchors");
 });
 
-// remark-mdx-frontmatter leaves the frontmatter export at the top; it renders
-// nothing and must not break the subpage/hero detection or enter the sheet.
-test("leading frontmatter export stays outside the sheet; subpage still detected", () => {
+// remark-mdx-frontmatter leaves BOTH the yaml node and the frontmatter export
+// at the top; neither renders and both must not break subpage/hero detection.
+test("leading frontmatter (yaml + export) stays outside the sheet; subpage still detected", () => {
   const tree: Root = {
     type: "root",
     children: [
       { type: "mdxjsEsm", value: "export const frontmatter = {}" } as never,
+      { type: "yaml", value: "title: Rules" } as never,
       { type: "heading", depth: 1, children: [{ type: "text", value: "Rules" }] } as never,
       { type: "heading", depth: 2, children: [{ type: "text", value: "One" }] } as never,
       { type: "paragraph", children: [{ type: "text", value: "x" }] } as never,
     ],
   };
   processor.runSync(tree);
-  expect(tree.children[0].type).toBe("mdxjsEsm");
-  expect(tree.children[1].type).toBe("sheet");
+  expect(tree.children.map((c) => (c as { type: string }).type)).toEqual([
+    "mdxjsEsm",
+    "yaml",
+    "sheet",
+  ]);
   expect(sheetClass(tree)).toContain("content-sheet");
 });
 
-test("leading frontmatter export: front page strip still forms after it", () => {
+test("leading frontmatter (yaml + export): front page strip still forms after it", () => {
   const tree: Root = {
     type: "root",
     children: [
       { type: "mdxjsEsm", value: "export const frontmatter = {}" } as never,
+      { type: "yaml", value: "description: x" } as never,
       jsx("Hero"),
       { type: "heading", depth: 2, children: [{ type: "text", value: "One" }] } as never,
       { type: "paragraph", children: [{ type: "text", value: "x" }] } as never,
     ],
   };
   processor.runSync(tree);
-  expect(tree.children[0].type).toBe("mdxjsEsm");
-  expect(tree.children[1].type).toBe("strip");
+  expect(tree.children.map((c) => (c as { type: string }).type)).toEqual([
+    "mdxjsEsm",
+    "yaml",
+    "strip",
+    "sheet",
+  ]);
+});
+
+test("leading frontmatter (yaml + export): bare subpage keeps its frost pill", () => {
+  const tree: Root = {
+    type: "root",
+    children: [
+      { type: "mdxjsEsm", value: "export const frontmatter = {}" } as never,
+      { type: "yaml", value: "title: Contacts" } as never,
+      { type: "heading", depth: 1, children: [{ type: "text", value: "Contacts" }] } as never,
+      jsx("ContactCards"),
+    ],
+  };
+  processor.runSync(tree);
+  const head = tree.children[2] as unknown as {
+    data?: { hProperties?: { className?: string[] } };
+  };
+  expect(head.data?.hProperties?.className).toContain("bare-heading");
 });

@@ -129,10 +129,12 @@ function headingText(node: TextSource): string {
 // in the hero strip and the sheet starts at the first ##.
 function wrapSheet(root: MdxRoot) {
   const kids = root.children ?? [];
-  // remark-mdx-frontmatter leaves a frontmatter export at the top; it renders
-  // nothing and must stay outside the sheet, so content starts after it.
-  const leadCount = kids[0]?.type === "mdxjsEsm" || kids[0]?.type === "yaml" ? 1 : 0;
-  const lead = leadCount ? kids.slice(0, leadCount) : [];
+  // remark-mdx-frontmatter leaves the yaml node + frontmatter export at the
+  // top; neither renders anything and both must stay outside the sheet, so
+  // content starts after them.
+  let leadCount = 0;
+  while (kids[leadCount]?.type === "mdxjsEsm" || kids[leadCount]?.type === "yaml") leadCount++;
+  const lead = kids.slice(0, leadCount);
   const content = kids.slice(leadCount);
   const firstSection = content.findIndex((n) => n.type === "section");
   const sections = content.filter((n) => n.type === "section").length;

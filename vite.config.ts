@@ -8,6 +8,7 @@ import react from "@vitejs/plugin-react";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import { defineConfig } from "vite";
+import { SITE_URL } from "./src/lib/data.ts";
 import remarkArticleStructure from "./src/plugins/remark-article-structure.ts";
 import { rasterAssetsPlugin } from "./src/plugins/vite-raster-assets.ts";
 import { themeAssetsPlugin } from "./src/plugins/vite-theme-assets.ts";
@@ -53,11 +54,22 @@ export default defineConfig({
       // discovers both fi and en from any page. Root "/" is the fi
       // front page (canonical -> /fi).
       prerender: { enabled: true, crawlLinks: true },
+      // Built-in sitemap generation: after the crawl, dist/client/sitemap.xml
+      // is written from the prerendered page list (plus a pages.json manifest
+      // of the same list). locs derive from route paths, so they match the
+      // canonical URL format.
+      sitemap: { host: SITE_URL },
       // The static host's 404 override serves /fi/404 for every unknown URL
       // (see public/staticwebapp.config.json); every JS visitor whose tree
       // differs is redirected to /fi/404 or /en/404 before anything paints
       // (see LANG_REDIRECT_SCRIPT).
-      pages: [{ path: "/fi/404" }, { path: "/en/404" }],
+      // These page entries pin sitemap exclusions (prerendering itself still
+      // runs for them): "/" duplicates /fi, the 404 fallbacks aren't pages.
+      pages: [
+        { path: "/", sitemap: { exclude: true } },
+        { path: "/fi/404", sitemap: { exclude: true } },
+        { path: "/en/404", sitemap: { exclude: true } },
+      ],
     }),
     react(),
     tailwindcss(),

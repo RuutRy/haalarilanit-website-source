@@ -1,4 +1,4 @@
-import type { Contact, Organizer, PhotoEntry, Social, Sponsor } from "./types";
+import type { Contact, Organizer, PhotoEntry, Social, Sponsor } from "./types.ts";
 
 // Canonical origin: og:url, canonical links.
 export const SITE_URL = "https://haalarilan.it";

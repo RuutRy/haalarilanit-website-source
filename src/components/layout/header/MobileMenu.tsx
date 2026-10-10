@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { LangToggle } from "@/components/lang-toggle";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { COMPACT_BREAKPOINT, useCloseOnMediaMatch } from "@/hooks/useCloseOnMediaMatch";
 import { langFromPath } from "@/lib/lang";
 import { isActiveLink, NAV_SECTIONS } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
@@ -19,6 +20,10 @@ export function MobileMenu() {
   const lang = langFromPath(useRouterState({ select: (s) => s.location.pathname }));
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [open, setOpen] = useState(false);
+
+  // Sheet is state-driven, trigger CSS-driven: crossing into compact closes
+  // it so an open sheet doesn't float beside the desktop nav.
+  useCloseOnMediaMatch(COMPACT_BREAKPOINT, () => setOpen(false));
 
   return (
     <Sheet modal={false} open={open} onOpenChange={setOpen}>

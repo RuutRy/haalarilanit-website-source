@@ -37,10 +37,10 @@ export const contacts: Contact[] = [
   },
 ];
 
-// Logo files go in public/sponsors/.
+// Sponsor logo files go in public/assets/sponsors/.
 export const sponsors: Sponsor[] = [
-  // { name: "Ruut ry", logo: "/assets/ruut.svg", url: "https://ruut.me" },
-  // { name: "Cluster ry", logo: "/assets/cluster.svg", url: "https://cluster.fi" },
+  // { name: "Ruut ry", logo: "/assets/logos/ruut.svg", url: "https://ruut.me" },
+  // { name: "Cluster ry", logo: "/assets/logos/cluster.svg", url: "https://cluster.fi" },
 ];
 
 // Every link and configurable URI lives here
@@ -66,14 +66,14 @@ export const links = {
   organizers: [
     {
       name: "Ruut ry",
-      logo: "/assets/ruut.svg",
-      logoWhite: "/assets/ruut-white.svg",
+      logo: "/assets/logos/ruut.svg",
+      logoWhite: "/assets/logos/ruut-white.svg",
       url: "https://ruut.me",
     },
     {
       name: "Cluster ry",
-      logo: "/assets/cluster.svg",
-      logoWhite: "/assets/cluster-white.svg",
+      logo: "/assets/logos/cluster.svg",
+      logoWhite: "/assets/logos/cluster-white.svg",
       url: "https://cluster.fi",
     },
   ] satisfies Organizer[],

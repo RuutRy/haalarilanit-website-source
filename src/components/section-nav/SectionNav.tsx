@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { RAIL_BREAKPOINT, useCloseOnMediaMatch } from "@/hooks/useCloseOnMediaMatch";
 import { flashHeading } from "@/lib/heading-flash";
 import { jumpToSection } from "./jump-to-section";
 import { SectionNavRail } from "./SectionNavRail";
@@ -12,8 +13,8 @@ import { type SectionNavItemData, useSectionSpy } from "./useSectionSpy";
 // Deep-link glide waits for fonts/layout to settle.
 const DEEP_LINK_DELAY_MS = 400;
 
-// Dock-style TOC: rail from 72rem (where main centers and the trigger
-// detaches), edge-swipe/trigger sheet below. Sections and
+// Dock-style TOC: rail from the rail breakpoint (where main centers and the
+// trigger detaches), edge-swipe/trigger sheet below. Sections and
 // on-screen marks come from useSectionSpy (measured after mount, rAF on scroll).
 export function SectionNav() {
   const [open, setOpen] = useState(false);
@@ -35,6 +36,9 @@ export function SectionNav() {
       flashHeading(item.id);
     });
   }, []);
+
+  // Crossing into the rail closes the sheet (it would float beside the rail).
+  useCloseOnMediaMatch(RAIL_BREAKPOINT, () => setOpen(false));
 
   const toggleFromTrigger = useCallback(() => {
     setSide("left");

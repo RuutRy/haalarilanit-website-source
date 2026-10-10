@@ -50,10 +50,17 @@
   --text-h2-fluid: clamp(1.8rem, 3vw + 1rem, 2.8rem);
   --text-h3-fluid: clamp(1.4rem, 2vw + 1rem, 2rem);
   --animate-pop-in: pop-in 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Breakpoint vars are the sheet/takeover source of truth; static keeps them
+   in :root for useCloseOnMediaMatch (media queries can't hold var()). */
+@theme static {
   /* One-row minimums for the two desktop header stages (compact, fit),
      measured per language; em tracks the user's font-size preference. */
   --breakpoint-compact: 38em;
   --breakpoint-fit: 56em;
+  /* Rail takes over from the mobile TOC sheet. */
+  --breakpoint-rail: 72rem;
 }
 
 @keyframes pop-in {

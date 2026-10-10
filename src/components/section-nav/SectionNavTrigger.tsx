@@ -3,10 +3,11 @@ import { useTranslation } from "react-i18next";
 
 import { cn } from "@/lib/utils";
 
-// Quick-jump handle below 72rem - main's content stops being flush with the
-// screen edge above that, and the rail owns the TOC there. Sticky at the
-// sheet's end like BackToTop so it docks above the footer. The h-0 wrapper
-// takes no layout slot; the negative margins cancel main's padding.
+// Quick-jump handle below the rail breakpoint - main's content stops being
+// flush with the screen edge above it, and the rail owns the TOC there.
+// Sticky at the sheet's end like BackToTop so it docks above the footer.
+// The h-0 wrapper takes no layout slot; the negative margins cancel main's
+// padding.
 export function SectionNavTrigger({
   open,
   onText,
@@ -21,7 +22,7 @@ export function SectionNavTrigger({
 
   return (
     // no-reveal: keep the section-reveal animation from overriding the visibility transitions.
-    <div className="no-reveal sticky bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 h-0 w-full -mb-8 -ml-8 self-stretch sm:-ml-12 min-[72rem]:hidden">
+    <div className="no-reveal sticky bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 h-0 w-full -mb-8 -ml-8 self-stretch sm:-ml-12 rail:hidden">
       <button
         type="button"
         aria-label={t("a11y.toc")}

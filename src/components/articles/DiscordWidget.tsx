@@ -4,10 +4,8 @@ import { useTranslation } from "react-i18next";
 import { links } from "../../lib/data";
 import { cn } from "../../lib/utils";
 
-// Official Discord widget embed, collapsed to a 70px bar. The iframe swallows
-// all pointer events, so an overlay button carries the interaction and steps
-// aside when open; document-level pointermove/pointerdown outside the box
-// close it again. data-discord-widget: BackToTop yields to this box.
+// The iframe swallows all pointer events, so an overlay button carries the interaction
+// and steps aside when open. data-discord-widget lets BackToTop yield to this box.
 export function DiscordWidget() {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);

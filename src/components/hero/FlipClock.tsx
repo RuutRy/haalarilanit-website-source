@@ -11,7 +11,6 @@ type FlipClockProps = {
   tone?: "start" | "end";
 };
 
-// Themed wrapper; past the target it swaps to startedLabel and calls onComplete.
 export function FlipClock({
   target,
   startedLabel,
@@ -32,8 +31,7 @@ export function FlipClock({
         labels={labels}
         showSeparators
         onComplete={onComplete}
-        // SSR-rendered: without it hydration would insert the full-height
-        // clock and shift the page.
+        // SSR-rendered: without it hydration would insert the full-height clock and shift the page.
         renderOnServer
         labelStyle={{
           color: "var(--foreground)",

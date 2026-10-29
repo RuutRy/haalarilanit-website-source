@@ -22,8 +22,7 @@ export function useSectionSpy(): {
   useEffect(() => {
     const sheet = document.querySelector(".content-sheet");
     if (!sheet) return;
-    // no-anchors sheets (fewer than two sections) hide the copy-link buttons
-    // and this nav too.
+    // no-anchors sheets (fewer than two sections) hide the copy-link buttons and this nav.
     if (sheet.classList.contains("no-anchors")) return;
 
     // The anchor id lives on the heading's wrapper span (see Article).

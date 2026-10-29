@@ -1,6 +1,5 @@
-// Clipboard writes need a secure context - on e.g. a LAN http address
-// navigator.clipboard doesn't exist at all, so fall back to the
-// hidden-textarea execCommand dance instead of dying before any feedback.
+// navigator.clipboard only exists in secure contexts (e.g. a LAN http address),
+// so fall back to the hidden-textarea execCommand dance instead of dying.
 export async function copyText(text: string): Promise<boolean> {
   try {
     if (navigator.clipboard?.writeText) {
@@ -8,7 +7,7 @@ export async function copyText(text: string): Promise<boolean> {
       return true;
     }
   } catch {
-    // fall through to the legacy path
+    // legacy path
   }
   try {
     const ta = document.createElement("textarea");

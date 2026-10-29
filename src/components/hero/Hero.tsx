@@ -25,9 +25,8 @@ export function Hero() {
   const concluded = now >= event.end.getTime();
 
   return (
-    // The wrapper font-size is the hero's scale knob (rem clamp capped by
-    // 3.4vw and 2.1cqh); everything inside is sized in em, so the hero fits
-    // the first viewport on any device with CSS alone.
+    // Font-size is the hero's scale knob; everything inside is sized in em, so
+    // the hero fits the first viewport on any device with CSS alone.
     <div className="mt-auto flex w-full flex-col items-center gap-[0.75em] text-center text-[min(clamp(0.875rem,1.25vw+0.625rem,1.25rem),3.4vw,2.1cqh)]">
       <Frost className="self-center">
         <Logo data-hero-logo />
@@ -48,7 +47,6 @@ export function Hero() {
             key="running"
             className="motion-safe:animate-pop-in flex flex-col items-center gap-[0.4em]"
           >
-            {/* Running: countdown to LAN OFF */}
             <h3 className="text-[1.6em] text-primary">{t("main.time.started")}</h3>
             <FlipClock
               target={event.end}

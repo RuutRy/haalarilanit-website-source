@@ -13,16 +13,14 @@ import { cn } from "@/lib/utils";
 
 import { activeClass, linkClass } from "./link-classes";
 
-// Hamburger below `compact` (grid col 3); the sheet drops from under the
-// button and the burger morphs into an X while open - no close button inside.
+// Burger morphs into an X while open - no close button inside the sheet.
 export function MobileMenu() {
   const { t } = useTranslation();
   const lang = langFromPath(useRouterState({ select: (s) => s.location.pathname }));
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [open, setOpen] = useState(false);
 
-  // Sheet is state-driven, trigger CSS-driven: crossing into compact closes
-  // it so an open sheet doesn't float beside the desktop nav.
+  // Crossing into compact closes it so an open sheet doesn't float beside the desktop nav.
   useCloseOnMediaMatch(COMPACT_BREAKPOINT, () => setOpen(false));
 
   return (
@@ -34,7 +32,6 @@ export function MobileMenu() {
           className="relative col-start-3 justify-self-end text-primary compact:hidden"
           aria-label={open ? t("a11y.close_menu") : t("a11y.open_menu")}
         >
-          {/* Stacked menu/X; the trigger's data-state runs the morph. */}
           <MenuIcon className="absolute inset-0 m-auto size-7 transition-all duration-300 group-data-[state=open]/button:-rotate-90 group-data-[state=open]/button:scale-0 group-data-[state=open]/button:opacity-0" />
           <XIcon className="absolute inset-0 m-auto size-7 -rotate-90 scale-0 opacity-0 transition-all duration-300 group-data-[state=open]/button:rotate-0 group-data-[state=open]/button:scale-100 group-data-[state=open]/button:opacity-100" />
         </Button>
@@ -73,8 +70,7 @@ export function MobileMenu() {
             );
           })}
         </div>
-        {/* Lang toggle only below compact (header owns it above); ml lines
-            the FI/EN labels up with the link labels. */}
+        {/* Lang toggle only below compact (header owns it above); ml aligns the FI/EN labels with the link labels. */}
         <div className="mt-6 ml-[calc(1rem-0.5rem-1px)] compact:hidden">
           <LangToggle />
         </div>

@@ -95,8 +95,7 @@ test("a soft block (Img/Center) stays inside its section with its prose", () => 
 });
 
 test("prose after a soft block raises no orphan warning; prose after other components still does", () => {
-  // The transform is a plain (tree, file) function - drive it directly with
-  // a message-collecting file stub, no VFile needed.
+  // Drive the transform directly with a message-collecting stub, no VFile needed.
   const transform = remarkArticleStructure() as unknown as (
     tree: Root,
     file: { message: (msg: string, node?: RootContent) => void },

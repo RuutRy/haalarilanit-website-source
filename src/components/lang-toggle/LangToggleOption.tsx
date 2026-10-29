@@ -10,9 +10,8 @@ type LangToggleOptionProps = {
   lang: Lang;
 };
 
-// Real link to the same page in the target tree (crawlable, no-JS fallback);
-// the click remembers the choice. resetScroll={false} keeps the reader's
-// position: a lang switch swaps content in place, it is not a new page.
+// Real link to the same page in the target tree (crawlable, no-JS fallback); the click
+// remembers the choice. resetScroll={false} keeps the reader's position on the swap.
 export function LangToggleOption({ label, selected, to, lang }: LangToggleOptionProps) {
   return (
     <Link

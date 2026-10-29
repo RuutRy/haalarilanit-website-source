@@ -1,7 +1,5 @@
-// Rasterizes the brand assets crawlers expect into public/assets/:
-// og-image 1200x630, apple-touch-icon 180x180 (flattened - iOS paints
-// transparent corners black), favicon-32x32 + favicon.ico, site.webmanifest.
-// sharp comes from pnpm; the committed copies stay as a fallback.
+// Rasterizes the brand assets crawlers expect into public/assets/. sharp comes
+// from pnpm; the committed copies stay as a fallback.
 
 import { existsSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
@@ -67,7 +65,6 @@ function pngsToIco(entries: { png: Buffer; size: number }[]): Buffer {
  * Raster outputs keyed by their public/assets/ path.
  */
 async function rasterize(root: string, options: RasterAssetsOptions): Promise<Map<string, Buffer>> {
-  // The themed favicon tile: rendered with the css custom properties.
   const faviconSvg = Buffer.from(renderThemeAsset(root, options.cssFile, options.faviconTemplate));
 
   // og-image.png: logotext.svg is dark marks on transparency - negate rgb
@@ -89,9 +86,8 @@ async function rasterize(root: string, options: RasterAssetsOptions): Promise<Ma
     .png()
     .toBuffer();
 
-  // Icons from the themed tile. The touch icon must be fully opaque (iOS
-  // paints transparent corners black), so it flattens onto the background;
-  // the 32px favicon keeps the tile's rounded transparency.
+  // The touch icon must be fully opaque (iOS paints transparent corners black),
+  // so it flattens onto the background; the 32px favicon keeps the transparency.
   const appleTouchIcon = await sharp(faviconSvg)
     .flatten({ background: options.background })
     .resize(180, 180)

@@ -12,8 +12,8 @@ type ContactCardProps = {
   lang: Lang;
 };
 
-// One contact: name, roles, email/Telegram links. A missing value renders an
-// invisible spacer so both links keep their row and the cards stay levelled.
+// One contact: name, roles, email/Telegram links. Missing values render an
+// invisible spacer so the cards stay levelled.
 export function ContactCard({ contact, lang }: ContactCardProps) {
   const hasEmail = contact.email.trim().length > 0;
   const hasTelegram = contact.telegram.trim().length > 0;

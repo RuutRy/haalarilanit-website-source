@@ -1,13 +1,7 @@
 import { stripLang } from "./lang";
 
-// Tree navigation, single source of truth: the header's section links,
-// the footer's site column, and the language toggle all read it. Only
-// these routes exist in both language trees; any other tail (e.g. a
-// broken URL) has no counterpart and falls back to the tree root.
-//
-// Article sections go through the shared $article route (the mdx set is
-// the source of truth), so the Link `to` is generic and the article name
-// rides the params.
+// Single source of truth for header sections, the footer site column and the
+// language toggle. Articles share the $article route, so the Link `to` is generic.
 export const NAV_SECTIONS = [
   { to: "/$lang", labelKey: "nav.main" },
   { to: "/$lang/$article", article: "rules", labelKey: "nav.rules" },
@@ -23,9 +17,8 @@ export const ARTICLE_SECTIONS = NAV_SECTIONS.filter(
   (section): section is ArticleSection => "article" in section,
 );
 
-// A section's concrete path (e.g. "/$lang/rules"): active-state matching
-// and lang-toggle target resolution work on concrete paths, while the
-// links themselves route through the shared $article route.
+// Concrete path (e.g. "/$lang/rules"): active-state matching and lang-toggle
+// resolution work on these, while links route through the shared $article route.
 export function navPath(section: NavSection): string {
   return "article" in section ? `/$lang/${section.article}` : section.to;
 }

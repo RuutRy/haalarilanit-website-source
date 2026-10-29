@@ -6,10 +6,8 @@ import { Hint } from "@/components/Hint";
 import { Button } from "@/components/ui/button";
 import { useScrollState } from "@/hooks/useScrollState";
 
-// Sticky at the sheet's end (the plugin injects it as its last child): rides
-// the viewport bottom while the article runs, docks above the footer. Appears
-// past FADE_FROM of the scrollable range; hidden on shorter pages. Yields to
-// the Discord widget while their boxes overlap (data-discord-widget).
+// Sticky at the sheet's end (the plugin injects it as its last child): rides the
+// viewport bottom, docks above the footer. Appears past FADE_FROM, hidden on short pages.
 const MIN_SCROLL_PX = 300;
 const FADE_FROM = 0.35;
 
@@ -36,7 +34,6 @@ export function BackToTop() {
     );
   }, [widget]);
 
-  // Scroll-driven check; skipped at page top and on short pages.
   useEffect(() => {
     if (!widget || y === 0 || scrollable <= MIN_SCROLL_PX) {
       setCovered(false);

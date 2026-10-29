@@ -4,9 +4,8 @@ import { useTranslation } from "react-i18next";
 import { preferredLang, useActiveLang } from "../lib/lang";
 import { Frost } from "./Frost";
 
-// 404s always render at /<lang>/404: full-page loads bounce pre-paint (head
-// script in __root), soft navigations via root beforeLoad, and tree-path
-// navigations beforeLoad cannot see land here, history-replaced.
+// 404s always render at /<lang>/404: full-page loads bounce pre-paint, soft
+// navigations via root beforeLoad, and the rest history-replaced.
 export function NotFoundPage() {
   const { t } = useTranslation();
   const lang = useActiveLang();
@@ -15,8 +14,7 @@ export function NotFoundPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Only on a settled location: a transient mid-navigation pathname
-    // would bounce back to /<lang>/404 and cancel the navigation.
+    // Only on a settled location: a mid-navigation pathname would bounce back.
     if (status !== "idle") return;
     const lang = preferredLang(pathname);
     if (pathname !== `/${lang}/404`) {

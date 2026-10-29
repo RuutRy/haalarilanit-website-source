@@ -1,5 +1,4 @@
-// Scroll-quiet period (ms) after which gliding/auto-scrolling counts as
-// done - used to defer the heading flash and mark sections settled.
+// Scroll-quiet period (ms) after which gliding/auto-scroll counts as done.
 const SETTLE_MS = 200;
 
 // Latest jump wins: a new settle cancels the pending one.

@@ -2,11 +2,8 @@ import { event } from "./data";
 
 const pad = (n: number) => n.toString().padStart(2, "0");
 
-// Builds the event time line from the event data:
-//   to 19.11. klo 15:00 - su 22.11.2026 klo 12:00
-// Weekdays come from Intl (localized), the words around the times are
-// translations (atStart / atEnd). The start year shows only when it
-// differs from the end year.
+// Weekdays come from Intl (varies with runtime ICU); at-words are translations.
+// The start year shows only when it differs from the end year.
 export function formatEventTime(lang: string, atStart: string, atEnd: string): string {
   const { start, end } = event;
 

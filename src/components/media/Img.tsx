@@ -7,8 +7,7 @@ type ImgProps = {
   h?: number;
 };
 
-// Authored size in rem (unset dimensions follow the aspect ratio); centering
-// and zoom are explicit <Center>/<Lightbox> wraps.
+// Centering and zoom are explicit <Center>/<Lightbox> wraps.
 export function Img({ src, alt, w, h }: ImgProps) {
   return (
     <img

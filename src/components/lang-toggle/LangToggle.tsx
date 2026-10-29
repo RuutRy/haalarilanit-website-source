@@ -5,8 +5,7 @@ import { resolveLangTarget } from "@/lib/navigation";
 
 import { LangToggleOption } from "./LangToggleOption";
 
-// Segmented FI | EN control; reused in the mobile menu + footer. w-fit keeps
-// it from stretching across the mobile sheet.
+// w-fit keeps it from stretching across the mobile sheet.
 export function LangToggle() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const current = langFromPath(pathname);

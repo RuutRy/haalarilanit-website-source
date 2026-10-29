@@ -7,8 +7,7 @@ import { visit } from "unist-util-visit";
 
 import { MDX_BLOCKS, MDX_SOFT_BLOCKS } from "../lib/mdx-blocks.ts";
 
-// Local types: mdast doesn't know the MDX node kinds or the blocks this
-// plugin emits; the reference above loads the mdast Data augmentations.
+// Local types: mdast doesn't know the MDX node kinds or the blocks this plugin emits.
 
 interface MdxJsxFlowElement extends Parent {
   type: "mdxJsxFlowElement";
@@ -72,8 +71,7 @@ function transform(tree: MdxRoot, file: { message: (msg: string, node?: RootCont
   // Slugs must be unique per page, so the slugger lives per file run.
   const slugger = new GithubSlugger();
 
-  // Anchor ids on h1-h3, in their own pass: sectionize's spliced sections
-  // are never revisited by the walk below.
+  // Own pass: sectionize's spliced sections are never revisited by the walk below.
   visit(tree, "heading", (node) => {
     if (node.depth < 1 || node.depth > 3) return;
     const text = (node.children ?? []).map((c: TextSource) => c.value ?? headingText(c)).join("");
@@ -124,14 +122,12 @@ function headingText(node: TextSource): string {
   return (node.children ?? []).map((c) => c.value ?? headingText(c)).join("");
 }
 
-// Wrap the flat children into a sheet. Subpages (leading `# Title`) get the
-// whole article plus a dots window; the front page puts the leading content
-// in the hero strip and the sheet starts at the first ##.
+// Subpages (leading `# Title`) get the whole article in a sheet; the front
+// page puts leading content in the hero strip and the sheet starts at the first ##.
 function wrapSheet(root: MdxRoot) {
   const kids = root.children ?? [];
   // remark-mdx-frontmatter leaves the yaml node + frontmatter export at the
-  // top; neither renders anything and both must stay outside the sheet, so
-  // content starts after them.
+  // top; neither renders anything, so content starts after them.
   let leadCount = 0;
   while (kids[leadCount]?.type === "mdxjsEsm" || kids[leadCount]?.type === "yaml") leadCount++;
   const lead = kids.slice(0, leadCount);

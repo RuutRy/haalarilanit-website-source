@@ -14,7 +14,7 @@ const SPONSOR_CHIP: Record<SponsorBackground, string | undefined> = {
 };
 
 // Logo Soup's baseSize is a JS prop, so sizing lives here instead of CSS.
-// Responsive curve: size grows from min toward max as the viewport widens.
+// Size grows from min toward max as the viewport widens.
 type SizeRange = {
   /** Base size at the small end (default 56). */
   min?: number;
@@ -33,8 +33,7 @@ function sponsorSizeFor(width: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, scaled));
 }
 
-// Prerender-safe initial comes from a notional 1200px viewport; re-measured
-// after mount against the real window width.
+// Prerender-safe initial from a notional 1200px viewport; re-measured after mount.
 function useSponsorBaseSize({ min = DEFAULT_MIN, max = DEFAULT_MAX }: SizeRange = {}) {
   const [size, setSize] = useState(() => sponsorSizeFor(1200, min, max));
   useEffect(() => {
@@ -50,8 +49,6 @@ function useSponsorBaseSize({ min = DEFAULT_MIN, max = DEFAULT_MAX }: SizeRange 
 }
 
 type SponsorsProps = {
-  // Range shaping the responsive size curve; omit for the article wall's
-  // current 56-96 sizing. Smaller placements (footer strip) pass a lower range.
   size?: SizeRange;
   className?: string;
   gap?: number;

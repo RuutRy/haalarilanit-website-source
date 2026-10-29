@@ -6,9 +6,8 @@ export type Contact = {
   telegram: string;
 };
 
-// Chip the sponsor wall can put behind a logo: "light" rescues dark-ink
-// logos designed for white backgrounds, "black" frames logos tuned for pure
-// black; omit (or "none") to render the logo as-is.
+// "light" rescues dark-ink logos made for white backgrounds; "black" frames
+// logos tuned for pure black. Omit for logos that render as-is.
 export type SponsorBackground = "none" | "light" | "black";
 
 export type Sponsor = {

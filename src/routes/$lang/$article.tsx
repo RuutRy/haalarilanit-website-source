@@ -4,12 +4,8 @@ import { Article } from "../../components/text";
 import { articleExists, articleMeta } from "../../lib/content-meta";
 import { currentLang, seoHead } from "../../lib/metadata";
 
-// One route for every article: the mdx set (src/content/fi/*.mdx) is the
-// source of truth, so adding an article needs no route file. Static
-// siblings (index, 404) win over $article on path precedence.
-//
-// "main" is rejected: the index route renders it with its own SEO/JSON-LD,
-// and /fi/main duplicating /fi is a soft SEO duplicate.
+// One route for every article: the mdx set is the source of truth, so adding
+// one needs no route file. "main" is rejected so /fi/main doesn't duplicate /fi.
 export const Route = createFileRoute("/$lang/$article")({
   beforeLoad: ({ params }) => {
     if (params.article === "main" || !articleExists(params.article)) throw notFound();

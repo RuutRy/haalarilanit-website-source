@@ -55,11 +55,8 @@ export function Footer() {
       </section>
       {/* One wrapping flex row; the lines re-arrange per breakpoint. Geometry matches main. */}
       <div className="mx-auto flex max-w-6xl flex-wrap items-start gap-x-8 gap-y-2.5 px-4 sm:px-8 sm:items-center">
-        {/* Top block: nav columns with socials pinned top-right. On narrow
-            screens the columns wrap inside the nav instead of pushing the
-            socials off the first line, so they stay aligned with the
-            SITE/EVENT headers. sm:contents dissolves the wrapper so the nav
-            and socials rejoin the main row for the wide layout. */}
+        {/* On narrow screens the columns wrap inside the nav instead of pushing the socials off
+            the first line; sm:contents dissolves the wrapper so they rejoin the main row. */}
         <div className="order-1 flex w-full flex-wrap items-start justify-between gap-x-4 gap-y-2.5 sm:contents">
           {/* fluid ps inset keeps the groups off the edge on wrapped layouts */}
           <nav
@@ -136,9 +133,8 @@ export function Footer() {
           <OrganizerLogos imgClassName="aspect-square w-14" />
         </div>
 
-        {/* order-4 + w-full keep the legal block on its own lines. Mobile:
-            logos + lang toggle share the top line, copyright + commit wrap
-            centered below; sm returns to the single copyright/toggle row. */}
+        {/* order-4 + w-full keep the legal block on its own lines. Mobile: logos + toggle share
+            the top line, copyright wraps centered below; sm returns to the single copyright/toggle row. */}
         <div className="order-4 mt-5.5 flex w-full flex-wrap items-center justify-between gap-x-4 gap-y-3 border-t border-foreground/10 pt-3.5">
           <div className="order-1 flex items-center gap-1.5 sm:hidden">
             <OrganizerLogos imgClassName="aspect-square h-9 w-9" linkClassName="p-1" />

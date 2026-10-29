@@ -18,9 +18,8 @@ i18n.use(initReactI18next).init({
   interpolation: { escapeValue: false },
 });
 
-// Called from route beforeLoad. Preload also runs beforeLoad (defaultPreload
-// "render") and must never flip the viewed page's language, so only real
-// navigations sync here.
+// Preload also runs beforeLoad (defaultPreload "render") and must never flip
+// the viewed page's language, so only real navigations sync here.
 export function syncRouteLanguage(preload: boolean, lang: Lang): void {
   if (preload) return;
   // Synchronous with bundled resources: the next render sees the new language.

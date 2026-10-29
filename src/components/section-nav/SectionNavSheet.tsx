@@ -15,7 +15,6 @@ type SectionNavSheetProps = {
   onJump: (item: SectionNavItemData) => void;
 };
 
-// Mobile quick-jump panel (edge-swipe opens it); selecting an entry jumps and closes.
 export function SectionNavSheet({
   items,
   visible,
@@ -35,8 +34,7 @@ export function SectionNavSheet({
     <Sheet modal={false} open={open} onOpenChange={onOpenChange}>
       <SheetContent
         side={side}
-        // aria-label keeps the dialog named without the visible title the
-        // desktop rail doesn't have either (the variants stay identical).
+        // aria-label keeps the dialog named; the desktop rail has no visible title either.
         aria-label={t("a11y.toc")}
         className={cn(
           // Borderless frosted card; kill the primitive's side border.

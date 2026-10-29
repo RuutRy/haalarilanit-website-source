@@ -1,6 +1,3 @@
-// Route-head meta wiring: per-route canonical + og:url, og:locale per
-// language, Event JSON-LD on the front page.
-
 import { event, eventYear, SITE_URL } from "./data";
 import i18n from "./i18n";
 
@@ -11,8 +8,7 @@ export function currentLang(): string {
   return (i18n.language || "fi").split("-")[0];
 }
 
-// ISO instant in Helsinki wall time: local components match formatEventTime,
-// November is EET (+02:00).
+// Local components + hardcoded +02:00 (EET in November); matches formatEventTime output.
 export function isoHelsinki(date: Date): string {
   const part = (n: number) => String(n).padStart(2, "0");
   return `${date.getFullYear()}-${part(date.getMonth() + 1)}-${part(date.getDate())}T${part(date.getHours())}:${part(date.getMinutes())}:00+02:00`;

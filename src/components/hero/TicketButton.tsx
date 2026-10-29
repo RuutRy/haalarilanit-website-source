@@ -5,7 +5,6 @@ import { event } from "../../lib/data";
 import { formatSingleDate } from "../../lib/time";
 import { Button } from "../ui/button";
 
-// Locked (muted ghost) until ticket sales open, then live with the shine.
 export function TicketButton({ label }: { label: string }) {
   const { t } = useTranslation();
   const [now, setNow] = useState<number | null>(null);

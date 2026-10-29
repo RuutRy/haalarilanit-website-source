@@ -10,7 +10,6 @@ export const event = {
   ticketSales: new Date(2026, 9, 3, 12),
 };
 
-/** The event year everything ("Haalarilanit 2026") derives from. */
 export const eventYear = event.start.getFullYear();
 
 export const contacts: Contact[] = [
@@ -37,8 +36,7 @@ export const contacts: Contact[] = [
   },
 ];
 
-// Sponsor logo files go in public/assets/sponsors/. background: "light" puts
-// a light chip behind dark-ink logos, "black" a pure-black chip; omit for none.
+// Logo files go in public/assets/sponsors/.
 export const sponsors: Sponsor[] = [
   { name: "LOAS", logo: "/assets/sponsors/LOAS.jpg", url: "https://loas.fi" },
   { name: "TEK", logo: "/assets/sponsors/TEK.png", url: "https://tek.fi" },
@@ -62,8 +60,7 @@ export const links = {
       url: "https://cluster.kuvat.fi/kuvat/2025_023+-+Haalarilanit",
     },
   ] satisfies PhotoEntry[],
-  // Rendered dynamically in the footer - add an entry and a logo shows
-  // up automatically.
+  // Add an entry and the footer picks it up automatically.
   organizers: [
     {
       name: "Ruut ry",

@@ -7,8 +7,7 @@ import { cn } from "@/lib/utils";
 
 import { activeClass, linkClass } from "./link-classes";
 
-// Desktop inline nav, centered in the header grid; flex-nowrap keeps it
-// one row - compact/fit decide when each size fits.
+// flex-nowrap keeps it one row; compact/fit decide when each size fits.
 export function HeaderNav() {
   const { t } = useTranslation();
   const lang = langFromPath(useRouterState({ select: (s) => s.location.pathname }));

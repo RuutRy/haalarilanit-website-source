@@ -14,9 +14,8 @@ import { cn } from "@/lib/utils";
 // Hold a heading this long to copy its link (pointer quirks in useHoldToCopy).
 const HOLD_MS = 1000;
 
-// Arm on pointerdown, fire at HOLD_MS, cancel on release or 10px of
-// movement. pointercancel is not a cancel: after the OS long-press menu
-// is prevented the browser may still abort the pointer stream.
+// Arm on pointerdown, fire at HOLD_MS, cancel on release or 10px of movement.
+// pointercancel is not a cancel: the browser may still abort the pointer stream.
 function useHoldToCopy(id: string) {
   const [copied, setCopied] = useState(false);
   const timer = useRef(0);
@@ -108,9 +107,7 @@ function AnchoredChip({
   const hold = useHoldToCopy(id ?? "");
   const chip = createElement(as, { className }, children);
   if (!id) return chip;
-  // The button is a sibling of the chip and never animates: the flash is
-  // translate-only (no scale), so the heading can never grow into it and
-  // it stays easy to click while the flash plays.
+  // The button is a sibling and never animates: the flash is translate-only, so it stays clickable.
   return (
     <span
       id={id}

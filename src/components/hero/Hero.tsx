@@ -78,7 +78,8 @@ export function Hero() {
         <p className="text-[1.6em] text-primary">{t("main.ticket_not_yet_available")}</p>
       )}
 
-      {!concluded && links.ticket && (
+      {/* Big CTA is pre-event only; once running/concluded the footer carries the link. */}
+      {now < event.start.getTime() && links.ticket && (
         <form action={links.ticket}>
           <TicketButton label={t("main.purchase_button")} />
         </form>

@@ -10,6 +10,7 @@ import { langFromPath } from "../../lib/lang";
 import { ARTICLE_SECTIONS } from "../../lib/navigation";
 import { Hint } from "../Hint";
 import { LogoLink } from "../media/LogoLink";
+import { Sponsors } from "../media/Sponsors";
 import { LINK_ICON_CLS } from "../text/TextLink";
 
 // Shared organizer logo row; sized per breakpoint context by the caller.
@@ -45,6 +46,13 @@ export function Footer() {
 
   return (
     <footer className="mt-auto bg-(--panel-tint) py-6 backdrop-blur-lg">
+      {/* Kept small so it doesn't compete with the organizer logos below. */}
+      <section
+        aria-label={t("footer.sponsors")}
+        className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-2.5 px-4 pb-5 sm:px-8"
+      >
+        <Sponsors size={{ min: 28, max: 40 }} className="p-0" gap={20} />
+      </section>
       {/* One wrapping flex row; the lines re-arrange per breakpoint. Geometry matches main. */}
       <div className="mx-auto flex max-w-6xl flex-wrap items-start gap-x-8 gap-y-2.5 px-4 sm:px-8 sm:items-center">
         {/* Top block: nav columns with socials pinned top-right. On narrow

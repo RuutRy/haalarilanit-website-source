@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import { sponsors } from "../../lib/data";
 import type { SponsorBackground } from "../../lib/types.ts";
+import { cn } from "../../lib/utils";
 import { LogoLink } from "./LogoLink";
 
 // Chip behind a logo per its background preference; undefined renders as-is.
@@ -52,19 +53,21 @@ type SponsorsProps = {
   // Range shaping the responsive size curve; omit for the article wall's
   // current 56-96 sizing. Smaller placements (footer strip) pass a lower range.
   size?: SizeRange;
+  className?: string;
+  gap?: number;
 };
 
-export function Sponsors({ size }: SponsorsProps) {
+export function Sponsors({ size, className, gap = 28 }: SponsorsProps) {
   const baseSize = useSponsorBaseSize(size);
   if (sponsors.length === 0) return null;
 
   return (
-    <div className="rounded-2xl p-8">
+    <div className={cn("rounded-2xl p-8", className)}>
       <LogoSoup
         logos={sponsors.map((s) => ({ src: s.logo, alt: s.name }))}
         baseSize={baseSize}
         scaleFactor={1}
-        gap={28}
+        gap={gap}
         alignBy="visual-center-y"
         cropToContent
         renderImage={({ src, alt, ...rest }) => {

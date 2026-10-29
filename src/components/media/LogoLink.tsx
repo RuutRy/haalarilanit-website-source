@@ -45,7 +45,7 @@ export function LogoLink({
           target="_blank"
           rel="noreferrer"
           aria-label={t("a11y.opens_new_tab", { name })}
-          className={linkClassName ?? linkClass}
+          className={cn(linkClass, linkClassName)}
         >
           {tinted ? (
             whiteSrc ? (

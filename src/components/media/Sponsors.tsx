@@ -40,7 +40,7 @@ function sponsorSizeFor(width: number): number {
   return Math.min(max, Math.max(min, scaled));
 }
 
-export function SponsorWall() {
+export function Sponsors() {
   const baseSize = useSponsorBaseSize();
   if (sponsors.length === 0) return null;
 

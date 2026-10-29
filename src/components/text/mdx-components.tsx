@@ -11,11 +11,11 @@ import { DiscordWidget } from "../articles/DiscordWidget";
 import { Floorplan } from "../articles/Floorplan";
 import { PhotoGalleries } from "../articles/PhotoGalleries";
 import { SaferSpaceLink } from "../articles/SaferSpaceLink";
-import { Sponsors } from "../articles/Sponsors";
 import { Frost } from "../Frost";
 import { Hero } from "../hero/Hero";
 import { Img } from "../media/Img";
 import { Lightbox } from "../media/Lightbox";
+import { Sponsors } from "../media/Sponsors";
 import { H1, H2, H3 } from "./heading";
 // Direct imports, not ./index: the barrel re-exports Article, and reading
 // Mark through it at module-eval time hits the cycle (undefined in dev SSR).

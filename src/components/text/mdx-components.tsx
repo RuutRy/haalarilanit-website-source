@@ -1,7 +1,7 @@
-import { useRouter } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { SectionNav } from "@/components/section-nav";
-import { stripLang } from "@/lib/lang";
+import { articleExists } from "@/lib/content-meta";
+import { isLang, stripLang } from "@/lib/lang";
 import type { MDXComponents } from "@/lib/mdx";
 import { MDX_BLOCKS } from "@/lib/mdx-blocks";
 import { cn } from "@/lib/utils";
@@ -32,11 +32,16 @@ const COLUMN = "mx-auto w-full max-w-3xl";
 // Internal links go through the typed router (typos warn in dev/prerender),
 // external links open a new tab.
 function A({ href, children }: { href?: string; children?: ReactNode }) {
-  const router = useRouter();
   if (href?.startsWith("/")) {
-    // Template-string key against the typed route registry needs a cast.
-    const path = `/$lang${stripLang(href)}` as keyof typeof router.routesByPath;
-    if (!router.routesByPath[path]) {
+    // Every article rides the one dynamic /$lang/$article route, so the
+    // router's pattern registry can't validate concrete paths (any valid
+    // article would warn). Check the mdx set instead
+    const tail = stripLang(href);
+    const article = tail.replace(/^\/+/, "");
+    if (
+      article !== "" &&
+      (!isLang(href.split("/")[1]) || article.includes("/") || !articleExists(article))
+    ) {
       console.warn(`article link "${href}" does not match a route`);
     }
     return <TextLink to={href as To}>{children}</TextLink>;

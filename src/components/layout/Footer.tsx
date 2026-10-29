@@ -55,15 +55,15 @@ export function Footer() {
       </section>
       {/* One wrapping flex row; the lines re-arrange per breakpoint. Geometry matches main. */}
       <div className="mx-auto flex max-w-6xl flex-wrap items-start gap-x-8 gap-y-2.5 px-4 sm:px-8 sm:items-center">
-        {/* On narrow screens the columns wrap inside the nav instead of pushing the socials off
-            the first line; sm:contents dissolves the wrapper so they rejoin the main row. */}
-        <div className="order-1 flex w-full flex-wrap items-start justify-between gap-x-4 gap-y-2.5 sm:contents">
+        {/* On narrow screens the columns wrap inside the nav while the socials stay pinned to the
+            top-right corner of the grid; sm:contents dissolves the wrapper so they rejoin the main row. */}
+        <div className="order-1 grid w-full grid-cols-[minmax(0,1fr)_auto] items-start gap-x-4 gap-y-2.5 sm:contents">
           {/* fluid ps inset keeps the groups off the edge on wrapped layouts */}
           <nav
-            className="flex flex-wrap gap-x-8 gap-y-2.5 ps-[5vw] sm:order-2 sm:flex-1 sm:justify-end sm:ps-0 md:me-[5%]"
+            className="flex min-w-0 flex-nowrap gap-x-8 gap-y-2.5 ps-[5vw] sm:order-2 sm:flex-1 sm:justify-end sm:ps-0 md:me-[5%]"
             aria-label={t("footer.links")}
           >
-            <div className="flex flex-col items-start gap-0.5 sm:gap-1">
+            <div className="flex min-w-0 flex-col items-start gap-0.5 sm:gap-1">
               <h3 className="text-base font-semibold text-primary uppercase">{t("footer.site")}</h3>
               <div className="flex flex-col">
                 {ARTICLE_SECTIONS.map((link) => (
@@ -79,7 +79,7 @@ export function Footer() {
                 ))}
               </div>
             </div>
-            <div className="flex flex-col items-start gap-0.5 sm:gap-1">
+            <div className="flex min-w-0 flex-col items-start gap-0.5 sm:gap-1">
               <h3 className="text-base font-semibold text-primary uppercase">
                 {t("footer.event")}
               </h3>

@@ -11,13 +11,15 @@ type LangToggleOptionProps = {
 };
 
 // Real link to the same page in the target tree (crawlable, no-JS fallback);
-// the click remembers the choice.
+// the click remembers the choice. resetScroll={false} keeps the reader's
+// position: a lang switch swaps content in place, it is not a new page.
 export function LangToggleOption({ label, selected, to, lang }: LangToggleOptionProps) {
   return (
     <Link
       to={to}
       params={{ lang }}
       onClick={() => storeLang(lang)}
+      resetScroll={false}
       aria-current={selected ? "page" : undefined}
       className={cn(
         "w-10 px-2 py-1.5 text-center text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",

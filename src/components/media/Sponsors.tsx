@@ -12,27 +12,19 @@ const SPONSOR_CHIP: Record<SponsorBackground, string | undefined> = {
   black: "bg-black hover:bg-black",
 };
 
-// Logo Soup's baseSize is a JS prop, so sizing steps live here instead of CSS.
-// Prerender-safe initial; re-measured after mount.
-const INITIAL_SPONSOR_SIZE = sponsorSizeFor(1200);
+// Logo Soup's baseSize is a JS prop, so sizing lives here instead of CSS.
+// Responsive curve: size grows from min toward max as the viewport widens.
+type SizeRange = {
+  /** Base size at the small end (default 56). */
+  min?: number;
+  /** Base size ceiling (default 96). */
+  max?: number;
+};
 
-function useSponsorBaseSize() {
-  const [size, setSize] = useState(INITIAL_SPONSOR_SIZE);
-  useEffect(() => {
-    const onResize = () => {
-      const next = sponsorSizeFor(window.innerWidth);
-      setSize((prev) => (prev === next ? prev : next));
-    };
-    onResize();
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
-  return size;
-}
+const DEFAULT_MIN = 56;
+const DEFAULT_MAX = 96;
 
-function sponsorSizeFor(width: number): number {
-  const min = 56;
-  const max = 96;
+function sponsorSizeFor(width: number, min: number, max: number): number {
   const start = 400;
   const step = 2;
   const per = 60;
@@ -40,8 +32,30 @@ function sponsorSizeFor(width: number): number {
   return Math.min(max, Math.max(min, scaled));
 }
 
-export function Sponsors() {
-  const baseSize = useSponsorBaseSize();
+// Prerender-safe initial comes from a notional 1200px viewport; re-measured
+// after mount against the real window width.
+function useSponsorBaseSize({ min = DEFAULT_MIN, max = DEFAULT_MAX }: SizeRange = {}) {
+  const [size, setSize] = useState(() => sponsorSizeFor(1200, min, max));
+  useEffect(() => {
+    const onResize = () => {
+      const next = sponsorSizeFor(window.innerWidth, min, max);
+      setSize((prev) => (prev === next ? prev : next));
+    };
+    onResize();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [min, max]);
+  return size;
+}
+
+type SponsorsProps = {
+  // Range shaping the responsive size curve; omit for the article wall's
+  // current 56-96 sizing. Smaller placements (footer strip) pass a lower range.
+  size?: SizeRange;
+};
+
+export function Sponsors({ size }: SponsorsProps) {
+  const baseSize = useSponsorBaseSize(size);
   if (sponsors.length === 0) return null;
 
   return (

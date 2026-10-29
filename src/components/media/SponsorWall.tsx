@@ -2,7 +2,15 @@ import { LogoSoup } from "@sanity-labs/logo-soup/react";
 import { useEffect, useState } from "react";
 
 import { sponsors } from "../../lib/data";
+import type { SponsorBackground } from "../../lib/types.ts";
 import { LogoLink } from "./LogoLink";
+
+// Chip behind a logo per its background preference; undefined renders as-is.
+const SPONSOR_CHIP: Record<SponsorBackground, string | undefined> = {
+  none: undefined,
+  light: "bg-foreground hover:bg-foreground",
+  black: "bg-black hover:bg-black",
+};
 
 // Logo Soup's baseSize is a JS prop, so sizing steps live here instead of CSS.
 // Prerender-safe initial; re-measured after mount.
@@ -50,7 +58,7 @@ export function SponsorWall() {
           if (!sponsor) {
             return <img src={src} alt={alt} {...rest} />;
           }
-          const linkClassName = sponsor.onLight ? "bg-foreground hover:bg-foreground" : undefined;
+          const linkClassName = SPONSOR_CHIP[sponsor.background ?? "none"];
           return (
             <LogoLink
               href={sponsor.url}

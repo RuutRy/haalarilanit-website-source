@@ -37,10 +37,11 @@ export const contacts: Contact[] = [
   },
 ];
 
-// Sponsor logo files go in public/assets/sponsors/.
+// Sponsor logo files go in public/assets/sponsors/. background: "light" puts
+// a light chip behind dark-ink logos, "black" a pure-black chip; omit for none.
 export const sponsors: Sponsor[] = [
-  // { name: "Ruut ry", logo: "/assets/logos/ruut.svg", url: "https://ruut.me" },
-  // { name: "Cluster ry", logo: "/assets/logos/cluster.svg", url: "https://cluster.fi" },
+  { name: "LOAS", logo: "/assets/sponsors/LOAS.jpg", url: "https://loas.fi" },
+  { name: "TEK", logo: "/assets/sponsors/TEK.png", url: "https://tek.fi" },
 ];
 
 // Every link and configurable URI lives here

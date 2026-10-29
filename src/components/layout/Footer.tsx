@@ -7,6 +7,7 @@ import { LangToggle } from "@/components/lang-toggle";
 
 import { links } from "../../lib/data";
 import { langFromPath } from "../../lib/lang";
+import { ARTICLE_SECTIONS } from "../../lib/navigation";
 import { Hint } from "../Hint";
 import { LogoLink } from "../media/LogoLink";
 import { LINK_ICON_CLS } from "../text/TextLink";
@@ -28,38 +29,17 @@ export function Footer() {
           <div className="flex flex-col items-start gap-0.5 lg:gap-1">
             <h3 className="text-base font-semibold text-primary uppercase">{t("footer.site")}</h3>
             <div className="flex flex-col">
-              <Link
-                to="/$lang/rules"
-                params={{ lang }}
-                className="py-1 text-base text-foreground/70 transition-colors hover:text-primary"
-              >
-                {t("nav.rules")}
-                <LinkIcon aria-hidden className={LINK_ICON_CLS} />
-              </Link>
-              <Link
-                to="/$lang/guide"
-                params={{ lang }}
-                className="py-1 text-base text-foreground/70 transition-colors hover:text-primary"
-              >
-                {t("nav.guidance")}
-                <LinkIcon aria-hidden className={LINK_ICON_CLS} />
-              </Link>
-              <Link
-                to="/$lang/tournament"
-                params={{ lang }}
-                className="py-1 text-base text-foreground/70 transition-colors hover:text-primary"
-              >
-                {t("nav.tournaments")}
-                <LinkIcon aria-hidden className={LINK_ICON_CLS} />
-              </Link>
-              <Link
-                to="/$lang/contact"
-                params={{ lang }}
-                className="py-1 text-base text-foreground/70 transition-colors hover:text-primary"
-              >
-                {t("nav.contacts")}
-                <LinkIcon aria-hidden className={LINK_ICON_CLS} />
-              </Link>
+              {ARTICLE_SECTIONS.map((link) => (
+                <Link
+                  key={link.article}
+                  to="/$lang/$article"
+                  params={{ lang, article: link.article }}
+                  className="py-1 text-base text-foreground/70 transition-colors hover:text-primary"
+                >
+                  {t(link.labelKey)}
+                  <LinkIcon aria-hidden className={LINK_ICON_CLS} />
+                </Link>
+              ))}
             </div>
           </div>
           <div className="flex flex-col items-start gap-0.5 lg:gap-1">

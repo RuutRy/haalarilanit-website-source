@@ -23,3 +23,9 @@ export function articleMeta(name: string, lang: string): Frontmatter {
   const mod = articles[`../content/${active}/${name}.mdx`] ?? articles[`../content/fi/${name}.mdx`];
   return mod?.frontmatter ?? {};
 }
+
+// Does the article exist at all? The fi tree defines the article set; the
+// en tree only shadows it. Used by the $article route to 404 unknown names.
+export function articleExists(name: string): boolean {
+  return Boolean(articles[`../content/fi/${name}.mdx`]);
+}

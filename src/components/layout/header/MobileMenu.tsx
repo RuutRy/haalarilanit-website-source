@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { COMPACT_BREAKPOINT, useCloseOnMediaMatch } from "@/hooks/useCloseOnMediaMatch";
 import { langFromPath } from "@/lib/lang";
-import { isActiveLink, NAV_SECTIONS } from "@/lib/navigation";
+import { isActiveLink, NAV_SECTIONS, navPath } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
 import { activeClass, linkClass } from "./link-classes";
@@ -48,16 +48,27 @@ export function MobileMenu() {
       >
         <div className="flex flex-col gap-1">
           {NAV_SECTIONS.map((link) => {
-            const active = isActiveLink(pathname, link.to);
-            return (
-              <SheetClose asChild key={link.to}>
+            const active = isActiveLink(pathname, navPath(link));
+            const className = cn(linkClass, "w-full py-3 text-left text-lg", active && activeClass);
+            // Article sections route through the shared $article route; the
+            // root link has its own path.
+            const nav =
+              "article" in link ? (
                 <Link
-                  to={link.to}
-                  params={{ lang }}
-                  className={cn(linkClass, "w-full py-3 text-left text-lg", active && activeClass)}
+                  to="/$lang/$article"
+                  params={{ lang, article: link.article }}
+                  className={className}
                 >
                   {t(link.labelKey)}
                 </Link>
+              ) : (
+                <Link to={link.to} params={{ lang }} className={className}>
+                  {t(link.labelKey)}
+                </Link>
+              );
+            return (
+              <SheetClose asChild key={navPath(link)}>
+                {nav}
               </SheetClose>
             );
           })}

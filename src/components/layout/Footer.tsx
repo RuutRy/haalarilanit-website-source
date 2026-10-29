@@ -57,10 +57,10 @@ export function Footer() {
       <div className="mx-auto flex max-w-6xl flex-wrap items-start gap-x-8 gap-y-2.5 px-4 sm:px-8 sm:items-center">
         {/* On narrow screens the columns wrap inside the nav while the socials stay pinned to the
             top-right corner of the grid; sm:contents dissolves the wrapper so they rejoin the main row. */}
-        <div className="order-1 grid w-full grid-cols-[minmax(0,1fr)_auto] items-start gap-x-4 gap-y-2.5 sm:contents">
+        <div className="order-1 grid w-full grid-cols-[minmax(0,1fr)_auto] items-start gap-x-2 gap-y-2.5 sm:contents">
           {/* fluid ps inset keeps the groups off the edge on wrapped layouts */}
           <nav
-            className="flex min-w-0 flex-nowrap gap-x-8 gap-y-2.5 ps-[5vw] sm:order-2 sm:flex-1 sm:justify-end sm:ps-0 md:me-[5%]"
+            className="flex min-w-0 flex-nowrap gap-x-4 gap-y-2.5 ps-1 sm:order-2 sm:flex-1 sm:justify-end sm:gap-x-8 sm:ps-0 md:me-[5%]"
             aria-label={t("footer.links")}
           >
             <div className="flex min-w-0 flex-col items-start gap-0.5 sm:gap-1">
@@ -71,7 +71,7 @@ export function Footer() {
                     key={link.article}
                     to="/$lang/$article"
                     params={{ lang, article: link.article }}
-                    className="py-1 text-base text-foreground/70 transition-colors hover:text-primary"
+                    className="whitespace-nowrap py-1 text-sm text-foreground/70 transition-colors hover:text-primary sm:text-base"
                   >
                     {t(link.labelKey)}
                     <LinkIcon aria-hidden className={LINK_ICON_CLS} />
@@ -89,7 +89,7 @@ export function Footer() {
                     href={links.ticket}
                     target="_blank"
                     rel="noreferrer"
-                    className="py-1 text-base text-foreground/70 transition-colors hover:text-primary"
+                    className="whitespace-nowrap py-1 text-sm text-foreground/70 transition-colors hover:text-primary sm:text-base"
                   >
                     {t("footer.ticket")}
                     <ExternalLink aria-hidden className={LINK_ICON_CLS} />
@@ -99,7 +99,7 @@ export function Footer() {
                   href={links.saferSpace[lang]}
                   target="_blank"
                   rel="noreferrer"
-                  className="py-1 text-base text-foreground/70 transition-colors hover:text-primary"
+                  className="whitespace-nowrap py-1 text-sm text-foreground/70 transition-colors hover:text-primary sm:text-base"
                 >
                   {t("footer.safer_space")}
                   <ExternalLink aria-hidden className={LINK_ICON_CLS} />
@@ -116,7 +116,7 @@ export function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={s.name}
-                  className="rounded-lg p-2 text-foreground/70 transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  className="rounded-lg p-1.5 text-foreground/70 transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:p-2"
                 >
                   {s.name === "Instagram" ? (
                     <SiInstagram className="size-5 sm:size-6" />

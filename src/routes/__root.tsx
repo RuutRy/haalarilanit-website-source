@@ -24,10 +24,8 @@ import {
   useActiveLang,
 } from "../lib/lang";
 
-// Pre-paint head script: sends the bare root to the visitor's language and
-// 404 hits of the static document (marker meta) to /<lang>/404. It has to be
-// client JS - the static host can neither read localStorage nor split its 404
-// override per tree. The payload crosses JSON.stringify once with `<` escaped.
+// Pre-paint head script: bare root goes to the visitor's language, static-host
+// 404s (marker meta) to /<lang>/404 - the static host can't read localStorage or split 404s per tree.
 const LANG_REDIRECT_CONFIG = JSON.stringify({
   langs: LANGS,
   default: DEFAULT_LANG,
@@ -37,10 +35,8 @@ const LANG_REDIRECT_CONFIG = JSON.stringify({
 const LANG_REDIRECT_SCRIPT = `try{var c=${LANG_REDIRECT_CONFIG},p=location.pathname,l=localStorage.getItem("lang"),m=document.querySelector('meta[name="'+c.marker+'"]');if(p==="/"||p===""){location.replace("/"+(c.langs.indexOf(l)>=0?l:c.default))}else if(m){var s=p.split("/")[1],w=c.langs.indexOf(s)>=0?s:c.langs.indexOf(l)>=0?l:c.default,t="/"+w+"/404";if(p!==t)location.replace(t)}}catch(e){}`;
 
 export const Route = createRootRoute({
-  // The i18n instance is shared between SSR renders: without this sync the
-  // previous page's language would leak into the next one. Tree paths pin
-  // the language; 404s prefer the remembered one (the server has no
-  // localStorage).
+  // i18n is shared across SSR renders: without this sync the previous page's
+  // language leaks into the next one. Tree paths pin the language; 404s prefer the remembered one.
   beforeLoad: ({ preload, location }) => {
     syncRouteLanguage(preload, preferredLang(location.pathname));
     // 404s render only at /<lang>/404 (full-page loads bounce pre-paint);

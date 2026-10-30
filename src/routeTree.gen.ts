@@ -12,11 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LangRouteImport } from './routes/$lang'
 import { Route as LangIndexRouteImport } from './routes/$lang/index'
+import { Route as LangArticleRouteImport } from './routes/$lang/$article'
 import { Route as Lang404RouteImport } from './routes/$lang/404'
-import { Route as LangContactRouteImport } from './routes/$lang/contact'
-import { Route as LangGuideRouteImport } from './routes/$lang/guide'
-import { Route as LangRulesRouteImport } from './routes/$lang/rules'
-import { Route as LangTournamentRouteImport } from './routes/$lang/tournament'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -33,92 +30,44 @@ const LangIndexRoute = LangIndexRouteImport.update({
   path: '/',
   getParentRoute: () => LangRoute,
 } as any)
+const LangArticleRoute = LangArticleRouteImport.update({
+  id: '/$article',
+  path: '/$article',
+  getParentRoute: () => LangRoute,
+} as any)
 const Lang404Route = Lang404RouteImport.update({
   id: '/404',
   path: '/404',
-  getParentRoute: () => LangRoute,
-} as any)
-const LangContactRoute = LangContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => LangRoute,
-} as any)
-const LangGuideRoute = LangGuideRouteImport.update({
-  id: '/guide',
-  path: '/guide',
-  getParentRoute: () => LangRoute,
-} as any)
-const LangRulesRoute = LangRulesRouteImport.update({
-  id: '/rules',
-  path: '/rules',
-  getParentRoute: () => LangRoute,
-} as any)
-const LangTournamentRoute = LangTournamentRouteImport.update({
-  id: '/tournament',
-  path: '/tournament',
   getParentRoute: () => LangRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$lang': typeof LangRouteWithChildren
+  '/$lang/$article': typeof LangArticleRoute
   '/$lang/404': typeof Lang404Route
-  '/$lang/contact': typeof LangContactRoute
-  '/$lang/guide': typeof LangGuideRoute
-  '/$lang/rules': typeof LangRulesRoute
-  '/$lang/tournament': typeof LangTournamentRoute
   '/$lang/': typeof LangIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$lang/$article': typeof LangArticleRoute
   '/$lang/404': typeof Lang404Route
-  '/$lang/contact': typeof LangContactRoute
-  '/$lang/guide': typeof LangGuideRoute
-  '/$lang/rules': typeof LangRulesRoute
-  '/$lang/tournament': typeof LangTournamentRoute
   '/$lang': typeof LangIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$lang': typeof LangRouteWithChildren
+  '/$lang/$article': typeof LangArticleRoute
   '/$lang/404': typeof Lang404Route
-  '/$lang/contact': typeof LangContactRoute
-  '/$lang/guide': typeof LangGuideRoute
-  '/$lang/rules': typeof LangRulesRoute
-  '/$lang/tournament': typeof LangTournamentRoute
   '/$lang/': typeof LangIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/$lang'
-    | '/$lang/404'
-    | '/$lang/contact'
-    | '/$lang/guide'
-    | '/$lang/rules'
-    | '/$lang/tournament'
-    | '/$lang/'
+  fullPaths: '/' | '/$lang' | '/$lang/$article' | '/$lang/404' | '/$lang/'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/$lang/404'
-    | '/$lang/contact'
-    | '/$lang/guide'
-    | '/$lang/rules'
-    | '/$lang/tournament'
-    | '/$lang'
-  id:
-    | '__root__'
-    | '/'
-    | '/$lang'
-    | '/$lang/404'
-    | '/$lang/contact'
-    | '/$lang/guide'
-    | '/$lang/rules'
-    | '/$lang/tournament'
-    | '/$lang/'
+  to: '/' | '/$lang/$article' | '/$lang/404' | '/$lang'
+  id: '__root__' | '/' | '/$lang' | '/$lang/$article' | '/$lang/404' | '/$lang/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -149,6 +98,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangIndexRouteImport
       parentRoute: typeof LangRoute
     }
+    '/$lang/$article': {
+      id: '/$lang/$article'
+      path: '/$article'
+      fullPath: '/$lang/$article'
+      preLoaderRoute: typeof LangArticleRouteImport
+      parentRoute: typeof LangRoute
+    }
     '/$lang/404': {
       id: '/$lang/404'
       path: '/404'
@@ -156,52 +112,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Lang404RouteImport
       parentRoute: typeof LangRoute
     }
-    '/$lang/contact': {
-      id: '/$lang/contact'
-      path: '/contact'
-      fullPath: '/$lang/contact'
-      preLoaderRoute: typeof LangContactRouteImport
-      parentRoute: typeof LangRoute
-    }
-    '/$lang/guide': {
-      id: '/$lang/guide'
-      path: '/guide'
-      fullPath: '/$lang/guide'
-      preLoaderRoute: typeof LangGuideRouteImport
-      parentRoute: typeof LangRoute
-    }
-    '/$lang/rules': {
-      id: '/$lang/rules'
-      path: '/rules'
-      fullPath: '/$lang/rules'
-      preLoaderRoute: typeof LangRulesRouteImport
-      parentRoute: typeof LangRoute
-    }
-    '/$lang/tournament': {
-      id: '/$lang/tournament'
-      path: '/tournament'
-      fullPath: '/$lang/tournament'
-      preLoaderRoute: typeof LangTournamentRouteImport
-      parentRoute: typeof LangRoute
-    }
   }
 }
 
 interface LangRouteChildren {
+  LangArticleRoute: typeof LangArticleRoute
   Lang404Route: typeof Lang404Route
-  LangContactRoute: typeof LangContactRoute
-  LangGuideRoute: typeof LangGuideRoute
-  LangRulesRoute: typeof LangRulesRoute
-  LangTournamentRoute: typeof LangTournamentRoute
   LangIndexRoute: typeof LangIndexRoute
 }
 
 const LangRouteChildren: LangRouteChildren = {
+  LangArticleRoute: LangArticleRoute,
   Lang404Route: Lang404Route,
-  LangContactRoute: LangContactRoute,
-  LangGuideRoute: LangGuideRoute,
-  LangRulesRoute: LangRulesRoute,
-  LangTournamentRoute: LangTournamentRoute,
   LangIndexRoute: LangIndexRoute,
 }
 

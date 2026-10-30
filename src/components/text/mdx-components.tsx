@@ -1,7 +1,7 @@
-import { useRouter } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { SectionNav } from "@/components/section-nav";
-import { stripLang } from "@/lib/lang";
+import { articleExists } from "@/lib/content-meta";
+import { isLang, stripLang } from "@/lib/lang";
 import type { MDXComponents } from "@/lib/mdx";
 import { MDX_BLOCKS } from "@/lib/mdx-blocks";
 import { cn } from "@/lib/utils";
@@ -11,14 +11,13 @@ import { DiscordWidget } from "../articles/DiscordWidget";
 import { Floorplan } from "../articles/Floorplan";
 import { PhotoGalleries } from "../articles/PhotoGalleries";
 import { SaferSpaceLink } from "../articles/SaferSpaceLink";
-import { Sponsors } from "../articles/Sponsors";
 import { Frost } from "../Frost";
 import { Hero } from "../hero/Hero";
 import { Img } from "../media/Img";
 import { Lightbox } from "../media/Lightbox";
+import { Sponsors } from "../media/Sponsors";
 import { H1, H2, H3 } from "./heading";
-// Direct imports, not ./index: the barrel re-exports Article, and reading
-// Mark through it at module-eval time hits the cycle (undefined in dev SSR).
+// Direct imports, not ./index: reading Mark through the barrel re-exports hits the Article cycle (undefined in dev SSR).
 import { Mark } from "./Mark";
 import { Paragraph } from "./Paragraph";
 import type { To } from "./TextLink";
@@ -29,14 +28,17 @@ import { TextPanel } from "./TextPanel";
 export const WRAPPER = "flex w-full flex-col gap-8";
 const COLUMN = "mx-auto w-full max-w-3xl";
 
-// Internal links go through the typed router (typos warn in dev/prerender),
-// external links open a new tab.
+// Internal links go through the typed router (typos warn in dev/prerender); external links open a new tab.
 function A({ href, children }: { href?: string; children?: ReactNode }) {
-  const router = useRouter();
   if (href?.startsWith("/")) {
-    // Template-string key against the typed route registry needs a cast.
-    const path = `/$lang${stripLang(href)}` as keyof typeof router.routesByPath;
-    if (!router.routesByPath[path]) {
+    // Every article rides the one dynamic /$lang/$article route, so the router
+    // can't validate concrete paths. Check the mdx set instead.
+    const tail = stripLang(href);
+    const article = tail.replace(/^\/+/, "");
+    if (
+      article !== "" &&
+      (!isLang(href.split("/")[1]) || article.includes("/") || !articleExists(article))
+    ) {
       console.warn(`article link "${href}" does not match a route`);
     }
     return <TextLink to={href as To}>{children}</TextLink>;
@@ -50,7 +52,6 @@ function MdxImg({ src, alt }: { src?: string; alt?: string }) {
   return <img src={src} alt={alt ?? ""} loading="lazy" className="block max-w-full rounded-lg" />;
 }
 
-// Opt-in centering for mdx prose.
 function Center({ children }: { children?: ReactNode }) {
   return <div className="self-center text-center">{children}</div>;
 }
@@ -68,8 +69,7 @@ function MdxUl({ children }: { children?: ReactNode }) {
   return <ul className={cn(COLUMN, "list-inside list-disc ps-0 text-justify")}>{children}</ul>;
 }
 
-// Bottom-of-hero scroll hint (the plugin places it in the hero strip): a frosted
-// pill with three chevrons; visuals in .shine-chevron.
+// Bottom-of-hero scroll hint (the plugin places it in the hero strip); visuals in .shine-chevron.
 const ScrollHint = () => (
   <Frost className="mt-auto flex shrink-0 flex-col items-center px-5 py-4">
     <span className="shine-chevron size-[min(2.5rem,4cqh)] opacity-40" />
@@ -97,7 +97,6 @@ export const mdxComponents: MDXComponents = {
   Img,
   Lightbox,
 
-  // Full-page building blocks embedded from the mdx files.
   Hero,
   Sponsors,
   Floorplan,

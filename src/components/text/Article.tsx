@@ -15,7 +15,6 @@ export function Article({ name, lang }: { name: string; lang: string }) {
   const mod = articles[path];
 
   if (!mod) {
-    // Missing translation falls back to the default tree.
     if (active !== "fi") console.warn(`article "${name}" missing for lang "${active}", using fi`);
     const fallback = articles[`../../content/fi/${name}.mdx`];
     if (!fallback) return null;

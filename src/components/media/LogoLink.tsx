@@ -14,8 +14,7 @@ type LogoLinkProps = {
   href: string;
   name: string;
   src: string;
-  // White version of src for the tinted-at-rest look; stacked so the
-  // cross-fade lines up.
+  // White version of src for the tinted-at-rest look; layers must stack to line up.
   whiteSrc?: string;
   linkClassName?: string;
   imgClassName?: string;
@@ -24,8 +23,7 @@ type LogoLinkProps = {
   tinted?: boolean;
 };
 
-// Shared clickable logo with the name tooltip - used identically in the
-// footer and on the sponsor wall, so both behave exactly the same.
+// Shared clickable logo with the name tooltip - used identically in the footer and sponsor wall.
 export function LogoLink({
   href,
   name,
@@ -45,11 +43,10 @@ export function LogoLink({
           target="_blank"
           rel="noreferrer"
           aria-label={t("a11y.opens_new_tab", { name })}
-          className={linkClassName ?? linkClass}
+          className={cn(linkClass, linkClassName)}
         >
           {tinted ? (
             whiteSrc ? (
-              // Both layers share the box, so the cross-fade lines up.
               <span role="img" aria-label={name} className={cn("relative block", imgClassName)}>
                 <MonoImage
                   src={whiteSrc}

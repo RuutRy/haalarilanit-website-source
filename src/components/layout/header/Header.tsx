@@ -11,19 +11,16 @@ import { cn } from "@/lib/utils";
 import { HeaderNav } from "./HeaderNav";
 import { MobileMenu } from "./MobileMenu";
 
-// The small mark waits until the hero logo has slid fully behind the
-// opaque sticky header, plus this much scroll past that - the swap then
-// reads as "the hero mark just left", not a whole viewport later.
+// Wait until the hero logo has slid fully behind the opaque header, plus this much scroll past:
+// the swap then reads as "the hero mark just left", not a whole viewport later.
 const HERO_GRACE_PX = 100;
 
 export function Header() {
   const { t } = useTranslation();
   const lang = langFromPath(useRouterState({ select: (s) => s.location.pathname }));
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  // The small mark parks while the hero logo is still under the header.
-  // Measured only after mount: the hydration render must match the parked
-  // SSR markup (a reload lands on restored scroll, hero already gone);
-  // the mount re-render patches the class.
+  // Measured only after mount: the hydration render must match the parked SSR markup
+  // (a reload lands on restored scroll, hero already gone); the mount re-render patches it.
   const isMain = stripLang(pathname) === "" || stripLang(pathname) === "/";
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);

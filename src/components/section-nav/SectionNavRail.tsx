@@ -12,16 +12,8 @@ type SectionNavRailProps = {
   onJump: (item: SectionNavItemData) => void;
 };
 
-// Desktop TOC rail from the rail breakpoint, where the trigger hands over.
-// The right edge
-// is one continuous clamp: 1.5rem off the text column, sliding out to 1.5rem
-// off the sheet's edge once the wallpaper fits the 20rem rail - no
-// thresholds, so resizing never snaps. Labels ride an em font knob (scale
-// instead of truncate; long headers wrap). Portaled to body so the sheet's
-// fade mask can't paint over it.
-//
-// Wrapper = positioning context: % there resolves against the layout
-// viewport (no 100vw scrollbar overhang); the nav is the container knob.
+// Right edge is one continuous clamp, so resizing never snaps; labels ride an em font knob.
+// Portaled to body so the sheet's fade mask can't paint over it; wrapper is the positioning context.
 export function SectionNavRail({ items, visible, onText, onJump }: SectionNavRailProps) {
   const { t } = useTranslation();
 
@@ -34,9 +26,8 @@ export function SectionNavRail({ items, visible, onText, onJump }: SectionNavRai
           // slide-out: 0 at the width cap (91rem), 10rem at the full-rail fit (111rem)
           "mr-[calc((100%+51rem)/2+clamp(0rem,(100%-91rem)/2,10rem))] w-[min(20rem,calc((100%-51rem)/2))]",
           "rounded-xl bg-(--panel-tint) p-2 shadow-lg backdrop-blur-lg transition-[opacity,translate] duration-300",
-          // pointer-events-auto: the wrapper strip is inert, the visible rail
-          // must take the pointer (hover + click) - without it the sheet
-          // under it wins every hit test
+          // pointer-events-auto: the wrapper is inert, the visible rail must take the
+          // pointer (hover + click) - without it the sheet under it wins every hit test
           onText
             ? "pointer-events-auto translate-x-0 opacity-100"
             : "pointer-events-none -translate-x-3 opacity-0",

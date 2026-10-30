@@ -45,10 +45,8 @@ function subscribe(listener: () => void): () => void {
 }
 
 export function useScrollState(): ScrollState {
-  // Constant server snapshot, not the live state: on a reload the browser
-  // restores scroll before hydration, and a live snapshot would diverge
-  // from the SSR markup (React then keeps the stale server classes). The
-  // post-hydration re-render patches them.
+  // Server snapshot is constant, not live: the browser restores scroll before
+  // hydration, so a live snapshot would diverge from the SSR markup.
   const SERVER_STATE: ScrollState = { y: 0, scrollable: 0, vh: 0 };
   return useSyncExternalStore(
     subscribe,

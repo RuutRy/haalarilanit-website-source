@@ -3,11 +3,8 @@ import { useTranslation } from "react-i18next";
 
 import { cn } from "@/lib/utils";
 
-// Quick-jump handle below the rail breakpoint - main's content stops being
-// flush with the screen edge above it, and the rail owns the TOC there.
 // Sticky at the sheet's end like BackToTop so it docks above the footer.
-// The h-0 wrapper takes no layout slot; the negative margins cancel main's
-// padding.
+// The h-0 wrapper takes no layout slot; the negative margins cancel main's padding.
 export function SectionNavTrigger({
   open,
   onText,

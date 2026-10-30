@@ -13,16 +13,12 @@ import { type SectionNavItemData, useSectionSpy } from "./useSectionSpy";
 // Deep-link glide waits for fonts/layout to settle.
 const DEEP_LINK_DELAY_MS = 400;
 
-// Dock-style TOC: rail from the rail breakpoint (where main centers and the
-// trigger detaches), edge-swipe/trigger sheet below. Sections and
-// on-screen marks come from useSectionSpy (measured after mount, rAF on scroll).
 export function SectionNav() {
   const [open, setOpen] = useState(false);
   const [side, setSide] = useState<SwipeSide>("left");
 
   const { items, visible, onText } = useSectionSpy();
 
-  // The scrollspy owns the active rows; clicks only set the uri and glide.
   const jump = useCallback((item: SectionNavItemData) => {
     if (item.isTop) {
       history.replaceState(null, "", location.pathname);
@@ -45,7 +41,6 @@ export function SectionNav() {
     setOpen((open) => !open);
   }, []);
 
-  // Deep link: jump to the hashed section once the auto-scroll settles.
   useEffect(() => {
     if (items.length === 0) return;
     let initial = "";

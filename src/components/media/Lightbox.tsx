@@ -4,10 +4,8 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Hint } from "@/components/Hint";
 
-// Non-modal radix Dialog: the page behind stays scrollable, so the backdrop
-// button is the guaranteed click-to-close. Backdrop classes live on Content
-// (a non-modal Overlay renders null). aria-describedby={undefined}: the alt
-// text is the label.
+// Non-modal Dialog: the page behind stays scrollable, so the backdrop button is the
+// click-to-close. Backdrop classes live on Content (a non-modal Overlay renders null).
 export function Lightbox({ src, alt }: { src: string; alt: string }) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);

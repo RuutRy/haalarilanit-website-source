@@ -11,22 +11,15 @@ type SectionNavItemProps = {
   onJump: (item: SectionNavItemData) => void;
 };
 
-// Tree depth indents the row 0.75rem per level (0.75em on the rail, so the
-// indent scales with its font knob); page title leftmost. Rail rows keep one
-// size and weight whatever their state: the centered list must not reflow
-// when the scrollspy activates a row (a 1em active row re-wrapped long
-// headers and shifted the whole rail on every section change). State reads
-// through color + chevron + a layout-inert scale; hover through a fading wash.
+// Tree depth indents 0.75 (em on the rail so the indent scales with the font knob); page title leftmost.
+// Rail rows never change size/weight: an active-row rewrap shifted the whole rail on every section change.
 export function SectionNavItem({ item, active, variant, onJump }: SectionNavItemProps) {
   const rail = variant === "rail";
   const buttonClass = cn(
     "flex w-full items-center py-1 text-left leading-snug focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
     rail
       ? // hover wash, never the active text color: a row must not look
-        // scrollspy-active while hovering (and an un-transitioned 50%->100%
-        // text swap strobed on every cursor crossing - the "hover flash").
-        // px insets the text from the bubble edges, uniform per state so the
-        // text can't shift when hover/selection changes.
+        // scrollspy-active while hovering; px insets uniform per state so text can't shift.
         "rounded-md px-[0.5em] py-[0.25em] text-[0.875em] font-normal transition-colors duration-150 hover:bg-foreground/10"
       : "rounded-lg px-[0.5em] text-sm transition-colors duration-150 hover:bg-foreground/10",
     active
@@ -63,9 +56,8 @@ export function SectionNavItem({ item, active, variant, onJump }: SectionNavItem
         className={buttonClass}
       >
         {rail ? (
-          // Selected = scale, not font-size: transforms don't touch layout,
-          // so the box (and any wrap) stays identical in both states - the
-          // centered list can't pop when the scrollspy or hover changes.
+          // Selected = scale, not font-size: transforms don't touch layout, so the box
+          // (and any wrap) stays identical in both states.
           <span
             className={cn(
               "inline-block origin-left transition-transform duration-150",

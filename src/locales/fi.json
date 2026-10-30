@@ -45,9 +45,9 @@
     "site": "Sivut",
     "event": "Tapahtuma",
     "ticket": "Lippukauppa",
-    "safer_space": "Turvallisempi tila"
+    "safer_space": "Turvallisempi tila",
+    "sponsors": "Yhteistyökumppanit"
   },
-  "sponsors": "Yhteistyökumppanit",
   "a11y": {
     "opens_new_tab": "{{name}} - avautuu uuteen välilehteen",
     "logo_alt": "Haalarilanit",

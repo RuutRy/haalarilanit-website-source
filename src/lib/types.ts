@@ -6,10 +6,15 @@ export type Contact = {
   telegram: string;
 };
 
+// "light" rescues dark-ink logos made for white backgrounds; "black" frames
+// logos tuned for pure black. Omit for logos that render as-is.
+export type SponsorBackground = "none" | "light" | "black";
+
 export type Sponsor = {
   name: string;
   logo: string;
   url: string;
+  background?: SponsorBackground;
 };
 
 export type Organizer = {

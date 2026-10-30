@@ -4,9 +4,8 @@ import { useTranslation } from "react-i18next";
 
 import { MonoImage } from "./MonoImage";
 
-// `sm` is the compact header mark; default is the hero art. Rest props
-// pass through - the main page tags its hero logo with data-hero-logo
-// so the header can time its own mark to the hero's exit.
+// `sm` is the compact header mark; default is the hero art. Rest props pass through -
+// the main page tags its hero logo with data-hero-logo so the header can time its exit.
 export function Logo({
   className,
   size = "hero",

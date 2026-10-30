@@ -11,9 +11,8 @@ type FrostProps = {
   strength?: keyof typeof STRENGTHS;
 };
 
-// Frosted panel (the .frost recipe in index.css): the tint + blur live on a
-// masked ::before, so content stays crisp while the frost ramps up gradually
-// from the edges. Strength rides the --frost-blur custom property.
+// Frosted panel (the .frost recipe in index.css): the tint + blur live on a masked
+// ::before, so content stays crisp while the frost ramps from the edges.
 export function Frost({ children, className, strength = "lg" }: FrostProps) {
   return (
     <div

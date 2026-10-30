@@ -2,9 +2,6 @@ import { type DependencyList, useEffect } from "react";
 
 type RunIdle = (cb: () => void) => void;
 
-// idle-scheduled effect: runs effect(runIdle) on mount/dep change, where runIdle
-// defers the callback via requestIdleCallback (setTimeout 0 fallback). pending
-// idle callbacks are cancelled on cleanup, along with the effect's own cleanup.
 export function useIdleCallbackEffect(
   effect: (runIdle: RunIdle) => (() => void) | undefined,
   deps: DependencyList,

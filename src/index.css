@@ -46,8 +46,8 @@
   font-display: block;
 }
 
-/* parallax-js owns .bg-wall's transform (hence width/height + negative
-   margins); scroll drift rides the child .drift layer. */
+/* parallax-js owns .bg-wall's transform (hence width/height + negative margins);
+   scroll drift rides the child .drift layer. */
 .drift {
   position: absolute;
   inset: 0;
@@ -171,18 +171,15 @@
   background: var(--panel-tint);
 }
 
-/* Frosted document surface: everything from the first heading down; the wallpaper
-   shows through the frost, which softens toward the edges. Children align to
-   start, the column centers via mx-auto. The frost lives on a masked ::before so
-   the text stays crisp while the blur fades in. */
+/* Frosted document surface from the first heading down; the frost lives on a
+   masked ::before so the text stays crisp while the blur fades in. */
 .content-sheet {
   position: relative;
   display: flex;
   width: 100%;
   flex-direction: column;
   gap: 1.5rem;
-  /* Pull up over main's top padding: the sheet starts flush under the
-     sticky header (no wallpaper gap - the frost is continuous). */
+  /* Pull up over main's top padding: the sheet starts flush under the sticky header. */
   margin-top: -1.5rem;
   border-radius: var(--radius-3xl) var(--radius-3xl) 0 0;
   padding: 1.5rem 1rem 2rem;
@@ -195,9 +192,8 @@
   border-radius: calc(var(--radius) * 3) calc(var(--radius) * 3) 0 0;
   background: var(--panel-tint);
   --frost-blur: 12px;
-  /* The fade floors at 30% so the rounded surface stays discernible while
-     still ramping up; all four edges soften over 3.5rem (the 8vw term
-     tightens it on small screens so mobile reaches full frost fast). */
+  /* The fade floors at 30% so the rounded surface stays discernible while still
+     ramping up; all four edges soften over 3.5rem (8vw tightens it on small screens). */
   mask-image:
     linear-gradient(
       to bottom,
@@ -216,16 +212,13 @@
   mask-composite: intersect;
 }
 
-/* Frost pill behind a bare subpage heading (the contact page): no sheet, so
-   the heading carries its own frost instead of sitting on raw wallpaper. */
+/* Frost pill behind a bare subpage heading (contact page): no sheet, so the heading carries its own frost. */
 .bare-heading {
   border-radius: var(--radius-3xl);
   padding: 1.25rem 2.5rem;
 }
-/* Frosted panel recipe: the tint + blur live on a masked ::before layer, so
-   content stays crisp while the frost ramps up uniformly from all four edges
-   (same ramp + 30% floor as the sheet). z-index -1 keeps it above the
-   wallpaper (z -10) and below the panel's own content. */
+/* Frosted panel recipe: tint + blur on a masked ::before, so content stays crisp
+   while the frost ramps up uniformly (z-index -1 keeps it above the wallpaper). */
 .frost {
   position: relative;
 }
@@ -274,12 +267,10 @@
 
 .hero-strip {
   display: flex;
-  /* Size container with an explicit height: nothing resizes at hydration,
-     and inner pieces size in cqh. (min-height wouldn't make the block size
-     queryable - cqh would resolve to 0.) */
+  /* Explicit height: nothing resizes at hydration, and inner pieces size in cqh.
+     (min-height wouldn't make the block size queryable - cqh would resolve to 0.) */
   container-type: size;
-  /* Exactly the first viewport below the header; --header-h can drift a
-     few px on mid widths. */
+  /* Exactly the first viewport below the header; --header-h can drift a few px on mid widths. */
   margin-top: -1.5rem;
   height: calc(100dvh - var(--header-h));
   flex-direction: column;
@@ -298,8 +289,7 @@ html {
   touch-action: pan-y pinch-zoom;
 }
 
-/* Nav jumps glide: set for the duration of a fragment jump, so the browser's
-   own scroll-to-fragment animates instead of snapping. */
+/* Nav jumps glide: set for the duration of a fragment jump, so the browser's own scroll-to-fragment animates. */
 html.gliding {
   scroll-behavior: smooth;
 }

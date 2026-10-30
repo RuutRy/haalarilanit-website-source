@@ -1,7 +1,6 @@
 import { links } from "../../lib/data";
 import { TextLink } from "../text";
 
-// Gallery links from data.ts, extracted from the front page shell.
 export function PhotoGalleries() {
   return (
     <div className="flex w-full justify-center gap-4">

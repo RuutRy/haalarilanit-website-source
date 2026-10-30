@@ -1,16 +1,27 @@
 import { stripLang } from "./lang";
 
-// Tree navigation, single source of truth: the header's section links
-// and the language toggle both read it. Only these routes exist in
-// both language trees; any other tail (e.g. a broken URL) has no
-// counterpart and falls back to the tree root.
+// Single source of truth for header sections, the footer site column and the
+// language toggle. Articles share the $article route, so the Link `to` is generic.
 export const NAV_SECTIONS = [
   { to: "/$lang", labelKey: "nav.main" },
-  { to: "/$lang/rules", labelKey: "nav.rules" },
-  { to: "/$lang/guide", labelKey: "nav.guidance" },
-  { to: "/$lang/tournament", labelKey: "nav.tournaments" },
-  { to: "/$lang/contact", labelKey: "nav.contacts" },
+  { to: "/$lang/$article", article: "rules", labelKey: "nav.rules" },
+  { to: "/$lang/$article", article: "guide", labelKey: "nav.guidance" },
+  { to: "/$lang/$article", article: "tournament", labelKey: "nav.tournaments" },
+  { to: "/$lang/$article", article: "contact", labelKey: "nav.contacts" },
 ] as const;
+
+export type NavSection = (typeof NAV_SECTIONS)[number];
+export type ArticleSection = Extract<NavSection, { article: string }>;
+
+export const ARTICLE_SECTIONS = NAV_SECTIONS.filter(
+  (section): section is ArticleSection => "article" in section,
+);
+
+// Concrete path (e.g. "/$lang/rules"): active-state matching and lang-toggle
+// resolution work on these, while links route through the shared $article route.
+export function navPath(section: NavSection): string {
+  return "article" in section ? `/$lang/${section.article}` : section.to;
+}
 
 // Root link matches the bare tree only; section links match their subtree.
 export function isActiveLink(pathname: string, to: string): boolean {
@@ -25,7 +36,7 @@ export function isActiveLink(pathname: string, to: string): boolean {
 export function resolveLangTarget(pathname: string): string {
   const tail = stripLang(pathname);
   const normalizedTail = tail === "" || tail === "/" ? "" : tail.replace(/\/+$/, "");
-  return NAV_SECTIONS.some((section) => section.to === `/$lang${normalizedTail}`)
+  return NAV_SECTIONS.some((section) => navPath(section) === `/$lang${normalizedTail}`)
     ? normalizedTail
     : "";
 }

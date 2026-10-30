@@ -5,15 +5,12 @@ export type SwipeSide = "left" | "right";
 
 type SwipeStart = { x: number; y: number; side: SwipeSide };
 
-// Gesture geometry: arm within EDGE px of a screen edge, commit
-// direction after SLOP px, open the panel after DIST px.
+// Arm within EDGE px of a screen edge, commit after SLOP px, open after DIST px.
 const EDGE = 40;
 const SLOP = 12;
 const DIST = 56;
 
-// Pure decision for one drag sample. "vertical" = hand the gesture
-// back to scrolling, "commit" = open the panel, "steer" = horizontal
-// drag still under DIST (claim it), null = below slop (ignore).
+// "vertical" hands back to scrolling, "commit" opens, "steer" claims the horizontal drag, null ignores.
 export function resolveSwipe(
   start: SwipeStart,
   point: { x: number; y: number },
@@ -27,10 +24,8 @@ export function resolveSwipe(
   return null;
 }
 
-// Edge-swipe quick-jump on touch: @use-gesture/react supplies the
-// window-level pointer plumbing (passive: false so the drag can claim the
-// gesture; vertical scrolling stays native via touch-action in index.css).
-// The binding mounts once, so enabled/onOpen ride refs.
+// passive: false so the drag can claim the gesture; vertical scrolling stays native via touch-action.
+// Binding mounts once, so enabled/onOpen ride refs.
 export function useEdgeSwipe(options: {
   enabled: boolean;
   armedRef: RefObject<boolean>;
@@ -84,8 +79,7 @@ export function useEdgeSwipe(options: {
         state.cancel();
       }
     },
-    // Prerender-safe: hooks run during SSR, where window is undefined -
-    // use-gesture skips window binding when the target is undefined.
+    // Prerender-safe: hooks run during SSR, where window is undefined - use-gesture skips window binding then.
     {
       target: typeof window === "undefined" ? undefined : window,
       eventOptions: { passive: false },

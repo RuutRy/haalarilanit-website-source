@@ -5,9 +5,8 @@ import { articleMeta } from "../../lib/content-meta";
 import { event, eventYear } from "../../lib/data";
 import { currentLang, eventJsonLd, seoHead } from "../../lib/metadata";
 
-// Title follows the site name like the og:image alt ("Haalarilanit 2026
-// logotype"); the description rides the article's frontmatter and feeds
-// both the meta and the JSON-LD.
+// Title follows the site name like the og:image alt; the description rides
+// the article's frontmatter and feeds both the meta and the JSON-LD.
 export const Route = createFileRoute("/$lang/")({
   head: ({ params }) => {
     const description = articleMeta("main", params.lang).description;

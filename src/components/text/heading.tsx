@@ -130,7 +130,11 @@ export function H1({
   children?: ReactNode;
 }) {
   return (
-    <AnchoredChip as="h1" id={id} className={cn("text-h1-fluid", className)}>
+    <AnchoredChip
+      as="h1"
+      id={id}
+      className={cn("text-h1-fluid text-balance text-center", className)}
+    >
       {children}
     </AnchoredChip>
   );
@@ -145,7 +149,11 @@ export function H2({
   children?: ReactNode;
 }) {
   return (
-    <AnchoredChip as="h2" id={id} className={cn("text-h2-fluid", className)}>
+    <AnchoredChip
+      as="h2"
+      id={id}
+      className={cn("text-h2-fluid text-balance text-center", className)}
+    >
       {children}
     </AnchoredChip>
   );
@@ -160,7 +168,11 @@ export function H3({
   children?: ReactNode;
 }) {
   return (
-    <AnchoredChip as="h3" id={id} className={cn("text-h3-fluid", className)}>
+    <AnchoredChip
+      as="h3"
+      id={id}
+      className={cn("text-h3-fluid text-balance text-center", className)}
+    >
       {children}
     </AnchoredChip>
   );

@@ -40,6 +40,7 @@ export const contacts: Contact[] = [
 export const sponsors: Sponsor[] = [
   { name: "LOAS", logo: "/assets/sponsors/LOAS.jpg", url: "https://loas.fi" },
   { name: "TEK", logo: "/assets/sponsors/TEK.png", url: "https://tek.fi" },
+  { name: "MULTITRONIC", logo: "/assets/sponsors/MULTITRONIC.jpg", url: "https://multitronic.fi" },
 ];
 
 // Every link and configurable URI lives here

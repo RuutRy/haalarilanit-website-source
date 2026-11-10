@@ -84,7 +84,7 @@ export const links = {
     },
     {
       name: "Discord",
-      url: "https://discord.com/invite/KmzPVjnAWE",
+      url: "https://discord.com/invite/VXSbcP9qUz",
       // embeds the official Discord widget iframe (DiscordWidget.tsx).
       widgetGuildId: "1240709326134312960",
     },

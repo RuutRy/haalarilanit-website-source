@@ -22,9 +22,6 @@
     "ticket_not_yet_available": "Tickets available soon!",
     "ticket_opens": "Ticket sales open {{date}}"
   },
-  "guidance": {
-    "floorplan_alt": "Event venue floor plan"
-  },
   "contacts": {
     "placeholder": "Contacts will be updated later."
   },

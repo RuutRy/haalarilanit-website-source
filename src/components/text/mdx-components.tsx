@@ -8,7 +8,6 @@ import { cn } from "@/lib/utils";
 import { BackToTop } from "../articles/BackToTop";
 import { ContactCards } from "../articles/ContactCards";
 import { DiscordWidget } from "../articles/DiscordWidget";
-import { Floorplan } from "../articles/Floorplan";
 import { PhotoGalleries } from "../articles/PhotoGalleries";
 import { SaferSpaceLink } from "../articles/SaferSpaceLink";
 import { Frost } from "../Frost";
@@ -99,7 +98,6 @@ export const mdxComponents: MDXComponents = {
 
   Hero,
   Sponsors,
-  Floorplan,
   PhotoGalleries,
   SaferSpaceLink,
   ContactCards,

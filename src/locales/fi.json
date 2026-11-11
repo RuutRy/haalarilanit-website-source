@@ -22,9 +22,6 @@
     "ticket_not_yet_available": "Lipunmyynti alkaa pian!",
     "ticket_opens": "Lipunmyynti aukeaa {{date}}"
   },
-  "guidance": {
-    "floorplan_alt": "Tapahtumapaikan pohjakartta"
-  },
   "contacts": {
     "placeholder": "Yhteystiedot päivitetään myöhemmin."
   },

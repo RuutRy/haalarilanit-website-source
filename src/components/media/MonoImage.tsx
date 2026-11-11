@@ -9,7 +9,7 @@ type MonoImageProps = {
   className?: string;
 };
 
-// A mono asset (logo, floor plan) tinted through CSS: the image masks the box,
+// A mono asset (logo) tinted through CSS: the image masks the box,
 // the color is its background. The drawing stretches, so the set size wins over the natural ratio.
 export function MonoImage({ src, alt, width, height, className }: MonoImageProps) {
   return (

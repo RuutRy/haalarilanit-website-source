@@ -21,8 +21,8 @@
     "domains": { "react": "recommended" },
     "rules": {
       "preset": "recommended",
-      "suspicious": { "noConsole": "warn" },
-      "nursery": {
+      "suspicious": {
+        "noConsole": "warn",
         "useBaseline": {
           // Browser-support bar: Baseline year 2023 is the closest
           // expression of the vite build.target bar (chrome 120 /

@@ -41,6 +41,7 @@ export const sponsors: Sponsor[] = [
   { name: "LOAS", logo: "/assets/sponsors/LOAS.jpg", url: "https://loas.fi" },
   { name: "TEK", logo: "/assets/sponsors/TEK.png", url: "https://tek.fi" },
   { name: "MULTITRONIC", logo: "/assets/sponsors/MULTITRONIC.jpg", url: "https://multitronic.fi" },
+  { name: "SKINSAUNA", logo: "/assets/sponsors/SKINSAUNA.png", url: "https://skinsauna.gg" },
 ];
 
 // Every link and configurable URI lives here
@@ -83,7 +84,7 @@ export const links = {
     },
     {
       name: "Discord",
-      url: "https://discord.com/invite/KmzPVjnAWE",
+      url: "https://discord.com/invite/VXSbcP9qUz",
       // embeds the official Discord widget iframe (DiscordWidget.tsx).
       widgetGuildId: "1240709326134312960",
     },

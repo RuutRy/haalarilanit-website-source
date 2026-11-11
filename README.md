@@ -48,4 +48,3 @@ pnpm exec lefthook install
 ```
 
 Runs Biome (`lint:fix`) on every commit, and typecheck + tests on push.
-

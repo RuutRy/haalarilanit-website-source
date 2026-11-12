@@ -6,8 +6,7 @@ export type Localized<T = string> = Record<Lang, T>;
 
 export type Contact = {
   name: string;
-  rolesFi: string[];
-  rolesEn: string[];
+  roles: Localized<string[]>;
   email: string;
   telegram: string;
 };

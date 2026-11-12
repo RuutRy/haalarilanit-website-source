@@ -15,22 +15,22 @@ export const eventYear = event.start.getFullYear();
 export const contacts: Contact[] = [
   {
     name: "Noora Parkko",
-    rolesFi: ["Infra", "Logistiikka"],
-    rolesEn: ["Infra", "Logistics"],
+    roles: { fi: ["Infra", "Logistiikka"], en: ["Infra", "Logistics"] },
     email: "noora.parkko@ruut.me",
     telegram: "LauriSorsa",
   },
   {
     name: "Jesse Mäkelä",
-    rolesFi: ["Markkinointi", "Live", "Turnaukset"],
-    rolesEn: ["Marketing", "Live", "Tournaments"],
+    roles: {
+      fi: ["Markkinointi", "Live", "Turnaukset"],
+      en: ["Marketing", "Live", "Tournaments"],
+    },
     email: "jesse.makela@ruut.me",
     telegram: "MakelaJ",
   },
   {
     name: "Lauri Sorsa",
-    rolesFi: ["Kioski", "Turvallisuus"],
-    rolesEn: ["Kiosk", "Safety"],
+    roles: { fi: ["Kioski", "Turvallisuus"], en: ["Kiosk", "Safety"] },
     email: "lauri.sorsa@cluster.fi",
     telegram: "Marathonmonday",
   },

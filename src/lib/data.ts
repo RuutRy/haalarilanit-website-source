@@ -46,7 +46,20 @@ export const contactGroups: ContactGroup[] = [
   {
     key: "harassment-contacts",
     label: { fi: "Häirintäyhdyshenkilöt", en: "Harassment contact persons" },
-    people: [],
+    people: [
+      {
+        name: "Jesse Mäkelä",
+        roles: { fi: [], en: [] },
+        email: "",
+        telegram: "MakelaJ",
+      },
+      {
+        name: "Inka Hatara",
+        roles: { fi: [], en: [] },
+        email: "",
+        telegram: "nakkinka",
+      },
+    ],
   },
 ];
 

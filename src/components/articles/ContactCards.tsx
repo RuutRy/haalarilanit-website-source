@@ -1,3 +1,4 @@
+import GithubSlugger from "github-slugger";
 import { useTranslation } from "react-i18next";
 
 import { contactGroups } from "../../lib/data";
@@ -12,6 +13,9 @@ import { ContactCard } from "./ContactCard";
 export function ContactCards() {
   const { t } = useTranslation();
   const lang = useActiveLang();
+  // Same slug recipe as markdown headings; ids are prefixed by the group key
+  // so a person listed twice stays unique.
+  const slugger = new GithubSlugger();
 
   const groups = contactGroups
     .map((group) => ({ ...group, people: group.people.filter((p) => p.name.trim().length > 0) }))
@@ -27,10 +31,17 @@ export function ContactCards() {
     <div className="flex w-full flex-col items-center gap-10">
       {groups.map((group) => (
         <section key={group.key} className="flex w-full flex-col items-center gap-4">
-          <H2 className="frost bare-heading">{group.label[lang]}</H2>
+          <H2 id={group.key} className="frost bare-heading">
+            {group.label[lang]}
+          </H2>
           <div className="flex w-full flex-wrap items-stretch justify-center gap-6">
             {group.people.map((person) => (
-              <ContactCard key={person.name} contact={person} lang={lang} />
+              <ContactCard
+                key={`${group.key}-${person.name}`}
+                contact={person}
+                id={`${group.key}-${slugger.slug(person.name)}`}
+                lang={lang}
+              />
             ))}
           </div>
         </section>

@@ -1,4 +1,4 @@
-import type { Contact, Organizer, PhotoEntry, Social, Sponsor } from "./types.ts";
+import type { ContactGroup, Organizer, PhotoEntry, Social, Sponsor } from "./types.ts";
 
 // Canonical origin: og:url, canonical links.
 export const SITE_URL = "https://haalarilan.it";
@@ -12,27 +12,41 @@ export const event = {
 
 export const eventYear = event.start.getFullYear();
 
-export const contacts: Contact[] = [
+// Contact sections in display order. A new section is one entry here: the
+// label and every person carry both languages inline. Sections without
+// people stay hidden until someone is listed.
+export const contactGroups: ContactGroup[] = [
   {
-    name: "Noora Parkko",
-    roles: { fi: ["Infra", "Logistiikka"], en: ["Infra", "Logistics"] },
-    email: "noora.parkko@ruut.me",
-    telegram: "LauriSorsa",
+    key: "main-organizers",
+    label: { fi: "Pääjärjestäjät", en: "Main organizers" },
+    people: [
+      {
+        name: "Noora Parkko",
+        roles: { fi: ["Infra", "Logistiikka"], en: ["Infra", "Logistics"] },
+        email: "noora.parkko@ruut.me",
+        telegram: "LauriSorsa",
+      },
+      {
+        name: "Jesse Mäkelä",
+        roles: {
+          fi: ["Markkinointi", "Live", "Turnaukset"],
+          en: ["Marketing", "Live", "Tournaments"],
+        },
+        email: "jesse.makela@ruut.me",
+        telegram: "MakelaJ",
+      },
+      {
+        name: "Lauri Sorsa",
+        roles: { fi: ["Kioski", "Turvallisuus"], en: ["Kiosk", "Safety"] },
+        email: "lauri.sorsa@cluster.fi",
+        telegram: "Marathonmonday",
+      },
+    ],
   },
   {
-    name: "Jesse Mäkelä",
-    roles: {
-      fi: ["Markkinointi", "Live", "Turnaukset"],
-      en: ["Marketing", "Live", "Tournaments"],
-    },
-    email: "jesse.makela@ruut.me",
-    telegram: "MakelaJ",
-  },
-  {
-    name: "Lauri Sorsa",
-    roles: { fi: ["Kioski", "Turvallisuus"], en: ["Kiosk", "Safety"] },
-    email: "lauri.sorsa@cluster.fi",
-    telegram: "Marathonmonday",
+    key: "harassment-contacts",
+    label: { fi: "Häirintäyhdyshenkilöt", en: "Harassment contact persons" },
+    people: [],
   },
 ];
 

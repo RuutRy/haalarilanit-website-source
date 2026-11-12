@@ -11,7 +11,7 @@ import { type SwipeSide, useEdgeSwipe } from "./useEdgeSwipe";
 import { type SectionNavItemData, useSectionSpy } from "./useSectionSpy";
 
 // Deep-link glide waits for fonts/layout to settle.
-const DEEP_LINK_DELAY_MS = 400;
+export const DEEP_LINK_DELAY_MS = 400;
 
 export function SectionNav() {
   const [open, setOpen] = useState(false);

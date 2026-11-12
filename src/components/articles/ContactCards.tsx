@@ -1,8 +1,13 @@
 import GithubSlugger from "github-slugger";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import { contactGroups } from "../../lib/data";
+import { flashHeading } from "../../lib/heading-flash";
 import { useActiveLang } from "../../lib/lang";
+import { jumpToSection } from "../section-nav/jump-to-section";
+import { DEEP_LINK_DELAY_MS } from "../section-nav/SectionNav";
+import { whenScrollSettled } from "../section-nav/scroll-settle";
 import { Paragraph } from "../text";
 import { H2 } from "../text/heading";
 import { ContactCard } from "./ContactCard";
@@ -20,6 +25,28 @@ export function ContactCards() {
   const groups = contactGroups
     .map((group) => ({ ...group, people: group.people.filter((p) => p.name.trim().length > 0) }))
     .filter((group) => group.people.length > 0);
+
+  // Bare subpages get no SectionNav, so the deep-link glide lives here: the
+  // same settle wait, jump and flash as sheet pages get on load.
+  useEffect(() => {
+    let initial = "";
+    try {
+      initial = decodeURIComponent(location.hash.slice(1));
+    } catch {
+      return; // malformed escape: deep link skipped
+    }
+    // A click mid-glide leaves the suffixed form in the url; match it too.
+    const id = [initial, initial.replace(/-$/, "")].find((i) => document.getElementById(i));
+    if (!id) return;
+    const timer = setTimeout(() => {
+      jumpToSection(id);
+      whenScrollSettled(() => {
+        document.documentElement.classList.remove("gliding");
+        flashHeading(id);
+      });
+    }, DEEP_LINK_DELAY_MS);
+    return () => clearTimeout(timer);
+  }, []);
 
   if (groups.length === 0) {
     return (

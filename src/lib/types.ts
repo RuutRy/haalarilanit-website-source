@@ -9,6 +9,9 @@ export type Contact = {
   roles: Localized<string[]>;
   email: string;
   telegram: string;
+  // Shown as @tag; the numeric id builds the profile url (usernames have
+  // no public one).
+  discord?: { tag: string; id: string };
 };
 
 // A labelled contact section, e.g. main organizers or harassment contacts;

@@ -1,3 +1,4 @@
+import { SiDiscord } from "@icons-pack/react-simple-icons";
 import { MailIcon, SendIcon } from "lucide-react";
 
 import type { Lang } from "../../lib/lang";
@@ -36,6 +37,16 @@ export function ContactCard({ contact, id, lang }: ContactCardProps) {
           <a href={`https://t.me/${telegram}`} target="_blank" rel="noreferrer" className={linkCls}>
             <SendIcon className="size-5" />
             {telegram}
+          </a>
+        )}
+        {contact.discord && (
+          <a
+            href={`https://discord.com/users/${contact.discord.id}`}
+            target="_blank"
+            rel="noreferrer"
+            className={linkCls}
+          >
+            <SiDiscord className="size-5" />@{contact.discord.tag}
           </a>
         )}
       </div>

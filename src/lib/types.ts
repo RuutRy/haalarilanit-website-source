@@ -1,9 +1,25 @@
+import type { Lang } from "./lang";
+
+// Inline bilingual text. Keys mirror Lang, so a new language in lang.ts
+// flags every translation still missing.
+export type Localized<T = string> = Record<Lang, T>;
+
 export type Contact = {
   name: string;
-  rolesFi: string[];
-  rolesEn: string[];
+  roles: Localized<string[]>;
   email: string;
   telegram: string;
+  // The numeric id builds the profile url (usernames have no public one).
+  discord?: { tag: string; id: string };
+};
+
+// A labelled contact section, e.g. main organizers or harassment contacts;
+// display order follows data.ts.
+export type ContactGroup = {
+  // Stable id for React keys; the shown text comes from label.
+  key: string;
+  label: Localized;
+  people: Contact[];
 };
 
 // "light" rescues dark-ink logos made for white backgrounds; "black" frames

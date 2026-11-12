@@ -1,56 +1,54 @@
+import { SiDiscord } from "@icons-pack/react-simple-icons";
 import { MailIcon, SendIcon } from "lucide-react";
 
+import type { Lang } from "../../lib/lang";
 import type { Contact } from "../../lib/types";
-
-// Roles per language; a new language = an entry here + a matching Contact field.
-const ROLE_KEY = { fi: "rolesFi", en: "rolesEn" } as const;
-
-type Lang = keyof typeof ROLE_KEY;
+import { H3 } from "../text/heading";
 
 type ContactCardProps = {
   contact: Contact;
+  // Anchor id for the hold-to-copy heading link.
+  id: string;
   lang: Lang;
 };
 
-// One contact: name, roles, email/Telegram links. Missing values render an
-// invisible spacer so the cards stay levelled.
-export function ContactCard({ contact, lang }: ContactCardProps) {
-  const hasEmail = contact.email.trim().length > 0;
-  const hasTelegram = contact.telegram.trim().length > 0;
+// One contact: name, roles, email/Telegram links. Empty rows are skipped
+// outright; the flex row's items-stretch keeps the cards in a row levelled.
+export function ContactCard({ contact, id, lang }: ContactCardProps) {
+  const email = contact.email.trim();
+  const telegram = contact.telegram.trim();
+  const roles = contact.roles[lang];
 
-  const rowCls = "h-7 flex items-center justify-center gap-2 text-fluid text-primary";
-  const linkCls = `${rowCls} hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary`;
-  const spacerCls = `${rowCls} opacity-0`;
+  const linkCls =
+    "h-7 flex items-center justify-center gap-2 text-fluid text-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
 
   return (
-    <section className="frost flex w-full max-w-xs flex-col items-center gap-1 rounded-2xl p-4 text-center shadow-lg min-h-40">
-      <p className="text-h3-fluid">{contact.name}</p>
-      <p className="text-fluid text-foreground/70">{contact[ROLE_KEY[lang]].join(" · ")}</p>
+    <section className="frost flex w-full max-w-xs flex-col items-center gap-1 rounded-2xl p-4 text-center shadow-lg">
+      <H3 id={id}>{contact.name}</H3>
+      {roles.length > 0 && <p className="text-fluid text-foreground/70">{roles.join(" · ")}</p>}
       <div className="mt-auto flex w-full flex-col gap-1">
-        {hasEmail ? (
-          <a href={`mailto:${contact.email}`} className={linkCls}>
+        {email !== "" && (
+          <a href={`mailto:${email}`} className={linkCls}>
             <MailIcon className="size-5" />
-            {contact.email}
+            {email}
           </a>
-        ) : (
-          <span aria-hidden="true" className={spacerCls}>
-            <MailIcon className="size-5" />
-          </span>
         )}
-        {hasTelegram ? (
+        {telegram !== "" && (
+          <a href={`https://t.me/${telegram}`} target="_blank" rel="noreferrer" className={linkCls}>
+            <SendIcon className="size-5" />
+            {telegram}
+          </a>
+        )}
+        {contact.discord && (
           <a
-            href={`https://t.me/${contact.telegram}`}
+            href={`https://discord.com/users/${contact.discord.id}`}
             target="_blank"
             rel="noreferrer"
             className={linkCls}
           >
-            <SendIcon className="size-5" />
-            {contact.telegram}
+            <SiDiscord className="size-5" />
+            {contact.discord.tag}
           </a>
-        ) : (
-          <span aria-hidden="true" className={spacerCls}>
-            <SendIcon className="size-5" />
-          </span>
         )}
       </div>
     </section>

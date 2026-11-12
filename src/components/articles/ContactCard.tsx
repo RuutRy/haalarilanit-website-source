@@ -46,7 +46,8 @@ export function ContactCard({ contact, id, lang }: ContactCardProps) {
             rel="noreferrer"
             className={linkCls}
           >
-            <SiDiscord className="size-5" />@{contact.discord.tag}
+            <SiDiscord className="size-5" />
+            {contact.discord.tag}
           </a>
         )}
       </div>

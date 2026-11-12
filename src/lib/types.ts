@@ -9,8 +9,7 @@ export type Contact = {
   roles: Localized<string[]>;
   email: string;
   telegram: string;
-  // Shown as @tag; the numeric id builds the profile url (usernames have
-  // no public one).
+  // The numeric id builds the profile url (usernames have no public one).
   discord?: { tag: string; id: string };
 };
 

@@ -18,12 +18,18 @@ import { ContactCard } from "./ContactCard";
 export function ContactCards() {
   const { t } = useTranslation();
   const lang = useActiveLang();
-  // Same slug recipe as markdown headings; ids are prefixed by the group key
-  // so a person listed twice stays unique.
-  const slugger = new GithubSlugger();
 
   const groups = contactGroups
-    .map((group) => ({ ...group, people: group.people.filter((p) => p.name.trim().length > 0) }))
+    .map((group) => {
+      // Same slug recipe as markdown headings. Slug per group: the group key
+      // keeps cross-group ids unique, the slugger only dedupes names inside
+      // one section.
+      const slugger = new GithubSlugger();
+      const people = group.people
+        .filter((p) => p.name.trim().length > 0)
+        .map((p) => ({ ...p, id: `${group.key}-${slugger.slug(p.name)}` }));
+      return { ...group, people };
+    })
     .filter((group) => group.people.length > 0);
 
   // Bare subpages get no SectionNav, so the deep-link glide lives here: the
@@ -63,12 +69,7 @@ export function ContactCards() {
           </H2>
           <div className="flex w-full flex-wrap items-stretch justify-center gap-6">
             {group.people.map((person) => (
-              <ContactCard
-                key={`${group.key}-${person.name}`}
-                contact={person}
-                id={`${group.key}-${slugger.slug(person.name)}`}
-                lang={lang}
-              />
+              <ContactCard key={person.id} contact={person} id={person.id} lang={lang} />
             ))}
           </div>
         </section>

@@ -69,7 +69,6 @@ export const contactGroups: ContactGroup[] = [
 export const sponsors: Sponsor[] = [
   { name: "LOAS", logo: "/assets/sponsors/LOAS.jpg", url: "https://loas.fi" },
   { name: "TEK", logo: "/assets/sponsors/TEK.png", url: "https://tek.fi" },
-  { name: "MULTITRONIC", logo: "/assets/sponsors/MULTITRONIC.jpg", url: "https://multitronic.fi" },
   { name: "SKINSAUNA", logo: "/assets/sponsors/SKINSAUNA.png", url: "https://skinsauna.gg" },
 ];
 
